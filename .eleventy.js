@@ -24,6 +24,13 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
   });
 
+  eleventyConfig.addPairedShortcode('blockquote', (content) => {
+    return `<blockquote>${content}</blockquote>`;
+  });
+  eleventyConfig.addPairedShortcode('pullquote', (content) => {
+    return `<p>${content}</p>`;
+  });
+
   // Get the first `n` elements of a collection.
   eleventyConfig.addFilter("head", (array, n) => {
     if( n < 0 ) {
@@ -66,6 +73,7 @@ module.exports = function(eleventyConfig) {
     return [...tagSet];
   });
 
+  eleventyConfig.addPassthroughCopy("CNAME");
   eleventyConfig.addPassthroughCopy("img");
   eleventyConfig.addPassthroughCopy("css");
 
