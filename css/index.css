@@ -6,6 +6,7 @@
   --darkgray: #333;
   --navy: #17050F;
   --blue: #082840;
+  --lightblue: #d2e8f9;
   --white: #fff;
 }
 * {
@@ -15,17 +16,12 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: "PT Serif", sans-serif;
   color: var(--darkgray);
   background-color: var(--white);
 }
 p:last-child {
   margin-bottom: 0;
-}
-p,
-.tmpl-post li,
-img {
-  max-width: 37.5em; /* 600px /16 */
 }
 p,
 .tmpl-post li {
@@ -44,7 +40,7 @@ main :first-child {
   margin-top: 0;
 }
 header {
-  border-bottom: 1px dashed var(--lightgray);
+  border-bottom: 1px solid var(--lightgray);
 }
 header:after {
   content: "";
@@ -185,7 +181,7 @@ pre {
   display: inline-block;
   vertical-align: text-top;
   text-transform: uppercase;
-  font-size: 0.625em; /* 10px /16 */
+  font-size: 0.75em; /* 10px /16 */
   padding: 2px 4px;
   margin-left: 0.8em; /* 8px /10 */
   background-color: var(--red);
@@ -196,15 +192,6 @@ pre {
 a[href].post-tag,
 a[href].post-tag:visited {
   color: #fff;
-}
-
-/* Warning */
-.warning {
-  background-color: #ffc;
-  padding: 1em 0.625em; /* 16px 10px /16 */
-}
-.warning ol:only-child {
-  margin: 0;
 }
 
 /* Direct Links / Markdown Headers */
@@ -223,4 +210,24 @@ a[href].direct-link:focus:visited,
 :hover > a[href].direct-link,
 :hover > a[href].direct-link:visited {
   color: #aaa;
+}
+
+/* Posts */
+.tmpl-post {
+  margin: 1rem auto;
+  max-width: 60em;
+}
+blockquote {
+  background-color: #f7f7f7;
+  border-left: 2px solid var(--gray);
+  margin: 0.5rem 1rem;
+  padding: 0.5rem;
+}
+.tmpl-post a:not(.direct-link):hover {
+  background-color: var(--lightblue);
+}
+code {
+  background: #272822;
+  color: #f8f8f2;
+  padding: 1px 3px;
 }

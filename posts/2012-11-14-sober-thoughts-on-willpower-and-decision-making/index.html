@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sober Thoughts On Willpower And Decision Making</title>
+    <meta name="description" content="Evan Savage&#39;s personal blog about software, life, travel, and other sundry things.">
+    <link href='http://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+  </head>
+  <body>
+    <header>
+      <h1 class="home"><a href="/">Evan Savage</a></h1>
+
+      <ul class="nav">
+          <li class="nav-item"><a href="/">Home</a></li>
+          <li class="nav-item"><a href="/posts/">Archive</a></li>
+        <li class="nav-item"><a href="https://savageevan.com">About Me</a></li>
+      </ul>
+    </header>
+
+    <main class="tmpl-post">
+      <h1>Sober Thoughts On Willpower And Decision Making</h1>
+
+<p>In this post, I discuss my ongoing experiment with eliminating alcohol from my<br>
+diet. I use this experience to address a question: why do we find some forms of<br>
+habit change easier than others?</p>
+<!-- more -->
+<h2 id="background">Background <a class="direct-link" href="#background">#</a></h2>
+<p>As of today, <em>I've been completely sober for over a month.</em> I took my last drink<br>
+at <a href="http://goo.gl/maps/nSxLn">Seven's Ale House</a> on October 13 with these<br>
+fine folks:</p>
+<img src="https://lh6.googleusercontent.com/-chtv-noAeXM/UKQNQdVUz1I/AAAAAAAAANQ/8zTq_kKfbCU/s640/sevens-pub.jpg" />
+<p>Why did I decide to do this? One of the takeaways from my<br>
+<a href="/blog/2012/10/14/self-tracking-for-panic-another-dataset/">self-tracking for panic</a><br>
+was that <em>I drink heavily and frequently:</em> about three drinks per day, six days<br>
+per week. The USDA recommendations are somewhat stricter:</p>
+<blockquote>
+..."low-risk" drinking [is defined] as no more than 14 drinks a week for men and 7 drinks a week for women with no more than 4 drinks on any given day for men and 3 drinks a day for women.
+</blockquote>
+<p><a href="http://www.alcoholscreening.org/Home.aspx">This online questionnaire</a> put my drinking level in context:</p>
+<img src="https://lh5.googleusercontent.com/-ieizYGUAwJo/UKQNQsFeBOI/AAAAAAAAANY/jZ1_09uBSqk/s800/percentile-drinking.jpg" />
+<p><em>How much does the average American drink?</em> Using the data from<br>
+<a href="http://en.wikipedia.org/wiki/List_of_countries_by_alcohol_consumption">this Wikipedia article</a><br>
+and some simple calculations:</p>
+<pre class="language-py"><code class="language-py"><span class="token comment"># 1 drink = 1 beer bottle (355mL, 5% abv)</span><br>ALC_PER_BEER <span class="token operator">=</span> <span class="token number">0.355</span> <span class="token operator">*</span> <span class="token number">0.05</span><br><span class="token comment"># American consumption = 9.44 L/year</span><br>DRINKS_PER_YEAR <span class="token operator">=</span> <span class="token number">9.44</span> <span class="token operator">/</span> ALC_PER_BEER<br><span class="token comment"># 1 year = 365 days</span><br>DRINKS_PER_DAY <span class="token operator">=</span> DRINKS_PER_YEAR <span class="token operator">/</span> <span class="token number">365</span><br><span class="token keyword">print</span> DRINKS_PER_DAY<br><span class="token comment"># prints: "1.3027204321821337"</span></code></pre>
+<p>About $ 1.3 $ drinks per day, or roughly half of what I was drinking during my<br>
+two panic tracking periods. If you ask <a href="http://www.gallup.com/poll/156770/majority-drink-alcohol-averaging-four-drinks-week.aspx">Gallup</a>, though, they have a<br>
+different number: $ 4.2 / 7 = 0.6 $ drinks per day. <a href="http://pubs.niaaa.nih.gov/publications/RethinkingDrinking/Rethinking_Drinking.pdf">Rethinking Drinking</a>,<br>
+a pamphlet from the <a href="http://www.nih.gov/">National Institutes of Health</a>, provides yet another<br>
+look at drinking habits nationwide:</p>
+<img src="https://lh3.googleusercontent.com/-vEbziueqO8I/UKQN1vuM15I/AAAAAAAAANg/ermiP-4-0oA/s800/nih-alcohol-use.jpg" />
+<p>(This points out a general<br>
+problem with data in the social sciences. Polling and measurement methodologies<br>
+vary widely, as do the means by which data is presented.)</p>
+<p>Regardless of which source I choose to believe, <em>my data still places me above<br>
+average.</em></p>
+<p>There was also a more personal reason: in <a href="/blog/2012/10/09/self-tracking-for-panic-an-even-deeper-look/">analyzing the panic data</a>,<br>
+<em>I found that caffeine wasn't the only panic-inducing culprit.</em> By training a<br>
+<a href="https://github.com/candu/quantified-savagery-files/blob/master/Panic/recovery-journal/panic_maxent.py">maximum entropy classifier</a>, I found that high alcohol consumption was<br>
+predictive of panic attacks. <a href="/blog/2012/10/08/self-tracking-for-panic-a-deeper-look/">Dissecting my data with bash</a> supported<br>
+this hypothesis: on days where I had a panic attack, I was usually drinking<br>
+more than average both that day and the previous day.</p>
+<h2 id="elimination-or-moderation%3F">Elimination Or Moderation? <a class="direct-link" href="#elimination-or-moderation%3F">#</a></h2>
+<p>So why elimination instead of moderation? Simple: <em>moderation wasn't working.</em><br>
+I'd been using the USDA guidelines as my goal during the two panic tracking<br>
+periods, with little success.</p>
+<p>(As it happens, I was also reading <a href="http://www.emptymirrorbooks.com/beat/kerouac-big-sur.html">Big Sur</a> at the time, which contains<br>
+<a href="http://www.jackkerouac.com/">Jack Kerouac's</a> harrowing account of <a href="http://www.ncbi.nlm.nih.gov/pubmedhealth/PMH0001771/">delirium tremens</a>. This may<br>
+have provided some additional impetus in the decision!)</p>
+<p>The <a href="http://strategicsimplicity.com/3-reasons-to-form-new-habits-slowly-and-how-i-failed">received wisdom</a> is that this sort of &quot;cold turkey&quot; habit change<br>
+usually leads to failure: willpower is finite, we burn out easily, there are<br>
+powerful social triggers, etc. Except:</p>
+<blockquote>
+I didn't find elimination harder. On the contrary, it was much easier than moderation.
+</blockquote>
+<p>I didn't stop going out to bars or visiting friends. I didn't smash all the<br>
+bottles in the liquor cabinet or pour out the homebrew stash.<br>
+I didn't enroll in any support groups or 12-step programs. What gives?</p>
+<h2 id="willpower%3A-endurance-versus-strength">Willpower: Endurance Versus Strength <a class="direct-link" href="#willpower%3A-endurance-versus-strength">#</a></h2>
+<p>Elimination and moderation have different <em>decision-making profiles:</em></p>
+<ul>
+<li><strong>Elimination:</strong> the decision is always No. This default decision is<br>
+applied to every decision instance.</li>
+<li><strong>Moderation:</strong> the decision may be Yes or No. Each decision instance<br>
+requires a consideration of the circumstances.</li>
+</ul>
+<p>When I attempted to apply moderation, I found myself <em>breaking down this<br>
+consideration into a complex set of rules:</em></p>
+<ul>
+<li><strong>Amount:</strong> <em>Have I said Yes too much?</em></li>
+<li><strong>Cost:</strong> <em>Who pays for Yes?</em> Am I paying? Is a friend buying the next round?<br>
+Did I receive free beer in exchange for volunteer services?</li>
+<li><strong>Novelty:</strong> <em>Is this Yes different somehow?</em> Am I at a brewery I'll likely<br>
+never visit again? Did a batch of homebrew just finish carbonation?</li>
+<li><strong>Social Pressure:</strong> <em>What are the social costs of Yes and No?</em></li>
+<li><strong>Special Occasions:</strong> <em>Does the occasion warrant changing the Yes threshold?</em><br>
+Am I on vacation? At a fancy restaurant? Out at a concert?</li>
+</ul>
+<p>Taking the <a href="http://scopeblog.stanford.edu/2011/12/29/a-conversation-about-the-science-of-willpower/">willpower as muscle</a> metaphor one step further, this was<br>
+a feat of endurance. Even though amount should be the only relevant factor<br>
+here, <em>each decision instance spawned a host of smaller sub-decisions.</em></p>
+<p>By contrast, the elimination strategy required only one decision for each<br>
+instance, <em>and that decision was predetermined:</em> No. It was a larger single<br>
+decision, more akin to a feat of willpower strength.</p>
+<h2 id="replacing-the-routine">Replacing The Routine <a class="direct-link" href="#replacing-the-routine">#</a></h2>
+<p>In <a href="http://charlesduhigg.com/">Charles Duhigg's</a> conception of the <a href="http://charlesduhigg.com/how-habits-work/">habit loop</a>, we can't<br>
+truly break habits; we can only <em>swap in alternate routines</em> that connect the<br>
+old cues and rewards.</p>
+<p>This reminded me of a term my friend <a href="http://www.linkedin.com/pub/travis-brooks/4/668/b44">Travis Brooks</a><br>
+used: ENAB, short for <em>Equally-attractive Non-Alcoholic Beverage.</em> There<br>
+are delicious <a href="http://shop.torani.com/Bacon-Flavored-Syrup/p/TOR-431248&amp;c=Torani@Syrups?utm_source=google&amp;utm_medium=cpc&amp;adtype=pla&amp;kw=&amp;gclid=CNL6sv21z7MCFQuCQgod-RcAgA">flavor syrups</a> and <a href="http://www.bundaberg.com/info/product_range/ginger_beer/">ginger beers</a>.<br>
+<a href="http://www.myrecipes.com/recipe/herb-infused-spa-water-10000000682668/">Spa water</a> and <a href="http://store.primowater.com/Carbonators.aspx">carbonation systems</a> lend new life to boring<br>
+<a href="http://www.dhmo.org/facts.html">dihydrogen monoxide</a>. By making non-alcoholic beverages <em>as exciting as<br>
+microbrews and Sonoma wines</em>, I tapped into my desire for exploration: here<br>
+was a whole new range of beverages to discover!</p>
+<h2 id="openness-and-social-myths">Openness And Social Myths <a class="direct-link" href="#openness-and-social-myths">#</a></h2>
+<p>As the Alcohol Screening questionnaire said:</p>
+<blockquote>
+Many of us think our drinking is like everyone else's.
+</blockquote>
+<p>While it is true that <a href="http://www.psychologytoday.com/blog/the-scientific-fundamentalist/201010/why-intelligent-people-drink-more-alcohol">more educated people drink more</a>, I<br>
+encountered much less of a &quot;drinking culture&quot; among my friends than<br>
+I had expected.<br>
+In fact, by being open about my behavior change and the motivations<br>
+behind it, I received a good deal of social support for this decision.</p>
+<p><em>Mistaken expectations are persistent in habit change:</em></p>
+<ul>
+<li><strong>Fear Of Isolation:</strong> We may believe that our current habits are<br>
+<em>normal or average</em>, and resist changing for fear of being regarded<br>
+as unusual.</li>
+<li><strong>Fear Of Inadequacy:</strong> We may believe that we are <em>unable or less<br>
+able</em> to change than others, and resist changing for fear we will<br>
+not be successful.</li>
+</ul>
+<p>In both cases, data to refute the fear-expectation may be hard to find.</p>
+<h2 id="final-thoughts">Final Thoughts <a class="direct-link" href="#final-thoughts">#</a></h2>
+<p>There are many ways in which my approach <em>could fail to work for others:</em></p>
+<ul>
+<li><strong>Physical Dependence:</strong> Although I drank more than average, my drinking had not<br>
+progressed to the point of chronic dependence. Alcohol withdrawal<br>
+<a href="http://www.ncbi.nlm.nih.gov/pubmedhealth/PMH0001769/">can be extremely serious</a>, so this unsupervised &quot;cold turkey&quot;<br>
+approach might be dangerous for problem drinkers or alcoholics.</li>
+<li><strong>Social Pressure:</strong> I found my friends to be understanding of my habit<br>
+change. This is not universally true, however, and in some instances<br>
+it may be necessary to rethink your personal relationships before<br>
+behavior change can occur.</li>
+<li><strong>Specific Desires:</strong> Exploration is a strong part of my identity.<br>
+Others will have different mental cues to tackle or subvert in designing<br>
+behavior change strategies.</li>
+<li><strong>Willpower:</strong> If strength and endurance are separable components of<br>
+the &quot;willpower muscle&quot;, it's possible that others may find the endurance<br>
+of many small decisions easier than the strength of one big decision.</li>
+</ul>
+<p>These same factors made elimination an easier form of habit change for me.<br>
+Although there are general principles of <a href="http://www.meetup.com/habitdesign/">habit design</a>, I believe that<br>
+further exploration will reveal it to be a <em>highly personal process.</em></p>
+<blockquote>
+It is one thing to say "replace the routine", and an entirely different thing to do so.
+</blockquote>
+<p>This is not to say that such exploration is hopeless; far from it.<br>
+If <a href="http://quantifiedself.com/2010/12/a-futurists-take-on-self-tracking-and-mindfulness/">self-tracking leads to mindfulness</a>,<br>
+perhaps this mindfulness will equip us to <em>more effectively identify and modify<br>
+the habit loops that rule our lives.</em></p>
+<h2 id="what-next%3F">What Next? <a class="direct-link" href="#what-next%3F">#</a></h2>
+<p>My goal is not lifelong abstinence from alcohol. Rather, I'm hoping that<br>
+this will reset my baseline consumption, making it easier to practice<br>
+moderation later.</p>
+<p>This experience has also demonstrated that elimination is a<br>
+viable choice for me; if I find that my moderation efforts are slipping, I<br>
+can return to a period of elimination. Having <em>proven strategies</em><br>
+under your belt can be enormously helpful in <em>making behavior change stick.</em></p>
+
+
+<hr>
+<ul><li>Next: <a href="/posts/2012-12-21-datafist-exploration-and-analysis/">datafist: Exploration And Analysis</a></li><li>Previous: <a href="/posts/2012-11-12-financial-tracking-mint-bubbles/">Financial Tracking: Mint Bubbles</a></li>
+</ul>
+
+    </main>
+
+    <footer></footer>
+
+    <!-- Current page: /posts/2012-11-14-sober-thoughts-on-willpower-and-decision-making/ -->
+  </body>
+</html>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Behavioral Economics of 23AndMe Results</title>
+    <meta name="description" content="Evan Savage&#39;s personal blog about software, life, travel, and other sundry things.">
+    <link href='http://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+  </head>
+  <body>
+    <header>
+      <h1 class="home"><a href="/">Evan Savage</a></h1>
+
+      <ul class="nav">
+          <li class="nav-item"><a href="/">Home</a></li>
+          <li class="nav-item"><a href="/posts/">Archive</a></li>
+        <li class="nav-item"><a href="https://savageevan.com">About Me</a></li>
+      </ul>
+    </header>
+
+    <main class="tmpl-post">
+      <h1>The Behavioral Economics of 23AndMe Results</h1>
+
+<p>Over the holidays, I received a 23andMe genetic testing kit as a gift. In<br>
+this post, I'll take a look at my results through the lens of prospect<br>
+theory, which aims to quantify our perception of risk. 23andMe results<br>
+estimate your lifetime likelihood of various medical conditions, making them<br>
+a great dataset for testing out these concepts in behavioral economics.</p>
+<!-- more -->
+<h2 id="prospect-theory%3A-a-quick-example">Prospect Theory: A Quick Example <a class="direct-link" href="#prospect-theory%3A-a-quick-example">#</a></h2>
+<p>Suppose I offer you a bet. I flip a fair coin once. Heads, you<br>
+gain \$ 1000; tails, you lose \$ 900. Do you take the bet? Probability<br>
+dictates that you should, since you would expect to come out<br>
+$ (1000 - 900) / 2 = 50 $ dollars ahead.</p>
+<p>If you're like most people, though, you have a <em>powerful aversion</em> to losing<br>
+\$ 900. This aversion is powerful enough that you'll decline the bet. This<br>
+only makes sense if losing \$ 900 has a greater negative value than the positive<br>
+value of gaining \$ 1000. In other words, your perception of value is<br>
+<em>non-linear</em>. This perception underpins many real-world bets that<br>
+make little sense from an expected utility standpoint:</p>
+<ul>
+<li><em>Insurance:</em> the buyer takes a small certain loss to avoid the risk of an<br>
+uncertain and potentially large loss;</li>
+<li><em>Security:</em> the property owner takes a small certain loss to reduce the<br>
+risk of an uncertain and potentially large loss;</li>
+<li><em>Lotteries:</em> the ticket holder takes a small certain loss to try for an<br>
+extremely unlikely but massive gain.</li>
+</ul>
+<p><a href="http://www.princeton.edu/~kahneman/docs/Publications/prospect_theory.pdf">Prospect theory</a> creates a mathematical framework for understanding our<br>
+perceptions of value and risk. It's an awesome paper with highly<br>
+approachable mathematics. Definitely recommended reading for anyone<br>
+interested in economics, game theory, and the like.</p>
+<h2 id="my-disease-risk">My Disease Risk <a class="direct-link" href="#my-disease-risk">#</a></h2>
+<p>Among other things, 23andMe can estimate your lifetime risk of various<br>
+diseases. This information is divided into three categories according to<br>
+whether your risk is highly elevated, highly decreased, or roughly typical:</p>
+<img src="https://lh4.googleusercontent.com/-xccLcJ7-CqU/URBE7QF2tCI/AAAAAAAAATs/sFewavaz6P4/s640/23andme_elevated_risk.jpg" />
+<img src="https://lh4.googleusercontent.com/-D7AY4foE6Qs/URBE8FA3lBI/AAAAAAAAAT0/x76tZ9J5HP0/s640/23andme_decreased_risk.jpg" />
+<img src="https://lh4.googleusercontent.com/-HU05eMXwI4M/URBE89TEu0I/AAAAAAAAAT8/MihVGsTQkLQ/s640/23andme_typical_risk.jpg" />
+<p>Within each category, the diseases are ordered by decreasing confidence<br>
+rating, then by decreasing absolute risk. The different confidence levels<br>
+are as follows:</p>
+<ol>
+<li><em>Preliminary Research:</em> fewer than 100 people studied</li>
+<li><em>Preliminary Research:</em> fewer than 750 people studied</li>
+<li><em>Preliminary Research:</em> a single study with 750+ participants</li>
+<li><em>Established Research:</em> multiple studies with 750+ participants</li>
+</ol>
+<p>The 23andMe dashboard doesn't show estimated risk for lower-confidence<br>
+findings, but I can fetch that information through their <a href="https://api.23andme.com/">API</a>.</p>
+<p>Armed with my raw risk data, I can now play around with a pair of alternative<br>
+disease rankings. As an anchoring point, here's my disease ranking by<br>
+absolute risk:</p>
+<pre><code>$ python risksort.py risk &lt; risks.json
+ 1                                            Obesity 0.5701
+ 2                             Coronary Heart Disease 0.5464
+ 3                                Atrial Fibrillation 0.3392
+ 4                                    Prostate Cancer 0.2602
+ 5                   Age-related Macular Degeneration 0.2459
+ 6                                    Type 2 Diabetes 0.1969
+ 7                             Venous Thromboembolism 0.1279
+ 8                                        Lung Cancer 0.0823
+ 9                                          Psoriasis 0.0708
+10                                         Gallstones 0.0618
+11                                Alzheimer's Disease 0.0493
+12                                  Colorectal Cancer 0.0417
+13                             Chronic Kidney Disease 0.0356
+14                               Rheumatoid Arthritis 0.0300
+15                             Restless Legs Syndrome 0.0245
+16                               Exfoliation Glaucoma 0.0217
+17                                           Melanoma 0.0216
+18                                    Type 1 Diabetes 0.0137
+19                                Parkinson's Disease 0.0109
+20                                 Ulcerative Colitis 0.0066
+21                                 Multiple Sclerosis 0.0047
+22          Esophageal Squamous Cell Carcinoma (ESCC) 0.0043
+23     Stomach Cancer (Gastric Cardia Adenocarcinoma) 0.0028
+24                                    Crohn's Disease 0.0016
+25                                   Bipolar Disorder 0.0015
+26                                     Celiac Disease 0.0005
+27               Scleroderma (Limited Cutaneous Type) 0.0005
+28                          Primary Biliary Cirrhosis 0.0004
+29                                      Breast Cancer 0.0000
+30               Lupus (Systemic Lupus Erythematosus) 0.0000
+</code></pre>
+<p>The alternative ranking metric code can be found <a href="https://github.com/candu/quantified-savagery-files/blob/master/Genetics/risksort.py">here</a>.</p>
+<h3 id="relative-risk-sorting">Relative-Risk Sorting <a class="direct-link" href="#relative-risk-sorting">#</a></h3>
+<p>An obvious ranking metric is relative risk, which is already provided in<br>
+the disease listing.</p>
+<pre><code>$ python risksort.py relative_risk &lt; risks.json
+ 1                   Age-related Macular Degeneration 3.7542
+ 2                               Exfoliation Glaucoma 2.8933
+ 3                                   Bipolar Disorder 1.5000
+ 4                                    Prostate Cancer 1.4593
+ 5                                 Multiple Sclerosis 1.3824
+ 6                                    Type 1 Diabetes 1.3431
+ 7                               Rheumatoid Arthritis 1.2605
+ 8                             Restless Legs Syndrome 1.2500
+ 9                                Atrial Fibrillation 1.2494
+10     Stomach Cancer (Gastric Cardia Adenocarcinoma) 1.2174
+11          Esophageal Squamous Cell Carcinoma (ESCC) 1.1944
+12                             Coronary Heart Disease 1.1665
+13                             Venous Thromboembolism 1.0365
+14                             Chronic Kidney Disease 1.0349
+15                                        Lung Cancer 0.9728
+16                                            Obesity 0.8926
+17                                         Gallstones 0.8766
+18                                 Ulcerative Colitis 0.8571
+19                                    Type 2 Diabetes 0.7656
+20                                           Melanoma 0.7552
+21                                  Colorectal Cancer 0.7500
+22               Scleroderma (Limited Cutaneous Type) 0.7143
+23                                Alzheimer's Disease 0.6885
+24                                Parkinson's Disease 0.6770
+25                                          Psoriasis 0.6238
+26                          Primary Biliary Cirrhosis 0.5000
+27                                     Celiac Disease 0.4167
+28                                    Crohn's Disease 0.3019
+29                                      Breast Cancer 0.0000
+30               Lupus (Systemic Lupus Erythematosus) 0.0000
+</code></pre>
+<h3 id="perceived-relative-risk-sorting">Perceived Relative-Risk Sorting <a class="direct-link" href="#perceived-relative-risk-sorting">#</a></h3>
+<p>In prospect theory, a probability $ p $ has perceived weight $ w(p) $.<br>
+In <a href="http://psych.fullerton.edu/mBIRNBAUM/psych466/articles/Tversky_Kahneman_JRU_92.pdf">Advances in Prospect Theory: Cumulative Representation of Uncertainty</a>,<br>
+Tversky and Kahneman fit $ w $ to observed results for subjects evaluating<br>
+bets similar to the one listed above:</p>
+<img src="https://lh6.googleusercontent.com/-5qE_0uX1hdI/URBE9pc7ViI/AAAAAAAAAUE/Y-zgLP8Yp-8/s400/prospect_positive_graph.jpg" />
+<img src="https://lh3.googleusercontent.com/-UWfKR_J2RBs/URBE-Dj67nI/AAAAAAAAAUM/CpO_z7VnPbM/s400/prospect_negative_graph.jpg" />
+<p>The corresponding equations are</p>
+<p>$$<br>
+w^+(p) = \frac{p^{0.61}}{(p^{0.61} + (1-p)^{0.61})^{\frac{1}{0.61}}}<br>
+$$</p>
+<p>for positive prospects and</p>
+<p>$$<br>
+w^-(p) = \frac{p^{0.69}}{(p^{0.69} + (1-p)^{0.69})^{\frac{1}{0.69}}}<br>
+$$</p>
+<p>for negative prospects. If my risk is $ p_0 $ and the general risk is $ p $,<br>
+I can define my perceived relative risk as</p>
+<p>$$<br>
+r = \frac{w^+(p_0)}{w^+(p)}<br>
+$$</p>
+<p>if $ p_0 &lt; p $ (I consider decreased risk as a positive prospect!) and</p>
+<p>$$<br>
+r = \frac{w^-(p_0)}{w^-(p)}<br>
+$$</p>
+<p>otherwise. The resulting rankings are pretty close to ordinary relative<br>
+risk, but not identical:</p>
+<pre><code>$ diff &lt;(python risksort.py relative_risk &lt; risks.json | cut -c-53) &lt;(python risksort.py perceived_relative_risk &lt; risks.json | cut -c-53)
+13,14c13,14
+&lt; 13                             Venous Thromboembolism
+&lt; 14                             Chronic Kidney Disease
+---
+&gt; 13                             Chronic Kidney Disease
+&gt; 14                             Venous Thromboembolism
+16,17c16,17
+&lt; 16                                            Obesity
+&lt; 17                                         Gallstones
+---
+&gt; 16                                         Gallstones
+&gt; 17                                            Obesity
+20,23c20,23
+&lt; 20                                           Melanoma
+&lt; 21                                  Colorectal Cancer
+&lt; 22               Scleroderma (Limited Cutaneous Type)
+&lt; 23                                Alzheimer's Disease
+---
+&gt; 20                                  Colorectal Cancer
+&gt; 21                                           Melanoma
+&gt; 22                                Alzheimer's Disease
+&gt; 23               Scleroderma (Limited Cutaneous Type)
+</code></pre>
+<p>The difference is due to distortion of small probabilities.</p>
+<h2 id="further-ideas">Further Ideas <a class="direct-link" href="#further-ideas">#</a></h2>
+<p>So far, I've only used the probability weighting functions from prospect<br>
+theory. I could also assign values to each disease:</p>
+<ul>
+<li><em>Financial:</em> how much does this disease cost to treat on average?</li>
+<li><em>Reduced Life Expectancy:</em> how many years of potential life do these<br>
+diseases claim on average?</li>
+<li><em>Lifestyle:</em> how much impact would this have on my highly active lifestyle?<br>
+On others who might have to support me?</li>
+</ul>
+<p>This is definitely morbid, but it's also potentially worthwhile. After all,<br>
+insurance companies make <em>very detailed estimates of our risk.</em> They will<br>
+certainly incorporate genetic data into their models as soon as it's legal to<br>
+do so. If we want to make more informed decisions in situations involving risk,<br>
+from medical insurance to lottery tickets, it helps to understand how we<br>
+value different outcomes.</p>
+<h2 id="appendix%3A-how-to-use-the-23andme-api">Appendix: How To Use The 23andMe API <a class="direct-link" href="#appendix%3A-how-to-use-the-23andme-api">#</a></h2>
+<p>The 23andMe API is actually quite easy to use, and their <a href="https://api.23andme.com/docs/authentication/">documentation</a><br>
+is excellent. Nevertheless, I'll list the flow I went through to get my<br>
+genetic disease risk data. If you're unfamiliar with <a href="http://oauth.net/2/">OAuth 2.0</a>,<br>
+the Google API docs include <a href="https://developers.google.com/accounts/docs/OAuth2">this primer</a> complete with cute stick<br>
+figure diagrams.</p>
+<p>First, I log into the API console and create an app.<br>
+This gives me the <code>client_id</code> and <code>client_secret</code> parameters I need to<br>
+initiate the flow. Looking at the <a href="https://api.23andme.com/docs/reference/">23andMe API reference</a>, I see that I need<br>
+permissions under the <code>analyses</code> scope, so I request that by visiting</p>
+<pre><code>https://api.23andme.com/authorize/?redirect_uri=http://localhost:5000/receive_code/&amp;response_type=code&amp;client_id=&lt;client_id&gt;&amp;scope=analyses
+</code></pre>
+<p>in the browser. I'm redirected to</p>
+<pre><code>http://localhost:5000/receive_code/?code=&lt;code&gt;
+</code></pre>
+<p>which gives me the auth code I need to request a token:</p>
+<pre><code>$ curl https://api.23andme.com/token/ \
+  -d client_id=&lt;client_id&gt; \
+  -d client_secret=&lt;client_secret&gt; \
+  -d code=&lt;code&gt; \
+  -d grant_type=authorization_code \
+  -d &quot;redirect_uri=http://localhost:5000/receive_code/&quot; \
+  -d scope=analyses &gt; token.json
+$ jsonpp token.json
+{
+  &quot;access_token&quot;: &quot;&lt;access_token&gt;&quot;
+  &quot;token_type&quot;: &quot;bearer&quot;,
+  &quot;expires_in&quot;: 86400,
+  &quot;refresh_token&quot;: &quot;&lt;refresh_token&gt;&quot;
+  &quot;scope&quot;: &quot;analyses&quot;
+}
+</code></pre>
+<p>Finally, I use my shiny new <code>access_token</code> to get my genetic risk data:</p>
+<pre><code>$ curl https://api.23andme.com/1/risks/ \
+  -H &quot;Authorization: Bearer &lt;access_token&gt;&quot; &gt; risks.json
+$ jsonpp risks.json | head
+[
+  {
+    &quot;id&quot;: &quot;6d2de403675a0d07&quot;,
+    &quot;risks&quot;: [
+      {
+        &quot;description&quot;: &quot;Atrial Fibrillation&quot;,
+        &quot;risk&quot;: 0.3392,
+        &quot;population_risk&quot;: 0.2715,
+        &quot;report_id&quot;: &quot;atrialfib&quot;
+      },
+</code></pre>
+
+
+<hr>
+<ul><li>Next: <a href="/posts/2013-02-07-applying-genetic-research-to-my-23andme-data/">Applying Genetic Research To My 23andMe Data</a></li><li>Previous: <a href="/posts/2013-01-31-what-ill-look-like-in-50-years/">What I&#39;ll Look Like In 50 Years</a></li>
+</ul>
+
+    </main>
+
+    <footer></footer>
+
+    <!-- Current page: /posts/2013-02-04-the-behavioral-economics-of-23andme-results/ -->
+  </body>
+</html>

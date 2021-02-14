@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Happiness: An Adventure In Data Extraction</title>
+    <meta name="description" content="Evan Savage&#39;s personal blog about software, life, travel, and other sundry things.">
+    <link href='http://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+  </head>
+  <body>
+    <header>
+      <h1 class="home"><a href="/">Evan Savage</a></h1>
+
+      <ul class="nav">
+          <li class="nav-item"><a href="/">Home</a></li>
+          <li class="nav-item"><a href="/posts/">Archive</a></li>
+        <li class="nav-item"><a href="https://savageevan.com">About Me</a></li>
+      </ul>
+    </header>
+
+    <main class="tmpl-post">
+      <h1>Track Your Happiness: An Adventure In Data Extraction</h1>
+
+<p>In this post, I go over my first report from<br>
+<a href="https://www.trackyourhappiness.org/">Track Your Happiness</a>, a tool that uses<br>
+the <a href="https://www.trackyourhappiness.org/">Experience Sampling Method</a> for mood<br>
+tracking.</p>
+<!-- more -->
+<h2 id="my-report">My Report <a class="direct-link" href="#my-report">#</a></h2>
+<h3 id="charts">Charts <a class="direct-link" href="#charts">#</a></h3>
+<p>My happiness is <em>relatively constant across days of the week.</em></p>
+<img src="https://chart.googleapis.com/chart?chs=310x200&cht=bvg&chco=0088cc&chxt=x%2Cy&chxl=0%3A%7CSun%7CMon%7CTue%7CWed%7CThu%7CFri%7CSat&chxr=1%2C0%2C100&chxs=0%2C666666%2C10%7C1%2C666666%2C10&chd=s%3Aolpkmkp&chbh=30" alt="Weekday" />
+<p>I'm <em>happiest at the gym or in parks</em>, with vacations and restaurants close<br>
+behind. &quot;At Home&quot; is mid-pack, with <em>&quot;At Work&quot; near the bottom.</em></p>
+<img src="https://chart.googleapis.com/chart?chs=310x338&cht=bhg&chco=0088cc&chxt=y%2Cx&chxl=0%3A%7CBus+Stoo%7CPlane%7CAt+Work%7CIn+A+Car%7CDentist%7CAt+Home%7CAirport%7CRestaurant%7CVacation%7CPark%7CGym&chxr=1%2C0%2C100&chxs=0%2C666666%2C10%7C1%2C666666%2C10&chd=s%3Auusroonliee&chbh=20" alt="Location" />
+<p><em>Fun, exercise, and food</em> generate the most happiness. <em>Passive actions</em> such as<br>
+watching TV, commuting, and waiting rank much lower. <em>Work is least<br>
+happiness-inducing.</em></p>
+<img src="https://chart.googleapis.com/chart?chs=310x422&cht=bhg&chco=0088cc&chxt=y%2Cx&chxl=0%3A%7CWorking%7CCommuting%2C+Traveling%7CWaiting%7CWatching+Television%7CReading%7CHome+Computer%7CGrooming%2C+Self+Care%7CShopping%2C+Errands%7CRelaxing%2C+Nothing+Special%7CTalking%2C+Conversation%7CEating%7CPlaying%7CPreparing+Food%7CExercising&chxr=1%2C0%2C100&chxs=0%2C666666%2C10%7C1%2C666666%2C10&chd=s%3Autrrrqpnnnmlkj&chbh=20" alt="What are you doing?" />
+<p><em>Whether I want to perform a task</em> is a much stronger determinant of happiness<br>
+than whether I have to:</p>
+<img src="https://chart.googleapis.com/chart?chs=310x200&cht=bvg&chco=0088cc&chxt=x%2Cx%2Cy&chxl=0%3A%7CDon%27t+want+to%7CWant+to%7CWant+to%7CDon%27t+want+to%7C1%3A%7CHave+to%7CHave+to%7CDon%27t+have+to%7CDon%27t+have+to&chxr=2%2C0%2C100&chxs=0%2C666666%2C10%7C1%2C666666%2C10%7C2%2C666666%2C10&chd=s%3Agope&chbh=51" alt="Want to / Have to" />
+<p>I'm <em>happier when outside.</em></p>
+<img src="https://chart.googleapis.com/chart?chs=310x126&cht=bhg&chco=0088cc&chxt=y%2Cx&chxl=0%3A%7CNo%7CYes&chxr=1%2C0%2C100&chxs=0%2C666666%2C10%7C1%2C666666%2C10&chd=s%3Apj&chbh=40" alt="Outside?" />
+<p>I'm <em>happier when alone.</em></p>
+<img src="https://chart.googleapis.com/chart?chs=310x126&cht=bhg&chco=0088cc&chxt=y%2Cx&chxl=0%3A%7CNo%7CYes&chxr=1%2C0%2C100&chxs=0%2C666666%2C10%7C1%2C666666%2C10&chd=s%3Apl&chbh=40" alt="Alone" />
+<p>Given that, it seems counterintuitive that <em>I'm happier when interacting with<br>
+multiple people.</em></p>
+<img src="https://chart.googleapis.com/chart?chs=310x132&cht=bhg&chco=0088cc&chxt=y%2Cx&chxl=0%3A%7CThree+Or+More%7CTwo%7COne&chxr=1%2C0%2C100&chxs=0%2C666666%2C10%7C1%2C666666%2C10&chd=s%3Aorq&chbh=26" alt="Number of people interacting with" />
+<p>I was also surprised by this one: I'm happiest when <em>talking with acquaintances<br>
+or friends</em> and least happy when <em>talking with family.</em></p>
+<img src="https://chart.googleapis.com/chart?chs=310x198&cht=bhg&chco=0088cc&chxt=y%2Cx&chxl=0%3A%7COther+Relatives%7CSpouse%2FPartner%2FSignificant+Other%7CStrangers%7CCo+Workers%7CFriends%7CAcquaintances&chxr=1%2C0%2C100&chxs=0%2C666666%2C10%7C1%2C666666%2C10&chd=s%3Autsrpo&chbh=20" alt="Who talking with" />
+<h3 id="what-does-it-mean%3F">What Does It Mean? <a class="direct-link" href="#what-does-it-mean%3F">#</a></h3>
+<p>Even without considering the specific results, I have a few <em>unanswered<br>
+questions:</em></p>
+<ul>
+<li>What is <em>happiness</em>? How do I judge it at a particular moment? Is my<br>
+judgment <em>accurate and consistent?</em></li>
+<li>Is it necessarily better to be happier, or is there a<br>
+threshold past which additional happiness doesn't improve the quality of life?</li>
+<li>Are these results <em>significant?</em> They're computed from just 50 samples, which<br>
+seems low for drawing such broad conclusions.</li>
+<li>Do these activities make me more or less happy, or <em>do these readings reflect<br>
+my pre-existing mental state?</em></li>
+</ul>
+<p>There's also the issue of those surprising findings. Am I really less happy<br>
+when talking with <a href="http://www.eecs.berkeley.edu/~valkyrie/">Valkyrie Savage</a>? To me, the most likely<br>
+explanation is <em>trust</em>: around her, <em>I feel free to discuss negative aspects<br>
+of my life.</em> Doing so would necessarily involve fixating on those aspects,<br>
+which could account for some happiness reduction.</p>
+<p>During this period, I was confronting <em>doubt and frustration in<br>
+my job.</em> According to my personal data, I was also <a href="/blog/2012/10/08/self-tracking-for-panic-a-deeper-look/">drinking heavily</a>,<br>
+possibly as a means for coping with that negative emotion. (It doesn't help.)<br>
+Guilt is a potential factor; perhaps I felt<br>
+that I was always offloading that doubt and frustration onto her.</p>
+<p>The problem, though, is that <em>none of these explanations are testable</em>. They seem<br>
+reasonable to me, but from a scientific standpoint they <em>fail a simple criterion:</em></p>
+<blockquote>
+Upon viewing only my data, would an impartial stranger reach similar conclusions?
+</blockquote>
+<p>I can't see how they would, since <em>my explanations involve<br>
+intricate self-knowledge</em> that is not represented in the data.</p>
+<h3 id="a-further-note-on-significance">A Further Note On Significance <a class="direct-link" href="#a-further-note-on-significance">#</a></h3>
+<p>Let's take a more critical look at this chart:</p>
+<img src="https://chart.googleapis.com/chart?chs=310x198&cht=bhg&chco=0088cc&chxt=y%2Cx&chxl=0%3A%7COther+Relatives%7CSpouse%2FPartner%2FSignificant+Other%7CStrangers%7CCo+Workers%7CFriends%7CAcquaintances&chxr=1%2C0%2C100&chxs=0%2C666666%2C10%7C1%2C666666%2C10&chd=s%3Autsrpo&chbh=20" alt="Who talking with" />
+<p>I mentioned that this data was drawn from a total of 50 samples. I'm assuming<br>
+that these bars represent <em>average reported happiness</em> in each category. But:</p>
+<ul>
+<li><strong>Which average?</strong> Probably the mean, but that's not made explicit<br>
+anywhere.</li>
+<li><strong>Where are the error bars?</strong> I have no idea whether the ranking is significant.</li>
+<li><strong>How many samples go into each bar?</strong> Maybe &quot;Acquaintances&quot; and<br>
+&quot;Other Relatives&quot; are outliers because I rarely talk to people in those<br>
+categories.</li>
+</ul>
+<p>This leads to an important point:</p>
+<blockquote>
+Never present uncertain information as certain.
+</blockquote>
+<h2 id="digging-deeper">Digging Deeper <a class="direct-link" href="#digging-deeper">#</a></h2>
+<p>Consider this chart:</p>
+<img src="https://chart.googleapis.com/chart?chs=310x200&cht=s&chco=0088cc&chxt=x%2Cy&chxr=0%2C0%2C100%7C1%2C0%2C100&chxs=0%2C666666%2C10%7C1%2C666666%2C10&chd=s%3AaUXKPnmomsWw0tSQnXaVrk%2CslrjjuZtXvZotualhrmepm" alt="Focused" />
+<p><em>Am I happier when I'm more focused?</em> It's hard to tell from looking at this<br>
+chart. This is a prime use case for <em>linear regression</em>, but I don't have the<br>
+data! They <a href="http://support.trackyourhappiness.org/customer/portal/questions/302357-combine-categories-">claim to have plans for data export</a>, but I haven't seen those<br>
+come to fruition. What now?</p>
+<h3 id="data-extraction">Data Extraction <a class="direct-link" href="#data-extraction">#</a></h3>
+<p>Fortunately, the chart was generated using the<br>
+(now deprecated) <a href="https://developers.google.com/chart/image/">Image Charts</a> functionality of the<br>
+<a href="https://developers.google.com/chart/">Google Charts API</a>. With Image Charts, you <em>make requests to specially<br>
+encoded URLs:</em></p>
+<pre><code>https://chart.googleapis.com/chart
+  ?chs=310x200
+  &amp;cht=s
+  &amp;chco=0088cc
+  &amp;chxt=x%2Cy
+  &amp;chxr=0%2C0%2C100%7C1%2C0%2C100
+  &amp;chxs=0%2C666666%2C10%7C1%2C666666%2C10
+  &amp;chd=s%3AaUXKPnmomsWw0tSQnXaVrk%2CslrjjuZtXvZotualhrmepm
+</code></pre>
+<p>You can see what all those parameters do <a href="https://developers.google.com/chart/image/docs/chart_params">here</a>,<br>
+but the one I really care about is <code>chd</code>. This <em>encodes the chart data</em><br>
+in the <a href="https://developers.google.com/chart/image/docs/data_formats#simple">Simple Encoding Format</a>. I'll walk through <em>how to decode<br>
+this data.</em></p>
+<p>As it stands, the value of <code>chd</code> is <a href="http://tools.ietf.org/html/rfc3986#section-2.1">URL-encoded</a>.<br>
+We need to decode those <code>%3A</code> and <code>%2C</code> escape sequences.</p>
+<pre class="language-py"><code class="language-py"><span class="token keyword">import</span> urlparse<br>params <span class="token operator">=</span> urlparse<span class="token punctuation">.</span>parse_qs<span class="token punctuation">(</span><span class="token string">'chd=s%3AaUXKPnmomsWw0tSQnXaVrk%2CslrjjuZtXvZotualhrmepm'</span><span class="token punctuation">)</span><br>chd <span class="token operator">=</span> params<span class="token punctuation">[</span><span class="token string">'chd'</span><span class="token punctuation">]</span> <span class="token comment"># 's:aUXKPnmomsWw0tSQnXaVrk,slrjjuZtXvZotualhrmepm'</span></code></pre>
+<p>The <code>s:</code> at the front means <em>use the simple encoding</em>. In that encoding, the<br>
+characters <code>A-Za-z0-9</code> are mapped to values 0-61 in a, well, simple manner:</p>
+<pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">_get_simple_value</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">:</span><br>  <span class="token keyword">if</span> c <span class="token operator">==</span> <span class="token string">'_'</span><span class="token punctuation">:</span><br>    <span class="token keyword">return</span> <span class="token boolean">None</span><br>  <span class="token keyword">if</span> <span class="token string">'A'</span> <span class="token operator">&lt;=</span> c <span class="token operator">&lt;=</span> <span class="token string">'Z'</span><span class="token punctuation">:</span><br>    <span class="token keyword">return</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token builtin">ord</span><span class="token punctuation">(</span><span class="token string">'A'</span><span class="token punctuation">)</span><br>  <span class="token keyword">if</span> <span class="token string">'a'</span> <span class="token operator">&lt;=</span> c <span class="token operator">&lt;=</span> <span class="token string">'z'</span><span class="token punctuation">:</span><br>    <span class="token keyword">return</span> <span class="token number">26</span> <span class="token operator">+</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token builtin">ord</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><br>  <span class="token keyword">if</span> <span class="token string">'0'</span> <span class="token operator">&lt;=</span> c <span class="token operator">&lt;=</span> <span class="token string">'9'</span><span class="token punctuation">:</span><br>    <span class="token keyword">return</span> <span class="token number">52</span> <span class="token operator">+</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token builtin">ord</span><span class="token punctuation">(</span><span class="token string">'0'</span><span class="token punctuation">)</span><br>  <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">'invalid character for simple encoding: {0}'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>Here the underscores <code>_</code> indicate missing or <code>null</code> values. With this function,<br>
+recovering the original data from the <code>chd</code> param is a quick one-liner:</p>
+<pre class="language-py"><code class="language-py">data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token builtin">map</span><span class="token punctuation">(</span>_get_simple_value<span class="token punctuation">,</span> s<span class="token punctuation">)</span> <span class="token keyword">for</span> s <span class="token keyword">in</span> chd<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span><span class="token punctuation">]</span></code></pre>
+<p>By default, the simple encoding maps onto an effective range of 1-100, so the<br>
+last step is to normalize this and <code>zip()</code> the lists into pairs:</p>
+<pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">fitSimpleToRange</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> xmin<span class="token punctuation">,</span> xmax<span class="token punctuation">)</span><span class="token punctuation">:</span><br>  <span class="token keyword">if</span> x <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span><br>    <span class="token keyword">return</span> <span class="token boolean">None</span><br>  nx <span class="token operator">=</span> x <span class="token operator">/</span> <span class="token number">61.0</span><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token number">1.0</span> <span class="token operator">-</span> nx<span class="token punctuation">)</span> <span class="token operator">*</span> xmin <span class="token operator">+</span> nx <span class="token operator">*</span> xmax<br><br>points <span class="token operator">=</span> <span class="token builtin">zip</span><span class="token punctuation">(</span><br>  <span class="token punctuation">[</span>fitSimpleToRange<span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token punctuation">[</span>fitSimpleToRange<span class="token punctuation">(</span>y<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token keyword">for</span> y <span class="token keyword">in</span> data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><br><span class="token punctuation">)</span></code></pre>
+<p>Done! I've packaged this up as <a href="https://github.com/candu/quantified-savagery-files/blob/master/lib/py/chdecode.py">chdecode</a>,<br>
+which also deals with the<br>
+<a href="https://developers.google.com/chart/image/docs/data_formats#text">Basic Text</a> and <a href="https://developers.google.com/chart/image/docs/data_formats#extended">Extended Encoding</a> formats.</p>
+<h3 id="let's-see-those-charts-again">Let's See Those Charts Again <a class="direct-link" href="#let's-see-those-charts-again">#</a></h3>
+<p>You can see the code for this analysis <a href="https://github.com/candu/quantified-savagery-files/blob/master/Panic/track-your-happiness/linregress.py">here</a>.</p>
+<p>Focus, productivity, and sleep quality all have <em>minor positive correlations</em><br>
+with happiness:</p>
+<img src="https://lh4.googleusercontent.com/-DG51p79XNtk/UIGcRjGMLQI/AAAAAAAAAG4/mk1xaar0yJM/s640/happiness-focus.jpg" alt="Focus" />
+<img src="https://lh6.googleusercontent.com/-85nu0a-MBJw/UIGcRyutW9I/AAAAAAAAAG8/psRbjq12PLw/s640/happiness-productivity.jpg" alt="Productivity" />
+<img src="https://lh3.googleusercontent.com/-bjcS4-21xIw/UIGcSLK9mCI/AAAAAAAAAHA/EVJ1qonZvks/s640/happiness-sleep-quality.jpg" alt="Sleep Quality" />
+<p>The <em>most significant one is focus,</em> but with $ p = 0.0927 $ it doesn't quite<br>
+make the 5% significance threshold.</p>
+<h2 id="up-next">Up Next <a class="direct-link" href="#up-next">#</a></h2>
+<p>This ends my series of posts on data collection and analysis for dealing<br>
+with panic disorder. In my next few posts, I'll talk about my plans for future<br>
+experiments.</p>
+
+
+<hr>
+<ul><li>Next: <a href="/posts/2012-10-22-dont-hate-cross-correlate/">Don&#39;t Hate, Cross-Correlate</a></li><li>Previous: <a href="/posts/2012-10-17-fitbit-apis-crossfilter-and-d3/">Fitbit: APIs, crossfilter, and d3.js</a></li>
+</ul>
+
+    </main>
+
+    <footer></footer>
+
+    <!-- Current page: /posts/2012-10-18-track-your-happiness-an-adventure-in-data-extraction/ -->
+  </body>
+</html>

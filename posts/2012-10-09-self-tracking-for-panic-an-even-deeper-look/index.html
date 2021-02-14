@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Tracking For Panic: A Deeper Look</title>
+    <meta name="description" content="Evan Savage&#39;s personal blog about software, life, travel, and other sundry things.">
+    <link href='http://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+  </head>
+  <body>
+    <header>
+      <h1 class="home"><a href="/">Evan Savage</a></h1>
+
+      <ul class="nav">
+          <li class="nav-item"><a href="/">Home</a></li>
+          <li class="nav-item"><a href="/posts/">Archive</a></li>
+        <li class="nav-item"><a href="https://savageevan.com">About Me</a></li>
+      </ul>
+    </header>
+
+    <main class="tmpl-post">
+      <h1>Self-Tracking For Panic: A Deeper Look</h1>
+
+<p>In this post, I apply three statistical and machine learning tools to my panic<br>
+recovery journal data: linear regression/correlation, the Fast Fourier<br>
+Transform, and maximum entropy modelling.</p>
+<!-- more -->
+<h2 id="first%2C-a-word-about-tools">First, A Word About Tools <a class="direct-link" href="#first%2C-a-word-about-tools">#</a></h2>
+<blockquote>
+I suppose it is tempting, if the only tool you have is a hammer, to treat
+everything as if it were a nail.
+</blockquote>
+<h2 id="now%2C-a-necessary-disclaimer">Now, A Necessary Disclaimer <a class="direct-link" href="#now%2C-a-necessary-disclaimer">#</a></h2>
+<p>My experiment has fewer than 50 samples, which is <em>nowhere near enough to draw<br>
+statistically significant conclusions</em>. That's not the point. The primary<br>
+purpose of this post is to <em>demonstrate analysis techniques by example</em>. These<br>
+same methods can be wielded on larger datasets, where they are much more<br>
+useful.</p>
+<h2 id="getting-ready">Getting Ready <a class="direct-link" href="#getting-ready">#</a></h2>
+<p>To follow along with the examples here, you'll need<br>
+the excellent Python toolkits<br>
+<a href="http://scipy.org/">scipy</a>,<br>
+<a href="http://matplotlib.org/">matplotlib</a>, and<br>
+<a href="http://nltk.org/">nltk</a>:</p>
+<pre><code>$ pip install scipy nltk matplotlib
+</code></pre>
+<h2 id="linear-regression">Linear Regression <a class="direct-link" href="#linear-regression">#</a></h2>
+<h3 id="what%3F">What? <a class="direct-link" href="#what%3F">#</a></h3>
+<p>Linear regression answers this question:</p>
+<blockquote>
+What is the line that most closely fits this data?
+</blockquote>
+<p>Given points $ P_i = (x_i, y_i) $, the goal is to find the line<br>
+$ y = mx + b $ such that some error function is minimized.<br>
+A common one is the least squares function:</p>
+<p>$$<br>
+f(m, b) = \sum_{i} \left(y_i - (mx_i + b)\right)^2<br>
+$$</p>
+<p>The<br>
+<a href="http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient">Pearson correlation coefficient</a> $ R $ and<br>
+<a href="http://www.lstr.net/blog/2008/07/08/p-values-explained-well/">p-value</a> $ p $<br>
+are also useful here, as they measure <em>correlation</em> and <em>statistical<br>
+significance</em>.</p>
+<h3 id="why%3F">Why? <a class="direct-link" href="#why%3F">#</a></h3>
+<p>In a self-tracking context, you might ask the following questions:</p>
+<ul>
+<li>Have I been exercising more over time?</li>
+<li>Does exercise affect mood? By how much and in what direction?</li>
+</ul>
+<p>Linear regression can help address both questions. However, it can only find<br>
+<em>linear</em> relationships between datasets. Many dynamic processes are <em>locally linear</em><br>
+but not <em>globally linear</em>. For instance, there are practical limits to how<br>
+much you can exercise in a day, so no linear model with non-zero slope will<br>
+accurately capture your exercise duration for all time.</p>
+<h3 id="the-data">The Data <a class="direct-link" href="#the-data">#</a></h3>
+<p>You can see the code for this analysis <a href="https://github.com/candu/quantified-savagery-files/blob/master/Panic/recovery-journal/food_linregress.py">here</a>. I look at only the first<br>
+31 days, that being the largest consecutive run for which I have data.</p>
+<img src="https://lh6.googleusercontent.com/-plD2webhfrY/UHXc4xHxAGI/AAAAAAAAACM/2X488DqHKms/s640/alcohol.jpg" alt="Alcohol Consumption" />
+<p>My alcohol consumption did not decrease over time, but rather stayed fairly<br>
+constant: with $ R = 0.0098 $, there is no correlation between alcohol and time.</p>
+<img src="https://lh5.googleusercontent.com/-UCZKlx5l5RI/UHXc6u8h2vI/AAAAAAAAACs/CWcJjS09dS8/s640/sweets.jpg" alt="Sugar Consumption" />
+<p>Sugar consumption is a similar story: although the best-fit slope is slightly<br>
+negative, $ R = -0.0671 $ indicates no correlation over time. It seems that my<br>
+alcohol and sugar consumption were not modified significantly over the tracking<br>
+period.</p>
+<img src="https://lh5.googleusercontent.com/-Ssz89uoE-EA/UHXc5DvHf0I/AAAAAAAAACU/o0C_PJpmZcM/s640/alcohol-and-sugar.jpg" alt="Alcohol and Sugar Consumption" />
+<p>I decided to graph alcohol and sugar together. It looks like they might be<br>
+related, as the peaks in each seem to coincide on several occasions. Let's<br>
+test this hypothesis:</p>
+<img src="https://lh6.googleusercontent.com/-iCO9umA8L8s/UHXc5vImvhI/AAAAAAAAACc/d82SCqFs-qI/s640/alcohol-today-vs-yesterday.jpg" alt="Alcohol vs. Sugar Consumption" />
+<p>The positive slope is more pronounced this time, but<br>
+$ R = 0.1624 $ still indicates a small degree of correlation. We can also look<br>
+at the p-value: with $ p = 0.3827 $, it is fairly easy to write this off as<br>
+a random effect.</p>
+<p>Finally, let's take another look at a question from<br>
+<a href="/blog/2012/10/08/self-tracking-for-panic-a-deeper-look/">a previous blog post</a>:</p>
+<blockquote>
+On days where I drink heavily, do I drink less the day after?
+</blockquote>
+<img src="https://lh6.googleusercontent.com/-iCO9umA8L8s/UHXc5vImvhI/AAAAAAAAACc/d82SCqFs-qI/s640/alcohol-today-vs-yesterday.jpg" alt="Alcohol Consumption: Today vs. Yesterday" />
+<p>There's a negative slope there, but the correlation and p-value statistics are<br>
+in the same uncertain zone as before. I likely need more data to investigate<br>
+these last two effects properly.</p>
+<h2 id="fast-fourier-transform">Fast Fourier Transform <a class="direct-link" href="#fast-fourier-transform">#</a></h2>
+<h3 id="what%3F-2">What? <a class="direct-link" href="#what%3F-2">#</a></h3>
+<p>Fourier analysis answers this question:</p>
+<blockquote>
+What frequencies comprise this signal?
+</blockquote>
+<p>Given a sequence $ x_n $, a<br>
+<a href="http://en.wikipedia.org/wiki/Discrete_Fourier_transform">Discrete Fourier Transform</a> (DFT)<br>
+computes</p>
+<p>$$<br>
+X_k = \sum_{n=0}^{N-1} x_n \cdot e^{\frac{-2 i \pi k n}{N}}<br>
+$$</p>
+<p>The $ X_k $ encode the amplitude and phase of frequencies<br>
+$ \frac{f k}{N} $ Hz, where $ T $ is the time between samples<br>
+and $ f = 1 / T $ is the sampling frequency.</p>
+<p>As described here, the DFT requires $ \mathcal{O}(N^2) $ time to<br>
+compute. The <a href="http://mathworld.wolfram.com/FastFourierTransform.html">Fast Fourier Transform</a> (FFT) uses<br>
+divide-and-conquer on this sum of complex exponentials to compute the DFT in<br>
+$ \mathcal{O}(N \log N) $ time.<br>
+<a href="http://groups.csail.mit.edu/netmit/sFFT/">Further speedups are possible</a> for<br>
+real-world signals that are sparse in the frequency domain.</p>
+<h3 id="why%3F-2">Why? <a class="direct-link" href="#why%3F-2">#</a></h3>
+<p>In a self-tracking context, you might ask the following questions:</p>
+<ul>
+<li>Do I have regular exercising patterns?</li>
+<li>Do these patterns cycle weekly? bi-weekly? monthly?</li>
+<li>How much does my amount of exercise fluctuate during a cycle?</li>
+</ul>
+<p>With the FFT, Fourier analysis can help address these questions. However, it<br>
+can only find <em>periodic</em> effects. Unlike linear regression, it does not help<br>
+find <em>trends</em> in your data.</p>
+<h3 id="the-data-2">The Data <a class="direct-link" href="#the-data-2">#</a></h3>
+<p>You can see the code for this analysis <a href="https://github.com/candu/quantified-savagery-files/blob/master/Panic/recovery-journal/food_fft.py">here</a>. Again, I look at the<br>
+first 31 days to ensure that the frequency analysis is meaningful.</p>
+<img src="https://lh5.googleusercontent.com/-8j00ob_Ji-Y/UHXc67MQVpI/AAAAAAAAAC0/n3akVSjtRHs/s640/fft-frequencies.jpg" alt="Frequency Strengths" />
+<p>There are some apparent maxima there, but it's hard to tell what they<br>
+mean. Part of the difficulty is that <em>these are frequencies rather than<br>
+period lengths</em>, so let's deal with that:</p>
+<pre><code>$ python food_fft.py
+food_fft.py:32: RuntimeWarning: divide by zero encountered in divide
+  for strength, phase, period in sorted(zip(FS, FP, 1.0 / Q))[-5:]:
+[2.21 days] 3.0461 (phase=-0.67 days)
+[-2.21 days] 3.0461 (phase=-0.67 days)
+[7.75 days] 3.1116 (phase=-3.67 days)
+[-7.75 days] 3.1116 (phase=-3.67 days)
+food_fft.py:33: RuntimeWarning: invalid value encountered in double_scalars
+  phase_days = period * (phase / (2.0 * math.pi))
+[inf days] 18.1401 (phase=nan days)
+</code></pre>
+<p>If you're not familiar with the Fourier transform,<br>
+the last line might be a bit mysterious. That corresponds to $ X_0 $, which<br>
+is just the sum of the original samples:</p>
+<p>$$<br>
+X_0 = \sum_{n=0}^{N-1} x_n \cdot e^0 = \sum_{n=0}^{N-1} x_n<br>
+$$</p>
+<p>Other than that, the most pronounced cycles have period lengths of<br>
+2.21 days and 7.75 days. The former might be explained by a <em>see-saw drinking<br>
+pattern</em>, whereas the latter is likely related to the day-of-week effects<br>
+we saw <a href="/blog/2012/10/08/self-tracking-for-panic-a-deeper-look/">in the previous post</a>.</p>
+<p>Which day of the week? The phase is -3.67 days, and our sample starts on a<br>
+Monday, placing the first peak on Thursday. The period is slightly longer than<br>
+a week, though, and the data runs for 31 days, so these peaks gradually shift<br>
+to <em>cover the weekend</em>.</p>
+<p>There are two caveats:</p>
+<ol>
+<li>I have no idea whether a Fourier coefficient of about 3 is significant<br>
+here. If it isn't, I'm grasping at straws.</li>
+<li>Again, the small amount of data means the frequency domain data is sparse.<br>
+To accurately test for bi-daily or weekly effects, I <em>need more<br>
+fine-grained period lengths.</em></li>
+</ol>
+<h2 id="maximum-entropy-modelling">Maximum Entropy Modelling <a class="direct-link" href="#maximum-entropy-modelling">#</a></h2>
+<h3 id="what%3F-3">What? <a class="direct-link" href="#what%3F-3">#</a></h3>
+<p>Maximum entropy modelling answers this question:</p>
+<blockquote>
+Given observations of a random process, what is the most likely model
+for that random process?
+</blockquote>
+<p>Given a discrete probability distribution $ p(X = x_k) = p_k $, the entropy<br>
+of this distribution is given by</p>
+<p>$$<br>
+H(p) = \sum - p_k \log p_k<br>
+$$</p>
+<p>(Yes, I'm conflating the concepts of<br>
+<a href="http://en.wikipedia.org/wiki/Random_variable">random variables</a> and<br>
+<a href="http://en.wikipedia.org/wiki/Probability_distribution">probability distributions</a>.<br>
+If you knew that, you probably don't need this explanation.)</p>
+<p>This can be thought of as the <em>number of bits needed to encode outcomes<br>
+in this distribution</em>. For instance, if I have a double-headed coin, I need<br>
+no bits: I already know the outcome. Given a fair coin, though, I need one bit:<br>
+heads or tails?</p>
+<p>After repeated sampling, we get observed expected values for $ p_k $;<br>
+let these be $ p'_k $. Since we would like the model to <em>accurately<br>
+reflect what we already know</em>, we impose the constraints $ p_k = p'_k $.<br>
+The maximum entropy model is the model that also maximizes $ H(p') $.</p>
+<p>This model encodes what is known<br>
+<em>while remaining maximally noncommittal on what is unknown.</em></p>
+<p>Adam Berger (CMU) provides <a href="http://www.cs.cmu.edu/afs/cs/user/aberger/www/html/tutorial/node2.html#SECTION00011000000000000000">a more concrete example</a>.<br>
+If you're interested in learning more, his tutorial is highly recommended<br>
+reading.</p>
+<h3 id="why%3F-3">Why? <a class="direct-link" href="#why%3F-3">#</a></h3>
+<p>In a self-tracking context, you might ask the following questions:</p>
+<ul>
+<li>Which treatments have the greatest effect in preventing panic attacks?<br>
+Which have the least effect?</li>
+<li>Today I exercised for at least 30 minutes and had four drinks. Am I<br>
+likely to get a panic attack?</li>
+<li>What treatments should I try next?</li>
+</ul>
+<p>Maximum entropy modelling can help address these questions. It is often<br>
+used to <em>classify unseen examples</em>, and would be fantastic in a<br>
+<a href="http://100plus.com/2012/09/qs-data-commons/">data commons</a> scenario<br>
+with enough data to provide recommendations to users.</p>
+<h3 id="feature-extraction">Feature Extraction <a class="direct-link" href="#feature-extraction">#</a></h3>
+<p>Since I'm now effectively building a classifier, there's an additional step.<br>
+I need features for my classifier, which I extract from my existing datasets:</p>
+<pre><code>train_set = []
+dates = set(W).intersection(F)
+for ds in dates:
+  try:
+    ds_data = {
+      'relaxation' : bool(int(W[ds]['relaxation'])),
+      'exercise' : bool(int(W[ds]['exercise'])),
+      'caffeine' : int(F[ds]['caffeine']) &gt; 0,
+      'sweets' : int(F[ds]['sweets']) &gt; 1,
+      'alcohol' : int(F[ds]['alcohol']) &gt; 4,
+      'supplements' : bool(int(F[ds]['supplements']))
+    }
+  except (ValueError, KeyError):
+    continue
+  had_panic = P.get(ds) and 'panic' or 'no-panic'
+  train_set.append((ds_data, had_panic))
+</code></pre>
+<p>Note that the features listed here are binary. I use my daily goals as<br>
+thresholds on caffeine, sweets, and alcohol.</p>
+<p>(If you know how to get float-valued features working with NLTK, let me know!<br>
+Otherwise, there's always <a href="http://www.cs.utah.edu/~hal/megam/">megam</a> or<br>
+<a href="http://www-i6.informatik.rwth-aachen.de/web/Software/YASMET.html">YASMET</a>.</p>
+<h3 id="the-data-3">The Data <a class="direct-link" href="#the-data-3">#</a></h3>
+<p>You can see the code for this analysis <a href="https://github.com/candu/quantified-savagery-files/blob/master/Panic/recovery-journal/panic_maxent.py">here</a>.<br>
+This time I don't care about having consecutive dates, so I use all of the<br>
+samples.</p>
+<p>After building a <code>MaxentClassifier</code>, I print out the most informative features<br>
+with <code>show_most_informative_features()</code>:</p>
+<pre><code>  -2.204 exercise==True and label is 'panic'
+   1.821 caffeine==True and label is 'panic'
+  -0.867 relaxation==True and label is 'panic'
+   0.741 alcohol==True and label is 'panic'
+  -0.615 caffeine==True and label is 'no-panic'
+  -0.537 supplements==True and label is 'panic'
+   0.439 sweets==True and label is 'panic'
+   0.430 exercise==True and label is 'no-panic'
+   0.284 relaxation==True and label is 'no-panic'
+   0.233 supplements==True and label is 'no-panic'
+</code></pre>
+<p>Exercise, relaxation breathing, and vitamin supplements help with panic.<br>
+Caffeine, alcohol, and sweets do not. I knew that already, but this suggests<br>
+<em>which treatments or dietary factors have greatest impact.</em></p>
+<p>Let's consider the supplements finding more closely. Of the 45 days, I took<br>
+supplements on all but two. It's <em>dangerous</em> to draw any conclusions from a<br>
+feature for which there are very few negative samples.<br>
+This points out some important points about data analysis:</p>
+<ul>
+<li><strong>Know your data</strong>: otherwise, you may <em>ascribe undue meaning to outliers or noise.</em></li>
+<li><strong>Know your features:</strong> supplements are probably not a good feature here.<br>
+A <em>feature inclusion threshold</em> on number of positive and negative samples<br>
+might be helpful here.</li>
+<li><strong>Beware magic:</strong> even when you understand their inner workings, <em>machine<br>
+learning algorithms can produce results that are difficult to interpret.</em></li>
+</ul>
+<h2 id="up-next">Up Next <a class="direct-link" href="#up-next">#</a></h2>
+<p>In my next post, I look at a panic recovery dataset gathered using<br>
+<a href="https://github.com/candu/qs-counters">qs-counters</a>, a simple utility I built to reduce friction in<br>
+self-tracking. I perform these same three analyses on the<br>
+<a href="https://github.com/candu/quantified-savagery-files/tree/master/Panic/qs-counters">qs-counters dataset</a>, then compare it to the<br>
+<a href="https://github.com/candu/quantified-savagery-files/tree/master/Panic/recovery-journal">recovery-journal dataset</a>.</p>
+
+
+<hr>
+<ul><li>Next: <a href="/posts/2012-10-14-self-tracking-for-panic-another-dataset/">Self-Tracking for Panic: Another Dataset</a></li><li>Previous: <a href="/posts/2012-10-08-self-tracking-for-panic-a-deeper-look/">Self-Tracking For Panic: A bash-ful Look At Some Data</a></li>
+</ul>
+
+    </main>
+
+    <footer></footer>
+
+    <!-- Current page: /posts/2012-10-09-self-tracking-for-panic-an-even-deeper-look/ -->
+  </body>
+</html>
