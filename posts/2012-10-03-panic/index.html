@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <body>
     <header>
@@ -121,8 +130,11 @@ symptoms I experienced, and how I dealt with it.</li>
 are most effective when they have <em>low overhead</em>, as this lowers the willpower<br>
 barrier to using them regularly.</p>
 <h3 id="a-diversion-on-self-tracking-design">A Diversion On Self-Tracking Design <a class="direct-link" href="#a-diversion-on-self-tracking-design">#</a></h3>
-<blockquote>
+<blockquote cite="http://worrydream.com/LadderOfAbstraction/">
+  <p>
 How can we design systems when we don't know what we're doing?
+</p>
+  <footer>&ndash; Bret Victor, <cite><a href="http://worrydream.com/LadderOfAbstraction/">Up and Down the Ladder of Abstraction</a></footer>
 </blockquote>
 <p>Although I cribbed the individual sections almost verbatim from the workbook,<br>
 their specific combination has some curious results.</p>

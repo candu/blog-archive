@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <body>
     <header>
@@ -66,8 +75,11 @@ Do I want <em>altitude</em> as well? GPS fix <em>accuracy?</em></li>
 difficult to answer. The main <a href="http://quantifiedself.com/">Quantified Self website</a> includes a<br>
 <a href="http://quantifiedself.com/guide/">Guide to Self-Tracking Tools</a>, but their implementation is subject to<br>
 criticism:</p>
-<blockquote>
+<blockquote cite="https://www.rwjf.org/content/dam/farm/reports/program_results_reports/2012/rwjf400733">
+  <p>
 In a report to RWJF, Project Director Alexandra C. Carmichael noted that the guide was more a catalog of tools than a useful manual for people wanting to choose and use these tools.
+</p>
+  <footer>&ndash; Robert Wood Johnson Foundation, <cite><a href="https://www.rwjf.org/content/dam/farm/reports/program_results_reports/2012/rwjf400733">A Digital Guide for Self-Tracking Goes Online</a></footer>
 </blockquote>
 <p>This is a point worth repeating. Simply listing tools is <em>not enough</em>; a<br>
 database of tools <em>must answer these basic questions</em> to be useful. A quick<br>

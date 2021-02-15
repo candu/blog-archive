@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <body>
     <header>
@@ -29,8 +38,11 @@
 your data.</p>
 <!-- more -->
 <h2 id="first%2C-a-quote">First, A Quote <a class="direct-link" href="#first%2C-a-quote">#</a></h2>
-<blockquote>
+<blockquote cite="https://www.researchgate.net/profile/James_Hollan/publication/250890525_Direct_Manipulation_Interfaces/links/540eda4b0cf2df04e757eb89/Direct-Manipulation-Interfaces.pdf">
+  <p>
 Are we analyzing data? Then we should be manipulating the data themselves; or if we are designing an analysis of data, we should be manipulating the analytic structures themselves.
+</p>
+  <footer>&ndash; Hutchins et al., <cite><a href="https://www.researchgate.net/profile/James_Hollan/publication/250890525_Direct_Manipulation_Interfaces/links/540eda4b0cf2df04e757eb89/Direct-Manipulation-Interfaces.pdf">Direct Manipulation Interfaces</a></footer>
 </blockquote>
 <h2 id="the-sixfold-path-of-self-tracking">The Sixfold Path Of Self-Tracking <a class="direct-link" href="#the-sixfold-path-of-self-tracking">#</a></h2>
 <p>Self-tracking is a complex process. It can be broken down into stages:</p>

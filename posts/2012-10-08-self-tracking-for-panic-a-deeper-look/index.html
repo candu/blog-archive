@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <body>
     <header>
@@ -46,8 +55,11 @@ for performing linear regression.</p>
 developers. Even if you don't need to know how they work to use them, you need<br>
 some knowledge of <em>what they do</em> and <em>where they are most appropriate</em>.<br>
 Statistical tests in particular often have <em>strong preconditions</em> for use:</p>
-<blockquote>
+<blockquote cite="https://en.wikipedia.org/wiki/Student%27s_t-test">
+  <p>
 Each of the two populations being compared should follow a normal distribution.
+</p>
+  <footer>&ndash; Wikipedia, <cite><a href="https://en.wikipedia.org/wiki/Student%27s_t-test">Student's t-test</a></footer>
 </blockquote>
 <p>Even if you pick the right tool, there's still <em>fear associated with losing<br>
 control</em>. These tools are not hammers and screwdrivers but magic<br>

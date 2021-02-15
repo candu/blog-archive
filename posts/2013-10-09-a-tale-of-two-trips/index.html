@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <body>
     <header>
@@ -25,51 +34,23 @@
     <main class="tmpl-post">
       <h1>A Tale of Two Trips</h1>
 
-<p>This summer, <a href="http://www.eecs.berkeley.edu/~valkyrie/">Valkyrie</a> and I travelled<br>
-through Eastern Asia.  We started with the Great Barrier Reef and rainforests near<br>
-Cairns, then went onwards to Singapore, Vietnam, Cambodia, Malaysia, and Korea<br>
-before spending three typhoon-stricken days holed up in Manila, Philippines.</p>
-<p>As with our <a href="http://fearlesstost.github.io/biketotheearth/">bike trip</a>, we kept<br>
-a <a href="http://ramblelust.savageinter.net/">daily journal</a> of our travels in blog<br>
-form.  In this post, I visualize the two trips from our blog entries using some<br>
-simple word count graphs.  These aren't the most sophisticated visualizations<br>
-possible, but they provide a simple starting point to build upon in future<br>
-blog posts.</p>
+<p>This summer, <a href="https://www.eecs.berkeley.edu/~valkyrie/">Valkyrie</a> and I travelled through Eastern Asia.  We started with the Great Barrier Reef and rainforests near Cairns, then went onwards to Singapore, Vietnam, Cambodia, Malaysia, and Korea before spending three typhoon-stricken days holed up in Manila, Philippines.</p>
+<p>As with our <a href="https://savageinternet.github.io/biketotheearth/">bike trip</a>, we kept a <a href="https://ramblelust.savageinter.net/">daily journal</a> of our travels in blog form.  In this post, I visualize the two trips from our blog entries using some simple word count graphs.  These aren't the most sophisticated visualizations possible, but they provide a simple starting point to build upon in future blog posts.</p>
 <!-- more -->
-<p>First of all, it feels good to write another post!  The rapidly upcoming <a href="http://quantifiedself.com/conference/San-Francisco-2013/">Quantified Self 2013 Global Conference</a><br>
-seemed like a good excuse to break seven months of blog neglect, so here I am.</p>
-<p>I'll refer to these trips as <em>Bike to the Earth</em> and <em>Ramblelust</em> respectively,<br>
-following the names of each trip blog.  Let's start with a look at the broadest<br>
-of broad textual measures, word count.</p>
+<p>First of all, it feels good to write another post!  The rapidly upcoming <a href="https://quantifiedself.com/blog/announcing-the-2013-quantified-self-global-conference/">Quantified Self 2013 Global Conference</a> seemed like a good excuse to break seven months of blog neglect, so here I am.</p>
+<p>I'll refer to these trips as <em>Bike to the Earth</em> and <em>Ramblelust</em> respectively, following the names of each trip blog.  Let's start with a look at the broadest of broad textual measures, word count.</p>
 <h2 id="word-count">Word Count <a class="direct-link" href="#word-count">#</a></h2>
 <p>How many words did we write for each trip?  How many per post, on average?</p>
-<pre><code>$ python global_word_count.py &lt; BikeToTheEarth/posts_normalized.json
-141329 words in 197 posts (717 words/post)
-
-$ python global_word_count.py &lt; Ramblelust/posts_normalized.json
-61010 words in 86 posts (709 words/post)
-</code></pre>
-<p>Not much difference here.  What happens if we graph the word counts over time?<br>
-Top is Bike to the Earth, bottom is Ramblelust.</p>
+<pre class="language-bash"><code class="language-bash">$ python global_word_count.py <span class="token operator">&lt;</span> BikeToTheEarth/posts_normalized.json<br><span class="token number">141329</span> words <span class="token keyword">in</span> <span class="token number">197</span> posts <span class="token punctuation">(</span><span class="token number">717</span> words/post<span class="token punctuation">)</span><br><br>$ python global_word_count.py <span class="token operator">&lt;</span> Ramblelust/posts_normalized.json<br><span class="token number">61010</span> words <span class="token keyword">in</span> <span class="token number">86</span> posts <span class="token punctuation">(</span><span class="token number">709</span> words/post<span class="token punctuation">)</span></code></pre>
+<p>Not much difference here.  What happens if we graph the word counts over time? Top is Bike to the Earth, bottom is Ramblelust.</p>
 <img src="https://lh4.googleusercontent.com/-5Sv5_JZEDdw/UlcoazZGSxI/AAAAAAAAAks/9TZH7nDzpnQ/w1000/biketotheearth_daily_words.jpg" />
 <img src="https://lh6.googleusercontent.com/-BW5K-iWb56c/UlcoZ4fktZI/AAAAAAAAAkw/3g2w4bbbMtI/w1000/ramblelust_daily_words.jpg" />
-<p>One point jumps out on the Bike to the Earth graph: <a href="http://fearlesstost.github.io/biketotheearth/posts/2010/10/19/hellbania.html">this post</a>,<br>
-a massive 3600-word whopper that details our arduous exit from the rain-stricken<br>
-Albanian coastline and into Greece.  For comparison, our longest post from<br>
-Ramblelust was <a href="http://ramblelust.savageinter.net/blog/2013/06/29/cam-ranh-ing-around/">this one</a><br>
-about our CouchSurfing experiences in Cam Ranh, a short distance south from<br>
-Nha Trang along the Vietnamese coast.</p>
-<p>Still, it's hard to make much out of such noisy data.  Let's smooth that a bit<br>
-by looking at weekly averages. Again, top is Bike to the Earth, bottom is Ramblelust.</p>
+<p>One point jumps out on the Bike to the Earth graph: <a href="https://savageinternet.github.io/biketotheearth/posts/2010/10/19/hellbania.html">this post</a>, a massive 3600-word whopper that details our arduous exit from the rain-stricken Albanian coastline and into Greece.  For comparison, our longest post from Ramblelust was <a href="https://ramblelust.savageinter.net/blog/2013/06/29/cam-ranh-ing-around/">this one</a> about our CouchSurfing experiences in Cam Ranh, a short distance south from Nha Trang along the Vietnamese coast.</p>
+<p>Still, it's hard to make much out of such noisy data.  Let's smooth that a bit by looking at weekly averages. Again, top is Bike to the Earth, bottom is Ramblelust.</p>
 <img src="https://lh6.googleusercontent.com/-9YT2XueNpAs/UlcodH_CpwI/AAAAAAAAAkk/0ZnCYmXSMJc/w1000/biketotheearth_daily_words_smoothed.jpg" />
 <img src="https://lh4.googleusercontent.com/-C-Q604GWq84/UlcoesNibrI/AAAAAAAAAjk/8RHMmaBdOi0/w1000/ramblelust_daily_words_smoothed.jpg" />
-<p>Now another pattern pops out of the Bike to the Earth data: sometime around<br>
-the beginning of September, our writing output doubled.  At that time, we were<br>
-just entering Italy, where we were sandwiched in between the southern Alps<br>
-and the sea for about 900km before reaching Rome.</p>
-<p>As I go through this process, I'm constantly jumping back and forth between<br>
-the blog posts and these graphs.  As with all visualization, this context is an<br>
-essential part of understanding the data.</p>
+<p>Now another pattern pops out of the Bike to the Earth data: sometime around the beginning of September, our writing output doubled.  At that time, we were just entering Italy, where we were sandwiched in between the southern Alps and the sea for about 900km before reaching Rome.</p>
+<p>As I go through this process, I'm constantly jumping back and forth between the blog posts and these graphs.  As with all visualization, this context is an essential part of understanding the data.</p>
 <h2 id="next-steps">Next Steps <a class="direct-link" href="#next-steps">#</a></h2>
 <p>There are lots of places we could go from here:</p>
 <ul>
@@ -77,8 +58,7 @@ essential part of understanding the data.</p>
 <li>location-based visualization (by combining with country data);</li>
 <li>authorship analysis (my posts vs. Valkyrie's posts)...</li>
 </ul>
-<p>...the list goes on.  What would you like to see?  Comment via Facebook or<br>
-Twitter to let me know, and I'll put it into the next blog post.</p>
+<p>...the list goes on.  What would you like to see?  Comment via Facebook or Twitter to let me know, and I'll put it into the next blog post.</p>
 
 
 <hr>

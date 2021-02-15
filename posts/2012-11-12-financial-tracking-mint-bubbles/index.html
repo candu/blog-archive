@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <body>
     <header>
@@ -221,8 +230,11 @@ larger bubbles darker.</p>
 <p>As for the force-directed layout, I start with some basic properties:</p>
 <pre class="language-js"><code class="language-js"><span class="token keyword">var</span> force <span class="token operator">=</span> d3<span class="token punctuation">.</span>layout<span class="token punctuation">.</span><span class="token function">force</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>  <span class="token punctuation">.</span><span class="token function">nodes</span><span class="token punctuation">(</span>nodes<span class="token punctuation">)</span><br>  <span class="token punctuation">.</span><span class="token function">links</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>          <span class="token comment">// no edges between bubbles!</span><br>  <span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">[</span>w<span class="token punctuation">,</span> h<span class="token punctuation">]</span><span class="token punctuation">)</span><br>  <span class="token punctuation">.</span><span class="token function">gravity</span><span class="token punctuation">(</span><span class="token number">0.05</span><span class="token punctuation">)</span>      <span class="token comment">// controls speed at which bubbles seek the center</span><br>  <span class="token punctuation">.</span><span class="token function">friction</span><span class="token punctuation">(</span><span class="token number">0.95</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// slows down motion</span></code></pre>
 <h3 id="tick-handler">Tick Handler <a class="direct-link" href="#tick-handler">#</a></h3>
-<blockquote>
+<blockquote cite="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-tick">
+  <p>
 `force.tick()`: Runs the force layout simulation one step.
+</p>
+  <footer>&ndash; Mike Bostock, <cite><a href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-tick">Force Layout</a></footer>
 </blockquote>
 <p>Force-directed layouts model your data as a set of particles in space. Those<br>
 particles are subject to various forces:</p>
@@ -251,8 +263,11 @@ makes it easier to select them.</li>
 <h3 id="alpha-and-size-sorting">Alpha and Size Sorting <a class="direct-link" href="#alpha-and-size-sorting">#</a></h3>
 <p>What's <code>e.alpha</code>? This is described cryptically in the<br>
 <a href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-start">d3.js documentation</a>:</p>
-<blockquote>
+<blockquote cite="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-start">
+  <p>
 Internally, the layout uses a cooling parameter alpha which controls the layout temperature: as the physical simulation converges on a stable layout, the temperature drops, causing nodes to move more slowly.
+</p>
+  <footer>&ndash; Mike Bostock, <cite><a href="https://github.com/mbostock/d3/wiki/Force-Layout#wiki-start">Force Layout</a></footer>
 </blockquote>
 <p>A look at the <a href="https://github.com/mbostock/d3/blob/master/src/layout/force.js#L46">code for d3.layout.force()</a><br>
 provides some insight into what's happening here:</p>

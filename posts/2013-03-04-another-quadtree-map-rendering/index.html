@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <body>
     <header>
@@ -31,27 +40,17 @@ share, based on the work described in <a href="http://blog.savageevan.com/blog/2
 <h2 id="the-rendering">The Rendering <a class="direct-link" href="#the-rendering">#</a></h2>
 <p>This rendering uses tiles at Google Maps zoom level 14:</p>
 <img src="https://lh5.googleusercontent.com/-74zVhVDHIdc/UTVAtI4bhcI/AAAAAAAAAWY/sWT9JplWl7k/s800/tiles14.2048.jpg" />
-<p>I decided to experiment with solid shading rather than wireframe for the tiles.<br>
-This cuts down on the <a href="http://en.wikipedia.org/wiki/Moir%C3%A9_pattern">Moiré effect</a><br>
-in densely populated areas.</p>
-<p>The original is a <em>whopping 1 gigapixels</em>, so I had to resize it using<br>
-<a href="http://www.imagemagick.org/script/index.php">ImageMagick</a> before uploading it to Picasa:</p>
-<pre><code>$ convert tiles14.jpg -sample 2048x2048 tiles14.2048.jpg
-</code></pre>
+<p>I decided to experiment with solid shading rather than wireframe for the tiles.  This cuts down on the <a href="http://en.wikipedia.org/wiki/Moir%C3%A9_pattern">Moiré effect</a> in densely populated areas.</p>
+<p>The original is a <em>whopping 1 gigapixels</em>, so I had to resize it using <a href="http://www.imagemagick.org/script/index.php">ImageMagick</a> before uploading it to Picasa:</p>
+<pre class="language-bash"><code class="language-bash">$ convert tiles14.jpg -sample 2048x2048 tiles14.2048.jpg</code></pre>
 <p>A few more random tidbits of information:</p>
 <ul>
-<li>Computing the tile subdivision <em>took one CPU-hour</em> on my laptop, a fairly<br>
-new MacBook Air.</li>
-<li>At zoom level 14, tiles near the equator are <em>roughly 1.5 miles to a side.</em><br>
-(Tiles further north or south are shorter in the north-south direction<br>
-due to distortion in the Mercator projection.)</li>
+<li>Computing the tile subdivision <em>took one CPU-hour</em> on my laptop, a fairly new MacBook Air.</li>
+<li>At zoom level 14, tiles near the equator are <em>roughly 1.5 miles to a side.</em> (Tiles further north or south are shorter in the north-south direction due to distortion in the Mercator projection.)</li>
 <li><em>The Nile is clearly visible</em> between the Nile Delta and Aswan.</li>
 </ul>
 <h2 id="next-post">Next Post <a class="direct-link" href="#next-post">#</a></h2>
-<p>In my next post, I'll dive into <a href="http://fearlesstost.github.com/biketotheearth/">six months of journal entries</a><br>
-from a <a href="http://goo.gl/maps/0Xs55">six-month bike trip</a> that<br>
-<a href="http://www.eecs.berkeley.edu/~valkyrie/">Valkyrie Savage</a> and I took back in<br>
-2010.</p>
+<p>In my next post, I'll dive into <a href="https://savageinternet.github.io/biketotheearth/">six months of journal entries</a> from a <a href="http://goo.gl/maps/0Xs55">six-month bike trip</a> that <a href="http://www.eecs.berkeley.edu/~valkyrie/">Valkyrie Savage</a> and I took back in 2010.</p>
 
 
 <hr>

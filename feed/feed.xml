@@ -17,7 +17,7 @@
 		<link href="https://blog.savageevan.com/posts/2014-06-20-running-a-1-mb-slash-s-tor-relay-on-linode/"/>
 		<updated>2014-06-20T00:00:00Z</updated>
 		<id>https://blog.savageevan.com/posts/2014-06-20-running-a-1-mb-slash-s-tor-relay-on-linode/</id>
-		<content type="html">&lt;p&gt;&lt;a href=&quot;http://savageinter.net/&quot;&gt;Savage Internet&lt;/a&gt; is proud to announce that we&#39;re now running a 1 MB/s &lt;a href=&quot;https://www.torproject.org/&quot;&gt;Tor&lt;/a&gt; exit relay.  How much is this costing us?  $10/month, thanks to &lt;a href=&quot;https://www.linode.com/&quot;&gt;Linode&#39;s&lt;/a&gt; excellent data transfer caps.  In this post, we&#39;ll explain how we set that up.&lt;/p&gt;
+		<content type="html">&lt;p&gt;&lt;a href=&quot;https://savageinter.net/&quot;&gt;Savage Internet&lt;/a&gt; is proud to announce that we&#39;re now running a 1 MB/s &lt;a href=&quot;https://www.torproject.org/&quot;&gt;Tor&lt;/a&gt; exit relay.  How much is this costing us?  $10/month, thanks to &lt;a href=&quot;https://www.linode.com/&quot;&gt;Linode&#39;s&lt;/a&gt; excellent data transfer caps.  In this post, we&#39;ll explain how we set that up.&lt;/p&gt;
 &lt;p&gt;If you&#39;re not sure what Tor is, &lt;a href=&quot;https://www.eff.org/torchallenge/what-is-tor.html&quot;&gt;read this article&lt;/a&gt;.&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&quot;our-node&quot;&gt;Our Node &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2014-06-20-running-a-1-mb-slash-s-tor-relay-on-linode/#our-node&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
@@ -26,7 +26,7 @@
 &lt;h3 id=&quot;step-1%3A-set-up-your-linode-instance&quot;&gt;Step 1: Set up your Linode instance &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2014-06-20-running-a-1-mb-slash-s-tor-relay-on-linode/#step-1%3A-set-up-your-linode-instance&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Go to &lt;a href=&quot;https://www.linode.com/&quot;&gt;linode.com&lt;/a&gt;, sign up, and add a Linode 1GB instance to your account.  You can follow Linode&#39;s &lt;a href=&quot;https://library.linode.com/getting-started&quot;&gt;Getting Started instructions&lt;/a&gt;.  We&#39;re using Ubuntu as the distro, mainly because we&#39;re familiar with it and we wanted to get this up and running as quickly as possible!&lt;/p&gt;
 &lt;h3 id=&quot;step-2%3A-install-tor&quot;&gt;Step 2: Install Tor &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2014-06-20-running-a-1-mb-slash-s-tor-relay-on-linode/#step-2%3A-install-tor&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;There are some good instructions &lt;a href=&quot;http://www.darkcoding.net/society/running-a-tor-relay-node-server-on-ubuntu/&quot;&gt;here&lt;/a&gt;, but they boil down to:&lt;/p&gt;
+&lt;p&gt;There are some good instructions &lt;a href=&quot;https://www.darkcoding.net/society/running-a-tor-relay-node-server-on-ubuntu/&quot;&gt;here&lt;/a&gt;, but they boil down to:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ gpg --keyserver keys.gnupg.net --recv 886DDD89&lt;br /&gt;$ gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; apt-key &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; -&lt;br /&gt;$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; update&lt;br /&gt;$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; tor tor-arm&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Once Tor is installed, you need to configure it.&lt;/p&gt;
 &lt;h3 id=&quot;step-3%3A-basic-tor-configuration&quot;&gt;Step 3: Basic Tor Configuration &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2014-06-20-running-a-1-mb-slash-s-tor-relay-on-linode/#step-3%3A-basic-tor-configuration&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
@@ -50,11 +50,14 @@ Tor is a service that helps you to protect your anonymity while using the Intern
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;why-linode%3F&quot;&gt;Why Linode? &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2014-06-20-running-a-1-mb-slash-s-tor-relay-on-linode/#why-linode%3F&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;We compared several &lt;a href=&quot;https://en.wikipedia.org/wiki/Virtual_private_server&quot;&gt;virtual private server&lt;/a&gt; providers.  &lt;a href=&quot;https://www.linode.com/pricing&quot;&gt;Linode&lt;/a&gt; offers relatively high bandwidth caps: their $10/month plan, for instance, gives you 2TB/month outgoing with unlimited incoming, which is enough to sustain 700 KB/s &lt;em&gt;24/7&lt;/em&gt;.  &lt;a href=&quot;https://aws.amazon.com/ec2/&quot;&gt;Amazon EC2&lt;/a&gt; doesn&#39;t even compare: bandwidth charges alone for that much traffic would be about $200/month.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.noisebridge.net/&quot;&gt;Noisebridge&lt;/a&gt; runs &lt;a href=&quot;https://globe.torproject.org/#/search/query=noiseexit&quot;&gt;four Tor exit relays&lt;/a&gt; using &lt;a href=&quot;http://www.quadranet.com/dedicated-servers/high-bandwidth/&quot;&gt;QuadraNet dedicated servers&lt;/a&gt;. Dedicated servers are more attractive once you ramp up capacity.  With QuadraNet, for instance, $700/month gets you 1Gbps unmetered, or 125 MB/s - Linode 64GB instances are comparable in cost, but those only get you 20TB/month, or 7MB/s. Since our goals are a relatively modest 1 MB/s, this would be overkill; for the same reason, we didn&#39;t look into colocation either.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.noisebridge.net/&quot;&gt;Noisebridge&lt;/a&gt; runs &lt;a href=&quot;https://globe.torproject.org/#/search/query=noiseexit&quot;&gt;four Tor exit relays&lt;/a&gt; using QuadraNet dedicated servers. Dedicated servers are more attractive once you ramp up capacity.  With QuadraNet, for instance, $700/month gets you 1Gbps unmetered, or 125 MB/s - Linode 64GB instances are comparable in cost, but those only get you 20TB/month, or 7MB/s. Since our goals are a relatively modest 1 MB/s, this would be overkill; for the same reason, we didn&#39;t look into colocation either.&lt;/p&gt;
 &lt;h3 id=&quot;why-block-bittorrent%3F-i-thought-this-was-about-freedom!&quot;&gt;Why block BitTorrent?  I thought this was about freedom! &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2014-06-20-running-a-1-mb-slash-s-tor-relay-on-linode/#why-block-bittorrent%3F-i-thought-this-was-about-freedom!&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;From Linode&#39;s Terms of Service:&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote cite=&quot;https://www.linode.com/tos&quot;&gt;
+  &lt;p&gt;
 Linode does not prohibit the use of distributed, peer to peer network services such as Tor, nor does Linode routinely monitor the network communications of customer Linodes as a normal business practice. However, customers are responsible for the contents of network traffic exiting their Linode. Any usage that prompts the receipt of abuse complaints pertaining to violation of United States and/or international copyright law must be promptly discontinued to avoid service cancellation for violation of these terms.
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Linode, &lt;cite&gt;&lt;a href=&quot;https://www.linode.com/tos&quot;&gt;Linode Terms of Service&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;In practical terms: if you run an exit relay, Linode &lt;em&gt;will&lt;/em&gt; receive DMCA takedown notices for your IP address.  They &lt;em&gt;will&lt;/em&gt; pass those on to you, making them your responsibility.&lt;/p&gt;
 &lt;p&gt;To mitigate this risk, we block BitTorrent.  Otherwise we&#39;ll eventually have to&lt;/p&gt;
@@ -78,51 +81,23 @@ Linode does not prohibit the use of distributed, peer to peer network services s
 		<link href="https://blog.savageevan.com/posts/2013-10-09-a-tale-of-two-trips/"/>
 		<updated>2013-10-09T00:00:00Z</updated>
 		<id>https://blog.savageevan.com/posts/2013-10-09-a-tale-of-two-trips/</id>
-		<content type="html">&lt;p&gt;This summer, &lt;a href=&quot;http://www.eecs.berkeley.edu/~valkyrie/&quot;&gt;Valkyrie&lt;/a&gt; and I travelled&lt;br /&gt;
-through Eastern Asia.  We started with the Great Barrier Reef and rainforests near&lt;br /&gt;
-Cairns, then went onwards to Singapore, Vietnam, Cambodia, Malaysia, and Korea&lt;br /&gt;
-before spending three typhoon-stricken days holed up in Manila, Philippines.&lt;/p&gt;
-&lt;p&gt;As with our &lt;a href=&quot;http://fearlesstost.github.io/biketotheearth/&quot;&gt;bike trip&lt;/a&gt;, we kept&lt;br /&gt;
-a &lt;a href=&quot;http://ramblelust.savageinter.net/&quot;&gt;daily journal&lt;/a&gt; of our travels in blog&lt;br /&gt;
-form.  In this post, I visualize the two trips from our blog entries using some&lt;br /&gt;
-simple word count graphs.  These aren&#39;t the most sophisticated visualizations&lt;br /&gt;
-possible, but they provide a simple starting point to build upon in future&lt;br /&gt;
-blog posts.&lt;/p&gt;
+		<content type="html">&lt;p&gt;This summer, &lt;a href=&quot;https://www.eecs.berkeley.edu/~valkyrie/&quot;&gt;Valkyrie&lt;/a&gt; and I travelled through Eastern Asia.  We started with the Great Barrier Reef and rainforests near Cairns, then went onwards to Singapore, Vietnam, Cambodia, Malaysia, and Korea before spending three typhoon-stricken days holed up in Manila, Philippines.&lt;/p&gt;
+&lt;p&gt;As with our &lt;a href=&quot;https://savageinternet.github.io/biketotheearth/&quot;&gt;bike trip&lt;/a&gt;, we kept a &lt;a href=&quot;https://ramblelust.savageinter.net/&quot;&gt;daily journal&lt;/a&gt; of our travels in blog form.  In this post, I visualize the two trips from our blog entries using some simple word count graphs.  These aren&#39;t the most sophisticated visualizations possible, but they provide a simple starting point to build upon in future blog posts.&lt;/p&gt;
 &lt;!-- more --&gt;
-&lt;p&gt;First of all, it feels good to write another post!  The rapidly upcoming &lt;a href=&quot;http://quantifiedself.com/conference/San-Francisco-2013/&quot;&gt;Quantified Self 2013 Global Conference&lt;/a&gt;&lt;br /&gt;
-seemed like a good excuse to break seven months of blog neglect, so here I am.&lt;/p&gt;
-&lt;p&gt;I&#39;ll refer to these trips as &lt;em&gt;Bike to the Earth&lt;/em&gt; and &lt;em&gt;Ramblelust&lt;/em&gt; respectively,&lt;br /&gt;
-following the names of each trip blog.  Let&#39;s start with a look at the broadest&lt;br /&gt;
-of broad textual measures, word count.&lt;/p&gt;
+&lt;p&gt;First of all, it feels good to write another post!  The rapidly upcoming &lt;a href=&quot;https://quantifiedself.com/blog/announcing-the-2013-quantified-self-global-conference/&quot;&gt;Quantified Self 2013 Global Conference&lt;/a&gt; seemed like a good excuse to break seven months of blog neglect, so here I am.&lt;/p&gt;
+&lt;p&gt;I&#39;ll refer to these trips as &lt;em&gt;Bike to the Earth&lt;/em&gt; and &lt;em&gt;Ramblelust&lt;/em&gt; respectively, following the names of each trip blog.  Let&#39;s start with a look at the broadest of broad textual measures, word count.&lt;/p&gt;
 &lt;h2 id=&quot;word-count&quot;&gt;Word Count &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-10-09-a-tale-of-two-trips/#word-count&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;How many words did we write for each trip?  How many per post, on average?&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ python global_word_count.py &amp;lt; BikeToTheEarth/posts_normalized.json
-141329 words in 197 posts (717 words/post)
-
-$ python global_word_count.py &amp;lt; Ramblelust/posts_normalized.json
-61010 words in 86 posts (709 words/post)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Not much difference here.  What happens if we graph the word counts over time?&lt;br /&gt;
-Top is Bike to the Earth, bottom is Ramblelust.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ python global_word_count.py &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; BikeToTheEarth/posts_normalized.json&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;141329&lt;/span&gt; words &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;197&lt;/span&gt; posts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;717&lt;/span&gt; words/post&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;$ python global_word_count.py &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; Ramblelust/posts_normalized.json&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;61010&lt;/span&gt; words &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;86&lt;/span&gt; posts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;709&lt;/span&gt; words/post&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Not much difference here.  What happens if we graph the word counts over time? Top is Bike to the Earth, bottom is Ramblelust.&lt;/p&gt;
 &lt;img src=&quot;https://lh4.googleusercontent.com/-5Sv5_JZEDdw/UlcoazZGSxI/AAAAAAAAAks/9TZH7nDzpnQ/w1000/biketotheearth_daily_words.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-BW5K-iWb56c/UlcoZ4fktZI/AAAAAAAAAkw/3g2w4bbbMtI/w1000/ramblelust_daily_words.jpg&quot; /&gt;
-&lt;p&gt;One point jumps out on the Bike to the Earth graph: &lt;a href=&quot;http://fearlesstost.github.io/biketotheearth/posts/2010/10/19/hellbania.html&quot;&gt;this post&lt;/a&gt;,&lt;br /&gt;
-a massive 3600-word whopper that details our arduous exit from the rain-stricken&lt;br /&gt;
-Albanian coastline and into Greece.  For comparison, our longest post from&lt;br /&gt;
-Ramblelust was &lt;a href=&quot;http://ramblelust.savageinter.net/blog/2013/06/29/cam-ranh-ing-around/&quot;&gt;this one&lt;/a&gt;&lt;br /&gt;
-about our CouchSurfing experiences in Cam Ranh, a short distance south from&lt;br /&gt;
-Nha Trang along the Vietnamese coast.&lt;/p&gt;
-&lt;p&gt;Still, it&#39;s hard to make much out of such noisy data.  Let&#39;s smooth that a bit&lt;br /&gt;
-by looking at weekly averages. Again, top is Bike to the Earth, bottom is Ramblelust.&lt;/p&gt;
+&lt;p&gt;One point jumps out on the Bike to the Earth graph: &lt;a href=&quot;https://savageinternet.github.io/biketotheearth/posts/2010/10/19/hellbania.html&quot;&gt;this post&lt;/a&gt;, a massive 3600-word whopper that details our arduous exit from the rain-stricken Albanian coastline and into Greece.  For comparison, our longest post from Ramblelust was &lt;a href=&quot;https://ramblelust.savageinter.net/blog/2013/06/29/cam-ranh-ing-around/&quot;&gt;this one&lt;/a&gt; about our CouchSurfing experiences in Cam Ranh, a short distance south from Nha Trang along the Vietnamese coast.&lt;/p&gt;
+&lt;p&gt;Still, it&#39;s hard to make much out of such noisy data.  Let&#39;s smooth that a bit by looking at weekly averages. Again, top is Bike to the Earth, bottom is Ramblelust.&lt;/p&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-9YT2XueNpAs/UlcodH_CpwI/AAAAAAAAAkk/0ZnCYmXSMJc/w1000/biketotheearth_daily_words_smoothed.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh4.googleusercontent.com/-C-Q604GWq84/UlcoesNibrI/AAAAAAAAAjk/8RHMmaBdOi0/w1000/ramblelust_daily_words_smoothed.jpg&quot; /&gt;
-&lt;p&gt;Now another pattern pops out of the Bike to the Earth data: sometime around&lt;br /&gt;
-the beginning of September, our writing output doubled.  At that time, we were&lt;br /&gt;
-just entering Italy, where we were sandwiched in between the southern Alps&lt;br /&gt;
-and the sea for about 900km before reaching Rome.&lt;/p&gt;
-&lt;p&gt;As I go through this process, I&#39;m constantly jumping back and forth between&lt;br /&gt;
-the blog posts and these graphs.  As with all visualization, this context is an&lt;br /&gt;
-essential part of understanding the data.&lt;/p&gt;
+&lt;p&gt;Now another pattern pops out of the Bike to the Earth data: sometime around the beginning of September, our writing output doubled.  At that time, we were just entering Italy, where we were sandwiched in between the southern Alps and the sea for about 900km before reaching Rome.&lt;/p&gt;
+&lt;p&gt;As I go through this process, I&#39;m constantly jumping back and forth between the blog posts and these graphs.  As with all visualization, this context is an essential part of understanding the data.&lt;/p&gt;
 &lt;h2 id=&quot;next-steps&quot;&gt;Next Steps &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-10-09-a-tale-of-two-trips/#next-steps&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There are lots of places we could go from here:&lt;/p&gt;
 &lt;ul&gt;
@@ -130,8 +105,7 @@ essential part of understanding the data.&lt;/p&gt;
 &lt;li&gt;location-based visualization (by combining with country data);&lt;/li&gt;
 &lt;li&gt;authorship analysis (my posts vs. Valkyrie&#39;s posts)...&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;...the list goes on.  What would you like to see?  Comment via Facebook or&lt;br /&gt;
-Twitter to let me know, and I&#39;ll put it into the next blog post.&lt;/p&gt;
+&lt;p&gt;...the list goes on.  What would you like to see?  Comment via Facebook or Twitter to let me know, and I&#39;ll put it into the next blog post.&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -146,27 +120,17 @@ share, based on the work described in &lt;a href=&quot;http://blog.savageevan.co
 &lt;h2 id=&quot;the-rendering&quot;&gt;The Rendering &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-03-04-another-quadtree-map-rendering/#the-rendering&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This rendering uses tiles at Google Maps zoom level 14:&lt;/p&gt;
 &lt;img src=&quot;https://lh5.googleusercontent.com/-74zVhVDHIdc/UTVAtI4bhcI/AAAAAAAAAWY/sWT9JplWl7k/s800/tiles14.2048.jpg&quot; /&gt;
-&lt;p&gt;I decided to experiment with solid shading rather than wireframe for the tiles.&lt;br /&gt;
-This cuts down on the &lt;a href=&quot;http://en.wikipedia.org/wiki/Moir%C3%A9_pattern&quot;&gt;Moiré effect&lt;/a&gt;&lt;br /&gt;
-in densely populated areas.&lt;/p&gt;
-&lt;p&gt;The original is a &lt;em&gt;whopping 1 gigapixels&lt;/em&gt;, so I had to resize it using&lt;br /&gt;
-&lt;a href=&quot;http://www.imagemagick.org/script/index.php&quot;&gt;ImageMagick&lt;/a&gt; before uploading it to Picasa:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ convert tiles14.jpg -sample 2048x2048 tiles14.2048.jpg
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I decided to experiment with solid shading rather than wireframe for the tiles.  This cuts down on the &lt;a href=&quot;http://en.wikipedia.org/wiki/Moir%C3%A9_pattern&quot;&gt;Moiré effect&lt;/a&gt; in densely populated areas.&lt;/p&gt;
+&lt;p&gt;The original is a &lt;em&gt;whopping 1 gigapixels&lt;/em&gt;, so I had to resize it using &lt;a href=&quot;http://www.imagemagick.org/script/index.php&quot;&gt;ImageMagick&lt;/a&gt; before uploading it to Picasa:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ convert tiles14.jpg -sample 2048x2048 tiles14.2048.jpg&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A few more random tidbits of information:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Computing the tile subdivision &lt;em&gt;took one CPU-hour&lt;/em&gt; on my laptop, a fairly&lt;br /&gt;
-new MacBook Air.&lt;/li&gt;
-&lt;li&gt;At zoom level 14, tiles near the equator are &lt;em&gt;roughly 1.5 miles to a side.&lt;/em&gt;&lt;br /&gt;
-(Tiles further north or south are shorter in the north-south direction&lt;br /&gt;
-due to distortion in the Mercator projection.)&lt;/li&gt;
+&lt;li&gt;Computing the tile subdivision &lt;em&gt;took one CPU-hour&lt;/em&gt; on my laptop, a fairly new MacBook Air.&lt;/li&gt;
+&lt;li&gt;At zoom level 14, tiles near the equator are &lt;em&gt;roughly 1.5 miles to a side.&lt;/em&gt; (Tiles further north or south are shorter in the north-south direction due to distortion in the Mercator projection.)&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;The Nile is clearly visible&lt;/em&gt; between the Nile Delta and Aswan.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;next-post&quot;&gt;Next Post &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-03-04-another-quadtree-map-rendering/#next-post&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;In my next post, I&#39;ll dive into &lt;a href=&quot;http://fearlesstost.github.com/biketotheearth/&quot;&gt;six months of journal entries&lt;/a&gt;&lt;br /&gt;
-from a &lt;a href=&quot;http://goo.gl/maps/0Xs55&quot;&gt;six-month bike trip&lt;/a&gt; that&lt;br /&gt;
-&lt;a href=&quot;http://www.eecs.berkeley.edu/~valkyrie/&quot;&gt;Valkyrie Savage&lt;/a&gt; and I took back in&lt;br /&gt;
-2010.&lt;/p&gt;
+&lt;p&gt;In my next post, I&#39;ll dive into &lt;a href=&quot;https://savageinternet.github.io/biketotheearth/&quot;&gt;six months of journal entries&lt;/a&gt; from a &lt;a href=&quot;http://goo.gl/maps/0Xs55&quot;&gt;six-month bike trip&lt;/a&gt; that &lt;a href=&quot;http://www.eecs.berkeley.edu/~valkyrie/&quot;&gt;Valkyrie Savage&lt;/a&gt; and I took back in 2010.&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -175,90 +139,49 @@ from a &lt;a href=&quot;http://goo.gl/maps/0Xs55&quot;&gt;six-month bike trip&lt
 		<link href="https://blog.savageevan.com/posts/2013-02-21-quadtree-cartography/"/>
 		<updated>2013-02-21T00:00:00Z</updated>
 		<id>https://blog.savageevan.com/posts/2013-02-21-quadtree-cartography/</id>
-		<content type="html">&lt;p&gt;In this post, I show off some images from a project I&#39;m working on (which will&lt;br /&gt;
-remain nameless for now!) These images visualize subdivisions of the Earth&lt;br /&gt;
-into Google Maps tile-sized regions with roughly equal population. I&#39;ll also&lt;br /&gt;
-provide a brief and non-technical rundown of the process by which I generated&lt;br /&gt;
-these images.&lt;/p&gt;
+		<content type="html">&lt;p&gt;In this post, I show off some images from a project I&#39;m working on (which will remain nameless for now!) These images visualize subdivisions of the Earth into Google Maps tile-sized regions with roughly equal population. I&#39;ll also provide a brief and non-technical rundown of the process by which I generated these images.&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&quot;the-images&quot;&gt;The Images &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-21-quadtree-cartography/#the-images&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;First, a representative image from my renderings:&lt;/p&gt;
 &lt;img src=&quot;https://lh5.googleusercontent.com/-EmN0ma8uhtg/USZnFkGsrfI/AAAAAAAAAV8/hDpa5sx1-IE/s640/tiles11.ag.jpg&quot; /&gt;
 &lt;p&gt;I love working on problems with a visual aspect - you get direct sensory&lt;br /&gt;
 feedback on your progress!&lt;/p&gt;
-&lt;p&gt;Here, we can clearly see the continents delineated&lt;br /&gt;
-by dense coastal population clusters. India and China are especially detailed,&lt;br /&gt;
-and Europe has fairly uniform density throughout. Contrast this with North&lt;br /&gt;
-America: northern Canada is sparsely populated, as are the deserts and&lt;br /&gt;
-mountains of the Central United States.&lt;/p&gt;
-&lt;p&gt;Next, some renderings at different subdivision levels (Google Maps zoom&lt;br /&gt;
-levels 8-11):&lt;/p&gt;
+&lt;p&gt;Here, we can clearly see the continents delineated by dense coastal population clusters. India and China are especially detailed, and Europe has fairly uniform density throughout. Contrast this with North America: northern Canada is sparsely populated, as are the deserts and mountains of the Central United States.&lt;/p&gt;
+&lt;p&gt;Next, some renderings at different subdivision levels (Google Maps zoom levels 8-11):&lt;/p&gt;
 &lt;img src=&quot;https://lh4.googleusercontent.com/-SqLGYcz6yl0/USZnBXDoUNI/AAAAAAAAAUs/C7vdLkL522Y/s288/tiles8.ag60.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh5.googleusercontent.com/-m2wk-ov9Mw4/USZnBmDUucI/AAAAAAAAAU0/vrU48gzJei4/s288/tiles9.ag60.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-GuXnAIjWUf0/USZnCbAac_I/AAAAAAAAAU8/urh1UXBD3-U/s288/tiles10.ag60.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-Y53pPe7T0II/USZnCn5ZL3I/AAAAAAAAAVI/Owjf_pnQBic/s288/tiles11.ag60.jpg&quot; /&gt;
-&lt;p&gt;As the subdivision level increases, the continents progress from blocky pixel&lt;br /&gt;
-art to more recognizable shapes.&lt;/p&gt;
-&lt;p&gt;Finally, some renderings with different resolutions of the underlying population&lt;br /&gt;
-data (degree, half-degree, quarter-degree, and 2.5 arc minutes):&lt;/p&gt;
+&lt;p&gt;As the subdivision level increases, the continents progress from blocky pixel art to more recognizable shapes.&lt;/p&gt;
+&lt;p&gt;Finally, some renderings with different resolutions of the underlying population data (degree, half-degree, quarter-degree, and 2.5 arc minutes):&lt;/p&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-GuXnAIjWUf0/USZnCbAac_I/AAAAAAAAAU8/urh1UXBD3-U/s288/tiles10.ag60.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-RRw5Gx4OiaA/USZnEQhqNhI/AAAAAAAAAVg/i6B3yx8BF_M/s288/tiles10.ag30.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh5.googleusercontent.com/-NkGpf7zzHsY/USZnFI4qQ7I/AAAAAAAAAV4/Kl1UB4U-4pU/s288/tiles10.ag15.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-n6Ufe_6mJzM/USZnF60IfvI/AAAAAAAAAWE/PEmAgvWvzNU/s288/tiles10.ag.jpg&quot; /&gt;
-&lt;p&gt;Here the effect is more subtle: detail is added in densely populated areas,&lt;br /&gt;
-but larger tiles (corresponding to more remote regions) are mostly unaffected.&lt;/p&gt;
+&lt;p&gt;Here the effect is more subtle: detail is added in densely populated areas, but larger tiles (corresponding to more remote regions) are mostly unaffected.&lt;/p&gt;
 &lt;p&gt;To see all the images as small multiples, &lt;a href=&quot;https://picasaweb.google.com/100933554722754572774/20130221QuadtreeCartography#&quot;&gt;view the album on Picasa&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;the-process&quot;&gt;The Process &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-21-quadtree-cartography/#the-process&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;There are four major steps: getting the data, combining it with Google Maps&lt;br /&gt;
-tile data, building the subdivision, and rendering it.&lt;/p&gt;
+&lt;p&gt;There are four major steps: getting the data, combining it with Google Maps tile data, building the subdivision, and rendering it.&lt;/p&gt;
 &lt;h3 id=&quot;getting-the-data&quot;&gt;Getting the Data &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-21-quadtree-cartography/#getting-the-data&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The &lt;a href=&quot;http://sedac.ciesin.columbia.edu/citations&quot;&gt;NASA Socio-Economic Data and Applications Center&lt;/a&gt;,&lt;br /&gt;
-or SEDAC, compiles global population grids. These grids contain the estimated&lt;br /&gt;
-number of people living in each 2.5-arc-minute square of the Earth&#39;s surface.&lt;br /&gt;
-2.5 arc-minutes is 1/24 of a degree, or about 4.5 km of equatorial circumference:&lt;br /&gt;
-definitely high-resolution enough for building some awesome maps!&lt;/p&gt;
-&lt;p&gt;The population count grids are available &lt;a href=&quot;http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-count/data-download&quot;&gt;here&lt;/a&gt;.&lt;br /&gt;
-You have to register on the site and cite usage of their data, but otherwise it&lt;br /&gt;
-appears to be freely available.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;http://sedac.ciesin.columbia.edu/citations&quot;&gt;NASA Socio-Economic Data and Applications Center&lt;/a&gt;, or SEDAC, compiles global population grids. These grids contain the estimated number of people living in each 2.5-arc-minute square of the Earth&#39;s surface. 2.5 arc-minutes is 1/24 of a degree, or about 4.5 km of equatorial circumference: definitely high-resolution enough for building some awesome maps!&lt;/p&gt;
+&lt;p&gt;The population count grids are available &lt;a href=&quot;http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-count/data-download&quot;&gt;here&lt;/a&gt;. You have to register on the site and cite usage of their data, but otherwise it appears to be freely available.&lt;/p&gt;
 &lt;h3 id=&quot;combining-with-google-maps&quot;&gt;Combining with Google Maps &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-21-quadtree-cartography/#combining-with-google-maps&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Google Maps uses a &lt;a href=&quot;http://en.wikipedia.org/wiki/Mercator_projection&quot;&gt;Mercator projection&lt;/a&gt;.&lt;br /&gt;
-This projection is &lt;a href=&quot;https://developers.google.com/maps/documentation/javascript/maptypes#WorldCoordinates&quot;&gt;truncated&lt;/a&gt;&lt;br /&gt;
-at roughly 85 degrees latitude to create a square map, which is then projected&lt;br /&gt;
-onto a 256 x 256 world coordinate system. Finally, world coordinates are&lt;br /&gt;
-mapped to &lt;a href=&quot;https://developers.google.com/maps/documentation/javascript/maptypes#PixelCoordinates&quot;&gt;pixel coordinates&lt;/a&gt;&lt;br /&gt;
-at different zoom levels, which determine which &lt;a href=&quot;https://developers.google.com/maps/documentation/javascript/maptypes#TileCoordinates&quot;&gt;tile&lt;/a&gt;&lt;br /&gt;
-your location falls in.&lt;/p&gt;
-&lt;p&gt;To match up the gridded population data with Google Maps tiles, then, we need&lt;br /&gt;
-to do the following:&lt;/p&gt;
+&lt;p&gt;Google Maps uses a &lt;a href=&quot;https://en.wikipedia.org/wiki/Mercator_projection&quot;&gt;Mercator projection&lt;/a&gt;. This projection is &lt;a href=&quot;https://developers.google.com/maps/documentation/javascript/maptypes#WorldCoordinates&quot;&gt;truncated&lt;/a&gt; at roughly 85 degrees latitude to create a square map, which is then projected onto a 256 x 256 world coordinate system. Finally, world coordinates are mapped to &lt;a href=&quot;https://developers.google.com/maps/documentation/javascript/maptypes#PixelCoordinates&quot;&gt;pixel coordinates&lt;/a&gt; at different zoom levels, which determine which &lt;a href=&quot;https://developers.google.com/maps/documentation/javascript/maptypes#TileCoordinates&quot;&gt;tile&lt;/a&gt; your location falls in.&lt;/p&gt;
+&lt;p&gt;To match up the gridded population data with Google Maps tiles, then, we need to do the following:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;for each grid cell, &lt;em&gt;determine its latitude and longitude boundaries&lt;/em&gt;;&lt;/li&gt;
 &lt;li&gt;use those boundaries to &lt;em&gt;figure out which map tiles the cell overlaps&lt;/em&gt;;&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;divide the cell&#39;s population among those map tiles&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;To divide the cell&#39;s population fairly, I determine how much of the cell&lt;br /&gt;
-overlaps each tile.&lt;/p&gt;
-&lt;p&gt;I found &lt;a href=&quot;https://google-developers.appspot.com/maps/documentation/javascript/examples/map-coordinates&quot;&gt;this helpful example&lt;/a&gt;&lt;br /&gt;
-of working with locations, world coordinates, pixel coordinates, and tiles.&lt;br /&gt;
-The source code of that example contains an implementation of Google&#39;s&lt;br /&gt;
-Mercator projection, which I built into a larger &lt;a href=&quot;http://nodejs.org/&quot;&gt;node.js&lt;/a&gt;&lt;br /&gt;
-utility for computing the equal-population subdivision.&lt;/p&gt;
-&lt;p&gt;(Yes, node.js is fine for CPU-intensive tasks, just not in the same process&lt;br /&gt;
-as your webserver.)&lt;/p&gt;
+&lt;p&gt;To divide the cell&#39;s population fairly, I determine how much of the cell overlaps each tile.&lt;/p&gt;
+&lt;p&gt;I found &lt;a href=&quot;https://google-developers.appspot.com/maps/documentation/javascript/examples/map-coordinates&quot;&gt;this helpful example&lt;/a&gt; of working with locations, world coordinates, pixel coordinates, and tiles. The source code of that example contains an implementation of Google&#39;s Mercator projection, which I built into a larger &lt;a href=&quot;https://nodejs.org/&quot;&gt;node.js&lt;/a&gt; utility for computing the equal-population subdivision.&lt;/p&gt;
+&lt;p&gt;(Yes, node.js is fine for CPU-intensive tasks, just not in the same process as your webserver.)&lt;/p&gt;
 &lt;h3 id=&quot;building-an-equal-population-subdivision&quot;&gt;Building an Equal-Population Subdivision &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-21-quadtree-cartography/#building-an-equal-population-subdivision&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;To get map tiles of equal population, &lt;em&gt;I combine tiles into larger tiles&lt;br /&gt;
-until the population exceeds a threshold.&lt;/em&gt; This creates large tiles in&lt;br /&gt;
-sparsely populated areas while leaving smaller tiles in densely populated&lt;br /&gt;
-areas.&lt;/p&gt;
-&lt;p&gt;(I mentioned &lt;a href=&quot;http://blog.notdot.net/2009/11/Damn-Cool-Algorithms-Spatial-indexing-with-Quadtrees-and-Hilbert-Curves&quot;&gt;quadtrees&lt;/a&gt;&lt;br /&gt;
-in the title of this post - this data structure is ideally suited for the&lt;br /&gt;
-problem.)&lt;/p&gt;
+&lt;p&gt;To get map tiles of equal population, &lt;em&gt;I combine tiles into larger tiles until the population exceeds a threshold.&lt;/em&gt; This creates large tiles in sparsely populated areas while leaving smaller tiles in densely populated areas.&lt;/p&gt;
+&lt;p&gt;(I mentioned &lt;a href=&quot;https://blog.notdot.net/2009/11/Damn-Cool-Algorithms-Spatial-indexing-with-Quadtrees-and-Hilbert-Curves&quot;&gt;quadtrees&lt;/a&gt; in the title of this post - this data structure is ideally suited for the problem.)&lt;/p&gt;
 &lt;h3 id=&quot;rendering-the-subdivision&quot;&gt;Rendering the Subdivision &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-21-quadtree-cartography/#rendering-the-subdivision&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;This is the easy part! I used &lt;a href=&quot;https://pypi.python.org/pypi/Pillow/&quot;&gt;Pillow&lt;/a&gt;, a&lt;br /&gt;
-nicely-packaged version of the excellent &lt;a href=&quot;http://www.pythonware.com/products/pil/&quot;&gt;Python Imaging Library&lt;/a&gt;,&lt;br /&gt;
-to render the subdivisions out as JPEG images.&lt;/p&gt;
-&lt;p&gt;(I suppose I could have rendered SVG images in node.js using some &lt;a href=&quot;https://github.com/tmpvar/jsdom&quot;&gt;jsdom&lt;/a&gt;&lt;br /&gt;
-and &lt;a href=&quot;http://d3js.org/&quot;&gt;d3&lt;/a&gt; hackery, but I was already familiar with using&lt;br /&gt;
-Python Imaging Library for image synthesis.)&lt;/p&gt;
+&lt;p&gt;This is the easy part! I used &lt;a href=&quot;https://pypi.python.org/pypi/Pillow/&quot;&gt;Pillow&lt;/a&gt;, a nicely-packaged version of the excellent Python Imaging Library, to render the subdivisions out as JPEG images.&lt;/p&gt;
+&lt;p&gt;(I suppose I could have rendered SVG images in node.js using some &lt;a href=&quot;https://github.com/tmpvar/jsdom&quot;&gt;jsdom&lt;/a&gt; and &lt;a href=&quot;https://d3js.org/&quot;&gt;d3&lt;/a&gt; hackery, but I was already familiar with using Python Imaging Library for image synthesis.)&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -267,90 +190,52 @@ Python Imaging Library for image synthesis.)&lt;/p&gt;
 		<link href="https://blog.savageevan.com/posts/2013-02-07-applying-genetic-research-to-my-23andme-data/"/>
 		<updated>2013-02-07T00:00:00Z</updated>
 		<id>https://blog.savageevan.com/posts/2013-02-07-applying-genetic-research-to-my-23andme-data/</id>
-		<content type="html">&lt;p&gt;To calculate your risk of various diseases, 23andMe scours the medical research&lt;br /&gt;
-literature for studies that correlate incidence rates for those diseases with&lt;br /&gt;
-mutations at specific locations in the human genome. The locations where these&lt;br /&gt;
-mutations commonly occur are referred to as single-nucleotide polymorphisms, or&lt;br /&gt;
-&lt;a href=&quot;http://en.wikipedia.org/wiki/Single-nucleotide_polymorphism&quot;&gt;SNPs&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In this post, I show how I applied the findings of &lt;a href=&quot;http://www.nature.com/npp/journal/v33/n12/full/npp200817a.html&quot;&gt;this study about caffeine-induced anxiety&lt;/a&gt;&lt;br /&gt;
-to discover more about myself. I have no genetic research background&lt;br /&gt;
-whatsoever, and my knowledge of genetics is minimal, so it&#39;s amazing that&lt;br /&gt;
-this is slowly becoming accessible to a wider audience.&lt;/p&gt;
+		<content type="html">&lt;p&gt;To calculate your risk of various diseases, 23andMe scours the medical research literature for studies that correlate incidence rates for those diseases with mutations at specific locations in the human genome. The locations where these mutations commonly occur are referred to as single-nucleotide polymorphisms, or &lt;a href=&quot;http://en.wikipedia.org/wiki/Single-nucleotide_polymorphism&quot;&gt;SNPs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In this post, I show how I applied the findings of &lt;a href=&quot;http://www.nature.com/npp/journal/v33/n12/full/npp200817a.html&quot;&gt;this study about caffeine-induced anxiety&lt;/a&gt; to discover more about myself. I have no genetic research background whatsoever, and my knowledge of genetics is minimal, so it&#39;s amazing that this is slowly becoming accessible to a wider audience.&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&quot;the-genetic-culprit&quot;&gt;The Genetic Culprit &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-07-applying-genetic-research-to-my-23andme-data/#the-genetic-culprit&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;From the study abstract:&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote cite=&quot;https://www.nature.com/npp/journal/v33/n12/full/npp200817a.html&quot;&gt;
+  &lt;p&gt;
 At the 150 mg dose of caffeine, we found a significant association between caffeine-induced anxiety (Visual Analog Scales, VAS) and ADORA2A rs5751876 (1976C/T), rs2298383 (intron 1a) and rs4822492 (3′-flank), and DRD2 rs1110976 (intron 6).
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Childs et al., &lt;cite&gt;&lt;a href=&quot;https://www.nature.com/npp/journal/v33/n12/full/npp200817a.html&quot;&gt;Association between ADORA2A and DRD2 Polymorphisms and Caffeine-Induced Anxiety&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;The SNPs &lt;code&gt;rs5751876&lt;/code&gt;, &lt;code&gt;rs2298383&lt;/code&gt;, &lt;code&gt;rs4822492&lt;/code&gt;, and a few others are claimed&lt;br /&gt;
-here to relate to caffeine-induced anxiety. Reading further,&lt;br /&gt;
-&lt;a href=&quot;http://www.nature.com/npp/journal/v33/n12/fig_tab/npp200817f4.html#figure-title&quot;&gt;Figure 4&lt;/a&gt; and &lt;a href=&quot;http://www.nature.com/npp/journal/v33/n12/fig_tab/npp200817t4.html#figure-title&quot;&gt;Figure 5&lt;/a&gt; show &lt;em&gt;which variations are&lt;br /&gt;
-correlated with higher anxiety.&lt;/em&gt; Here&#39;s a quick summary of the&lt;br /&gt;
-high-anxiety variations listed in those figures:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;rs5751876: T/T (vs. C/C, C/T)
-rs2298383: C/C (vs. T/T, C/T)
-rs4822492: C/C (vs. G/G, G/C)
-rs1110976: G/G (vs. G/-)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Armed with this information, I can check my own genome for variations at those&lt;br /&gt;
-SNPs.&lt;/p&gt;
+&lt;p&gt;The SNPs &lt;code&gt;rs5751876&lt;/code&gt;, &lt;code&gt;rs2298383&lt;/code&gt;, &lt;code&gt;rs4822492&lt;/code&gt;, and a few others are claimed here to relate to caffeine-induced anxiety. Reading further, &lt;a href=&quot;http://www.nature.com/npp/journal/v33/n12/fig_tab/npp200817f4.html#figure-title&quot;&gt;Figure 4&lt;/a&gt; and &lt;a href=&quot;http://www.nature.com/npp/journal/v33/n12/fig_tab/npp200817t4.html#figure-title&quot;&gt;Figure 5&lt;/a&gt; show &lt;em&gt;which variations are correlated with higher anxiety.&lt;/em&gt; Here&#39;s a quick summary of the high-anxiety variations listed in those figures:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rs5751876&lt;/code&gt;: T/T (vs. C/C, C/T)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rs2298383&lt;/code&gt;: C/C (vs. T/T, C/T)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rs4822492&lt;/code&gt;: C/C (vs. G/G, G/C)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rs1110976&lt;/code&gt;: G/G (vs. G/-)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Armed with this information, I can check my own genome for variations at those SNPs.&lt;/p&gt;
 &lt;h2 id=&quot;checking-my-genome&quot;&gt;Checking My Genome &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-07-applying-genetic-research-to-my-23andme-data/#checking-my-genome&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;In the appendix of &lt;a href=&quot;http://blog.savageevan.com/blog/2013/02/04/the-behavioral-economics-of-23andme-results/&quot;&gt;this blog post&lt;/a&gt;,&lt;br /&gt;
-I discuss how to retrieve your genetic data from the 23andMe API. I followed&lt;br /&gt;
-those directions with two changes:&lt;/p&gt;
+&lt;p&gt;In the appendix of &lt;a href=&quot;https://blog.savageevan.com/posts/2013-02-04-the-behavioral-economics-of-23andme-results/&quot;&gt;this blog post&lt;/a&gt;, I discuss how to retrieve your genetic data from the 23andMe API. I followed those directions with two changes:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;I used the authorization scope &lt;code&gt;genomes&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;I accessed the API endpoint &lt;code&gt;https://api.23andme.com/1/genomes/&amp;lt;id&amp;gt;&lt;/code&gt;, where&lt;br /&gt;
-&lt;code&gt;&amp;lt;id&amp;gt;&lt;/code&gt; is my internal ID. This ID is returned with every response from their&lt;br /&gt;
-API.&lt;/li&gt;
+&lt;li&gt;I accessed the API endpoint &lt;code&gt;https://api.23andme.com/1/genomes/&amp;lt;id&amp;gt;&lt;/code&gt;, where &lt;code&gt;&amp;lt;id&amp;gt;&lt;/code&gt; is my internal ID. This ID is returned with every response from their API.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I downloaded the genomic data as &lt;code&gt;genome.json&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;curl https://api.23andme.com/1/genomes/&amp;lt;id&amp;gt;/ -H &amp;quot;Authorization: Bearer &amp;lt;access_token&amp;gt;&amp;quot; &amp;gt; genome.json
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; https://api.23andme.com/1/genomes/&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;id&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;/ -H &lt;span class=&quot;token string&quot;&gt;&quot;Authorization: Bearer &amp;lt;access_token&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; genome.json&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To help extract the specific SNPs listed above, I wrote&lt;br /&gt;
 &lt;a href=&quot;https://github.com/candu/quantified-savagery-files/blob/master/Genetics/extractSNP.py&quot;&gt;a quick Python script&lt;/a&gt;.&lt;br /&gt;
 Running it, I get my results:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ python extractSNP.py rs5751876 rs2298383 rs4822492 rs1110976 &amp;lt; genome.json
-rs5751876       TT
-rs2298383       CC
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;23andMe doesn&#39;t provide data on the &lt;code&gt;rs4822492&lt;/code&gt; or &lt;code&gt;rs1110976&lt;/code&gt; SNPs, but I can&lt;br /&gt;
-see that &lt;em&gt;I have the high-anxiety variations&lt;/em&gt; at &lt;code&gt;rs5751876&lt;/code&gt; and &lt;code&gt;rs2298383&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;The script uses 23andMe&#39;s &lt;a href=&quot;https://api.23andme.com/res/txt/snps.data&quot;&gt;SNP list&lt;/a&gt;,&lt;br /&gt;
-which identifies the locations of all SNPs that they look for. The first time&lt;br /&gt;
-you run &lt;code&gt;extractSNP.py&lt;/code&gt;, it will generate an index of all 23andMe SNPs in&lt;br /&gt;
-&lt;code&gt;.snps-index&lt;/code&gt; to make subsequent runs faster. Once you have your &lt;code&gt;genome.json&lt;/code&gt;&lt;br /&gt;
-data and have built the &lt;code&gt;.snps-index&lt;/code&gt; index, &lt;em&gt;you can look up any SNP or group&lt;br /&gt;
-of SNPs in about a second.&lt;/em&gt;&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ python extractSNP.py rs5751876 rs2298383 rs4822492 rs1110976 &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; genome.json&lt;br /&gt;rs5751876       TT&lt;br /&gt;rs2298383       CC&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;23andMe doesn&#39;t provide data on the &lt;code&gt;rs4822492&lt;/code&gt; or &lt;code&gt;rs1110976&lt;/code&gt; SNPs, but I can see that &lt;em&gt;I have the high-anxiety variations&lt;/em&gt; at &lt;code&gt;rs5751876&lt;/code&gt; and &lt;code&gt;rs2298383&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The script uses 23andMe&#39;s &lt;a href=&quot;https://api.23andme.com/res/txt/snps.data&quot;&gt;SNP list&lt;/a&gt;, which identifies the locations of all SNPs that they look for. The first time you run &lt;code&gt;extractSNP.py&lt;/code&gt;, it will generate an index of all 23andMe SNPs in &lt;code&gt;.snps-index&lt;/code&gt; to make subsequent runs faster. Once you have your &lt;code&gt;genome.json&lt;/code&gt; data and have built the &lt;code&gt;.snps-index&lt;/code&gt; index, &lt;em&gt;you can look up any SNP or group of SNPs in about a second.&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&quot;summary&quot;&gt;Summary &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-07-applying-genetic-research-to-my-23andme-data/#summary&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To apply genetic research findings to your genomic data:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Use the process described in &lt;a href=&quot;http://blog.savageevan.com/blog/2013/02/04/the-behavioral-economics-of-23andme-results/&quot;&gt;this blog post&lt;/a&gt;&lt;br /&gt;
-with scope &lt;code&gt;genomes&lt;/code&gt; and API endpoint &lt;code&gt;https://api.23andme.com/1/genomes/&amp;lt;id&amp;gt;&lt;/code&gt;&lt;br /&gt;
-to download your genetic data. Save it as &lt;code&gt;genome.json&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Download &lt;a href=&quot;https://github.com/candu/quantified-savagery-files/blob/master/Genetics/extractSNP.py&quot;&gt;my script&lt;/a&gt;&lt;br /&gt;
-into the same folder as &lt;code&gt;genome.json&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Find a paper, journal article, etc. that mentions specific SNPs&lt;br /&gt;
-(those funny &lt;code&gt;rsXXX&lt;/code&gt; or &lt;code&gt;iXXX&lt;/code&gt; numbers).&lt;/li&gt;
-&lt;li&gt;Run &lt;code&gt;python extractSNP.py rsXXX &amp;lt; genome.json&lt;/code&gt; to search for those SNPs in&lt;br /&gt;
-your genome.&lt;/li&gt;
+&lt;li&gt;Use the process described in &lt;a href=&quot;http://blog.savageevan.com/blog/2013/02/04/the-behavioral-economics-of-23andme-results/&quot;&gt;this blog post&lt;/a&gt; with scope &lt;code&gt;genomes&lt;/code&gt; and API endpoint &lt;code&gt;https://api.23andme.com/1/genomes/&amp;lt;id&amp;gt;&lt;/code&gt; to download your genetic data. Save it as &lt;code&gt;genome.json&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Download &lt;a href=&quot;https://github.com/candu/quantified-savagery-files/blob/master/Genetics/extractSNP.py&quot;&gt;my script&lt;/a&gt; into the same folder as &lt;code&gt;genome.json&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Find a paper, journal article, etc. that mentions specific SNPs (those funny &lt;code&gt;rsXXX&lt;/code&gt; or &lt;code&gt;iXXX&lt;/code&gt; numbers).&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;python extractSNP.py rsXXX &amp;lt; genome.json&lt;/code&gt; to search for those SNPs in your genome.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;caveats&quot;&gt;Caveats &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-07-applying-genetic-research-to-my-23andme-data/#caveats&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This is still a highly manual process, and you&#39;ll need some familiarity&lt;br /&gt;
-with the command line to pull it off. We haven&#39;t quite reached the&lt;br /&gt;
-promised near-future where the deepest insights about our personal&lt;br /&gt;
-genetics are easily available.&lt;/p&gt;
-&lt;p&gt;23andMe&#39;s data is incomplete: they only had two of the four listed SNPs.&lt;br /&gt;
-That said, it&#39;s far better than nothing!&lt;/p&gt;
-&lt;p&gt;Also, there&#39;s room for skepticism regarding the underlying research. Only&lt;br /&gt;
-102 participants took part, all of European-American descent. The subjects&lt;br /&gt;
-all had stated caffeine intake levels of less than 300mg per day, or about&lt;br /&gt;
-3 cups&#39; worth - that&#39;s a pretty wide range of potential tolerances. Subjects&lt;br /&gt;
-rated their anxiety on a subjective scale. The researchers also took&lt;br /&gt;
-measurements of heart rate and blood pressure, but did not incorporate that&lt;br /&gt;
-data into the anxiety rankings.&lt;/p&gt;
-&lt;p&gt;No single study is perfect. For more reliable results, you&#39;ll want&lt;br /&gt;
-to dig up findings that are supported by multiple studies.&lt;/p&gt;
+&lt;p&gt;This is still a highly manual process, and you&#39;ll need some familiarity with the command line to pull it off. We haven&#39;t quite reached the promised near-future where the deepest insights about our personal genetics are easily available.&lt;/p&gt;
+&lt;p&gt;23andMe&#39;s data is incomplete: they only had two of the four listed SNPs. That said, it&#39;s far better than nothing!&lt;/p&gt;
+&lt;p&gt;Also, there&#39;s room for skepticism regarding the underlying research. Only 102 participants took part, all of European-American descent. The subjects all had stated caffeine intake levels of less than 300mg per day, or about 3 cups&#39; worth - that&#39;s a pretty wide range of potential tolerances. Subjects rated their anxiety on a subjective scale. The researchers also took measurements of heart rate and blood pressure, but did not incorporate that data into the anxiety rankings.&lt;/p&gt;
+&lt;p&gt;No single study is perfect. For more reliable results, you&#39;ll want to dig up findings that are supported by multiple studies.&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -359,129 +244,38 @@ to dig up findings that are supported by multiple studies.&lt;/p&gt;
 		<link href="https://blog.savageevan.com/posts/2013-02-04-the-behavioral-economics-of-23andme-results/"/>
 		<updated>2013-02-04T00:00:00Z</updated>
 		<id>https://blog.savageevan.com/posts/2013-02-04-the-behavioral-economics-of-23andme-results/</id>
-		<content type="html">&lt;p&gt;Over the holidays, I received a 23andMe genetic testing kit as a gift. In&lt;br /&gt;
-this post, I&#39;ll take a look at my results through the lens of prospect&lt;br /&gt;
-theory, which aims to quantify our perception of risk. 23andMe results&lt;br /&gt;
-estimate your lifetime likelihood of various medical conditions, making them&lt;br /&gt;
-a great dataset for testing out these concepts in behavioral economics.&lt;/p&gt;
+		<content type="html">&lt;p&gt;Over the holidays, I received a 23andMe genetic testing kit as a gift. In this post, I&#39;ll take a look at my results through the lens of prospect theory, which aims to quantify our perception of risk. 23andMe results estimate your lifetime likelihood of various medical conditions, making them a great dataset for testing out these concepts in behavioral economics.&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&quot;prospect-theory%3A-a-quick-example&quot;&gt;Prospect Theory: A Quick Example &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-04-the-behavioral-economics-of-23andme-results/#prospect-theory%3A-a-quick-example&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Suppose I offer you a bet. I flip a fair coin once. Heads, you&lt;br /&gt;
-gain \$ 1000; tails, you lose \$ 900. Do you take the bet? Probability&lt;br /&gt;
-dictates that you should, since you would expect to come out&lt;br /&gt;
-$ (1000 - 900) / 2 = 50 $ dollars ahead.&lt;/p&gt;
-&lt;p&gt;If you&#39;re like most people, though, you have a &lt;em&gt;powerful aversion&lt;/em&gt; to losing&lt;br /&gt;
-\$ 900. This aversion is powerful enough that you&#39;ll decline the bet. This&lt;br /&gt;
-only makes sense if losing \$ 900 has a greater negative value than the positive&lt;br /&gt;
-value of gaining \$ 1000. In other words, your perception of value is&lt;br /&gt;
-&lt;em&gt;non-linear&lt;/em&gt;. This perception underpins many real-world bets that&lt;br /&gt;
-make little sense from an expected utility standpoint:&lt;/p&gt;
+&lt;p&gt;Suppose I offer you a bet. I flip a fair coin once. Heads, you gain \$1000; tails, you lose \$900. Do you take the bet? Probability dictates that you should, since you would expect to come out $ (1000 - 900) / 2 = 50 $ dollars ahead.&lt;/p&gt;
+&lt;p&gt;If you&#39;re like most people, though, you have a &lt;em&gt;powerful aversion&lt;/em&gt; to losing \$900. This aversion is powerful enough that you&#39;ll decline the bet. This only makes sense if losing \$900 has a greater negative value than the positive value of gaining \$1000. In other words, your perception of value is &lt;em&gt;non-linear&lt;/em&gt;. This perception underpins many real-world bets that make little sense from an expected utility standpoint:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Insurance:&lt;/em&gt; the buyer takes a small certain loss to avoid the risk of an&lt;br /&gt;
-uncertain and potentially large loss;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Security:&lt;/em&gt; the property owner takes a small certain loss to reduce the&lt;br /&gt;
-risk of an uncertain and potentially large loss;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Lotteries:&lt;/em&gt; the ticket holder takes a small certain loss to try for an&lt;br /&gt;
-extremely unlikely but massive gain.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Insurance:&lt;/em&gt; the buyer takes a small certain loss to avoid the risk of an uncertain and potentially large loss;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Security:&lt;/em&gt; the property owner takes a small certain loss to reduce the risk of an uncertain and potentially large loss;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Lotteries:&lt;/em&gt; the ticket holder takes a small certain loss to try for an extremely unlikely but massive gain.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.princeton.edu/~kahneman/docs/Publications/prospect_theory.pdf&quot;&gt;Prospect theory&lt;/a&gt; creates a mathematical framework for understanding our&lt;br /&gt;
-perceptions of value and risk. It&#39;s an awesome paper with highly&lt;br /&gt;
-approachable mathematics. Definitely recommended reading for anyone&lt;br /&gt;
-interested in economics, game theory, and the like.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.princeton.edu/~kahneman/docs/Publications/prospect_theory.pdf&quot;&gt;Prospect theory&lt;/a&gt; creates a mathematical framework for understanding our perceptions of value and risk. It&#39;s an awesome paper with highly approachable mathematics. Definitely recommended reading for anyone interested in economics, game theory, and the like.&lt;/p&gt;
 &lt;h2 id=&quot;my-disease-risk&quot;&gt;My Disease Risk &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-04-the-behavioral-economics-of-23andme-results/#my-disease-risk&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Among other things, 23andMe can estimate your lifetime risk of various&lt;br /&gt;
-diseases. This information is divided into three categories according to&lt;br /&gt;
-whether your risk is highly elevated, highly decreased, or roughly typical:&lt;/p&gt;
+&lt;p&gt;Among other things, 23andMe can estimate your lifetime risk of various diseases. This information is divided into three categories according to whether your risk is highly elevated, highly decreased, or roughly typical:&lt;/p&gt;
 &lt;img src=&quot;https://lh4.googleusercontent.com/-xccLcJ7-CqU/URBE7QF2tCI/AAAAAAAAATs/sFewavaz6P4/s640/23andme_elevated_risk.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh4.googleusercontent.com/-D7AY4foE6Qs/URBE8FA3lBI/AAAAAAAAAT0/x76tZ9J5HP0/s640/23andme_decreased_risk.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh4.googleusercontent.com/-HU05eMXwI4M/URBE89TEu0I/AAAAAAAAAT8/MihVGsTQkLQ/s640/23andme_typical_risk.jpg&quot; /&gt;
-&lt;p&gt;Within each category, the diseases are ordered by decreasing confidence&lt;br /&gt;
-rating, then by decreasing absolute risk. The different confidence levels&lt;br /&gt;
-are as follows:&lt;/p&gt;
+&lt;p&gt;Within each category, the diseases are ordered by decreasing confidence rating, then by decreasing absolute risk. The different confidence levels are as follows:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;em&gt;Preliminary Research:&lt;/em&gt; fewer than 100 people studied&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;Preliminary Research:&lt;/em&gt; fewer than 750 people studied&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;Preliminary Research:&lt;/em&gt; a single study with 750+ participants&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;Established Research:&lt;/em&gt; multiple studies with 750+ participants&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The 23andMe dashboard doesn&#39;t show estimated risk for lower-confidence&lt;br /&gt;
-findings, but I can fetch that information through their &lt;a href=&quot;https://api.23andme.com/&quot;&gt;API&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Armed with my raw risk data, I can now play around with a pair of alternative&lt;br /&gt;
-disease rankings. As an anchoring point, here&#39;s my disease ranking by&lt;br /&gt;
-absolute risk:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ python risksort.py risk &amp;lt; risks.json
- 1                                            Obesity 0.5701
- 2                             Coronary Heart Disease 0.5464
- 3                                Atrial Fibrillation 0.3392
- 4                                    Prostate Cancer 0.2602
- 5                   Age-related Macular Degeneration 0.2459
- 6                                    Type 2 Diabetes 0.1969
- 7                             Venous Thromboembolism 0.1279
- 8                                        Lung Cancer 0.0823
- 9                                          Psoriasis 0.0708
-10                                         Gallstones 0.0618
-11                                Alzheimer&#39;s Disease 0.0493
-12                                  Colorectal Cancer 0.0417
-13                             Chronic Kidney Disease 0.0356
-14                               Rheumatoid Arthritis 0.0300
-15                             Restless Legs Syndrome 0.0245
-16                               Exfoliation Glaucoma 0.0217
-17                                           Melanoma 0.0216
-18                                    Type 1 Diabetes 0.0137
-19                                Parkinson&#39;s Disease 0.0109
-20                                 Ulcerative Colitis 0.0066
-21                                 Multiple Sclerosis 0.0047
-22          Esophageal Squamous Cell Carcinoma (ESCC) 0.0043
-23     Stomach Cancer (Gastric Cardia Adenocarcinoma) 0.0028
-24                                    Crohn&#39;s Disease 0.0016
-25                                   Bipolar Disorder 0.0015
-26                                     Celiac Disease 0.0005
-27               Scleroderma (Limited Cutaneous Type) 0.0005
-28                          Primary Biliary Cirrhosis 0.0004
-29                                      Breast Cancer 0.0000
-30               Lupus (Systemic Lupus Erythematosus) 0.0000
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The 23andMe dashboard doesn&#39;t show estimated risk for lower-confidence findings, but I can fetch that information through their &lt;a href=&quot;https://api.23andme.com/&quot;&gt;API&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Armed with my raw risk data, I can now play around with a pair of alternative disease rankings. As an anchoring point, here&#39;s my disease ranking by absolute risk:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ python risksort.py risk &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; risks.json&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;                                            Obesity &lt;span class=&quot;token number&quot;&gt;0.5701&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;                             Coronary Heart Disease &lt;span class=&quot;token number&quot;&gt;0.5464&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;                                Atrial Fibrillation &lt;span class=&quot;token number&quot;&gt;0.3392&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;                                    Prostate Cancer &lt;span class=&quot;token number&quot;&gt;0.2602&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;                   Age-related Macular Degeneration &lt;span class=&quot;token number&quot;&gt;0.2459&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;                                    Type &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; Diabetes &lt;span class=&quot;token number&quot;&gt;0.1969&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;                             Venous Thromboembolism &lt;span class=&quot;token number&quot;&gt;0.1279&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;                                        Lung Cancer &lt;span class=&quot;token number&quot;&gt;0.0823&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;                                          Psoriasis &lt;span class=&quot;token number&quot;&gt;0.0708&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;                                         Gallstones &lt;span class=&quot;token number&quot;&gt;0.0618&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;11&lt;/span&gt;                                Alzheimer&lt;span class=&quot;token string&quot;&gt;&#39;s Disease 0.0493&lt;br /&gt;12                                  Colorectal Cancer 0.0417&lt;br /&gt;13                             Chronic Kidney Disease 0.0356&lt;br /&gt;14                               Rheumatoid Arthritis 0.0300&lt;br /&gt;15                             Restless Legs Syndrome 0.0245&lt;br /&gt;16                               Exfoliation Glaucoma 0.0217&lt;br /&gt;17                                           Melanoma 0.0216&lt;br /&gt;18                                    Type 1 Diabetes 0.0137&lt;br /&gt;19                                Parkinson&#39;&lt;/span&gt;s Disease &lt;span class=&quot;token number&quot;&gt;0.0109&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;                                 Ulcerative Colitis &lt;span class=&quot;token number&quot;&gt;0.0066&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;21&lt;/span&gt;                                 Multiple Sclerosis &lt;span class=&quot;token number&quot;&gt;0.0047&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;22&lt;/span&gt;          Esophageal Squamous Cell Carcinoma &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ESCC&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.0043&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;23&lt;/span&gt;     Stomach Cancer &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Gastric Cardia Adenocarcinoma&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.0028&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;24&lt;/span&gt;                                    Crohn&#39;s Disease &lt;span class=&quot;token number&quot;&gt;0.0016&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;25&lt;/span&gt;                                   Bipolar Disorder &lt;span class=&quot;token number&quot;&gt;0.0015&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;26&lt;/span&gt;                                     Celiac Disease &lt;span class=&quot;token number&quot;&gt;0.0005&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;27&lt;/span&gt;               Scleroderma &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Limited Cutaneous Type&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.0005&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;28&lt;/span&gt;                          Primary Biliary Cirrhosis &lt;span class=&quot;token number&quot;&gt;0.0004&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;29&lt;/span&gt;                                      Breast Cancer &lt;span class=&quot;token number&quot;&gt;0.0000&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;30&lt;/span&gt;               Lupus &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Systemic Lupus Erythematosus&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.0000&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The alternative ranking metric code can be found &lt;a href=&quot;https://github.com/candu/quantified-savagery-files/blob/master/Genetics/risksort.py&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&quot;relative-risk-sorting&quot;&gt;Relative-Risk Sorting &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-04-the-behavioral-economics-of-23andme-results/#relative-risk-sorting&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;An obvious ranking metric is relative risk, which is already provided in&lt;br /&gt;
-the disease listing.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ python risksort.py relative_risk &amp;lt; risks.json
- 1                   Age-related Macular Degeneration 3.7542
- 2                               Exfoliation Glaucoma 2.8933
- 3                                   Bipolar Disorder 1.5000
- 4                                    Prostate Cancer 1.4593
- 5                                 Multiple Sclerosis 1.3824
- 6                                    Type 1 Diabetes 1.3431
- 7                               Rheumatoid Arthritis 1.2605
- 8                             Restless Legs Syndrome 1.2500
- 9                                Atrial Fibrillation 1.2494
-10     Stomach Cancer (Gastric Cardia Adenocarcinoma) 1.2174
-11          Esophageal Squamous Cell Carcinoma (ESCC) 1.1944
-12                             Coronary Heart Disease 1.1665
-13                             Venous Thromboembolism 1.0365
-14                             Chronic Kidney Disease 1.0349
-15                                        Lung Cancer 0.9728
-16                                            Obesity 0.8926
-17                                         Gallstones 0.8766
-18                                 Ulcerative Colitis 0.8571
-19                                    Type 2 Diabetes 0.7656
-20                                           Melanoma 0.7552
-21                                  Colorectal Cancer 0.7500
-22               Scleroderma (Limited Cutaneous Type) 0.7143
-23                                Alzheimer&#39;s Disease 0.6885
-24                                Parkinson&#39;s Disease 0.6770
-25                                          Psoriasis 0.6238
-26                          Primary Biliary Cirrhosis 0.5000
-27                                     Celiac Disease 0.4167
-28                                    Crohn&#39;s Disease 0.3019
-29                                      Breast Cancer 0.0000
-30               Lupus (Systemic Lupus Erythematosus) 0.0000
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;An obvious ranking metric is relative risk, which is already provided in the disease listing.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ python risksort.py relative_risk &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; risks.json&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;                   Age-related Macular Degeneration &lt;span class=&quot;token number&quot;&gt;3.7542&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;                               Exfoliation Glaucoma &lt;span class=&quot;token number&quot;&gt;2.8933&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;                                   Bipolar Disorder &lt;span class=&quot;token number&quot;&gt;1.5000&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;                                    Prostate Cancer &lt;span class=&quot;token number&quot;&gt;1.4593&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;                                 Multiple Sclerosis &lt;span class=&quot;token number&quot;&gt;1.3824&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;                                    Type &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; Diabetes &lt;span class=&quot;token number&quot;&gt;1.3431&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;                               Rheumatoid Arthritis &lt;span class=&quot;token number&quot;&gt;1.2605&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;                             Restless Legs Syndrome &lt;span class=&quot;token number&quot;&gt;1.2500&lt;/span&gt;&lt;br /&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;                                Atrial Fibrillation &lt;span class=&quot;token number&quot;&gt;1.2494&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;     Stomach Cancer &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Gastric Cardia Adenocarcinoma&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1.2174&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;11&lt;/span&gt;          Esophageal Squamous Cell Carcinoma &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ESCC&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1.1944&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt;                             Coronary Heart Disease &lt;span class=&quot;token number&quot;&gt;1.1665&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;13&lt;/span&gt;                             Venous Thromboembolism &lt;span class=&quot;token number&quot;&gt;1.0365&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;14&lt;/span&gt;                             Chronic Kidney Disease &lt;span class=&quot;token number&quot;&gt;1.0349&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;15&lt;/span&gt;                                        Lung Cancer &lt;span class=&quot;token number&quot;&gt;0.9728&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;16&lt;/span&gt;                                            Obesity &lt;span class=&quot;token number&quot;&gt;0.8926&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;17&lt;/span&gt;                                         Gallstones &lt;span class=&quot;token number&quot;&gt;0.8766&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt;                                 Ulcerative Colitis &lt;span class=&quot;token number&quot;&gt;0.8571&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;19&lt;/span&gt;                                    Type &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; Diabetes &lt;span class=&quot;token number&quot;&gt;0.7656&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;                                           Melanoma &lt;span class=&quot;token number&quot;&gt;0.7552&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;21&lt;/span&gt;                                  Colorectal Cancer &lt;span class=&quot;token number&quot;&gt;0.7500&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;22&lt;/span&gt;               Scleroderma &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Limited Cutaneous Type&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.7143&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;23&lt;/span&gt;                                Alzheimer&lt;span class=&quot;token string&quot;&gt;&#39;s Disease 0.6885&lt;br /&gt;24                                Parkinson&#39;&lt;/span&gt;s Disease &lt;span class=&quot;token number&quot;&gt;0.6770&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;25&lt;/span&gt;                                          Psoriasis &lt;span class=&quot;token number&quot;&gt;0.6238&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;26&lt;/span&gt;                          Primary Biliary Cirrhosis &lt;span class=&quot;token number&quot;&gt;0.5000&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;27&lt;/span&gt;                                     Celiac Disease &lt;span class=&quot;token number&quot;&gt;0.4167&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;28&lt;/span&gt;                                    Crohn&#39;s Disease &lt;span class=&quot;token number&quot;&gt;0.3019&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;29&lt;/span&gt;                                      Breast Cancer &lt;span class=&quot;token number&quot;&gt;0.0000&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;30&lt;/span&gt;               Lupus &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Systemic Lupus Erythematosus&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.0000&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;perceived-relative-risk-sorting&quot;&gt;Perceived Relative-Risk Sorting &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-04-the-behavioral-economics-of-23andme-results/#perceived-relative-risk-sorting&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;In prospect theory, a probability $ p $ has perceived weight $ w(p) $.&lt;br /&gt;
-In &lt;a href=&quot;http://psych.fullerton.edu/mBIRNBAUM/psych466/articles/Tversky_Kahneman_JRU_92.pdf&quot;&gt;Advances in Prospect Theory: Cumulative Representation of Uncertainty&lt;/a&gt;,&lt;br /&gt;
-Tversky and Kahneman fit $ w $ to observed results for subjects evaluating&lt;br /&gt;
-bets similar to the one listed above:&lt;/p&gt;
+&lt;p&gt;In prospect theory, a probability $ p $ has perceived weight $ w(p) $. In &lt;a href=&quot;http://psych.fullerton.edu/mBIRNBAUM/psych466/articles/Tversky_Kahneman_JRU_92.pdf&quot;&gt;Advances in Prospect Theory: Cumulative Representation of Uncertainty&lt;/a&gt;, Tversky and Kahneman fit $ w $ to observed results for subjects evaluating bets similar to the one listed above:&lt;/p&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-5qE_0uX1hdI/URBE9pc7ViI/AAAAAAAAAUE/Y-zgLP8Yp-8/s400/prospect_positive_graph.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh3.googleusercontent.com/-UWfKR_J2RBs/URBE-Dj67nI/AAAAAAAAAUM/CpO_z7VnPbM/s400/prospect_negative_graph.jpg&quot; /&gt;
 &lt;p&gt;The corresponding equations are&lt;/p&gt;
@@ -492,8 +286,7 @@ $$&lt;/p&gt;
 &lt;p&gt;$$&lt;br /&gt;
 w^-(p) = \frac{p^{0.69}}{(p^{0.69} + (1-p)^{0.69})^{\frac{1}{0.69}}}&lt;br /&gt;
 $$&lt;/p&gt;
-&lt;p&gt;for negative prospects. If my risk is $ p_0 $ and the general risk is $ p $,&lt;br /&gt;
-I can define my perceived relative risk as&lt;/p&gt;
+&lt;p&gt;for negative prospects. If my risk is $ p_0 $ and the general risk is $ p $, I can define my perceived relative risk as&lt;/p&gt;
 &lt;p&gt;$$&lt;br /&gt;
 r = \frac{w^+(p_0)}{w^+(p)}&lt;br /&gt;
 $$&lt;/p&gt;
@@ -501,96 +294,27 @@ $$&lt;/p&gt;
 &lt;p&gt;$$&lt;br /&gt;
 r = \frac{w^-(p_0)}{w^-(p)}&lt;br /&gt;
 $$&lt;/p&gt;
-&lt;p&gt;otherwise. The resulting rankings are pretty close to ordinary relative&lt;br /&gt;
-risk, but not identical:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ diff &amp;lt;(python risksort.py relative_risk &amp;lt; risks.json | cut -c-53) &amp;lt;(python risksort.py perceived_relative_risk &amp;lt; risks.json | cut -c-53)
-13,14c13,14
-&amp;lt; 13                             Venous Thromboembolism
-&amp;lt; 14                             Chronic Kidney Disease
----
-&amp;gt; 13                             Chronic Kidney Disease
-&amp;gt; 14                             Venous Thromboembolism
-16,17c16,17
-&amp;lt; 16                                            Obesity
-&amp;lt; 17                                         Gallstones
----
-&amp;gt; 16                                         Gallstones
-&amp;gt; 17                                            Obesity
-20,23c20,23
-&amp;lt; 20                                           Melanoma
-&amp;lt; 21                                  Colorectal Cancer
-&amp;lt; 22               Scleroderma (Limited Cutaneous Type)
-&amp;lt; 23                                Alzheimer&#39;s Disease
----
-&amp;gt; 20                                  Colorectal Cancer
-&amp;gt; 21                                           Melanoma
-&amp;gt; 22                                Alzheimer&#39;s Disease
-&amp;gt; 23               Scleroderma (Limited Cutaneous Type)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;otherwise. The resulting rankings are pretty close to ordinary relative risk, but not identical:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;diff&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;python risksort.py relative_risk &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; risks.json &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cut&lt;/span&gt; -c-53&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;python risksort.py perceived_relative_risk &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; risks.json &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cut&lt;/span&gt; -c-53&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;13&lt;/span&gt;,14c13,14&lt;br /&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;13&lt;/span&gt;                             Venous Thromboembolism&lt;br /&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;14&lt;/span&gt;                             Chronic Kidney Disease&lt;br /&gt;---&lt;br /&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;13&lt;/span&gt;                             Chronic Kidney Disease&lt;br /&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;14&lt;/span&gt;                             Venous Thromboembolism&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;16&lt;/span&gt;,17c16,17&lt;br /&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;16&lt;/span&gt;                                            Obesity&lt;br /&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;17&lt;/span&gt;                                         Gallstones&lt;br /&gt;---&lt;br /&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;16&lt;/span&gt;                                         Gallstones&lt;br /&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;17&lt;/span&gt;                                            Obesity&lt;br /&gt;&lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;,23c20,23&lt;br /&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;                                           Melanoma&lt;br /&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;21&lt;/span&gt;                                  Colorectal Cancer&lt;br /&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;22&lt;/span&gt;               Scleroderma &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Limited Cutaneous Type&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;23&lt;/span&gt;                                Alzheimer&lt;span class=&quot;token string&quot;&gt;&#39;s Disease&lt;br /&gt;---&lt;br /&gt;&gt; 20                                  Colorectal Cancer&lt;br /&gt;&gt; 21                                           Melanoma&lt;br /&gt;&gt; 22                                Alzheimer&#39;&lt;/span&gt;s Disease&lt;br /&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;23&lt;/span&gt;               Scleroderma &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Limited Cutaneous Type&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The difference is due to distortion of small probabilities.&lt;/p&gt;
 &lt;h2 id=&quot;further-ideas&quot;&gt;Further Ideas &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-04-the-behavioral-economics-of-23andme-results/#further-ideas&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;So far, I&#39;ve only used the probability weighting functions from prospect&lt;br /&gt;
-theory. I could also assign values to each disease:&lt;/p&gt;
+&lt;p&gt;So far, I&#39;ve only used the probability weighting functions from prospect theory. I could also assign values to each disease:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;Financial:&lt;/em&gt; how much does this disease cost to treat on average?&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Reduced Life Expectancy:&lt;/em&gt; how many years of potential life do these&lt;br /&gt;
-diseases claim on average?&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Lifestyle:&lt;/em&gt; how much impact would this have on my highly active lifestyle?&lt;br /&gt;
-On others who might have to support me?&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Reduced Life Expectancy:&lt;/em&gt; how many years of potential life do these diseases claim on average?&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Lifestyle:&lt;/em&gt; how much impact would this have on my highly active lifestyle? On others who might have to support me?&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;This is definitely morbid, but it&#39;s also potentially worthwhile. After all,&lt;br /&gt;
-insurance companies make &lt;em&gt;very detailed estimates of our risk.&lt;/em&gt; They will&lt;br /&gt;
-certainly incorporate genetic data into their models as soon as it&#39;s legal to&lt;br /&gt;
-do so. If we want to make more informed decisions in situations involving risk,&lt;br /&gt;
-from medical insurance to lottery tickets, it helps to understand how we&lt;br /&gt;
-value different outcomes.&lt;/p&gt;
+&lt;p&gt;This is definitely morbid, but it&#39;s also potentially worthwhile. After all, insurance companies make &lt;em&gt;very detailed estimates of our risk.&lt;/em&gt; They will certainly incorporate genetic data into their models as soon as it&#39;s legal to do so. If we want to make more informed decisions in situations involving risk, from medical insurance to lottery tickets, it helps to understand how we value different outcomes.&lt;/p&gt;
 &lt;h2 id=&quot;appendix%3A-how-to-use-the-23andme-api&quot;&gt;Appendix: How To Use The 23andMe API &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-02-04-the-behavioral-economics-of-23andme-results/#appendix%3A-how-to-use-the-23andme-api&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The 23andMe API is actually quite easy to use, and their &lt;a href=&quot;https://api.23andme.com/docs/authentication/&quot;&gt;documentation&lt;/a&gt;&lt;br /&gt;
-is excellent. Nevertheless, I&#39;ll list the flow I went through to get my&lt;br /&gt;
-genetic disease risk data. If you&#39;re unfamiliar with &lt;a href=&quot;http://oauth.net/2/&quot;&gt;OAuth 2.0&lt;/a&gt;,&lt;br /&gt;
-the Google API docs include &lt;a href=&quot;https://developers.google.com/accounts/docs/OAuth2&quot;&gt;this primer&lt;/a&gt; complete with cute stick&lt;br /&gt;
-figure diagrams.&lt;/p&gt;
-&lt;p&gt;First, I log into the API console and create an app.&lt;br /&gt;
-This gives me the &lt;code&gt;client_id&lt;/code&gt; and &lt;code&gt;client_secret&lt;/code&gt; parameters I need to&lt;br /&gt;
-initiate the flow. Looking at the &lt;a href=&quot;https://api.23andme.com/docs/reference/&quot;&gt;23andMe API reference&lt;/a&gt;, I see that I need&lt;br /&gt;
-permissions under the &lt;code&gt;analyses&lt;/code&gt; scope, so I request that by visiting&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;https://api.23andme.com/authorize/?redirect_uri=http://localhost:5000/receive_code/&amp;amp;response_type=code&amp;amp;client_id=&amp;lt;client_id&amp;gt;&amp;amp;scope=analyses
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The 23andMe API is actually quite easy to use, and their &lt;a href=&quot;https://api.23andme.com/docs/authentication/&quot;&gt;documentation&lt;/a&gt; is excellent. Nevertheless, I&#39;ll list the flow I went through to get my genetic disease risk data. If you&#39;re unfamiliar with &lt;a href=&quot;http://oauth.net/2/&quot;&gt;OAuth 2.0&lt;/a&gt;, the Google API docs include &lt;a href=&quot;https://developers.google.com/accounts/docs/OAuth2&quot;&gt;this primer&lt;/a&gt; complete with cute stick figure diagrams.&lt;/p&gt;
+&lt;p&gt;First, I log into the API console and create an app. This gives me the &lt;code&gt;client_id&lt;/code&gt; and &lt;code&gt;client_secret&lt;/code&gt; parameters I need to initiate the flow. Looking at the &lt;a href=&quot;https://api.23andme.com/docs/reference/&quot;&gt;23andMe API reference&lt;/a&gt;, I see that I need permissions under the &lt;code&gt;analyses&lt;/code&gt; scope, so I request that by visiting&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;https://api.23andme.com/authorize/?redirect_uri&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;http://localhost:5000/receive_code/&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;token assign-left variable&quot;&gt;response_type&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;code&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;token assign-left variable&quot;&gt;client_id&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;client_id&lt;span class=&quot;token operator&quot;&gt;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;token assign-left variable&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;analyses&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;in the browser. I&#39;m redirected to&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;http://localhost:5000/receive_code/?code=&amp;lt;code&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;http://localhost:5000/receive_code/?code&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;code&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;which gives me the auth code I need to request a token:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ curl https://api.23andme.com/token/ \
-  -d client_id=&amp;lt;client_id&amp;gt; \
-  -d client_secret=&amp;lt;client_secret&amp;gt; \
-  -d code=&amp;lt;code&amp;gt; \
-  -d grant_type=authorization_code \
-  -d &amp;quot;redirect_uri=http://localhost:5000/receive_code/&amp;quot; \
-  -d scope=analyses &amp;gt; token.json
-$ jsonpp token.json
-{
-  &amp;quot;access_token&amp;quot;: &amp;quot;&amp;lt;access_token&amp;gt;&amp;quot;
-  &amp;quot;token_type&amp;quot;: &amp;quot;bearer&amp;quot;,
-  &amp;quot;expires_in&amp;quot;: 86400,
-  &amp;quot;refresh_token&amp;quot;: &amp;quot;&amp;lt;refresh_token&amp;gt;&amp;quot;
-  &amp;quot;scope&amp;quot;: &amp;quot;analyses&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; https://api.23andme.com/token/ &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&lt;br /&gt;  -d &lt;span class=&quot;token assign-left variable&quot;&gt;client_id&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;client_id&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&lt;br /&gt;  -d &lt;span class=&quot;token assign-left variable&quot;&gt;client_secret&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;client_secret&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&lt;br /&gt;  -d &lt;span class=&quot;token assign-left variable&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;code&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&lt;br /&gt;  -d &lt;span class=&quot;token assign-left variable&quot;&gt;grant_type&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;authorization_code &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&lt;br /&gt;  -d &lt;span class=&quot;token string&quot;&gt;&quot;redirect_uri=http://localhost:5000/receive_code/&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&lt;br /&gt;  -d &lt;span class=&quot;token assign-left variable&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;analyses &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; token.json&lt;br /&gt;$ jsonpp token.json&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token string&quot;&gt;&quot;access_token&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&amp;lt;access_token&gt;&quot;&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token string&quot;&gt;&quot;token_type&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;bearer&quot;&lt;/span&gt;,&lt;br /&gt;  &lt;span class=&quot;token string&quot;&gt;&quot;expires_in&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;86400&lt;/span&gt;,&lt;br /&gt;  &lt;span class=&quot;token string&quot;&gt;&quot;refresh_token&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&amp;lt;refresh_token&gt;&quot;&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token string&quot;&gt;&quot;scope&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;analyses&quot;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Finally, I use my shiny new &lt;code&gt;access_token&lt;/code&gt; to get my genetic risk data:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ curl https://api.23andme.com/1/risks/ \
-  -H &amp;quot;Authorization: Bearer &amp;lt;access_token&amp;gt;&amp;quot; &amp;gt; risks.json
-$ jsonpp risks.json | head
-[
-  {
-    &amp;quot;id&amp;quot;: &amp;quot;6d2de403675a0d07&amp;quot;,
-    &amp;quot;risks&amp;quot;: [
-      {
-        &amp;quot;description&amp;quot;: &amp;quot;Atrial Fibrillation&amp;quot;,
-        &amp;quot;risk&amp;quot;: 0.3392,
-        &amp;quot;population_risk&amp;quot;: 0.2715,
-        &amp;quot;report_id&amp;quot;: &amp;quot;atrialfib&amp;quot;
-      },
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; https://api.23andme.com/1/risks/ &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&lt;br /&gt;  -H &lt;span class=&quot;token string&quot;&gt;&quot;Authorization: Bearer &amp;lt;access_token&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; risks.json&lt;br /&gt;$ jsonpp risks.json &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;head&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token string&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;6d2de403675a0d07&quot;&lt;/span&gt;,&lt;br /&gt;    &lt;span class=&quot;token string&quot;&gt;&quot;risks&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br /&gt;      &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token string&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Atrial Fibrillation&quot;&lt;/span&gt;,&lt;br /&gt;        &lt;span class=&quot;token string&quot;&gt;&quot;risk&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.3392&lt;/span&gt;,&lt;br /&gt;        &lt;span class=&quot;token string&quot;&gt;&quot;population_risk&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.2715&lt;/span&gt;,&lt;br /&gt;        &lt;span class=&quot;token string&quot;&gt;&quot;report_id&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;atrialfib&quot;&lt;/span&gt;&lt;br /&gt;      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;,&lt;/code&gt;&lt;/pre&gt;
 </content>
 	</entry>
 	
@@ -656,8 +380,11 @@ we are to minute variations in facial muscle position.&lt;/p&gt;
 &lt;p&gt;For comparison, here&#39;s my father in his late 50s, looking quite a bit happier:&lt;/p&gt;
 &lt;img src=&quot;https://farm4.staticflickr.com/3177/2828216200_5846e31c4a_z.jpg&quot; /&gt;
 &lt;h2 id=&quot;why-were-those-so-different%3F&quot;&gt;Why Were Those So Different? &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2013-01-31-what-ill-look-like-in-50-years/#why-were-those-so-different%3F&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;blockquote cite=&quot;https://ontariosciencecentre.ca/aging/&quot;&gt;
+  &lt;p&gt;
 ...the machine uses state-of-the-art aging software developed in partnership with Aprilage Development Inc. of Toronto to add decades to the faces of 8-12 year olds.
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Ontario Science Centre, &lt;cite&gt;&lt;a href=&quot;https://ontariosciencecentre.ca/aging/&quot;&gt;The Amazing Aging Machine&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;The Amazing Aging Machine is calibrated for ages 8-12, likely to match&lt;br /&gt;
 the Ontario Science Centre&#39;s target demographic. (Sadly, I couldn&#39;t find&lt;br /&gt;
@@ -768,8 +495,11 @@ on Python for its &lt;code&gt;base64&lt;/code&gt; module.&lt;/p&gt;
 your data.&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&quot;first%2C-a-quote&quot;&gt;First, A Quote &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-12-21-datafist-exploration-and-analysis/#first%2C-a-quote&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;blockquote cite=&quot;https://www.researchgate.net/profile/James_Hollan/publication/250890525_Direct_Manipulation_Interfaces/links/540eda4b0cf2df04e757eb89/Direct-Manipulation-Interfaces.pdf&quot;&gt;
+  &lt;p&gt;
 Are we analyzing data? Then we should be manipulating the data themselves; or if we are designing an analysis of data, we should be manipulating the analytic structures themselves.
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Hutchins et al., &lt;cite&gt;&lt;a href=&quot;https://www.researchgate.net/profile/James_Hollan/publication/250890525_Direct_Manipulation_Interfaces/links/540eda4b0cf2df04e757eb89/Direct-Manipulation-Interfaces.pdf&quot;&gt;Direct Manipulation Interfaces&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&quot;the-sixfold-path-of-self-tracking&quot;&gt;The Sixfold Path Of Self-Tracking &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-12-21-datafist-exploration-and-analysis/#the-sixfold-path-of-self-tracking&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Self-tracking is a complex process. It can be broken down into stages:&lt;/p&gt;
@@ -844,154 +574,82 @@ entrepreneurship.&lt;/li&gt;
 		<link href="https://blog.savageevan.com/posts/2012-11-14-sober-thoughts-on-willpower-and-decision-making/"/>
 		<updated>2012-11-14T00:00:00Z</updated>
 		<id>https://blog.savageevan.com/posts/2012-11-14-sober-thoughts-on-willpower-and-decision-making/</id>
-		<content type="html">&lt;p&gt;In this post, I discuss my ongoing experiment with eliminating alcohol from my&lt;br /&gt;
-diet. I use this experience to address a question: why do we find some forms of&lt;br /&gt;
-habit change easier than others?&lt;/p&gt;
+		<content type="html">&lt;p&gt;In this post, I discuss my ongoing experiment with temporarily eliminating alcohol from my diet. I use this experience to address a question: why do we find some forms of habit change easier than others?&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&quot;background&quot;&gt;Background &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-11-14-sober-thoughts-on-willpower-and-decision-making/#background&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;As of today, &lt;em&gt;I&#39;ve been completely sober for over a month.&lt;/em&gt; I took my last drink&lt;br /&gt;
-at &lt;a href=&quot;http://goo.gl/maps/nSxLn&quot;&gt;Seven&#39;s Ale House&lt;/a&gt; on October 13 with these&lt;br /&gt;
-fine folks:&lt;/p&gt;
+&lt;p&gt;As of today, &lt;em&gt;I&#39;ve been completely sober for over a month.&lt;/em&gt; I took my last drink at &lt;a href=&quot;http://goo.gl/maps/nSxLn&quot;&gt;Seven&#39;s Ale House&lt;/a&gt; on October 13 with these fine folks:&lt;/p&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-chtv-noAeXM/UKQNQdVUz1I/AAAAAAAAANQ/8zTq_kKfbCU/s640/sevens-pub.jpg&quot; /&gt;
-&lt;p&gt;Why did I decide to do this? One of the takeaways from my&lt;br /&gt;
-&lt;a href=&quot;https://blog.savageevan.com/blog/2012/10/14/self-tracking-for-panic-another-dataset/&quot;&gt;self-tracking for panic&lt;/a&gt;&lt;br /&gt;
-was that &lt;em&gt;I drink heavily and frequently:&lt;/em&gt; about three drinks per day, six days&lt;br /&gt;
-per week. The USDA recommendations are somewhat stricter:&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;p&gt;Why did I decide to do this? One of the takeaways from my &lt;a href=&quot;https://blog.savageevan.com/blog/2012/10/14/self-tracking-for-panic-another-dataset/&quot;&gt;self-tracking for panic&lt;/a&gt; was that &lt;em&gt;I drink heavily and frequently:&lt;/em&gt; about three drinks per day, six days per week. The USDA recommendations are somewhat stricter:&lt;/p&gt;
+&lt;blockquote cite=&quot;https://www.cnpp.usda.gov/Publications/DietaryGuidelines/2010/DGAC/Report/D-7-Alcohol.pdf&quot;&gt;
+  &lt;p&gt;
 ...&quot;low-risk&quot; drinking [is defined] as no more than 14 drinks a week for men and 7 drinks a week for women with no more than 4 drinks on any given day for men and 3 drinks a day for women.
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Center for Nutrition Policy and Promotion, &lt;cite&gt;&lt;a href=&quot;https://www.cnpp.usda.gov/Publications/DietaryGuidelines/2010/DGAC/Report/D-7-Alcohol.pdf&quot;&gt;Dietary Guidelines for Americans&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.alcoholscreening.org/Home.aspx&quot;&gt;This online questionnaire&lt;/a&gt; put my drinking level in context:&lt;/p&gt;
 &lt;img src=&quot;https://lh5.googleusercontent.com/-ieizYGUAwJo/UKQNQsFeBOI/AAAAAAAAANY/jZ1_09uBSqk/s800/percentile-drinking.jpg&quot; /&gt;
-&lt;p&gt;&lt;em&gt;How much does the average American drink?&lt;/em&gt; Using the data from&lt;br /&gt;
-&lt;a href=&quot;http://en.wikipedia.org/wiki/List_of_countries_by_alcohol_consumption&quot;&gt;this Wikipedia article&lt;/a&gt;&lt;br /&gt;
-and some simple calculations:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;How much does the average American drink?&lt;/em&gt; Using the data from &lt;a href=&quot;http://en.wikipedia.org/wiki/List_of_countries_by_alcohol_consumption&quot;&gt;this Wikipedia article&lt;/a&gt; and some simple calculations:&lt;/p&gt;
 &lt;pre class=&quot;language-py&quot;&gt;&lt;code class=&quot;language-py&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# 1 drink = 1 beer bottle (355mL, 5% abv)&lt;/span&gt;&lt;br /&gt;ALC_PER_BEER &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.355&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.05&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token comment&quot;&gt;# American consumption = 9.44 L/year&lt;/span&gt;&lt;br /&gt;DRINKS_PER_YEAR &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9.44&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; ALC_PER_BEER&lt;br /&gt;&lt;span class=&quot;token comment&quot;&gt;# 1 year = 365 days&lt;/span&gt;&lt;br /&gt;DRINKS_PER_DAY &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; DRINKS_PER_YEAR &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;365&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt; DRINKS_PER_DAY&lt;br /&gt;&lt;span class=&quot;token comment&quot;&gt;# prints: &quot;1.3027204321821337&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;About $ 1.3 $ drinks per day, or roughly half of what I was drinking during my&lt;br /&gt;
-two panic tracking periods. If you ask &lt;a href=&quot;http://www.gallup.com/poll/156770/majority-drink-alcohol-averaging-four-drinks-week.aspx&quot;&gt;Gallup&lt;/a&gt;, though, they have a&lt;br /&gt;
-different number: $ 4.2 / 7 = 0.6 $ drinks per day. &lt;a href=&quot;http://pubs.niaaa.nih.gov/publications/RethinkingDrinking/Rethinking_Drinking.pdf&quot;&gt;Rethinking Drinking&lt;/a&gt;,&lt;br /&gt;
-a pamphlet from the &lt;a href=&quot;http://www.nih.gov/&quot;&gt;National Institutes of Health&lt;/a&gt;, provides yet another&lt;br /&gt;
-look at drinking habits nationwide:&lt;/p&gt;
+&lt;p&gt;About $ 1.3 $ drinks per day, or roughly half of what I was drinking during my two panic tracking periods. If you ask &lt;a href=&quot;http://www.gallup.com/poll/156770/majority-drink-alcohol-averaging-four-drinks-week.aspx&quot;&gt;Gallup&lt;/a&gt;, though, they have a different number: $ 4.2 / 7 = 0.6 $ drinks per day. &lt;a href=&quot;http://pubs.niaaa.nih.gov/publications/RethinkingDrinking/Rethinking_Drinking.pdf&quot;&gt;Rethinking Drinking&lt;/a&gt;, a pamphlet from the &lt;a href=&quot;http://www.nih.gov/&quot;&gt;National Institutes of Health&lt;/a&gt;, provides yet another look at drinking habits nationwide:&lt;/p&gt;
 &lt;img src=&quot;https://lh3.googleusercontent.com/-vEbziueqO8I/UKQN1vuM15I/AAAAAAAAANg/ermiP-4-0oA/s800/nih-alcohol-use.jpg&quot; /&gt;
-&lt;p&gt;(This points out a general&lt;br /&gt;
-problem with data in the social sciences. Polling and measurement methodologies&lt;br /&gt;
-vary widely, as do the means by which data is presented.)&lt;/p&gt;
-&lt;p&gt;Regardless of which source I choose to believe, &lt;em&gt;my data still places me above&lt;br /&gt;
-average.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;There was also a more personal reason: in &lt;a href=&quot;https://blog.savageevan.com/blog/2012/10/09/self-tracking-for-panic-an-even-deeper-look/&quot;&gt;analyzing the panic data&lt;/a&gt;,&lt;br /&gt;
-&lt;em&gt;I found that caffeine wasn&#39;t the only panic-inducing culprit.&lt;/em&gt; By training a&lt;br /&gt;
-&lt;a href=&quot;https://github.com/candu/quantified-savagery-files/blob/master/Panic/recovery-journal/panic_maxent.py&quot;&gt;maximum entropy classifier&lt;/a&gt;, I found that high alcohol consumption was&lt;br /&gt;
-predictive of panic attacks. &lt;a href=&quot;https://blog.savageevan.com/blog/2012/10/08/self-tracking-for-panic-a-deeper-look/&quot;&gt;Dissecting my data with bash&lt;/a&gt; supported&lt;br /&gt;
-this hypothesis: on days where I had a panic attack, I was usually drinking&lt;br /&gt;
-more than average both that day and the previous day.&lt;/p&gt;
+&lt;p&gt;(This points out a general problem with data in the social sciences. Polling and measurement methodologies vary widely, as do the means by which data is presented.)&lt;/p&gt;
+&lt;p&gt;Regardless of which source I choose to believe, &lt;em&gt;my data still places me above average.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;There was also a more personal reason: in &lt;a href=&quot;https://blog.savageevan.com/blog/2012/10/09/self-tracking-for-panic-an-even-deeper-look/&quot;&gt;analyzing the panic data&lt;/a&gt;, &lt;em&gt;I found that caffeine wasn&#39;t the only panic-inducing culprit.&lt;/em&gt; By training a &lt;a href=&quot;https://github.com/candu/quantified-savagery-files/blob/master/Panic/recovery-journal/panic_maxent.py&quot;&gt;maximum entropy classifier&lt;/a&gt;, I found that high alcohol consumption was predictive of panic attacks. &lt;a href=&quot;https://blog.savageevan.com/blog/2012/10/08/self-tracking-for-panic-a-deeper-look/&quot;&gt;Dissecting my data with bash&lt;/a&gt; supported this hypothesis: on days where I had a panic attack, I was usually drinking more than average both that day and the previous day.&lt;/p&gt;
 &lt;h2 id=&quot;elimination-or-moderation%3F&quot;&gt;Elimination Or Moderation? &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-11-14-sober-thoughts-on-willpower-and-decision-making/#elimination-or-moderation%3F&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;So why elimination instead of moderation? Simple: &lt;em&gt;moderation wasn&#39;t working.&lt;/em&gt;&lt;br /&gt;
-I&#39;d been using the USDA guidelines as my goal during the two panic tracking&lt;br /&gt;
-periods, with little success.&lt;/p&gt;
-&lt;p&gt;(As it happens, I was also reading &lt;a href=&quot;http://www.emptymirrorbooks.com/beat/kerouac-big-sur.html&quot;&gt;Big Sur&lt;/a&gt; at the time, which contains&lt;br /&gt;
-&lt;a href=&quot;http://www.jackkerouac.com/&quot;&gt;Jack Kerouac&#39;s&lt;/a&gt; harrowing account of &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmedhealth/PMH0001771/&quot;&gt;delirium tremens&lt;/a&gt;. This may&lt;br /&gt;
-have provided some additional impetus in the decision!)&lt;/p&gt;
-&lt;p&gt;The &lt;a href=&quot;http://strategicsimplicity.com/3-reasons-to-form-new-habits-slowly-and-how-i-failed&quot;&gt;received wisdom&lt;/a&gt; is that this sort of &amp;quot;cold turkey&amp;quot; habit change&lt;br /&gt;
-usually leads to failure: willpower is finite, we burn out easily, there are&lt;br /&gt;
-powerful social triggers, etc. Except:&lt;/p&gt;
+&lt;p&gt;So why elimination instead of moderation? Simple: &lt;em&gt;moderation wasn&#39;t working.&lt;/em&gt; I&#39;d been using the USDA guidelines as my goal during the two panic tracking periods, with little success.&lt;/p&gt;
+&lt;p&gt;(As it happens, I was also reading &lt;a href=&quot;http://www.emptymirrorbooks.com/beat/kerouac-big-sur.html&quot;&gt;Big Sur&lt;/a&gt; at the time, which contains &lt;a href=&quot;http://www.jackkerouac.com/&quot;&gt;Jack Kerouac&#39;s&lt;/a&gt; harrowing account of &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmedhealth/PMH0001771/&quot;&gt;delirium tremens&lt;/a&gt;. This may have provided some additional impetus in the decision!)&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;http://strategicsimplicity.com/3-reasons-to-form-new-habits-slowly-and-how-i-failed&quot;&gt;received wisdom&lt;/a&gt; is that this sort of &amp;quot;cold turkey&amp;quot; habit change usually leads to failure: willpower is finite, we burn out easily, there are powerful social triggers, etc. Except:&lt;/p&gt;
 &lt;blockquote&gt;
 I didn&#39;t find elimination harder. On the contrary, it was much easier than moderation.
 &lt;/blockquote&gt;
-&lt;p&gt;I didn&#39;t stop going out to bars or visiting friends. I didn&#39;t smash all the&lt;br /&gt;
-bottles in the liquor cabinet or pour out the homebrew stash.&lt;br /&gt;
-I didn&#39;t enroll in any support groups or 12-step programs. What gives?&lt;/p&gt;
+&lt;p&gt;I didn&#39;t stop going out to bars or visiting friends. I didn&#39;t smash all the bottles in the liquor cabinet or pour out the homebrew stash. I didn&#39;t enroll in any support groups or 12-step programs. What gives?&lt;/p&gt;
 &lt;h2 id=&quot;willpower%3A-endurance-versus-strength&quot;&gt;Willpower: Endurance Versus Strength &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-11-14-sober-thoughts-on-willpower-and-decision-making/#willpower%3A-endurance-versus-strength&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Elimination and moderation have different &lt;em&gt;decision-making profiles:&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Elimination:&lt;/strong&gt; the decision is always No. This default decision is&lt;br /&gt;
-applied to every decision instance.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Moderation:&lt;/strong&gt; the decision may be Yes or No. Each decision instance&lt;br /&gt;
-requires a consideration of the circumstances.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Elimination:&lt;/strong&gt; the decision is always No. This default decision is applied to every decision instance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Moderation:&lt;/strong&gt; the decision may be Yes or No. Each decision instance requires a consideration of the circumstances.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;When I attempted to apply moderation, I found myself &lt;em&gt;breaking down this&lt;br /&gt;
-consideration into a complex set of rules:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;When I attempted to apply moderation, I found myself &lt;em&gt;breaking down this consideration into a complex set of rules:&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Amount:&lt;/strong&gt; &lt;em&gt;Have I said Yes too much?&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cost:&lt;/strong&gt; &lt;em&gt;Who pays for Yes?&lt;/em&gt; Am I paying? Is a friend buying the next round?&lt;br /&gt;
-Did I receive free beer in exchange for volunteer services?&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Novelty:&lt;/strong&gt; &lt;em&gt;Is this Yes different somehow?&lt;/em&gt; Am I at a brewery I&#39;ll likely&lt;br /&gt;
-never visit again? Did a batch of homebrew just finish carbonation?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cost:&lt;/strong&gt; &lt;em&gt;Who pays for Yes?&lt;/em&gt; Am I paying? Is a friend buying the next round? Did I receive free beer in exchange for volunteer services?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Novelty:&lt;/strong&gt; &lt;em&gt;Is this Yes different somehow?&lt;/em&gt; Am I at a brewery I&#39;ll likely never visit again? Did a batch of homebrew just finish carbonation?&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Social Pressure:&lt;/strong&gt; &lt;em&gt;What are the social costs of Yes and No?&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Special Occasions:&lt;/strong&gt; &lt;em&gt;Does the occasion warrant changing the Yes threshold?&lt;/em&gt;&lt;br /&gt;
-Am I on vacation? At a fancy restaurant? Out at a concert?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Special Occasions:&lt;/strong&gt; &lt;em&gt;Does the occasion warrant changing the Yes threshold?&lt;/em&gt; Am I on vacation? At a fancy restaurant? Out at a concert?&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Taking the &lt;a href=&quot;http://scopeblog.stanford.edu/2011/12/29/a-conversation-about-the-science-of-willpower/&quot;&gt;willpower as muscle&lt;/a&gt; metaphor one step further, this was&lt;br /&gt;
-a feat of endurance. Even though amount should be the only relevant factor&lt;br /&gt;
-here, &lt;em&gt;each decision instance spawned a host of smaller sub-decisions.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;By contrast, the elimination strategy required only one decision for each&lt;br /&gt;
-instance, &lt;em&gt;and that decision was predetermined:&lt;/em&gt; No. It was a larger single&lt;br /&gt;
-decision, more akin to a feat of willpower strength.&lt;/p&gt;
+&lt;p&gt;Taking the &lt;a href=&quot;http://scopeblog.stanford.edu/2011/12/29/a-conversation-about-the-science-of-willpower/&quot;&gt;willpower as muscle&lt;/a&gt; metaphor one step further, this was a feat of endurance. Even though amount should be the only relevant factor here, &lt;em&gt;each decision instance spawned a host of smaller sub-decisions.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;By contrast, the elimination strategy required only one decision for each instance, &lt;em&gt;and that decision was predetermined:&lt;/em&gt; No. It was a larger single decision, more akin to a feat of willpower strength.&lt;/p&gt;
 &lt;h2 id=&quot;replacing-the-routine&quot;&gt;Replacing The Routine &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-11-14-sober-thoughts-on-willpower-and-decision-making/#replacing-the-routine&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;In &lt;a href=&quot;http://charlesduhigg.com/&quot;&gt;Charles Duhigg&#39;s&lt;/a&gt; conception of the &lt;a href=&quot;http://charlesduhigg.com/how-habits-work/&quot;&gt;habit loop&lt;/a&gt;, we can&#39;t&lt;br /&gt;
-truly break habits; we can only &lt;em&gt;swap in alternate routines&lt;/em&gt; that connect the&lt;br /&gt;
-old cues and rewards.&lt;/p&gt;
-&lt;p&gt;This reminded me of a term my friend &lt;a href=&quot;http://www.linkedin.com/pub/travis-brooks/4/668/b44&quot;&gt;Travis Brooks&lt;/a&gt;&lt;br /&gt;
-used: ENAB, short for &lt;em&gt;Equally-attractive Non-Alcoholic Beverage.&lt;/em&gt; There&lt;br /&gt;
-are delicious &lt;a href=&quot;http://shop.torani.com/Bacon-Flavored-Syrup/p/TOR-431248&amp;amp;c=Torani@Syrups?utm_source=google&amp;amp;utm_medium=cpc&amp;amp;adtype=pla&amp;amp;kw=&amp;amp;gclid=CNL6sv21z7MCFQuCQgod-RcAgA&quot;&gt;flavor syrups&lt;/a&gt; and &lt;a href=&quot;http://www.bundaberg.com/info/product_range/ginger_beer/&quot;&gt;ginger beers&lt;/a&gt;.&lt;br /&gt;
-&lt;a href=&quot;http://www.myrecipes.com/recipe/herb-infused-spa-water-10000000682668/&quot;&gt;Spa water&lt;/a&gt; and &lt;a href=&quot;http://store.primowater.com/Carbonators.aspx&quot;&gt;carbonation systems&lt;/a&gt; lend new life to boring&lt;br /&gt;
-&lt;a href=&quot;http://www.dhmo.org/facts.html&quot;&gt;dihydrogen monoxide&lt;/a&gt;. By making non-alcoholic beverages &lt;em&gt;as exciting as&lt;br /&gt;
-microbrews and Sonoma wines&lt;/em&gt;, I tapped into my desire for exploration: here&lt;br /&gt;
-was a whole new range of beverages to discover!&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&quot;http://charlesduhigg.com/&quot;&gt;Charles Duhigg&#39;s&lt;/a&gt; conception of the &lt;a href=&quot;http://charlesduhigg.com/how-habits-work/&quot;&gt;habit loop&lt;/a&gt;, we can&#39;t truly break habits; we can only &lt;em&gt;swap in alternate routines&lt;/em&gt; that connect the old cues and rewards.&lt;/p&gt;
+&lt;p&gt;This reminded me of a term my friend &lt;a href=&quot;http://www.linkedin.com/pub/travis-brooks/4/668/b44&quot;&gt;Travis Brooks&lt;/a&gt; used: ENAB, short for &lt;em&gt;Equally-attractive Non-Alcoholic Beverage.&lt;/em&gt; There are delicious &lt;a href=&quot;http://shop.torani.com/Bacon-Flavored-Syrup/p/TOR-431248&amp;amp;c=Torani@Syrups?utm_source=google&amp;amp;utm_medium=cpc&amp;amp;adtype=pla&amp;amp;kw=&amp;amp;gclid=CNL6sv21z7MCFQuCQgod-RcAgA&quot;&gt;flavor syrups&lt;/a&gt; and &lt;a href=&quot;http://www.bundaberg.com/info/product_range/ginger_beer/&quot;&gt;ginger beers&lt;/a&gt;. &lt;a href=&quot;http://www.myrecipes.com/recipe/herb-infused-spa-water-10000000682668/&quot;&gt;Spa water&lt;/a&gt; and &lt;a href=&quot;http://store.primowater.com/Carbonators.aspx&quot;&gt;carbonation systems&lt;/a&gt; lend new life to boring &lt;a href=&quot;http://www.dhmo.org/facts.html&quot;&gt;dihydrogen monoxide&lt;/a&gt;. By making non-alcoholic beverages &lt;em&gt;as exciting as microbrews and Sonoma wines&lt;/em&gt;, I tapped into my desire for exploration: here was a whole new range of beverages to discover!&lt;/p&gt;
 &lt;h2 id=&quot;openness-and-social-myths&quot;&gt;Openness And Social Myths &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-11-14-sober-thoughts-on-willpower-and-decision-making/#openness-and-social-myths&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;As the Alcohol Screening questionnaire said:&lt;/p&gt;
 &lt;blockquote&gt;
 Many of us think our drinking is like everyone else&#39;s.
 &lt;/blockquote&gt;
-&lt;p&gt;While it is true that &lt;a href=&quot;http://www.psychologytoday.com/blog/the-scientific-fundamentalist/201010/why-intelligent-people-drink-more-alcohol&quot;&gt;more educated people drink more&lt;/a&gt;, I&lt;br /&gt;
-encountered much less of a &amp;quot;drinking culture&amp;quot; among my friends than&lt;br /&gt;
-I had expected.&lt;br /&gt;
-In fact, by being open about my behavior change and the motivations&lt;br /&gt;
-behind it, I received a good deal of social support for this decision.&lt;/p&gt;
+&lt;p&gt;While it is true that &lt;a href=&quot;http://www.psychologytoday.com/blog/the-scientific-fundamentalist/201010/why-intelligent-people-drink-more-alcohol&quot;&gt;more educated people drink more&lt;/a&gt;, I encountered much less of a &amp;quot;drinking culture&amp;quot; among my friends than I had expected. In fact, by being open about my behavior change and the motivations behind it, I received a good deal of social support for this decision.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Mistaken expectations are persistent in habit change:&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Fear Of Isolation:&lt;/strong&gt; We may believe that our current habits are&lt;br /&gt;
-&lt;em&gt;normal or average&lt;/em&gt;, and resist changing for fear of being regarded&lt;br /&gt;
-as unusual.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Fear Of Inadequacy:&lt;/strong&gt; We may believe that we are &lt;em&gt;unable or less&lt;br /&gt;
-able&lt;/em&gt; to change than others, and resist changing for fear we will&lt;br /&gt;
-not be successful.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fear Of Isolation:&lt;/strong&gt; We may believe that our current habits are &lt;em&gt;normal or average&lt;/em&gt;, and resist changing for fear of being regarded as unusual.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fear Of Inadequacy:&lt;/strong&gt; We may believe that we are &lt;em&gt;unable or less able&lt;/em&gt; to change than others, and resist changing for fear we will not be successful.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In both cases, data to refute the fear-expectation may be hard to find.&lt;/p&gt;
 &lt;h2 id=&quot;final-thoughts&quot;&gt;Final Thoughts &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-11-14-sober-thoughts-on-willpower-and-decision-making/#final-thoughts&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There are many ways in which my approach &lt;em&gt;could fail to work for others:&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Physical Dependence:&lt;/strong&gt; Although I drank more than average, my drinking had not&lt;br /&gt;
-progressed to the point of chronic dependence. Alcohol withdrawal&lt;br /&gt;
-&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmedhealth/PMH0001769/&quot;&gt;can be extremely serious&lt;/a&gt;, so this unsupervised &amp;quot;cold turkey&amp;quot;&lt;br /&gt;
-approach might be dangerous for problem drinkers or alcoholics.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Social Pressure:&lt;/strong&gt; I found my friends to be understanding of my habit&lt;br /&gt;
-change. This is not universally true, however, and in some instances&lt;br /&gt;
-it may be necessary to rethink your personal relationships before&lt;br /&gt;
-behavior change can occur.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Specific Desires:&lt;/strong&gt; Exploration is a strong part of my identity.&lt;br /&gt;
-Others will have different mental cues to tackle or subvert in designing&lt;br /&gt;
-behavior change strategies.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Willpower:&lt;/strong&gt; If strength and endurance are separable components of&lt;br /&gt;
-the &amp;quot;willpower muscle&amp;quot;, it&#39;s possible that others may find the endurance&lt;br /&gt;
-of many small decisions easier than the strength of one big decision.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Physical Dependence:&lt;/strong&gt; Although I drank more than average, my drinking had not progressed to the point of chronic dependence. Alcohol withdrawal &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmedhealth/PMH0001769/&quot;&gt;can be extremely serious&lt;/a&gt;, so this unsupervised &amp;quot;cold turkey&amp;quot; approach might be dangerous for problem drinkers or alcoholics.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Social Pressure:&lt;/strong&gt; I found my friends to be understanding of my habit change. This is not universally true, however, and in some instances it may be necessary to rethink your personal relationships before behavior change can occur.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Specific Desires:&lt;/strong&gt; Exploration is a strong part of my identity. Others will have different mental cues to tackle or subvert in designing behavior change strategies.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Willpower:&lt;/strong&gt; If strength and endurance are separable components of the &amp;quot;willpower muscle&amp;quot;, it&#39;s possible that others may find the endurance of many small decisions easier than the strength of one big decision.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;These same factors made elimination an easier form of habit change for me.&lt;br /&gt;
-Although there are general principles of &lt;a href=&quot;http://www.meetup.com/habitdesign/&quot;&gt;habit design&lt;/a&gt;, I believe that&lt;br /&gt;
-further exploration will reveal it to be a &lt;em&gt;highly personal process.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;These same factors made elimination an easier form of habit change for me. Although there are general principles of &lt;a href=&quot;http://www.meetup.com/habitdesign/&quot;&gt;habit design&lt;/a&gt;, I believe that further exploration will reveal it to be a &lt;em&gt;highly personal process.&lt;/em&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 It is one thing to say &quot;replace the routine&quot;, and an entirely different thing to do so.
 &lt;/blockquote&gt;
-&lt;p&gt;This is not to say that such exploration is hopeless; far from it.&lt;br /&gt;
-If &lt;a href=&quot;http://quantifiedself.com/2010/12/a-futurists-take-on-self-tracking-and-mindfulness/&quot;&gt;self-tracking leads to mindfulness&lt;/a&gt;,&lt;br /&gt;
-perhaps this mindfulness will equip us to &lt;em&gt;more effectively identify and modify&lt;br /&gt;
-the habit loops that rule our lives.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This is not to say that such exploration is hopeless; far from it. If &lt;a href=&quot;http://quantifiedself.com/2010/12/a-futurists-take-on-self-tracking-and-mindfulness/&quot;&gt;self-tracking leads to mindfulness&lt;/a&gt;, perhaps this mindfulness will equip us to &lt;em&gt;more effectively identify and modify the habit loops that rule our lives.&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&quot;what-next%3F&quot;&gt;What Next? &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-11-14-sober-thoughts-on-willpower-and-decision-making/#what-next%3F&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;My goal is not lifelong abstinence from alcohol. Rather, I&#39;m hoping that&lt;br /&gt;
-this will reset my baseline consumption, making it easier to practice&lt;br /&gt;
-moderation later.&lt;/p&gt;
-&lt;p&gt;This experience has also demonstrated that elimination is a&lt;br /&gt;
-viable choice for me; if I find that my moderation efforts are slipping, I&lt;br /&gt;
-can return to a period of elimination. Having &lt;em&gt;proven strategies&lt;/em&gt;&lt;br /&gt;
-under your belt can be enormously helpful in &lt;em&gt;making behavior change stick.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;My goal is not lifelong abstinence from alcohol. Rather, I&#39;m hoping that this will reset my baseline consumption, making it easier to practice moderation later.&lt;/p&gt;
+&lt;p&gt;This experience has also demonstrated that elimination is a viable choice for me; if I find that my moderation efforts are slipping, I can return to a period of elimination. Having &lt;em&gt;proven strategies&lt;/em&gt; under your belt can be enormously helpful in &lt;em&gt;making behavior change stick.&lt;/em&gt;&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -1196,8 +854,11 @@ larger bubbles darker.&lt;/p&gt;
 &lt;p&gt;As for the force-directed layout, I start with some basic properties:&lt;/p&gt;
 &lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; force &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; d3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;layout&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;force&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;nodes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;links&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;          &lt;span class=&quot;token comment&quot;&gt;// no edges between bubbles!&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;w&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; h&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;gravity&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.05&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;      &lt;span class=&quot;token comment&quot;&gt;// controls speed at which bubbles seek the center&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;friction&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.95&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;token comment&quot;&gt;// slows down motion&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;tick-handler&quot;&gt;Tick Handler &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-11-12-financial-tracking-mint-bubbles/#tick-handler&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;blockquote&gt;
+&lt;blockquote cite=&quot;https://github.com/mbostock/d3/wiki/Force-Layout#wiki-tick&quot;&gt;
+  &lt;p&gt;
 `force.tick()`: Runs the force layout simulation one step.
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Mike Bostock, &lt;cite&gt;&lt;a href=&quot;https://github.com/mbostock/d3/wiki/Force-Layout#wiki-tick&quot;&gt;Force Layout&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Force-directed layouts model your data as a set of particles in space. Those&lt;br /&gt;
 particles are subject to various forces:&lt;/p&gt;
@@ -1226,8 +887,11 @@ makes it easier to select them.&lt;/li&gt;
 &lt;h3 id=&quot;alpha-and-size-sorting&quot;&gt;Alpha and Size Sorting &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-11-12-financial-tracking-mint-bubbles/#alpha-and-size-sorting&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;What&#39;s &lt;code&gt;e.alpha&lt;/code&gt;? This is described cryptically in the&lt;br /&gt;
 &lt;a href=&quot;https://github.com/mbostock/d3/wiki/Force-Layout#wiki-start&quot;&gt;d3.js documentation&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote cite=&quot;https://github.com/mbostock/d3/wiki/Force-Layout#wiki-start&quot;&gt;
+  &lt;p&gt;
 Internally, the layout uses a cooling parameter alpha which controls the layout temperature: as the physical simulation converges on a stable layout, the temperature drops, causing nodes to move more slowly.
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Mike Bostock, &lt;cite&gt;&lt;a href=&quot;https://github.com/mbostock/d3/wiki/Force-Layout#wiki-start&quot;&gt;Force Layout&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;A look at the &lt;a href=&quot;https://github.com/mbostock/d3/blob/master/src/layout/force.js#L46&quot;&gt;code for d3.layout.force()&lt;/a&gt;&lt;br /&gt;
 provides some insight into what&#39;s happening here:&lt;/p&gt;
@@ -1562,8 +1226,11 @@ Do I want &lt;em&gt;altitude&lt;/em&gt; as well? GPS fix &lt;em&gt;accuracy?&lt;
 difficult to answer. The main &lt;a href=&quot;http://quantifiedself.com/&quot;&gt;Quantified Self website&lt;/a&gt; includes a&lt;br /&gt;
 &lt;a href=&quot;http://quantifiedself.com/guide/&quot;&gt;Guide to Self-Tracking Tools&lt;/a&gt;, but their implementation is subject to&lt;br /&gt;
 criticism:&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote cite=&quot;https://www.rwjf.org/content/dam/farm/reports/program_results_reports/2012/rwjf400733&quot;&gt;
+  &lt;p&gt;
 In a report to RWJF, Project Director Alexandra C. Carmichael noted that the guide was more a catalog of tools than a useful manual for people wanting to choose and use these tools.
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Robert Wood Johnson Foundation, &lt;cite&gt;&lt;a href=&quot;https://www.rwjf.org/content/dam/farm/reports/program_results_reports/2012/rwjf400733&quot;&gt;A Digital Guide for Self-Tracking Goes Online&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;This is a point worth repeating. Simply listing tools is &lt;em&gt;not enough&lt;/em&gt;; a&lt;br /&gt;
 database of tools &lt;em&gt;must answer these basic questions&lt;/em&gt; to be useful. A quick&lt;br /&gt;
@@ -1742,57 +1409,42 @@ a quick example, and briefly explain where you might use this in analyzing&lt;br
 your personal data.&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&quot;the-inspiration&quot;&gt;The Inspiration &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-22-dont-hate-cross-correlate/#the-inspiration&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I was going through my &lt;a href=&quot;http://reader.google.com/&quot;&gt;Google Reader&lt;/a&gt; queue this morning and&lt;br /&gt;
-came across &lt;a href=&quot;http://vimeo.com/50329491&quot;&gt;this talk&lt;/a&gt; by &lt;a href=&quot;http://www.linkedin.com/in/jeffzira&quot;&gt;Jeff Zira&lt;/a&gt;, a product manager at&lt;br /&gt;
-&lt;a href=&quot;http://www.lark.com/&quot;&gt;Lark Technologies&lt;/a&gt;. The talk asks a simple question:&lt;/p&gt;
+&lt;p&gt;I was going through my &lt;a href=&quot;http://reader.google.com/&quot;&gt;Google Reader&lt;/a&gt; queue this morning and came across &lt;a href=&quot;http://vimeo.com/50329491&quot;&gt;this talk&lt;/a&gt; by &lt;a href=&quot;http://www.linkedin.com/in/jeffzira&quot;&gt;Jeff Zira&lt;/a&gt;, a product manager at &lt;a href=&quot;http://www.lark.com/&quot;&gt;Lark Technologies&lt;/a&gt;. The talk asks a simple question:&lt;/p&gt;
 &lt;blockquote&gt;
 Do Jeff and his fiancée influence each other&#39;s sleep patterns?
 &lt;/blockquote&gt;
-&lt;p&gt;He presents raw time-series sleep data collected using&lt;br /&gt;
-&lt;a href=&quot;http://www.lark.com/products/lark-life/experience&quot;&gt;larklife&lt;/a&gt;, then attempts to answer this question in a couple of&lt;br /&gt;
-different ways. He first displays a &lt;em&gt;timeline visualization&lt;/em&gt; of peak&lt;br /&gt;
-overnight activity:&lt;/p&gt;
+&lt;p&gt;He presents raw time-series sleep data collected using &lt;a href=&quot;http://www.lark.com/products/lark-life/experience&quot;&gt;larklife&lt;/a&gt;, then attempts to answer this question in a couple of different ways. He first displays a &lt;em&gt;timeline visualization&lt;/em&gt; of peak overnight activity:&lt;/p&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-nU3qiQKycow/UIbogGdHsGI/AAAAAAAAAHY/Ax23iCZB98M/s640/jeffzira-peak-vis.jpg&quot; /&gt;
-&lt;p&gt;Since his peaks often occur slightly after her peaks, he uses this as&lt;br /&gt;
-evidence that she&#39;s waking him up. He also shows the &lt;em&gt;difference signal&lt;/em&gt;&lt;br /&gt;
-between their sleep patterns, but finds this less than conclusive:&lt;/p&gt;
+&lt;p&gt;Since his peaks often occur slightly after her peaks, he uses this as evidence that she&#39;s waking him up. He also shows the &lt;em&gt;difference signal&lt;/em&gt; between their sleep patterns, but finds this less than conclusive:&lt;/p&gt;
 &lt;img src=&quot;https://lh4.googleusercontent.com/-GAskT1r-gP4/UIbogcHUqCI/AAAAAAAAAHc/XbCl5IvAves/s640/jeffzira-diff-vis.jpg&quot; /&gt;
 &lt;p&gt;After watching this talk, I immediately thought:&lt;/p&gt;
 &lt;blockquote&gt;
 Is there a more precise way to answer this question?
 &lt;/blockquote&gt;
 &lt;h2 id=&quot;the-mathematics&quot;&gt;The Mathematics &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-22-dont-hate-cross-correlate/#the-mathematics&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Note that term &lt;em&gt;difference signal&lt;/em&gt; above. Any time-series dataset is a signal,&lt;br /&gt;
-which means the powerful tools of signal processing can be applied!&lt;/p&gt;
-&lt;p&gt;Let the sleep patterns of Jeff and his fiancée be the signals&lt;br /&gt;
-$ S(\tau) $ and $ T(\tau) $ respectively. Let $ f(S(\tau), T(\tau)) $ be the&lt;br /&gt;
-&lt;em&gt;similarity&lt;/em&gt; between those signals. Ignoring (for now) the fact that $ f $&lt;br /&gt;
-remains undefined, I&#39;m looking for the &lt;em&gt;time shift&lt;/em&gt; $ t $ that maximizes&lt;/p&gt;
+&lt;p&gt;Note that term &lt;em&gt;difference signal&lt;/em&gt; above. Any time-series dataset is a signal, which means the powerful tools of signal processing can be applied!&lt;/p&gt;
+&lt;p&gt;Let the sleep patterns of Jeff and his fiancée be the signals $ S(\tau) $ and $ T(\tau) $ respectively. Let $ f(S(\tau), T(\tau)) $ be the &lt;em&gt;similarity&lt;/em&gt; between those signals. Ignoring (for now) the fact that $ f $ remains undefined, I&#39;m looking for the &lt;em&gt;time shift&lt;/em&gt; $ t $ that maximizes&lt;/p&gt;
 &lt;p&gt;$$&lt;br /&gt;
 f(S(\tau + t), T(\tau))&lt;br /&gt;
 $$&lt;/p&gt;
-&lt;p&gt;(As a side note, the &lt;em&gt;difference signal&lt;/em&gt; is a new signal&lt;br /&gt;
-$ R(\tau) = S(\tau) - T(\tau) $.)&lt;/p&gt;
-&lt;p&gt;First, however, I need a reasonable &lt;em&gt;similarity function&lt;/em&gt; $ f $. The answer&lt;br /&gt;
-lies in &lt;em&gt;cross-correlation:&lt;/em&gt;&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;p&gt;(As a side note, the &lt;em&gt;difference signal&lt;/em&gt; is a new signal $ R(\tau) = S(\tau) - T(\tau) $.)&lt;/p&gt;
+&lt;p&gt;First, however, I need a reasonable &lt;em&gt;similarity function&lt;/em&gt; $ f $. The answer lies in &lt;em&gt;cross-correlation:&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote cite=&quot;https://en.wikipedia.org/wiki/Cross-correlation&quot;&gt;
+  &lt;p&gt;
 In signal processing, cross-correlation is a measure of similarity of two waveforms as a function of a time-lag applied to one of them.
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Wikipedia, &lt;cite&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Cross-correlation&quot;&gt;Cross-correlation&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Perfect! The core of cross-correlation is an integral that looks suspiciously&lt;br /&gt;
-like &lt;a href=&quot;http://en.wikipedia.org/wiki/Convolution&quot;&gt;convolution&lt;/a&gt;, except that we have a term $ T(\tau + t) $ instead&lt;br /&gt;
-of $ T(\tau - t) $:&lt;/p&gt;
+&lt;p&gt;Perfect! The core of cross-correlation is an integral that looks suspiciously like &lt;a href=&quot;http://en.wikipedia.org/wiki/Convolution&quot;&gt;convolution&lt;/a&gt;, except that we have a term $ T(\tau + t) $ instead of $ T(\tau - t) $:&lt;/p&gt;
 &lt;p&gt;$$&lt;br /&gt;
 (S \star T)(t) = \int_{-\infty}^{\infty} S^{\ast}(\tau) T(\tau + t) \mathrm{d}\tau&lt;br /&gt;
 $$&lt;/p&gt;
 &lt;p&gt;The desired $ t $ is the &lt;em&gt;global maximum&lt;/em&gt; of this cross-correlation function.&lt;/p&gt;
-&lt;p&gt;Given two discrete periodic signals &lt;code&gt;S1&lt;/code&gt;, &lt;code&gt;S2&lt;/code&gt; of equal length, this&lt;br /&gt;
-cross-correlation integral can easily be computed:&lt;/p&gt;
+&lt;p&gt;Given two discrete periodic signals &lt;code&gt;S1&lt;/code&gt;, &lt;code&gt;S2&lt;/code&gt; of equal length, this cross-correlation integral can easily be computed:&lt;/p&gt;
 &lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;crossCorrelation&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;&lt;span class=&quot;token constant&quot;&gt;S1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;S2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; t&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;S1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br /&gt;  t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; t &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;    t &lt;span class=&quot;token operator&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; tau &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; tau &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; tau&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token constant&quot;&gt;C&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;S1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;tau&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;S2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;tau &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;C&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It can be hard to visualize what this is doing, though, so I&#39;ve provided&lt;br /&gt;
-a &lt;a href=&quot;https://blog.savageevan.com/posts/2012-10-22-dont-hate-cross-correlate/#quick-demo&quot;&gt;quick demo&lt;/a&gt; below.&lt;/p&gt;
+&lt;p&gt;It can be hard to visualize what this is doing, though, so I&#39;ve provided a &lt;a href=&quot;https://blog.savageevan.com/posts/2012-10-22-dont-hate-cross-correlate/#quick-demo&quot;&gt;quick demo&lt;/a&gt; below.&lt;/p&gt;
 &lt;h3 id=&quot;an-interactive-example&quot;&gt;An Interactive Example &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-22-dont-hate-cross-correlate/#an-interactive-example&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;If you&#39;re viewing this on an RSS reader, check out the example&lt;br /&gt;
-&lt;a href=&quot;https://blog.savageevan.com/blog/2012/10/22/dont-hate-cross-correlate/#quick-demo&quot;&gt;on my blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you&#39;re viewing this on an RSS reader, check out the example &lt;a href=&quot;https://blog.savageevan.com/blog/2012/10/22/dont-hate-cross-correlate/#quick-demo&quot;&gt;on my blog&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can see the code for this demo &lt;a href=&quot;https://github.com/candu/quantified-savagery-files/tree/master/Algorithms/cross-correlation&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;div id=&quot;quick-demo&quot; markdown=&quot;0&quot;&gt;
   &lt;style type=&quot;text/css&quot;&gt;
@@ -1844,11 +1496,11 @@ line.t {
 }
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/style&gt;
-  &lt;script src=&quot;http://candu.github.io/quantified-savagery-files/lib/js/ArrayUtils.js&quot;&gt;&lt;/script&gt;
-  &lt;script src=&quot;http://candu.github.io/quantified-savagery-files/lib/js/MathUtils.js&quot;&gt;&lt;/script&gt;
-  &lt;script src=&quot;http://candu.github.io/quantified-savagery-files/lib/js/third-party/mootools.js&quot;&gt;&lt;/script&gt;
-  &lt;script src=&quot;http://candu.github.io/quantified-savagery-files/lib/js/third-party/d3.js&quot;&gt;&lt;/script&gt;
-  &lt;script src=&quot;http://candu.github.io/quantified-savagery-files/Algorithms/cross-correlation/demo.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://candu.github.io/quantified-savagery-files/lib/js/ArrayUtils.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://candu.github.io/quantified-savagery-files/lib/js/MathUtils.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://candu.github.io/quantified-savagery-files/lib/js/third-party/mootools.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://candu.github.io/quantified-savagery-files/lib/js/third-party/d3.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://candu.github.io/quantified-savagery-files/Algorithms/cross-correlation/demo.js&quot;&gt;&lt;/script&gt;
   &lt;div id=&quot;controls&quot;&gt;
     &lt;select id=&quot;s1-picker&quot;&gt;
       &lt;option value=&quot;sine&quot; selected=&quot;&quot;&gt;Sine&lt;/option&gt;
@@ -1869,34 +1521,22 @@ line.t {
   &lt;div id=&quot;cross-correlation&quot;&gt;&lt;/div&gt;
   &lt;div id=&quot;status&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Use the select boxes to change the red and blue functions. Click and drag&lt;br /&gt;
-on the chart at top to see how sliding the blue function affects the&lt;br /&gt;
-cross-correlation. Try different combinations of functions and &lt;em&gt;see where&lt;br /&gt;
-the cross-correlation is maximized!&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Use the select boxes to change the red and blue functions. Click and drag on the chart at top to see how sliding the blue function affects the cross-correlation. Try different combinations of functions and &lt;em&gt;see where the cross-correlation is maximized!&lt;/em&gt;&lt;/p&gt;
 &lt;h3 id=&quot;back-to-the-original-motivation&quot;&gt;Back To The Original Motivation &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-22-dont-hate-cross-correlate/#back-to-the-original-motivation&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Given the two sleep signals $ S, T $ above, cross-correlation makes it&lt;br /&gt;
-possible to answer these questions:&lt;/p&gt;
+&lt;p&gt;Given the two sleep signals $ S, T $ above, cross-correlation makes it possible to answer these questions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Who wakes up first? By how long?&lt;/li&gt;
-&lt;li&gt;Accounting for the time shift in awakening, how closely do the sleep&lt;br /&gt;
-patterns match?&lt;/li&gt;
+&lt;li&gt;Accounting for the time shift in awakening, how closely do the sleep patterns match?&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;This gives a &lt;em&gt;more rigorous&lt;/em&gt; sense of whether the peaks in nighttime activity&lt;br /&gt;
-actually do coincide. It also identifies the person who wakes up first and&lt;br /&gt;
-how much earlier they wake up.&lt;/p&gt;
-&lt;p&gt;While simply &lt;em&gt;looking at the data&lt;/em&gt; can be very effective, rigorous analysis&lt;br /&gt;
-has definite value if you plan to &lt;em&gt;carry out further experiments.&lt;/em&gt; Armed with&lt;br /&gt;
-cross-correlation data, you can answer questions like&lt;/p&gt;
+&lt;p&gt;This gives a &lt;em&gt;more rigorous&lt;/em&gt; sense of whether the peaks in nighttime activity actually do coincide. It also identifies the person who wakes up first and how much earlier they wake up.&lt;/p&gt;
+&lt;p&gt;While simply &lt;em&gt;looking at the data&lt;/em&gt; can be very effective, rigorous analysis has definite value if you plan to &lt;em&gt;carry out further experiments.&lt;/em&gt; Armed with cross-correlation data, you can answer questions like&lt;/p&gt;
 &lt;blockquote&gt;
 Okay, I switched to a separately-coiled mattress. How well does that prevent
 us from waking each other up?
 &lt;/blockquote&gt;
-&lt;p&gt;In general, &lt;em&gt;signal processing&lt;/em&gt; techniques can be highly useful in examining&lt;br /&gt;
-time-series data.&lt;/p&gt;
+&lt;p&gt;In general, &lt;em&gt;signal processing&lt;/em&gt; techniques can be highly useful in examining time-series data.&lt;/p&gt;
 &lt;h2 id=&quot;up-next&quot;&gt;Up Next &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-22-dont-hate-cross-correlate/#up-next&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This was a slight diversion from my plan to talk about&lt;br /&gt;
-upcoming experiments, which I&#39;ll return to in my next few posts. If you&lt;br /&gt;
-just can&#39;t wait, here&#39;s a &lt;em&gt;quick summary:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This was a slight diversion from my plan to talk about upcoming experiments, which I&#39;ll return to in my next few posts. If you just can&#39;t wait, here&#39;s a &lt;em&gt;quick summary:&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Persistent location tracking:&lt;/strong&gt; by &lt;em&gt;constantly tracking my location&lt;/em&gt;, I&#39;ll&lt;br /&gt;
 have an additional dataset to correlate against.&lt;/li&gt;
@@ -2152,8 +1792,11 @@ $ [3, 8) $. Note also that the elements of &lt;code&gt;g1.all()&lt;/code&gt; are
 &lt;code&gt;{key: k, value: v}&lt;/code&gt; where &lt;code&gt;v&lt;/code&gt; is the number of elements &lt;code&gt;x&lt;/code&gt; with&lt;br /&gt;
 &lt;code&gt;3 &amp;lt;= x[0] &amp;amp;&amp;amp; x[0] &amp;lt; 8 &amp;amp;&amp;amp; x[1] == k&lt;/code&gt;.&lt;/p&gt;
 &lt;h3 id=&quot;d3.js&quot;&gt;d3.js &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-17-fitbit-apis-crossfilter-and-d3/#d3.js&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;blockquote&gt;
+&lt;blockquote cite=&quot;https://d3js.org/&quot;&gt;
+  &lt;p&gt;
 D3.js is a JavaScript library for manipulating documents based on data.
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Mike Bostock, &lt;cite&gt;&lt;a href=&quot;https://d3js.org/&quot;&gt;D3.js&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Using HTML, SVG, CSS, and JavaScript, you can build some pretty stunning&lt;br /&gt;
 visualizations.&lt;br /&gt;
@@ -2265,122 +1908,63 @@ application settings:&lt;/p&gt;
 		<link href="https://blog.savageevan.com/posts/2012-10-16-fitbit-my-brief-experience/"/>
 		<updated>2012-10-16T00:00:00Z</updated>
 		<id>https://blog.savageevan.com/posts/2012-10-16-fitbit-my-brief-experience/</id>
-		<content type="html">&lt;p&gt;In this post, I discuss my experiences using the popular&lt;br /&gt;
-&lt;a href=&quot;http://www.fitbit.com/&quot;&gt;Fitbit&lt;/a&gt; fitness tracker.&lt;/p&gt;
+		<content type="html">&lt;p&gt;In this post, I discuss my experiences using the popular &lt;a href=&quot;http://www.fitbit.com/&quot;&gt;Fitbit&lt;/a&gt; fitness tracker.&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&quot;my-time-with-fitbit&quot;&gt;My Time With Fitbit &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-16-fitbit-my-brief-experience/#my-time-with-fitbit&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I started using the &lt;a href=&quot;http://www.fitbit.com/product&quot;&gt;Fitbit Ultra&lt;/a&gt; on April 11, 2012:&lt;/p&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-BbdI4RDLEPg/UH4U2PwH7AI/AAAAAAAAAFI/cdY5hnwl3so/s400/steps-april.jpg&quot; /&gt;
-&lt;p&gt;Over the following three months, I walked, ran, and otherwise jostled my Fitbit&lt;br /&gt;
-about a good deal:&lt;/p&gt;
+&lt;p&gt;Over the following three months, I walked, ran, and otherwise jostled my Fitbit about a good deal:&lt;/p&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-Rk-sPLHtYVg/UH4U3FhjRJI/AAAAAAAAAFY/J7Ygbqqfi_k/s288/lifetime-steps.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh4.googleusercontent.com/-663jKpbc6yw/UH4U3vzf8EI/AAAAAAAAAFg/-EnTuoTD9LQ/s288/lifetime-floors.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh4.googleusercontent.com/-yzUccJOlbCQ/UH4U36eSCJI/AAAAAAAAAFk/Qmx-r-swHwc/s800/lifetime-distance.jpg&quot; /&gt;
 &lt;p&gt;Somewhere around July 12, tragedy struck: &lt;em&gt;I lost my Fitbit.&lt;/em&gt;&lt;/p&gt;
 &lt;img src=&quot;https://lh3.googleusercontent.com/--zc0squq1yo/UH4U1nCGuQI/AAAAAAAAAE8/aDOP5c1f0pw/s400/steps-july.jpg&quot; /&gt;
 &lt;h3 id=&quot;the-good&quot;&gt;The Good &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-16-fitbit-my-brief-experience/#the-good&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;My initial impression was ecstatic. Fitbit didn&#39;t look like your average&lt;br /&gt;
-pedometer:&lt;/p&gt;
+&lt;p&gt;My initial impression was ecstatic. Fitbit didn&#39;t look like your average pedometer:&lt;/p&gt;
 &lt;img src=&quot;https://lh5.googleusercontent.com/-eLa1uqTeKRg/UH4U5G5GSNI/AAAAAAAAAF0/RiNA89GciGQ/s288/fitbit.jpg&quot; /&gt;
 &lt;img src=&quot;https://lh5.googleusercontent.com/-eRCIrQhA5Kk/UH4U1SaRsKI/AAAAAAAAAE0/4y8n3UjOl-c/s288/janky-pedometer.jpg&quot; /&gt;
 &lt;p&gt;
-It was *small, sleek, easily concealed.* {&quot; I felt like I&#39;d stumbled upon the access
-key to some secret cult of digerati hipster fitness fanatics. &quot;} I could
-flash my Fitbit, give a knowing nod - &quot;yes, I too take an informed interest in my
-personal health&quot; - and be accepted into the ranks.
+It was *small, sleek, easily concealed.* {&quot; I felt like I&#39;d stumbled upon the access key to some secret cult of digerati hipster fitness fanatics. &quot;} I could flash my Fitbit, give a knowing nod - &quot;yes, I too take an informed interest in my personal health&quot; - and be accepted into the ranks.
 &lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Wireless syncing&lt;/em&gt; and &lt;em&gt;long battery life&lt;/em&gt; sweetened the deal. This was a vast step&lt;br /&gt;
-up from my pen-and-paper recovery journal. I was doing &lt;em&gt;serious&lt;/em&gt; self-tracking&lt;br /&gt;
-with &lt;em&gt;serious&lt;/em&gt; devices now.&lt;/p&gt;
-&lt;p&gt;As I started to use it, I noticed &lt;em&gt;small changes in my behavior.&lt;/em&gt; I&#39;d walk an&lt;br /&gt;
-extra few blocks to the employee shuttle. I&#39;d buy fewer groceries at the market,&lt;br /&gt;
-forcing myself to walk there more frequently. I&#39;d take late-evening walks if I&lt;br /&gt;
-felt my daily step count was too low. Each change was minor, but they often&lt;br /&gt;
-added up to &lt;em&gt;thousands of additional steps per day.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;I&#39;d also revel in more extreme bursts of exercise. A hike in the Marin headlands&lt;br /&gt;
-netted me the 30 000 step badge. I pocketed the 200 floors badge after a&lt;br /&gt;
-&lt;a href=&quot;http://goo.gl/maps/jB7fa&quot;&gt;ride up to Tilden&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Wireless syncing&lt;/em&gt; and &lt;em&gt;long battery life&lt;/em&gt; sweetened the deal. This was a vast step up from my pen-and-paper recovery journal. I was doing &lt;em&gt;serious&lt;/em&gt; self-tracking with &lt;em&gt;serious&lt;/em&gt; devices now.&lt;/p&gt;
+&lt;p&gt;As I started to use it, I noticed &lt;em&gt;small changes in my behavior.&lt;/em&gt; I&#39;d walk an extra few blocks to the employee shuttle. I&#39;d buy fewer groceries at the market, forcing myself to walk there more frequently. I&#39;d take late-evening walks if I felt my daily step count was too low. Each change was minor, but they often added up to &lt;em&gt;thousands of additional steps per day.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I&#39;d also revel in more extreme bursts of exercise. A hike in the Marin headlands netted me the 30 000 step badge. I pocketed the 200 floors badge after a &lt;a href=&quot;http://goo.gl/maps/jB7fa&quot;&gt;ride up to Tilden&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For the first time, I could also see how much I was sleeping:&lt;/p&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-QGWtSgEdMz8/UH4U5qNFyXI/AAAAAAAAAF8/5dGzfE_2YBk/s400/sleep-graph.jpg&quot; /&gt;
-&lt;p&gt;&lt;em&gt;Great gouts of data&lt;/em&gt; poured into my life, chartporn galore for an unrepentant&lt;br /&gt;
-math addict. Soon it even became a quasi-social activity as my leaderboard&lt;br /&gt;
-filled up with my Fitbit-using friends.&lt;/p&gt;
-&lt;p&gt;All in all, the Fitbit seemed like a fantastic way to turbocharge my exercise&lt;br /&gt;
-patterns.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Great gouts of data&lt;/em&gt; poured into my life, chartporn galore for an unrepentant math addict. Soon it even became a quasi-social activity as my leaderboard filled up with my Fitbit-using friends.&lt;/p&gt;
+&lt;p&gt;All in all, the Fitbit seemed like a fantastic way to turbocharge my exercise patterns.&lt;/p&gt;
 &lt;h3 id=&quot;the-bad&quot;&gt;The Bad &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-16-fitbit-my-brief-experience/#the-bad&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;My wife, &lt;a href=&quot;http://www.eecs.berkeley.edu/~valkyrie/&quot;&gt;Valkyrie Savage&lt;/a&gt;, also had a Fitbit. In the instructions, women&lt;br /&gt;
-were suggested to wear the Fitbit on their bra strap for the ultimate in&lt;br /&gt;
-clandestine self-tracking. This soon unearthed a glaring problem:&lt;/p&gt;
+&lt;p&gt;My wife, &lt;a href=&quot;http://www.eecs.berkeley.edu/~valkyrie/&quot;&gt;Valkyrie Savage&lt;/a&gt;, also had a Fitbit. In the instructions, women were suggested to wear the Fitbit on their bra strap for the ultimate in clandestine self-tracking. This soon unearthed a glaring problem:&lt;/p&gt;
 &lt;blockquote&gt;
 Sweat is corrosive to metal.
 &lt;/blockquote&gt;
-&lt;p&gt;In particular, the internal leads started to corrode, and before long she was&lt;br /&gt;
-unable to connect it to the base station. After a quick phone call, Fitbit&lt;br /&gt;
-agreed to replace the device at no cost; we weren&#39;t the first users to have&lt;br /&gt;
-this problem, and they were in the process of changing the documentation.&lt;/p&gt;
-&lt;p&gt;Still, the experience soured the deal a bit. Had they never field-tested it with&lt;br /&gt;
-women?&lt;/p&gt;
-&lt;p&gt;While we waited for the replacement, I noticed something else: my wristband&lt;br /&gt;
-had stretched out and was now loose on my wrist. This was a minor detail,&lt;br /&gt;
-but it added to a growing concern that the Fitbit Ultra &lt;em&gt;might not be&lt;br /&gt;
-durable enough to withstand our protracted Savage-ing.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Her second Fitbit finally arrived, and we were back into the self-tracking groove.&lt;br /&gt;
-We took our Fitbits everywhere: walking, running, playing soccer, cycling,&lt;br /&gt;
-and...wait, no, &lt;em&gt;Valkyrie couldn&#39;t take it swimming.&lt;/em&gt; Actually, it didn&#39;t&lt;br /&gt;
-measure our cycling accurately, it was useless for my static&lt;br /&gt;
-bodyweight exercises, and it couldn&#39;t track our occasional indoor climbing&lt;br /&gt;
-stints effectively either. &lt;em&gt;It was discouraging us from doing the activities&lt;br /&gt;
-we loved most!&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In particular, the internal leads started to corrode, and before long she was unable to connect it to the base station. After a quick phone call, Fitbit agreed to replace the device at no cost; we weren&#39;t the first users to have this problem, and they were in the process of changing the documentation.&lt;/p&gt;
+&lt;p&gt;Still, the experience soured the deal a bit. Had they never field-tested it with women?&lt;/p&gt;
+&lt;p&gt;While we waited for the replacement, I noticed something else: my wristband had stretched out and was now loose on my wrist. This was a minor detail, but it added to a growing concern that the Fitbit Ultra &lt;em&gt;might not be durable enough to withstand our protracted Savage-ing.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Her second Fitbit finally arrived, and we were back into the self-tracking groove. We took our Fitbits everywhere: walking, running, playing soccer, cycling, and...wait, no, &lt;em&gt;Valkyrie couldn&#39;t take it swimming.&lt;/em&gt; Actually, it didn&#39;t measure our cycling accurately, it was useless for my static bodyweight exercises, and it couldn&#39;t track our occasional indoor climbing stints effectively either. &lt;em&gt;It was discouraging us from doing the activities we loved most!&lt;/em&gt;&lt;/p&gt;
 &lt;h3 id=&quot;the-ugly&quot;&gt;The Ugly &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-16-fitbit-my-brief-experience/#the-ugly&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;As we kept up our co-tracking, Valkyrie and I noticed a curious effect.&lt;br /&gt;
-There were several days where we spent the whole day together doing the&lt;br /&gt;
-exact same things, and yet &lt;em&gt;I would always be 1000-2000 steps ahead.&lt;/em&gt; Our stride lengths&lt;br /&gt;
-and heights are nearly equal. What was going on?&lt;/p&gt;
-&lt;p&gt;We tried wearing the Fitbits in the same locations on our bodies. No effect.&lt;br /&gt;
-We tried counting steps while we were out together. The counts matched up.&lt;br /&gt;
-The solution came by accident. With the wristband getting more stretched out&lt;br /&gt;
-by the day, I finally started taking my Fitbit off when going to bed.&lt;br /&gt;
-going to bed.&lt;/p&gt;
-&lt;p&gt;Aha! There was the difference: &lt;em&gt;it was counting every tiny&lt;br /&gt;
-movement I made while asleep.&lt;/em&gt; This effect was never mentioned in the&lt;br /&gt;
-manual. It hadn&#39;t occurred to us that &lt;em&gt;our data might not be comparable!&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Meanwhile, my interest in Quantified Self was gradually intensifying. I&lt;br /&gt;
-decided to check out the &lt;a href=&quot;http://dev.fitbit.com/&quot;&gt;Fitbit API&lt;/a&gt;, hoping to create something like&lt;br /&gt;
-&lt;a href=&quot;https://github.com/beaugunderson/zeo-crossfilter&quot;&gt;zeo-crossfilter&lt;/a&gt; for Fitbit.&lt;br /&gt;
-This immediately hit a snag: &lt;em&gt;to get the minute-by-minute data, you need&lt;br /&gt;
-Partner API access.&lt;/em&gt;&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;p&gt;As we kept up our co-tracking, Valkyrie and I noticed a curious effect. There were several days where we spent the whole day together doing the exact same things, and yet &lt;em&gt;I would always be 1000-2000 steps ahead.&lt;/em&gt; Our stride lengths and heights are nearly equal. What was going on?&lt;/p&gt;
+&lt;p&gt;We tried wearing the Fitbits in the same locations on our bodies. No effect. We tried counting steps while we were out together. The counts matched up. The solution came by accident. With the wristband getting more stretched out by the day, I finally started taking my Fitbit off when going to bed.&lt;/p&gt;
+&lt;p&gt;Aha! There was the difference: &lt;em&gt;it was counting every tiny movement I made while asleep.&lt;/em&gt; This effect was never mentioned in the manual. It hadn&#39;t occurred to us that &lt;em&gt;our data might not be comparable!&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Meanwhile, my interest in Quantified Self was gradually intensifying. I decided to check out the &lt;a href=&quot;http://dev.fitbit.com/&quot;&gt;Fitbit API&lt;/a&gt;, hoping to create something like &lt;a href=&quot;https://github.com/beaugunderson/zeo-crossfilter&quot;&gt;zeo-crossfilter&lt;/a&gt; for Fitbit. This immediately hit a snag: &lt;em&gt;to get the minute-by-minute data, you need Partner API access.&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote cite=&quot;https://wiki.fitbit.com/display/API/Fitbit+Partner+API&quot;&gt;
+  &lt;p&gt;
 Partner API allows to fetch the intraday data points with 1 minute detail level for several user resources
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Fitbit, &lt;cite&gt;&lt;a href=&quot;https://wiki.fitbit.com/display/API/Fitbit+Partner+API&quot;&gt;Fitbit Partner API&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Fortunately, &lt;a href=&quot;http://pavelrisenberg.com/&quot;&gt;Pavel Risenberg&lt;/a&gt;&lt;br /&gt;
-happily extended this access upon request, and I soon had&lt;br /&gt;
-&lt;a href=&quot;https://github.com/candu/fitbit-crossfilter&quot;&gt;fitbit-crossfilter&lt;/a&gt; up and&lt;br /&gt;
-working.&lt;/p&gt;
+&lt;p&gt;Fortunately, &lt;a href=&quot;http://pavelrisenberg.com/&quot;&gt;Pavel Risenberg&lt;/a&gt; happily extended this access upon request, and I soon had &lt;a href=&quot;https://github.com/candu/fitbit-crossfilter&quot;&gt;fitbit-crossfilter&lt;/a&gt; up and working.&lt;/p&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-Ys7TdGOf2kI/UH4U6Tb2pRI/AAAAAAAAAGE/yVHssco65NU/s640/fitbit-crossfilter.jpg&quot; /&gt;
-&lt;p&gt;Again, though, there was that sour taste. &lt;em&gt;Why not provide this access by default?&lt;/em&gt;&lt;br /&gt;
-A bit of digging around the site revealed a likely culprit:&lt;br /&gt;
-&lt;a href=&quot;http://www.fitbit.com/premium/about&quot;&gt;Fitbit Premium&lt;/a&gt;.&lt;br /&gt;
-Users can pay to turn Fitbit into a personal trainer, gaining access&lt;br /&gt;
-to more powerful data reports and goal-setting tools.&lt;/p&gt;
+&lt;p&gt;Again, though, there was that sour taste. &lt;em&gt;Why not provide this access by default?&lt;/em&gt; A bit of digging around the site revealed a likely culprit: &lt;a href=&quot;http://www.fitbit.com/premium/about&quot;&gt;Fitbit Premium&lt;/a&gt;. Users can pay to turn Fitbit into a personal trainer, gaining access to more powerful data reports and goal-setting tools.&lt;/p&gt;
 &lt;h3 id=&quot;the-verdict&quot;&gt;The Verdict &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-16-fitbit-my-brief-experience/#the-verdict&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;em&gt;Was the Fitbit useful for me?&lt;/em&gt; As a way to encourage walking: definitely.&lt;br /&gt;
-As a lightweight persistent self-tracking device: mostly. As part of an&lt;br /&gt;
-exercise program that meant something to me: not really.&lt;/p&gt;
-&lt;p&gt;I was left with a strong suspicion that &lt;em&gt;I wasn&#39;t in their target demographic.&lt;/em&gt; I was&lt;br /&gt;
-already fairly active. 10 000 steps was more of a baseline than a goal. I didn&#39;t&lt;br /&gt;
-really need to walk more, and &lt;em&gt;I couldn&#39;t trust it&lt;/em&gt; to accurately track the types&lt;br /&gt;
-of exercise I enjoy most.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Was the Fitbit useful for me?&lt;/em&gt; As a way to encourage walking: definitely. As a lightweight persistent self-tracking device: mostly. As part of an exercise program that meant something to me: not really.&lt;/p&gt;
+&lt;p&gt;I was left with a strong suspicion that &lt;em&gt;I wasn&#39;t in their target demographic.&lt;/em&gt; I was already fairly active. 10 000 steps was more of a baseline than a goal. I didn&#39;t really need to walk more, and &lt;em&gt;I couldn&#39;t trust it&lt;/em&gt; to accurately track the types of exercise I enjoy most.&lt;/p&gt;
 &lt;p&gt;This is an important lesson for aspiring Quantified Self entrepreneurs:&lt;/p&gt;
 &lt;blockquote&gt;
 Your product is personal by nature.
 &lt;/blockquote&gt;
-&lt;p&gt;Your product will encounter&lt;br /&gt;
-&lt;a href=&quot;http://quantifiedself.com/2012/08/nir-eyal-knowing-your-behaviour-type-from-gary-wolf-on-vimeo/&quot;&gt;different behaviors&lt;/a&gt;,&lt;br /&gt;
-needs, and goals. &lt;em&gt;You are not everyone.&lt;/em&gt; You will never understand most of these&lt;br /&gt;
-behaviors, needs, and goals firsthand. No amount of user studies,&lt;br /&gt;
-A/B testing, or market research will save you from this fundamental truth.&lt;/p&gt;
-&lt;p&gt;The only way out is to &lt;em&gt;give users control.&lt;/em&gt; Let them tinker, mashup, share,&lt;br /&gt;
-and explore. &lt;em&gt;Let them decide what your product means to them.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Your product will encounter &lt;a href=&quot;http://quantifiedself.com/2012/08/nir-eyal-knowing-your-behaviour-type-from-gary-wolf-on-vimeo/&quot;&gt;different behaviors&lt;/a&gt;, needs, and goals. &lt;em&gt;You are not everyone.&lt;/em&gt; You will never understand most of these behaviors, needs, and goals firsthand. No amount of user studies, A/B testing, or market research will save you from this fundamental truth.&lt;/p&gt;
+&lt;p&gt;The only way out is to &lt;em&gt;give users control.&lt;/em&gt; Let them tinker, mashup, share, and explore. &lt;em&gt;Let them decide what your product means to them.&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&quot;questions-from-my-time-as-a-fitbit-user&quot;&gt;Questions From My Time As A Fitbit User &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-16-fitbit-my-brief-experience/#questions-from-my-time-as-a-fitbit-user&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id=&quot;who-owns-self-tracking-data%3F&quot;&gt;Who Owns Self-Tracking Data? &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-16-fitbit-my-brief-experience/#who-owns-self-tracking-data%3F&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;
@@ -2389,32 +1973,13 @@ of the Grand Promise of Quantified Self is *control over your data and how you
 use it.* We&#39;re still a long way from that Grand Promise. {&quot; We&#39;re in the Internet
 Middle Ages, an era of data fiefdoms. &quot;}
 &lt;/p&gt;
-&lt;p&gt;The analogy is apt. Much as the old fiefdoms laid claim to your land and labor,&lt;br /&gt;
-these fiefdoms &lt;em&gt;use your data and your data entry labor to enrich&lt;br /&gt;
-themselves.&lt;/em&gt; Much as the old fiefdoms provided vital services in exchange&lt;br /&gt;
-for this taxation, you receive the &lt;em&gt;benefit of services like search and&lt;br /&gt;
-social networking.&lt;/em&gt; Much as the old fiefdoms fought each other relentlessly for&lt;br /&gt;
-economic gain, these fiefdoms &lt;em&gt;wage war over users and intellectual property.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;This is not necessarily bad. As a result of these data fiefdoms, we have many&lt;br /&gt;
-services that might not otherwise exist. By selling your self-tracking data&lt;br /&gt;
-back to you, Fitbit is &lt;em&gt;able to fund the provision of tools for managing and&lt;br /&gt;
-improving your fitness.&lt;/em&gt; Those tools are generally of reasonable quality,&lt;br /&gt;
-and are likely to improve over time.&lt;/p&gt;
-&lt;p&gt;However, if you want to make your own tools, &lt;em&gt;you&#39;re largely out of&lt;br /&gt;
-luck.&lt;/em&gt; You can pay for different tools via Fitbit Premium, but there&#39;s no&lt;br /&gt;
-guarantee that those tools will be better for &lt;em&gt;you.&lt;/em&gt; Your only other&lt;br /&gt;
-recourse is to navigate the API documentation and contact the right people for&lt;br /&gt;
-better data access. Even with that access, you still only have&lt;br /&gt;
-minute-by-minute data. You have no idea how Fitbit maps between raw&lt;br /&gt;
-accelerometer readings and steps, and definitely no opportunity to improve that&lt;br /&gt;
-mapping. To take my example, &lt;em&gt;I can&#39;t tweak the step detection algorithms to&lt;br /&gt;
-measure cycling accurately.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Even though the average person won&#39;t care to make these improvements,&lt;br /&gt;
-&lt;em&gt;a few people will.&lt;/em&gt; This recalls the &lt;a href=&quot;https://www.facebook.com/photo.php?fbid=3563106890027&quot;&gt;reddit maxim&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;The analogy is apt. Much as the old fiefdoms laid claim to your land and labor, these fiefdoms &lt;em&gt;use your data and your data entry labor to enrich themselves.&lt;/em&gt; Much as the old fiefdoms provided vital services in exchange for this taxation, you receive the &lt;em&gt;benefit of services like search and social networking.&lt;/em&gt; Much as the old fiefdoms fought each other relentlessly for economic gain, these fiefdoms *wage war over users and intellectual property.&lt;/p&gt;
+&lt;p&gt;This is not necessarily bad. As a result of these data fiefdoms, we have many services that might not otherwise exist. By selling your self-tracking data back to you, Fitbit is &lt;em&gt;able to fund the provision of tools for managing and improving your fitness.&lt;/em&gt; Those tools are generally of reasonable quality, and are likely to improve over time.&lt;/p&gt;
+&lt;p&gt;However, if you want to make your own tools, &lt;em&gt;you&#39;re largely out of luck.&lt;/em&gt; You can pay for different tools via Fitbit Premium, but there&#39;s no&lt;br /&gt;
+guarantee that those tools will be better for &lt;em&gt;you.&lt;/em&gt; Your only other recourse is to navigate the API documentation and contact the right people for better data access. Even with that access, you still only have minute-by-minute data. You have no idea how Fitbit maps between raw accelerometer readings and steps, and definitely no opportunity to improve that mapping. To take my example, &lt;em&gt;I can&#39;t tweak the step detection algorithms to measure cycling accurately.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Even though the average person won&#39;t care to make these improvements, &lt;em&gt;a few people will.&lt;/em&gt; This recalls the &lt;a href=&quot;https://www.facebook.com/photo.php?fbid=3563106890027&quot;&gt;reddit maxim&lt;/a&gt;:&lt;/p&gt;
 &lt;img src=&quot;https://lh6.googleusercontent.com/-Y4JWrp5wBmU/UH4U4dNSO-I/AAAAAAAAAFs/qCIibiyvafk/s400/give-a-damn.jpg&quot; /&gt;
-&lt;p&gt;&lt;em&gt;There&#39;s a tension here.&lt;/em&gt; This is how better products are built, but it&#39;s not&lt;br /&gt;
-in Fitbit&#39;s interest to let just anyone do that in a completely unconstrained&lt;br /&gt;
-fashion. If they do, they go out of business.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;There&#39;s a tension here.&lt;/em&gt; This is how better products are built, but it&#39;s not in Fitbit&#39;s interest to let just anyone do that in a completely unconstrained fashion. If they do, they go out of business.&lt;/p&gt;
 &lt;h3 id=&quot;what-is-my-ideal-fitness-tracking-device%3F&quot;&gt;What Is My Ideal Fitness Tracking Device? &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-16-fitbit-my-brief-experience/#what-is-my-ideal-fitness-tracking-device%3F&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;It would be:&lt;/p&gt;
 &lt;ol&gt;
@@ -2427,8 +1992,7 @@ sweat.)&lt;/li&gt;
 through a vendor API. (I note that &lt;a href=&quot;https://github.com/qdot/libfitbit&quot;&gt;libfitbit&lt;/a&gt; exists as an&lt;br /&gt;
 attempt to reverse-engineer Fitbit, but I haven&#39;t played around with it.)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;I haven&#39;t looked into &lt;a href=&quot;http://www.bodymedia.com/&quot;&gt;BodyMedia&lt;/a&gt; or&lt;br /&gt;
-&lt;a href=&quot;https://fluxtream.com/&quot;&gt;Fluxtream&lt;/a&gt;, but they both look promising.&lt;/p&gt;
+&lt;p&gt;I haven&#39;t looked into &lt;a href=&quot;http://www.bodymedia.com/&quot;&gt;BodyMedia&lt;/a&gt; or &lt;a href=&quot;https://fluxtream.com/&quot;&gt;Fluxtream&lt;/a&gt;, but they both look promising.&lt;/p&gt;
 &lt;h3 id=&quot;is-persistent-tracking-useful%3F&quot;&gt;Is Persistent Tracking Useful? &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-16-fitbit-my-brief-experience/#is-persistent-tracking-useful%3F&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
 Yes, but only if you can analyze the data as quickly as you generate it.
@@ -2640,9 +2204,12 @@ recovery journal data: linear regression/correlation, the Fast Fourier&lt;br /&g
 Transform, and maximum entropy modelling.&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&quot;first%2C-a-word-about-tools&quot;&gt;First, A Word About Tools &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-09-self-tracking-for-panic-an-even-deeper-look/#first%2C-a-word-about-tools&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;blockquote cite=&quot;https://www.worldcat.org/title/psychology-of-science-a-reconnaissance/oclc/248935&quot;&gt;
+  &lt;p&gt;
 I suppose it is tempting, if the only tool you have is a hammer, to treat
 everything as if it were a nail.
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Abraham Maslow, &lt;cite&gt;&lt;a href=&quot;https://www.worldcat.org/title/psychology-of-science-a-reconnaissance/oclc/248935&quot;&gt;The Psychology of Science: A Reconnaissance&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&quot;now%2C-a-necessary-disclaimer&quot;&gt;Now, A Necessary Disclaimer &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-09-self-tracking-for-panic-an-even-deeper-look/#now%2C-a-necessary-disclaimer&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;My experiment has fewer than 50 samples, which is &lt;em&gt;nowhere near enough to draw&lt;br /&gt;
@@ -2920,8 +2487,11 @@ for performing linear regression.&lt;/p&gt;
 developers. Even if you don&#39;t need to know how they work to use them, you need&lt;br /&gt;
 some knowledge of &lt;em&gt;what they do&lt;/em&gt; and &lt;em&gt;where they are most appropriate&lt;/em&gt;.&lt;br /&gt;
 Statistical tests in particular often have &lt;em&gt;strong preconditions&lt;/em&gt; for use:&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote cite=&quot;https://en.wikipedia.org/wiki/Student%27s_t-test&quot;&gt;
+  &lt;p&gt;
 Each of the two populations being compared should follow a normal distribution.
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Wikipedia, &lt;cite&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Student%27s_t-test&quot;&gt;Student&#39;s t-test&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Even if you pick the right tool, there&#39;s still &lt;em&gt;fear associated with losing&lt;br /&gt;
 control&lt;/em&gt;. These tools are not hammers and screwdrivers but magic&lt;br /&gt;
@@ -3317,8 +2887,11 @@ symptoms I experienced, and how I dealt with it.&lt;/li&gt;
 are most effective when they have &lt;em&gt;low overhead&lt;/em&gt;, as this lowers the willpower&lt;br /&gt;
 barrier to using them regularly.&lt;/p&gt;
 &lt;h3 id=&quot;a-diversion-on-self-tracking-design&quot;&gt;A Diversion On Self-Tracking Design &lt;a class=&quot;direct-link&quot; href=&quot;https://blog.savageevan.com/posts/2012-10-03-panic/#a-diversion-on-self-tracking-design&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;blockquote&gt;
+&lt;blockquote cite=&quot;http://worrydream.com/LadderOfAbstraction/&quot;&gt;
+  &lt;p&gt;
 How can we design systems when we don&#39;t know what we&#39;re doing?
+&lt;/p&gt;
+  &lt;footer&gt;&amp;ndash; Bret Victor, &lt;cite&gt;&lt;a href=&quot;http://worrydream.com/LadderOfAbstraction/&quot;&gt;Up and Down the Ladder of Abstraction&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Although I cribbed the individual sections almost verbatim from the workbook,&lt;br /&gt;
 their specific combination has some curious results.&lt;/p&gt;

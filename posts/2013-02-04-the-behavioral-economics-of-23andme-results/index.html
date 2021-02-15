@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <body>
     <header>
@@ -25,129 +34,38 @@
     <main class="tmpl-post">
       <h1>The Behavioral Economics of 23AndMe Results</h1>
 
-<p>Over the holidays, I received a 23andMe genetic testing kit as a gift. In<br>
-this post, I'll take a look at my results through the lens of prospect<br>
-theory, which aims to quantify our perception of risk. 23andMe results<br>
-estimate your lifetime likelihood of various medical conditions, making them<br>
-a great dataset for testing out these concepts in behavioral economics.</p>
+<p>Over the holidays, I received a 23andMe genetic testing kit as a gift. In this post, I'll take a look at my results through the lens of prospect theory, which aims to quantify our perception of risk. 23andMe results estimate your lifetime likelihood of various medical conditions, making them a great dataset for testing out these concepts in behavioral economics.</p>
 <!-- more -->
 <h2 id="prospect-theory%3A-a-quick-example">Prospect Theory: A Quick Example <a class="direct-link" href="#prospect-theory%3A-a-quick-example">#</a></h2>
-<p>Suppose I offer you a bet. I flip a fair coin once. Heads, you<br>
-gain \$ 1000; tails, you lose \$ 900. Do you take the bet? Probability<br>
-dictates that you should, since you would expect to come out<br>
-$ (1000 - 900) / 2 = 50 $ dollars ahead.</p>
-<p>If you're like most people, though, you have a <em>powerful aversion</em> to losing<br>
-\$ 900. This aversion is powerful enough that you'll decline the bet. This<br>
-only makes sense if losing \$ 900 has a greater negative value than the positive<br>
-value of gaining \$ 1000. In other words, your perception of value is<br>
-<em>non-linear</em>. This perception underpins many real-world bets that<br>
-make little sense from an expected utility standpoint:</p>
+<p>Suppose I offer you a bet. I flip a fair coin once. Heads, you gain \$1000; tails, you lose \$900. Do you take the bet? Probability dictates that you should, since you would expect to come out $ (1000 - 900) / 2 = 50 $ dollars ahead.</p>
+<p>If you're like most people, though, you have a <em>powerful aversion</em> to losing \$900. This aversion is powerful enough that you'll decline the bet. This only makes sense if losing \$900 has a greater negative value than the positive value of gaining \$1000. In other words, your perception of value is <em>non-linear</em>. This perception underpins many real-world bets that make little sense from an expected utility standpoint:</p>
 <ul>
-<li><em>Insurance:</em> the buyer takes a small certain loss to avoid the risk of an<br>
-uncertain and potentially large loss;</li>
-<li><em>Security:</em> the property owner takes a small certain loss to reduce the<br>
-risk of an uncertain and potentially large loss;</li>
-<li><em>Lotteries:</em> the ticket holder takes a small certain loss to try for an<br>
-extremely unlikely but massive gain.</li>
+<li><em>Insurance:</em> the buyer takes a small certain loss to avoid the risk of an uncertain and potentially large loss;</li>
+<li><em>Security:</em> the property owner takes a small certain loss to reduce the risk of an uncertain and potentially large loss;</li>
+<li><em>Lotteries:</em> the ticket holder takes a small certain loss to try for an extremely unlikely but massive gain.</li>
 </ul>
-<p><a href="http://www.princeton.edu/~kahneman/docs/Publications/prospect_theory.pdf">Prospect theory</a> creates a mathematical framework for understanding our<br>
-perceptions of value and risk. It's an awesome paper with highly<br>
-approachable mathematics. Definitely recommended reading for anyone<br>
-interested in economics, game theory, and the like.</p>
+<p><a href="http://www.princeton.edu/~kahneman/docs/Publications/prospect_theory.pdf">Prospect theory</a> creates a mathematical framework for understanding our perceptions of value and risk. It's an awesome paper with highly approachable mathematics. Definitely recommended reading for anyone interested in economics, game theory, and the like.</p>
 <h2 id="my-disease-risk">My Disease Risk <a class="direct-link" href="#my-disease-risk">#</a></h2>
-<p>Among other things, 23andMe can estimate your lifetime risk of various<br>
-diseases. This information is divided into three categories according to<br>
-whether your risk is highly elevated, highly decreased, or roughly typical:</p>
+<p>Among other things, 23andMe can estimate your lifetime risk of various diseases. This information is divided into three categories according to whether your risk is highly elevated, highly decreased, or roughly typical:</p>
 <img src="https://lh4.googleusercontent.com/-xccLcJ7-CqU/URBE7QF2tCI/AAAAAAAAATs/sFewavaz6P4/s640/23andme_elevated_risk.jpg" />
 <img src="https://lh4.googleusercontent.com/-D7AY4foE6Qs/URBE8FA3lBI/AAAAAAAAAT0/x76tZ9J5HP0/s640/23andme_decreased_risk.jpg" />
 <img src="https://lh4.googleusercontent.com/-HU05eMXwI4M/URBE89TEu0I/AAAAAAAAAT8/MihVGsTQkLQ/s640/23andme_typical_risk.jpg" />
-<p>Within each category, the diseases are ordered by decreasing confidence<br>
-rating, then by decreasing absolute risk. The different confidence levels<br>
-are as follows:</p>
+<p>Within each category, the diseases are ordered by decreasing confidence rating, then by decreasing absolute risk. The different confidence levels are as follows:</p>
 <ol>
 <li><em>Preliminary Research:</em> fewer than 100 people studied</li>
 <li><em>Preliminary Research:</em> fewer than 750 people studied</li>
 <li><em>Preliminary Research:</em> a single study with 750+ participants</li>
 <li><em>Established Research:</em> multiple studies with 750+ participants</li>
 </ol>
-<p>The 23andMe dashboard doesn't show estimated risk for lower-confidence<br>
-findings, but I can fetch that information through their <a href="https://api.23andme.com/">API</a>.</p>
-<p>Armed with my raw risk data, I can now play around with a pair of alternative<br>
-disease rankings. As an anchoring point, here's my disease ranking by<br>
-absolute risk:</p>
-<pre><code>$ python risksort.py risk &lt; risks.json
- 1                                            Obesity 0.5701
- 2                             Coronary Heart Disease 0.5464
- 3                                Atrial Fibrillation 0.3392
- 4                                    Prostate Cancer 0.2602
- 5                   Age-related Macular Degeneration 0.2459
- 6                                    Type 2 Diabetes 0.1969
- 7                             Venous Thromboembolism 0.1279
- 8                                        Lung Cancer 0.0823
- 9                                          Psoriasis 0.0708
-10                                         Gallstones 0.0618
-11                                Alzheimer's Disease 0.0493
-12                                  Colorectal Cancer 0.0417
-13                             Chronic Kidney Disease 0.0356
-14                               Rheumatoid Arthritis 0.0300
-15                             Restless Legs Syndrome 0.0245
-16                               Exfoliation Glaucoma 0.0217
-17                                           Melanoma 0.0216
-18                                    Type 1 Diabetes 0.0137
-19                                Parkinson's Disease 0.0109
-20                                 Ulcerative Colitis 0.0066
-21                                 Multiple Sclerosis 0.0047
-22          Esophageal Squamous Cell Carcinoma (ESCC) 0.0043
-23     Stomach Cancer (Gastric Cardia Adenocarcinoma) 0.0028
-24                                    Crohn's Disease 0.0016
-25                                   Bipolar Disorder 0.0015
-26                                     Celiac Disease 0.0005
-27               Scleroderma (Limited Cutaneous Type) 0.0005
-28                          Primary Biliary Cirrhosis 0.0004
-29                                      Breast Cancer 0.0000
-30               Lupus (Systemic Lupus Erythematosus) 0.0000
-</code></pre>
+<p>The 23andMe dashboard doesn't show estimated risk for lower-confidence findings, but I can fetch that information through their <a href="https://api.23andme.com/">API</a>.</p>
+<p>Armed with my raw risk data, I can now play around with a pair of alternative disease rankings. As an anchoring point, here's my disease ranking by absolute risk:</p>
+<pre class="language-bash"><code class="language-bash">$ python risksort.py risk <span class="token operator">&lt;</span> risks.json<br> <span class="token number">1</span>                                            Obesity <span class="token number">0.5701</span><br> <span class="token number">2</span>                             Coronary Heart Disease <span class="token number">0.5464</span><br> <span class="token number">3</span>                                Atrial Fibrillation <span class="token number">0.3392</span><br> <span class="token number">4</span>                                    Prostate Cancer <span class="token number">0.2602</span><br> <span class="token number">5</span>                   Age-related Macular Degeneration <span class="token number">0.2459</span><br> <span class="token number">6</span>                                    Type <span class="token number">2</span> Diabetes <span class="token number">0.1969</span><br> <span class="token number">7</span>                             Venous Thromboembolism <span class="token number">0.1279</span><br> <span class="token number">8</span>                                        Lung Cancer <span class="token number">0.0823</span><br> <span class="token number">9</span>                                          Psoriasis <span class="token number">0.0708</span><br><span class="token number">10</span>                                         Gallstones <span class="token number">0.0618</span><br><span class="token number">11</span>                                Alzheimer<span class="token string">'s Disease 0.0493<br>12                                  Colorectal Cancer 0.0417<br>13                             Chronic Kidney Disease 0.0356<br>14                               Rheumatoid Arthritis 0.0300<br>15                             Restless Legs Syndrome 0.0245<br>16                               Exfoliation Glaucoma 0.0217<br>17                                           Melanoma 0.0216<br>18                                    Type 1 Diabetes 0.0137<br>19                                Parkinson'</span>s Disease <span class="token number">0.0109</span><br><span class="token number">20</span>                                 Ulcerative Colitis <span class="token number">0.0066</span><br><span class="token number">21</span>                                 Multiple Sclerosis <span class="token number">0.0047</span><br><span class="token number">22</span>          Esophageal Squamous Cell Carcinoma <span class="token punctuation">(</span>ESCC<span class="token punctuation">)</span> <span class="token number">0.0043</span><br><span class="token number">23</span>     Stomach Cancer <span class="token punctuation">(</span>Gastric Cardia Adenocarcinoma<span class="token punctuation">)</span> <span class="token number">0.0028</span><br><span class="token number">24</span>                                    Crohn's Disease <span class="token number">0.0016</span><br><span class="token number">25</span>                                   Bipolar Disorder <span class="token number">0.0015</span><br><span class="token number">26</span>                                     Celiac Disease <span class="token number">0.0005</span><br><span class="token number">27</span>               Scleroderma <span class="token punctuation">(</span>Limited Cutaneous Type<span class="token punctuation">)</span> <span class="token number">0.0005</span><br><span class="token number">28</span>                          Primary Biliary Cirrhosis <span class="token number">0.0004</span><br><span class="token number">29</span>                                      Breast Cancer <span class="token number">0.0000</span><br><span class="token number">30</span>               Lupus <span class="token punctuation">(</span>Systemic Lupus Erythematosus<span class="token punctuation">)</span> <span class="token number">0.0000</span></code></pre>
 <p>The alternative ranking metric code can be found <a href="https://github.com/candu/quantified-savagery-files/blob/master/Genetics/risksort.py">here</a>.</p>
 <h3 id="relative-risk-sorting">Relative-Risk Sorting <a class="direct-link" href="#relative-risk-sorting">#</a></h3>
-<p>An obvious ranking metric is relative risk, which is already provided in<br>
-the disease listing.</p>
-<pre><code>$ python risksort.py relative_risk &lt; risks.json
- 1                   Age-related Macular Degeneration 3.7542
- 2                               Exfoliation Glaucoma 2.8933
- 3                                   Bipolar Disorder 1.5000
- 4                                    Prostate Cancer 1.4593
- 5                                 Multiple Sclerosis 1.3824
- 6                                    Type 1 Diabetes 1.3431
- 7                               Rheumatoid Arthritis 1.2605
- 8                             Restless Legs Syndrome 1.2500
- 9                                Atrial Fibrillation 1.2494
-10     Stomach Cancer (Gastric Cardia Adenocarcinoma) 1.2174
-11          Esophageal Squamous Cell Carcinoma (ESCC) 1.1944
-12                             Coronary Heart Disease 1.1665
-13                             Venous Thromboembolism 1.0365
-14                             Chronic Kidney Disease 1.0349
-15                                        Lung Cancer 0.9728
-16                                            Obesity 0.8926
-17                                         Gallstones 0.8766
-18                                 Ulcerative Colitis 0.8571
-19                                    Type 2 Diabetes 0.7656
-20                                           Melanoma 0.7552
-21                                  Colorectal Cancer 0.7500
-22               Scleroderma (Limited Cutaneous Type) 0.7143
-23                                Alzheimer's Disease 0.6885
-24                                Parkinson's Disease 0.6770
-25                                          Psoriasis 0.6238
-26                          Primary Biliary Cirrhosis 0.5000
-27                                     Celiac Disease 0.4167
-28                                    Crohn's Disease 0.3019
-29                                      Breast Cancer 0.0000
-30               Lupus (Systemic Lupus Erythematosus) 0.0000
-</code></pre>
+<p>An obvious ranking metric is relative risk, which is already provided in the disease listing.</p>
+<pre class="language-bash"><code class="language-bash">$ python risksort.py relative_risk <span class="token operator">&lt;</span> risks.json<br> <span class="token number">1</span>                   Age-related Macular Degeneration <span class="token number">3.7542</span><br> <span class="token number">2</span>                               Exfoliation Glaucoma <span class="token number">2.8933</span><br> <span class="token number">3</span>                                   Bipolar Disorder <span class="token number">1.5000</span><br> <span class="token number">4</span>                                    Prostate Cancer <span class="token number">1.4593</span><br> <span class="token number">5</span>                                 Multiple Sclerosis <span class="token number">1.3824</span><br> <span class="token number">6</span>                                    Type <span class="token number">1</span> Diabetes <span class="token number">1.3431</span><br> <span class="token number">7</span>                               Rheumatoid Arthritis <span class="token number">1.2605</span><br> <span class="token number">8</span>                             Restless Legs Syndrome <span class="token number">1.2500</span><br> <span class="token number">9</span>                                Atrial Fibrillation <span class="token number">1.2494</span><br><span class="token number">10</span>     Stomach Cancer <span class="token punctuation">(</span>Gastric Cardia Adenocarcinoma<span class="token punctuation">)</span> <span class="token number">1.2174</span><br><span class="token number">11</span>          Esophageal Squamous Cell Carcinoma <span class="token punctuation">(</span>ESCC<span class="token punctuation">)</span> <span class="token number">1.1944</span><br><span class="token number">12</span>                             Coronary Heart Disease <span class="token number">1.1665</span><br><span class="token number">13</span>                             Venous Thromboembolism <span class="token number">1.0365</span><br><span class="token number">14</span>                             Chronic Kidney Disease <span class="token number">1.0349</span><br><span class="token number">15</span>                                        Lung Cancer <span class="token number">0.9728</span><br><span class="token number">16</span>                                            Obesity <span class="token number">0.8926</span><br><span class="token number">17</span>                                         Gallstones <span class="token number">0.8766</span><br><span class="token number">18</span>                                 Ulcerative Colitis <span class="token number">0.8571</span><br><span class="token number">19</span>                                    Type <span class="token number">2</span> Diabetes <span class="token number">0.7656</span><br><span class="token number">20</span>                                           Melanoma <span class="token number">0.7552</span><br><span class="token number">21</span>                                  Colorectal Cancer <span class="token number">0.7500</span><br><span class="token number">22</span>               Scleroderma <span class="token punctuation">(</span>Limited Cutaneous Type<span class="token punctuation">)</span> <span class="token number">0.7143</span><br><span class="token number">23</span>                                Alzheimer<span class="token string">'s Disease 0.6885<br>24                                Parkinson'</span>s Disease <span class="token number">0.6770</span><br><span class="token number">25</span>                                          Psoriasis <span class="token number">0.6238</span><br><span class="token number">26</span>                          Primary Biliary Cirrhosis <span class="token number">0.5000</span><br><span class="token number">27</span>                                     Celiac Disease <span class="token number">0.4167</span><br><span class="token number">28</span>                                    Crohn's Disease <span class="token number">0.3019</span><br><span class="token number">29</span>                                      Breast Cancer <span class="token number">0.0000</span><br><span class="token number">30</span>               Lupus <span class="token punctuation">(</span>Systemic Lupus Erythematosus<span class="token punctuation">)</span> <span class="token number">0.0000</span></code></pre>
 <h3 id="perceived-relative-risk-sorting">Perceived Relative-Risk Sorting <a class="direct-link" href="#perceived-relative-risk-sorting">#</a></h3>
-<p>In prospect theory, a probability $ p $ has perceived weight $ w(p) $.<br>
-In <a href="http://psych.fullerton.edu/mBIRNBAUM/psych466/articles/Tversky_Kahneman_JRU_92.pdf">Advances in Prospect Theory: Cumulative Representation of Uncertainty</a>,<br>
-Tversky and Kahneman fit $ w $ to observed results for subjects evaluating<br>
-bets similar to the one listed above:</p>
+<p>In prospect theory, a probability $ p $ has perceived weight $ w(p) $. In <a href="http://psych.fullerton.edu/mBIRNBAUM/psych466/articles/Tversky_Kahneman_JRU_92.pdf">Advances in Prospect Theory: Cumulative Representation of Uncertainty</a>, Tversky and Kahneman fit $ w $ to observed results for subjects evaluating bets similar to the one listed above:</p>
 <img src="https://lh6.googleusercontent.com/-5qE_0uX1hdI/URBE9pc7ViI/AAAAAAAAAUE/Y-zgLP8Yp-8/s400/prospect_positive_graph.jpg" />
 <img src="https://lh3.googleusercontent.com/-UWfKR_J2RBs/URBE-Dj67nI/AAAAAAAAAUM/CpO_z7VnPbM/s400/prospect_negative_graph.jpg" />
 <p>The corresponding equations are</p>
@@ -158,8 +76,7 @@ $$</p>
 <p>$$<br>
 w^-(p) = \frac{p^{0.69}}{(p^{0.69} + (1-p)^{0.69})^{\frac{1}{0.69}}}<br>
 $$</p>
-<p>for negative prospects. If my risk is $ p_0 $ and the general risk is $ p $,<br>
-I can define my perceived relative risk as</p>
+<p>for negative prospects. If my risk is $ p_0 $ and the general risk is $ p $, I can define my perceived relative risk as</p>
 <p>$$<br>
 r = \frac{w^+(p_0)}{w^+(p)}<br>
 $$</p>
@@ -167,96 +84,27 @@ $$</p>
 <p>$$<br>
 r = \frac{w^-(p_0)}{w^-(p)}<br>
 $$</p>
-<p>otherwise. The resulting rankings are pretty close to ordinary relative<br>
-risk, but not identical:</p>
-<pre><code>$ diff &lt;(python risksort.py relative_risk &lt; risks.json | cut -c-53) &lt;(python risksort.py perceived_relative_risk &lt; risks.json | cut -c-53)
-13,14c13,14
-&lt; 13                             Venous Thromboembolism
-&lt; 14                             Chronic Kidney Disease
----
-&gt; 13                             Chronic Kidney Disease
-&gt; 14                             Venous Thromboembolism
-16,17c16,17
-&lt; 16                                            Obesity
-&lt; 17                                         Gallstones
----
-&gt; 16                                         Gallstones
-&gt; 17                                            Obesity
-20,23c20,23
-&lt; 20                                           Melanoma
-&lt; 21                                  Colorectal Cancer
-&lt; 22               Scleroderma (Limited Cutaneous Type)
-&lt; 23                                Alzheimer's Disease
----
-&gt; 20                                  Colorectal Cancer
-&gt; 21                                           Melanoma
-&gt; 22                                Alzheimer's Disease
-&gt; 23               Scleroderma (Limited Cutaneous Type)
-</code></pre>
+<p>otherwise. The resulting rankings are pretty close to ordinary relative risk, but not identical:</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">diff</span> <span class="token operator">&lt;</span><span class="token punctuation">(</span>python risksort.py relative_risk <span class="token operator">&lt;</span> risks.json <span class="token punctuation">\</span><br>  <span class="token operator">|</span> <span class="token function">cut</span> -c-53<span class="token punctuation">)</span> <span class="token operator">&lt;</span><span class="token punctuation">(</span>python risksort.py perceived_relative_risk <span class="token operator">&lt;</span> risks.json <span class="token operator">|</span> <span class="token function">cut</span> -c-53<span class="token punctuation">)</span><br><span class="token number">13</span>,14c13,14<br><span class="token operator">&lt;</span> <span class="token number">13</span>                             Venous Thromboembolism<br><span class="token operator">&lt;</span> <span class="token number">14</span>                             Chronic Kidney Disease<br>---<br><span class="token operator">></span> <span class="token number">13</span>                             Chronic Kidney Disease<br><span class="token operator">></span> <span class="token number">14</span>                             Venous Thromboembolism<br><span class="token number">16</span>,17c16,17<br><span class="token operator">&lt;</span> <span class="token number">16</span>                                            Obesity<br><span class="token operator">&lt;</span> <span class="token number">17</span>                                         Gallstones<br>---<br><span class="token operator">></span> <span class="token number">16</span>                                         Gallstones<br><span class="token operator">></span> <span class="token number">17</span>                                            Obesity<br><span class="token number">20</span>,23c20,23<br><span class="token operator">&lt;</span> <span class="token number">20</span>                                           Melanoma<br><span class="token operator">&lt;</span> <span class="token number">21</span>                                  Colorectal Cancer<br><span class="token operator">&lt;</span> <span class="token number">22</span>               Scleroderma <span class="token punctuation">(</span>Limited Cutaneous Type<span class="token punctuation">)</span><br><span class="token operator">&lt;</span> <span class="token number">23</span>                                Alzheimer<span class="token string">'s Disease<br>---<br>> 20                                  Colorectal Cancer<br>> 21                                           Melanoma<br>> 22                                Alzheimer'</span>s Disease<br><span class="token operator">></span> <span class="token number">23</span>               Scleroderma <span class="token punctuation">(</span>Limited Cutaneous Type<span class="token punctuation">)</span></code></pre>
 <p>The difference is due to distortion of small probabilities.</p>
 <h2 id="further-ideas">Further Ideas <a class="direct-link" href="#further-ideas">#</a></h2>
-<p>So far, I've only used the probability weighting functions from prospect<br>
-theory. I could also assign values to each disease:</p>
+<p>So far, I've only used the probability weighting functions from prospect theory. I could also assign values to each disease:</p>
 <ul>
 <li><em>Financial:</em> how much does this disease cost to treat on average?</li>
-<li><em>Reduced Life Expectancy:</em> how many years of potential life do these<br>
-diseases claim on average?</li>
-<li><em>Lifestyle:</em> how much impact would this have on my highly active lifestyle?<br>
-On others who might have to support me?</li>
+<li><em>Reduced Life Expectancy:</em> how many years of potential life do these diseases claim on average?</li>
+<li><em>Lifestyle:</em> how much impact would this have on my highly active lifestyle? On others who might have to support me?</li>
 </ul>
-<p>This is definitely morbid, but it's also potentially worthwhile. After all,<br>
-insurance companies make <em>very detailed estimates of our risk.</em> They will<br>
-certainly incorporate genetic data into their models as soon as it's legal to<br>
-do so. If we want to make more informed decisions in situations involving risk,<br>
-from medical insurance to lottery tickets, it helps to understand how we<br>
-value different outcomes.</p>
+<p>This is definitely morbid, but it's also potentially worthwhile. After all, insurance companies make <em>very detailed estimates of our risk.</em> They will certainly incorporate genetic data into their models as soon as it's legal to do so. If we want to make more informed decisions in situations involving risk, from medical insurance to lottery tickets, it helps to understand how we value different outcomes.</p>
 <h2 id="appendix%3A-how-to-use-the-23andme-api">Appendix: How To Use The 23andMe API <a class="direct-link" href="#appendix%3A-how-to-use-the-23andme-api">#</a></h2>
-<p>The 23andMe API is actually quite easy to use, and their <a href="https://api.23andme.com/docs/authentication/">documentation</a><br>
-is excellent. Nevertheless, I'll list the flow I went through to get my<br>
-genetic disease risk data. If you're unfamiliar with <a href="http://oauth.net/2/">OAuth 2.0</a>,<br>
-the Google API docs include <a href="https://developers.google.com/accounts/docs/OAuth2">this primer</a> complete with cute stick<br>
-figure diagrams.</p>
-<p>First, I log into the API console and create an app.<br>
-This gives me the <code>client_id</code> and <code>client_secret</code> parameters I need to<br>
-initiate the flow. Looking at the <a href="https://api.23andme.com/docs/reference/">23andMe API reference</a>, I see that I need<br>
-permissions under the <code>analyses</code> scope, so I request that by visiting</p>
-<pre><code>https://api.23andme.com/authorize/?redirect_uri=http://localhost:5000/receive_code/&amp;response_type=code&amp;client_id=&lt;client_id&gt;&amp;scope=analyses
-</code></pre>
+<p>The 23andMe API is actually quite easy to use, and their <a href="https://api.23andme.com/docs/authentication/">documentation</a> is excellent. Nevertheless, I'll list the flow I went through to get my genetic disease risk data. If you're unfamiliar with <a href="http://oauth.net/2/">OAuth 2.0</a>, the Google API docs include <a href="https://developers.google.com/accounts/docs/OAuth2">this primer</a> complete with cute stick figure diagrams.</p>
+<p>First, I log into the API console and create an app. This gives me the <code>client_id</code> and <code>client_secret</code> parameters I need to initiate the flow. Looking at the <a href="https://api.23andme.com/docs/reference/">23andMe API reference</a>, I see that I need permissions under the <code>analyses</code> scope, so I request that by visiting</p>
+<pre class="language-bash"><code class="language-bash">https://api.23andme.com/authorize/?redirect_uri<span class="token operator">=</span>http://localhost:5000/receive_code/<span class="token operator">&amp;</span><span class="token assign-left variable">response_type</span><span class="token operator">=</span>code<span class="token operator">&amp;</span><span class="token assign-left variable">client_id</span><span class="token operator">=</span><span class="token operator">&lt;</span>client_id<span class="token operator">>&amp;</span><span class="token assign-left variable">scope</span><span class="token operator">=</span>analyses</code></pre>
 <p>in the browser. I'm redirected to</p>
-<pre><code>http://localhost:5000/receive_code/?code=&lt;code&gt;
-</code></pre>
+<pre class="language-bash"><code class="language-bash">http://localhost:5000/receive_code/?code<span class="token operator">=</span><span class="token operator">&lt;</span>code<span class="token operator">></span></code></pre>
 <p>which gives me the auth code I need to request a token:</p>
-<pre><code>$ curl https://api.23andme.com/token/ \
-  -d client_id=&lt;client_id&gt; \
-  -d client_secret=&lt;client_secret&gt; \
-  -d code=&lt;code&gt; \
-  -d grant_type=authorization_code \
-  -d &quot;redirect_uri=http://localhost:5000/receive_code/&quot; \
-  -d scope=analyses &gt; token.json
-$ jsonpp token.json
-{
-  &quot;access_token&quot;: &quot;&lt;access_token&gt;&quot;
-  &quot;token_type&quot;: &quot;bearer&quot;,
-  &quot;expires_in&quot;: 86400,
-  &quot;refresh_token&quot;: &quot;&lt;refresh_token&gt;&quot;
-  &quot;scope&quot;: &quot;analyses&quot;
-}
-</code></pre>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> https://api.23andme.com/token/ <span class="token punctuation">\</span><br>  -d <span class="token assign-left variable">client_id</span><span class="token operator">=</span><span class="token operator">&lt;</span>client_id<span class="token operator">></span> <span class="token punctuation">\</span><br>  -d <span class="token assign-left variable">client_secret</span><span class="token operator">=</span><span class="token operator">&lt;</span>client_secret<span class="token operator">></span> <span class="token punctuation">\</span><br>  -d <span class="token assign-left variable">code</span><span class="token operator">=</span><span class="token operator">&lt;</span>code<span class="token operator">></span> <span class="token punctuation">\</span><br>  -d <span class="token assign-left variable">grant_type</span><span class="token operator">=</span>authorization_code <span class="token punctuation">\</span><br>  -d <span class="token string">"redirect_uri=http://localhost:5000/receive_code/"</span> <span class="token punctuation">\</span><br>  -d <span class="token assign-left variable">scope</span><span class="token operator">=</span>analyses <span class="token operator">></span> token.json<br>$ jsonpp token.json<br><span class="token punctuation">{</span><br>  <span class="token string">"access_token"</span><span class="token builtin class-name">:</span> <span class="token string">"&lt;access_token>"</span><br>  <span class="token string">"token_type"</span><span class="token builtin class-name">:</span> <span class="token string">"bearer"</span>,<br>  <span class="token string">"expires_in"</span><span class="token builtin class-name">:</span> <span class="token number">86400</span>,<br>  <span class="token string">"refresh_token"</span><span class="token builtin class-name">:</span> <span class="token string">"&lt;refresh_token>"</span><br>  <span class="token string">"scope"</span><span class="token builtin class-name">:</span> <span class="token string">"analyses"</span><br><span class="token punctuation">}</span></code></pre>
 <p>Finally, I use my shiny new <code>access_token</code> to get my genetic risk data:</p>
-<pre><code>$ curl https://api.23andme.com/1/risks/ \
-  -H &quot;Authorization: Bearer &lt;access_token&gt;&quot; &gt; risks.json
-$ jsonpp risks.json | head
-[
-  {
-    &quot;id&quot;: &quot;6d2de403675a0d07&quot;,
-    &quot;risks&quot;: [
-      {
-        &quot;description&quot;: &quot;Atrial Fibrillation&quot;,
-        &quot;risk&quot;: 0.3392,
-        &quot;population_risk&quot;: 0.2715,
-        &quot;report_id&quot;: &quot;atrialfib&quot;
-      },
-</code></pre>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> https://api.23andme.com/1/risks/ <span class="token punctuation">\</span><br>  -H <span class="token string">"Authorization: Bearer &lt;access_token>"</span> <span class="token operator">></span> risks.json<br>$ jsonpp risks.json <span class="token operator">|</span> <span class="token function">head</span><br><span class="token punctuation">[</span><br>  <span class="token punctuation">{</span><br>    <span class="token string">"id"</span><span class="token builtin class-name">:</span> <span class="token string">"6d2de403675a0d07"</span>,<br>    <span class="token string">"risks"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span><br>      <span class="token punctuation">{</span><br>        <span class="token string">"description"</span><span class="token builtin class-name">:</span> <span class="token string">"Atrial Fibrillation"</span>,<br>        <span class="token string">"risk"</span><span class="token builtin class-name">:</span> <span class="token number">0.3392</span>,<br>        <span class="token string">"population_risk"</span><span class="token builtin class-name">:</span> <span class="token number">0.2715</span>,<br>        <span class="token string">"report_id"</span><span class="token builtin class-name">:</span> <span class="token string">"atrialfib"</span><br>      <span class="token punctuation">}</span>,</code></pre>
 
 
 <hr>

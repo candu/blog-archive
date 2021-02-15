@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <body>
     <header>
@@ -124,8 +133,11 @@ $ [3, 8) $. Note also that the elements of <code>g1.all()</code> are of the form
 <code>{key: k, value: v}</code> where <code>v</code> is the number of elements <code>x</code> with<br>
 <code>3 &lt;= x[0] &amp;&amp; x[0] &lt; 8 &amp;&amp; x[1] == k</code>.</p>
 <h3 id="d3.js">d3.js <a class="direct-link" href="#d3.js">#</a></h3>
-<blockquote>
+<blockquote cite="https://d3js.org/">
+  <p>
 D3.js is a JavaScript library for manipulating documents based on data.
+</p>
+  <footer>&ndash; Mike Bostock, <cite><a href="https://d3js.org/">D3.js</a></footer>
 </blockquote>
 <p>Using HTML, SVG, CSS, and JavaScript, you can build some pretty stunning<br>
 visualizations.<br>
