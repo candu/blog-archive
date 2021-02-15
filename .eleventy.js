@@ -24,8 +24,16 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
   });
 
-  eleventyConfig.addPairedShortcode('blockquote', (content) => {
-    return `<blockquote>${content}</blockquote>`;
+  eleventyConfig.addPairedShortcode('blockquote', (content, ...args) => {
+    if (args.length === 0) {
+      return `<blockquote>${content}</blockquote>`;
+    }
+    const [author, href, article] = args;
+    return `<blockquote cite="${href}">
+  <p>${content}</p>
+  <footer>&ndash; ${author}, <cite><a href="${href}">${article}</a></footer>
+</blockquote>
+    `;
   });
   eleventyConfig.addPairedShortcode('pullquote', (content) => {
     return `<p>${content}</p>`;
@@ -76,6 +84,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("CNAME");
   eleventyConfig.addPassthroughCopy("img");
   eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("js");
 
   /* Markdown Overrides */
   let markdownLibrary = markdownIt({

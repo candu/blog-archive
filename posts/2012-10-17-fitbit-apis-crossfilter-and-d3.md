@@ -199,7 +199,7 @@ $ [3, 8) $. Note also that the elements of `g1.all()` are of the form
 
 ### d3.js
 
-{% blockquote "D3.js", "http://d3js.org/" %}
+{% blockquote "Mike Bostock", "https://d3js.org/", "D3.js" %}
 D3.js is a JavaScript library for manipulating documents based on data.
 {% endblockquote %}
 

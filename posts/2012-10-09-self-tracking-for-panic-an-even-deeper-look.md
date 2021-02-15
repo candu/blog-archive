@@ -15,7 +15,7 @@ Transform, and maximum entropy modelling.
 
 ## First, A Word About Tools
 
-{% blockquote "Abraham Maslow", "The Psychology of Science: A Reconnaissance" %}
+{% blockquote "Abraham Maslow", "https://www.worldcat.org/title/psychology-of-science-a-reconnaissance/oclc/248935", "The Psychology of Science: A Reconnaissance" %}
 I suppose it is tempting, if the only tool you have is a hammer, to treat
 everything as if it were a nail.
 {% endblockquote %}

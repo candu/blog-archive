@@ -33,7 +33,7 @@ developers. Even if you don't need to know how they work to use them, you need
 some knowledge of *what they do* and *where they are most appropriate*.
 Statistical tests in particular often have *strong preconditions* for use:
 
-{% blockquote "Wikipedia", "http://en.wikipedia.org/wiki/Student%27s_t-test", "Student's t-test" %}
+{% blockquote "Wikipedia", "https://en.wikipedia.org/wiki/Student%27s_t-test", "Student's t-test" %}
 Each of the two populations being compared should follow a normal distribution.
 {% endblockquote %}
 

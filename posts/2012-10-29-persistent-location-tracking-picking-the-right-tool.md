@@ -45,7 +45,7 @@ difficult to answer. The main [Quantified Self website](http://quantifiedself.co
 [Guide to Self-Tracking Tools](http://quantifiedself.com/guide/), but their implementation is subject to
 criticism:
 
-{% blockquote "Robert Wood Johnson Foundation", "http://www.rwjf.org/content/dam/farm/reports/program_results_reports/2012/rwjf400733" %}
+{% blockquote "Robert Wood Johnson Foundation", "https://www.rwjf.org/content/dam/farm/reports/program_results_reports/2012/rwjf400733", "A Digital Guide for Self-Tracking Goes Online" %}
 In a report to RWJF, Project Director Alexandra C. Carmichael noted that the guide was more a catalog of tools than a useful manual for people wanting to choose and use these tools.
 {% endblockquote %}
 

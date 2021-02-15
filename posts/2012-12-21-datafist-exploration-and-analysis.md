@@ -14,7 +14,7 @@ your data.
 
 ## First, A Quote
 
-{% blockquote "Direct Manipulation Interfaces", "http://cleo.ics.uci.edu/teaching/Winter10/231/readings/1-HutchinsHollanNorman-DirectManipulation-HCI.pdf" %}
+{% blockquote "Hutchins et al.", "https://www.researchgate.net/profile/James_Hollan/publication/250890525_Direct_Manipulation_Interfaces/links/540eda4b0cf2df04e757eb89/Direct-Manipulation-Interfaces.pdf", "Direct Manipulation Interfaces" %}
 Are we analyzing data? Then we should be manipulating the data themselves; or if we are designing an analysis of data, we should be manipulating the analytic structures themselves.
 {% endblockquote %}
 

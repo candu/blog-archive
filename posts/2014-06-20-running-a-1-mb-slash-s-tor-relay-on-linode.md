@@ -8,7 +8,7 @@ tags:
 layout: layouts/post.njk
 ---
 
-[Savage Internet](http://savageinter.net/) is proud to announce that we're now running a 1 MB/s [Tor](https://www.torproject.org/) exit relay.  How much is this costing us?  $10/month, thanks to [Linode's](https://www.linode.com/) excellent data transfer caps.  In this post, we'll explain how we set that up.
+[Savage Internet](https://savageinter.net/) is proud to announce that we're now running a 1 MB/s [Tor](https://www.torproject.org/) exit relay.  How much is this costing us?  $10/month, thanks to [Linode's](https://www.linode.com/) excellent data transfer caps.  In this post, we'll explain how we set that up.
 
 If you're not sure what Tor is, [read this article](https://www.eff.org/torchallenge/what-is-tor.html).
 
@@ -26,7 +26,7 @@ Go to [linode.com](https://www.linode.com/), sign up, and add a Linode 1GB insta
 
 ### Step 2: Install Tor
 
-There are some good instructions [here](http://www.darkcoding.net/society/running-a-tor-relay-node-server-on-ubuntu/), but they boil down to:
+There are some good instructions [here](https://www.darkcoding.net/society/running-a-tor-relay-node-server-on-ubuntu/), but they boil down to:
 
 ```bash
 $ gpg --keyserver keys.gnupg.net --recv 886DDD89
@@ -74,13 +74,13 @@ Tor is a service that helps you to protect your anonymity while using the Intern
 
 We compared several [virtual private server](https://en.wikipedia.org/wiki/Virtual_private_server) providers.  [Linode](https://www.linode.com/pricing) offers relatively high bandwidth caps: their $10/month plan, for instance, gives you 2TB/month outgoing with unlimited incoming, which is enough to sustain 700 KB/s *24/7*.  [Amazon EC2](https://aws.amazon.com/ec2/) doesn't even compare: bandwidth charges alone for that much traffic would be about $200/month.
 
-[Noisebridge](https://www.noisebridge.net/) runs [four Tor exit relays](https://globe.torproject.org/#/search/query=noiseexit) using [QuadraNet dedicated servers](http://www.quadranet.com/dedicated-servers/high-bandwidth/). Dedicated servers are more attractive once you ramp up capacity.  With QuadraNet, for instance, $700/month gets you 1Gbps unmetered, or 125 MB/s - Linode 64GB instances are comparable in cost, but those only get you 20TB/month, or 7MB/s. Since our goals are a relatively modest 1 MB/s, this would be overkill; for the same reason, we didn't look into colocation either.
+[Noisebridge](https://www.noisebridge.net/) runs [four Tor exit relays](https://globe.torproject.org/#/search/query=noiseexit) using QuadraNet dedicated servers. Dedicated servers are more attractive once you ramp up capacity.  With QuadraNet, for instance, $700/month gets you 1Gbps unmetered, or 125 MB/s - Linode 64GB instances are comparable in cost, but those only get you 20TB/month, or 7MB/s. Since our goals are a relatively modest 1 MB/s, this would be overkill; for the same reason, we didn't look into colocation either.
 
 ### Why block BitTorrent?  I thought this was about freedom!
 
 From Linode's Terms of Service:
 
-{% blockquote "Linode Terms of Service", "https://www.linode.com/tos" %}
+{% blockquote "Linode", "https://www.linode.com/tos", "Linode Terms of Service" %}
 Linode does not prohibit the use of distributed, peer to peer network services such as Tor, nor does Linode routinely monitor the network communications of customer Linodes as a normal business practice. However, customers are responsible for the contents of network traffic exiting their Linode. Any usage that prompts the receipt of abuse complaints pertaining to violation of United States and/or international copyright law must be promptly discontinued to avoid service cancellation for violation of these terms.
 {% endblockquote %}
 

@@ -220,8 +220,14 @@ a[href].direct-link:focus:visited,
 blockquote {
   background-color: #f7f7f7;
   border-left: 2px solid var(--gray);
+  font-size: 1.125rem;
+  line-height: 1.6;
   margin: 0.5rem 1rem;
   padding: 0.5rem;
+}
+blockquote > footer {
+  font-size: 1rem;
+  margin-left: 1rem;
 }
 .tmpl-post a:not(.direct-link):hover {
   background-color: var(--lightblue);

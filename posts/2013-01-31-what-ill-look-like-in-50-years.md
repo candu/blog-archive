@@ -96,7 +96,7 @@ For comparison, here's my father in his late 50s, looking quite a bit happier:
 
 ## Why Were Those So Different?
 
-{% blockquote "The Amazing Aging Machine", "http://ontariosciencecentre.ca/aging/" %}
+{% blockquote "Ontario Science Centre", "https://ontariosciencecentre.ca/aging/", "The Amazing Aging Machine" %}
 ...the machine uses state-of-the-art aging software developed in partnership with Aprilage Development Inc. of Toronto to add decades to the faces of 8-12 year olds.
 {% endblockquote %}
 

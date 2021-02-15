@@ -346,7 +346,7 @@ var force = d3.layout.force()
 
 ### Tick Handler
 
-{% blockquote "Force Layout", "https://github.com/mbostock/d3/wiki/Force-Layout#wiki-tick" %}
+{% blockquote "Mike Bostock", "https://github.com/mbostock/d3/wiki/Force-Layout#wiki-tick", "Force Layout" %}
 `force.tick()`: Runs the force layout simulation one step.
 {% endblockquote %}
 
@@ -435,7 +435,7 @@ force.on('tick', function(e) {
 What's `e.alpha`? This is described cryptically in the
 [d3.js documentation](https://github.com/mbostock/d3/wiki/Force-Layout#wiki-start):
 
-{% blockquote "Force Layout", "https://github.com/mbostock/d3/wiki/Force-Layout#wiki-start" %}
+{% blockquote "Mike Bostock", "https://github.com/mbostock/d3/wiki/Force-Layout#wiki-start", "Force Layout" %}
 Internally, the layout uses a cooling parameter alpha which controls the layout temperature: as the physical simulation converges on a stable layout, the temperature drops, causing nodes to move more slowly.
 {% endblockquote %}
 
