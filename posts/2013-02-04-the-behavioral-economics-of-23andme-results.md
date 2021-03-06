@@ -1,7 +1,7 @@
 ---
 title: "The Behavioral Economics of 23AndMe Results"
 date: 2013-02-04
-categories:
+tags:
   - Technical
   - Genetics
   - Behavioral Economics

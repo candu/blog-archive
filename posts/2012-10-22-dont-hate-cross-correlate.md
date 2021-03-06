@@ -1,18 +1,14 @@
 ---
 title: "Don't Hate, Cross-Correlate"
 date: 2012-10-22
-categories:
+tags:
   - Algorithms
   - Technical
   - Visualization
 layout: layouts/post.njk
 ---
 
-In this post, I discuss cross-correlation. Although commonly used in signal
-processing, cross-correlation can be useful in a Quantified Self context.
-I'll present a bit of the mathematics behind cross-correlation, demonstrate
-a quick example, and briefly explain where you might use this in analyzing
-your personal data.
+In this post, I discuss cross-correlation. Although commonly used in signal processing, cross-correlation can be useful in a Quantified Self context. I'll present a bit of the mathematics behind cross-correlation, demonstrate a quick example, and briefly explain where you might use this in analyzing your personal data.
 
 <!-- more -->
 
@@ -188,12 +184,7 @@ In general, *signal processing* techniques can be highly useful in examining tim
 
 This was a slight diversion from my plan to talk about upcoming experiments, which I'll return to in my next few posts. If you just can't wait, here's a *quick summary:*
 
-- **Persistent location tracking:** by *constantly tracking my location*, I'll
-  have an additional dataset to correlate against.
-- **Diet:** by *taking meal photos*, *tagging foods*, and *measuring
-  stress levels after meals*, I'll get a better idea of how different
-  foods affect me.
-- **Finances:** by *tracking where Valkyrie and I spend our money*, we'll
-  hopefully be able to better control our discretionary spending.
-- **Loss Aversion:** by *experimenting with tracking methods*, I'll see if this
-  is something that can be meaningfully tracked over time.
+- **Persistent location tracking:** by *constantly tracking my location*, I'll have an additional dataset to correlate against.
+- **Diet:** by *taking meal photos*, *tagging foods*, and *measuring stress levels after meals*, I'll get a better idea of how different foods affect me.
+- **Finances:** by *tracking where Valkyrie and I spend our money*, we'll hopefully be able to better control our discretionary spending.
+- **Loss Aversion:** by *experimenting with tracking methods*, I'll see if this is something that can be meaningfully tracked over time.

@@ -1,7 +1,7 @@
 ---
 title: "Fitbit: APIs, crossfilter, and d3.js"
 date: 2012-10-17
-categories:
+tags:
   - Panic
   - Technical
   - Visualization

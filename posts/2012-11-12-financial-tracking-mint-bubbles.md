@@ -1,7 +1,7 @@
 ---
 title: "Financial Tracking: Mint Bubbles"
 date: 2012-11-12
-categories:
+tags:
   - Financial
   - Technical
   - Visualization
