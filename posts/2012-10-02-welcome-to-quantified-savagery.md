@@ -51,15 +51,12 @@ self knowledge through numbers
 This is a good first-level approximation: you *gather* your data, *analyze* it,
 and *interpret* the analysis to become more *self-aware*.
 
-{% pullquote %}
 But why is this suddenly important? After all, journal-keeping has been around
-roughly as long as written languages. The answer lies in *technology*.
-{" For the first time in history, over half the world's population owns
-sensor-packed networked computing devices. "} We refer to these
+roughly as long as written languages. The answer lies in *technology*. For the first time in history, over half the world's population owns
+sensor-packed networked computing devices. We refer to these
 devices as mobile phones only by historical accident. In fact, they're really
 powerful tools for speeding up this process of gaining
 *self knowledge through numbers*.
-{% endpullquote %}
 
 As I said before, though, this is only a first-level approximation. There are
 two main ways in which Quantified Self can achieve greater awesomeness:

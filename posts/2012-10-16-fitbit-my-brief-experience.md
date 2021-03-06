@@ -34,9 +34,7 @@ My initial impression was ecstatic. Fitbit didn't look like your average pedomet
 <img src="https://lh5.googleusercontent.com/-eLa1uqTeKRg/UH4U5G5GSNI/AAAAAAAAAF0/RiNA89GciGQ/s288/fitbit.jpg" />
 <img src="https://lh5.googleusercontent.com/-eRCIrQhA5Kk/UH4U1SaRsKI/AAAAAAAAAE0/4y8n3UjOl-c/s288/janky-pedometer.jpg" />
 
-{% pullquote %}
-It was *small, sleek, easily concealed.* {" I felt like I'd stumbled upon the access key to some secret cult of digerati hipster fitness fanatics. "} I could flash my Fitbit, give a knowing nod - "yes, I too take an informed interest in my personal health" - and be accepted into the ranks.
-{% endpullquote %}
+It was *small, sleek, easily concealed.* I felt like I'd stumbled upon the access key to some secret cult of digerati hipster fitness fanatics. I could flash my Fitbit, give a knowing nod - "yes, I too take an informed interest in my personal health" - and be accepted into the ranks.
 
 *Wireless syncing* and *long battery life* sweetened the deal. This was a vast step up from my pen-and-paper recovery journal. I was doing *serious* self-tracking with *serious* devices now.
 
@@ -108,12 +106,10 @@ The only way out is to *give users control.* Let them tinker, mashup, share, and
 
 ### Who Owns Self-Tracking Data?
 
-{% pullquote %}
 Looking back, one of my largest complaints was about *closed-ness.* Part
 of the Grand Promise of Quantified Self is *control over your data and how you
-use it.* We're still a long way from that Grand Promise. {" We're in the Internet
-Middle Ages, an era of data fiefdoms. "}
-{% endpullquote %}
+use it.* We're still a long way from that Grand Promise. We're in the Internet
+Middle Ages, an era of data fiefdoms.
 
 The analogy is apt. Much as the old fiefdoms laid claim to your land and labor, these fiefdoms *use your data and your data entry labor to enrich themselves.* Much as the old fiefdoms provided vital services in exchange for this taxation, you receive the *benefit of services like search and social networking.* Much as the old fiefdoms fought each other relentlessly for economic gain, these fiefdoms *wage war over users and intellectual property.
 

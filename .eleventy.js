@@ -35,9 +35,6 @@ module.exports = function(eleventyConfig) {
 </blockquote>
     `;
   });
-  eleventyConfig.addPairedShortcode('pullquote', (content) => {
-    return `<p>${content}</p>`;
-  });
 
   // Get the first `n` elements of a collection.
   eleventyConfig.addFilter("head", (array, n) => {
