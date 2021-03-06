@@ -23,9 +23,11 @@ Why did I decide to do this? One of the takeaways from my [self-tracking for pan
 ..."low-risk" drinking [is defined] as no more than 14 drinks a week for men and 7 drinks a week for women with no more than 4 drinks on any given day for men and 3 drinks a day for women.
 {% endblockquote %}
 
-[This online questionnaire](http://www.alcoholscreening.org/Home.aspx) put my drinking level in context:
+[This online questionnaire](https://alcoholscreening.org/page-q1-a/) put my drinking level in context:
 
-<img src="https://lh5.googleusercontent.com/-ieizYGUAwJo/UKQNQsFeBOI/AAAAAAAAANY/jZ1_09uBSqk/s800/percentile-drinking.jpg" />
+{% blockquote "Center on Addiction", "https://alcoholscreening.org/page-q1-a/", "Online Quiz" %}
+Many of us think our drinking is like everyone else's.  In fact, less than 10% of the general adult American population and 16% of males drink more drinks each week than you told us you drink.
+{% endblockquote %}
 
 *How much does the average American drink?* Using the data from [this Wikipedia article](http://en.wikipedia.org/wiki/List_of_countries_by_alcohol_consumption) and some simple calculations:
 
@@ -87,7 +89,7 @@ By contrast, the elimination strategy required only one decision for each instan
 
 In [Charles Duhigg's](http://charlesduhigg.com/) conception of the [habit loop](http://charlesduhigg.com/how-habits-work/), we can't truly break habits; we can only *swap in alternate routines* that connect the old cues and rewards.
 
-This reminded me of a term my friend [Travis Brooks](http://www.linkedin.com/pub/travis-brooks/4/668/b44) used: ENAB, short for *Equally-attractive Non-Alcoholic Beverage.* There are delicious [flavor syrups](http://shop.torani.com/Bacon-Flavored-Syrup/p/TOR-431248&c=Torani@Syrups?utm_source=google&utm_medium=cpc&adtype=pla&kw=&gclid=CNL6sv21z7MCFQuCQgod-RcAgA) and [ginger beers](http://www.bundaberg.com/info/product_range/ginger_beer/). [Spa water](http://www.myrecipes.com/recipe/herb-infused-spa-water-10000000682668/) and [carbonation systems](http://store.primowater.com/Carbonators.aspx) lend new life to boring [dihydrogen monoxide](http://www.dhmo.org/facts.html). By making non-alcoholic beverages *as exciting as microbrews and Sonoma wines*, I tapped into my desire for exploration: here was a whole new range of beverages to discover!
+This reminded me of a term my friend [Travis Brooks](http://www.linkedin.com/pub/travis-brooks/4/668/b44) used: EANAB, short for *Equally-attractive Non-Alcoholic Beverage.* There are delicious [flavor syrups](http://shop.torani.com/Bacon-Flavored-Syrup/p/TOR-431248&c=Torani@Syrups?utm_source=google&utm_medium=cpc&adtype=pla&kw=&gclid=CNL6sv21z7MCFQuCQgod-RcAgA) and [ginger beers](http://www.bundaberg.com/info/product_range/ginger_beer/). [Spa water](http://www.myrecipes.com/recipe/herb-infused-spa-water-10000000682668/) and [carbonation systems](http://store.primowater.com/Carbonators.aspx) lend new life to boring [dihydrogen monoxide](http://www.dhmo.org/facts.html). By making non-alcoholic beverages *as exciting as microbrews and Sonoma wines*, I tapped into my desire for exploration: here was a whole new range of beverages to discover!
 
 ## Openness And Social Myths
 
