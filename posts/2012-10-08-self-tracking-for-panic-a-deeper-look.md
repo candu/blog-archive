@@ -7,64 +7,40 @@ tags:
 layout: layouts/post.njk
 ---
 
-In this post, I perform initial exploratory analysis on my panic recovery
-journal data using basic UNIX/bash commands.
+In this post, I perform initial exploratory analysis on my panic recovery journal data using basic UNIX/bash commands.
 
 <!-- more -->
 
 ## UNIX? bash? You're not serious, right?
 
-Most of the data-centric Quantified Self talks I've seen focus on more
-complicated methods, including:
+Most of the data-centric Quantified Self talks I've seen focus on more complicated methods, including:
 
 - [linear regression](http://en.wikipedia.org/wiki/Linear_regression), which *identifies gradual trends*;
 - [FFT](http://en.wikipedia.org/wiki/Fast_Fourier_transform), which *identifies periodic effects*;
 - [Pearson's r](http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient), which *measures correlation between datasets*;
 - [t-test](http://en.wikipedia.org/wiki/Student's_t-test), which *measures difference between datasets*.
 
-These are extremely powerful tools to have at your disposal. Better yet,
-many languages have community-contributed libraries that provide these
-tools out-of-the-box. For instance, Python's [scipy](LINK)
-offers [linregress](http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html)
-for performing linear regression.
+These are extremely powerful tools to have at your disposal. Better yet, many languages have community-contributed libraries that provide these tools out-of-the-box. For instance, Python's `scipy` offers [linregress](http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html) for performing linear regression.
 
-That said, these tools rely on mathematics that is *opaque* to many software
-developers. Even if you don't need to know how they work to use them, you need
-some knowledge of *what they do* and *where they are most appropriate*.
-Statistical tests in particular often have *strong preconditions* for use:
+That said, these tools rely on mathematics that is *opaque* to many software developers. Even if you don't need to know how they work to use them, you need some knowledge of *what they do* and *where they are most appropriate*. Statistical tests in particular often have *strong preconditions* for use:
 
 {% blockquote "Wikipedia", "https://en.wikipedia.org/wiki/Student%27s_t-test", "Student's t-test" %}
 Each of the two populations being compared should follow a normal distribution.
 {% endblockquote %}
 
-Even if you pick the right tool, there's still *fear associated with losing
-control*. These tools are not hammers and screwdrivers but magic
-wands, and [we are terrible magicians](http://www.flickr.com/photos/wishingline/7162517642/).
+Even if you pick the right tool, there's still *fear associated with losing control*. These tools are not hammers and screwdrivers but magic wands, and [we are terrible magicians](http://www.flickr.com/photos/wishingline/7162517642/).
 
 ### A Word On Exploratory Analysis
 
-I mentioned that this post would demonstrate *exploratory analysis*. This is
-a mode of analysis where you explore your data, play around with it a bit,
-grab some low-hanging analytical fruit. You don't necessarily need higher
-mathematics. Regular counts and averages will do. You're not looking for
-ironclad proof, but rather for *suggestions*.
+I mentioned that this post would demonstrate *exploratory analysis*. This is a mode of analysis where you explore your data, play around with it a bit, grab some low-hanging analytical fruit. You don't necessarily need higher mathematics. Regular counts and averages will do. You're not looking for ironclad proof, but rather for *suggestions*.
 
 {% blockquote %}
 What does this data suggest?
 {% endblockquote %}
 
-This is an important question. Put this way, *there is no "right" or "wrong"
-way to analyze your data*. UNIX tools fit in nicely here, because you can
-piece them together and pretty quickly get some useful insights. Better yet,
-since you understand what you just did, you can explain it to someone else.
-Analysis becomes a *demystified* and *shareable* process.
+This is an important question. Put this way, *there is no "right" or "wrong" way to analyze your data*. UNIX tools fit in nicely here, because you can piece them together and pretty quickly get some useful insights. Better yet, since you understand what you just did, you can explain it to someone else. Analysis becomes a *demystified* and *shareable* process.
 
-Exploratory analysis is also a *great entry point* to deeper and more directed
-analysis. As you work with the data, you ask more complicated questions. Eventually these
-questions exceed the sophistication of your tools, so you look for better
-tools. You might not deeply understand the better tools, but at least you've
-worked with the data a bit. You can *perform basic sanity checks* when these
-better tools turn up results you don't expect.
+Exploratory analysis is also a *great entry point* to deeper and more directed analysis. As you work with the data, you ask more complicated questions. Eventually these questions exceed the sophistication of your tools, so you look for better tools. You might not deeply understand the better tools, but at least you've worked with the data a bit. You can *perform basic sanity checks* when these better tools turn up results you don't expect.
 
 ## The Data
 
@@ -74,7 +50,7 @@ I took my paper recovery journal logs:
 
 and manually converted them to handy CSV files:
 
-```
+```bash
 date,relaxation,exercise,diet,supplements
 ...
 2012-03-12,0,0,1,1
@@ -87,20 +63,16 @@ date,relaxation,exercise,diet,supplements
 ...
 ```
 
-Where did all those different treatments go? I didn't end up using most of
-them. Making nine parallel habit changes is difficult, so I rapidly converged
-on a subset of four:
+Where did all those different treatments go? I didn't end up using most of them. Making nine parallel habit changes is difficult, so I rapidly converged on a subset of four:
 
 - relaxation breathing;
 - daily exercise;
 - dietary modifications; and
 - vitamin supplements.
 
-Why manual input? There wasn't enough data to make
-[OCR](http://code.google.com/p/tesseract-ocr/)
-worthwhile:
+Why manual input? There wasn't enough data to make [OCR](http://code.google.com/p/tesseract-ocr/) worthwhile:
 
-```
+```bash
 $ cd recovery-journal
 $ wc -l * | grep total
       41 exercise-record
@@ -110,41 +82,39 @@ $ wc -l * | grep total
      141 total
 ```
 
-You can view and download the raw data files
-[here](https://github.com/candu/quantified-savagery-files/tree/master/Panic/recovery-journal).
+You can view and download the raw data files [here](https://github.com/candu/quantified-savagery-files/tree/master/Panic/recovery-journal).
 
 ## Common Operations
 
-These operations appear several times in the UNIX one-liners below, so let's go over
-them quickly.
+These operations appear several times in the UNIX one-liners below, so let's go over them quickly.
 
 To lop off the CSV column name header:
 
-```
+```bash
 tail -n+2
 ```
 
 To extract field <span markdown="0">$ n $</span> from a CSV file:
 
-```
+```bash
 cut -d',' -f$n
 ```
 
 To tabulate counts in descending order:
 
-```
+```bash
 sort | uniq -c | sort -rn
 ```
 
 To sum a series of numbers:
 
-```
+```bash
 awk '{sum+=$1} END {print sum}'
 ```
 
 To get the day before `$ds`:
 
-```
+```bash
 ts=$(date -j -f "%Y-%m-%d" $ds "+%s"); tsprev=$(echo "$ts - 86400" | bc); dsprev=$(date -j -f "%s" $tsprev "+%Y-%m-%d");
 ```
 
@@ -152,7 +122,7 @@ ts=$(date -j -f "%Y-%m-%d" $ds "+%s"); tsprev=$(echo "$ts - 86400" | bc); dsprev
 
 Let's start by looking at my weekly practice record:
 
-```
+```bash
 $ for a in [01] 1; do for b in [01] 1; do for c in [01] 1; do for d in [01] 1; do count=$(grep -E ",$a,$b,$c,$d$" weekly-practice-record | wc -l); echo $a $b $c $d $count; done; done; done; done | tr ' ' '\t'
 [01]    [01]    [01]    [01]    45
 [01]    [01]    [01]    1       43
@@ -172,16 +142,14 @@ $ for a in [01] 1; do for b in [01] 1; do for c in [01] 1; do for d in [01] 1; d
 1       1       1       1       14
 ```
 
-I tracked myself for 45 days. During that time, I followed all four treatments
-on 14 days. In order from most to least regular:
+I tracked myself for 45 days. During that time, I followed all four treatments on 14 days. In order from most to least regular:
 
 - vitamin supplements (43 days);
 - relaxation breathing (36 days);
 - daily exercise (32 days);
 - dietary modifications (22 days).
 
-I followed both the exercise and diet treatments for only 16 of 45 days! Right away, I
-have a question for further inquiry:
+I followed both the exercise and diet treatments for only 16 of 45 days! Right away, I have a question for further inquiry:
 
 {% blockquote %}
 What was so hard about those two treatments?
@@ -189,7 +157,7 @@ What was so hard about those two treatments?
 
 ### Exercise
 
-```
+```bash
 $ tail -n+2 exercise-record | cut -d',' -f2 | sort | uniq -c | sort -rn | head -5
   11 16:00
    8 20:00
@@ -200,27 +168,25 @@ $ tail -n+2 exercise-record | cut -d',' -f2 | sort | uniq -c | sort -rn | head -
 
 My most common exercise times were 4pm and 8pm. What was I doing at those times?
 
-```
+```bash
 $ grep 16:00 exercise-record | cut -d',' -f3 | sort | uniq -c | sort -rn | head -1
    9 conditioning
 $ grep 20:00 exercise-record | cut -d',' -f3 | sort | uniq -c | sort -rn | head -1
    6 soccer
 ```
 
-Aha! 4pm was my scheduled gym time at work, and 8pm was when I went for
-[weekly pickup soccer](http://soccerfours.com/). Both were regularly scheduled activities.
+Aha! 4pm was my scheduled gym time at work, and 8pm was when I went for [weekly pickup soccer](http://soccerfours.com/). Both were regularly scheduled activities.
 
-```
+```bash
 $ grep -E "(00|01|02|03|04|05|06|07|08|09|10|11):00" exercise-record | wc -l
        7
 $ grep -E "(12|13|14|15|16|17|18|19|20|21|22|23):00" exercise-record | wc -l
        33
 ```
 
-I rarely exercise in the morning, which might be okay: physical performance is
-[higher in the afternoon](http://online.wsj.com/article/SB10000872396390444180004578018294057070544.html).
+I rarely exercise in the morning, which might be okay: physical performance is [higher in the afternoon](http://online.wsj.com/article/SB10000872396390444180004578018294057070544.html).
 
-```
+```bash
 $ tail -n+2 exercise-record | cut -d',' -f3 | sort | uniq -c | sort -rn
   15 conditioning
    7 soccer
@@ -232,10 +198,9 @@ $ tail -n+2 exercise-record | cut -d',' -f3 | sort | uniq -c | sort -rn
    1 longboarding
 ```
 
-It's not surprising to see gym conditioning sets and soccer as my top
-activities, but walking and cycling aren't far behind.
+It's not surprising to see gym conditioning sets and soccer as my top activities, but walking and cycling aren't far behind.
 
-```
+```bash
 $ tail -n+2 exercise-record | cut -d',' -f4 | sort | uniq -c | sort -rn
   20 30
   11 60
@@ -245,10 +210,9 @@ $ tail -n+2 exercise-record | cut -d',' -f4 | sort | uniq -c | sort -rn
    1 120
 ```
 
-I most commonly exercised for 30-60 minutes, with infrequent longer blocks
-of activity. What was I doing in those longer blocks?
+I most commonly exercised for 30-60 minutes, with infrequent longer blocks of activity. What was I doing in those longer blocks?
 
-```
+```bash
 $ grep -E ",(120|240)$" exercise-record
 2012-01-27,20:00,dancing,120
 2012-01-29,10:00,walking,240
@@ -257,7 +221,7 @@ $ grep -E ",(120|240)$" exercise-record
 
 When else was I dancing?
 
-```
+```bash
 $ grep dancing exercise-record
 2012-01-27,20:00,dancing,120
 2012-02-03,21:00,dancing,30
@@ -272,7 +236,7 @@ Having fun is great for my health!
 
 ### Diet
 
-```
+```bash
 $ for i in $(seq 2 5); do count=$(cut -d',' -f$i food-diary | awk '{ sum+=$1} END {print sum}'); name=$(head -1 food-diary | cut -d',' -f$i); printf "%12s\t%s\n" $name $count; done
     caffeine    6
       sweets    48
@@ -280,12 +244,9 @@ $ for i in $(seq 2 5); do count=$(cut -d',' -f$i food-diary | awk '{ sum+=$1} EN
  supplements    42
 ```
 
-I nearly eliminated caffeine during this period! By the time I started keeping the log,
-I'd already started to reduce my consumption. On average, I had just over one sweet per day.
-More troubling is alcohol, with an average of 3.1 drinks/day. Let's take a closer look
-at my drinking patterns.
+I nearly eliminated caffeine during this period! By the time I started keeping the log, I'd already started to reduce my consumption. On average, I had just over one sweet per day. More troubling is alcohol, with an average of 3.1 drinks/day. Let's take a closer look at my drinking patterns.
 
-```
+```bash
 $ tail -n+2 food-diary | cut -d',' -f4 | sort | uniq -c | sort -rn
   12 4
    9 2
@@ -298,11 +259,9 @@ $ tail -n+2 food-diary | cut -d',' -f4 | sort | uniq -c | sort -rn
    2
 ```
 
-My most common daily drinking amounts were 1, 2, and 4 drinks per day. It was
-very rare for me to go a day without drinking any alcohol. More alarmingly,
-[binge drinking](http://en.wikipedia.org/wiki/Binge_drinking#Definition) counts for *over 40% of my alcohol consumption!*
+My most common daily drinking amounts were 1, 2, and 4 drinks per day. It was very rare for me to go a day without drinking any alcohol. More alarmingly, [binge drinking](http://en.wikipedia.org/wiki/Binge_drinking#Definition) counts for *over 40% of my alcohol consumption!*
 
-```
+```bash
 $ tail -n+2 food-diary | while read line; do weekday=$(date -j -f "%Y-%m-%d" $(echo $line | cut -d',' -f1) "+%a"); alcohol=$(echo $line | cut -d',' -f4); echo $weekday $alcohol; done > drinking.log
 $ for weekday in Mon Tue Wed Thu Fri Sat Sun; do count=$(grep $weekday drinking.log | cut -d' ' -f2 | awk '{ sum+=$1} END {print sum}'); echo $count $weekday; done | sort -rn
 28 Wed
@@ -314,11 +273,9 @@ $ for weekday in Mon Tue Wed Thu Fri Sat Sun; do count=$(grep $weekday drinking.
 8 Thu
 ```
 
-I drank most on Wednesdays and Saturdays; Mondays were also major drinking days,
-which is surprising! By contrast, I drank much less than average on Thursdays.
-When I narrow in on binge drinking, the pattern shifts slightly:
+I drank most on Wednesdays and Saturdays; Mondays were also major drinking days, which is surprising! By contrast, I drank much less than average on Thursdays. When I narrow in on binge drinking, the pattern shifts slightly:
 
-```
+```bash
 $ grep -E "(5|6|7|8)$" drinking.log | cut -d' ' -f1 | sort | uniq -c | sort -rn
    4 Sat
    3 Sun
@@ -326,10 +283,9 @@ $ grep -E "(5|6|7|8)$" drinking.log | cut -d' ' -f1 | sort | uniq -c | sort -rn
    1 Fri
 ```
 
-Wednesday is still an offender, but the weekends are clear culprits. *80% of my
-binge drinking days fell on weekends.*
+Wednesday is still an offender, but the weekends are clear culprits. *80% of my binge drinking days fell on weekends.*
 
-```
+```bash
 $ tail -n+2 food-diary | cut -d',' -f1,4 | grep -E "(5|6|7|8)$" | while read line; do ds=$(echo $line | cut -d',' -f1); ts=$(date -j -f "%Y-%m-%d" $ds "+%s"); ts_next=$(echo "$ts + 86400" | bc); ds_next=$(date -j -f "%s" $ts_next "+%Y-%m-%d"); echo $line $(grep $ds_next food-diary | cut -d',' -f1,4); done
 2012-01-21,5 2012-01-22,5
 2012-01-22,5 2012-01-23,1
@@ -345,7 +301,7 @@ $ tail -n+2 food-diary | cut -d',' -f1,4 | grep -E "(5|6|7|8)$" | while read lin
 
 Among days where I had 5 or more drinks, I had an average of 2.7 drinks the next day.
 
-```
+```bash
 $ tail -n+2 food-diary | cut -d',' -f1,4 | grep -E "(0|1)$" | while read line; do ds=$(echo $line | cut -d',' -f1); ts=$(date -j -f "%Y-%m-%d" $ds "+%s"); tsprev=$(echo "$ts - 86400" | bc); dsprev=$(date -j -f "%s" $tsprev "+%Y-%m-%d"); echo $(grep $dsprev food-diary | cut -d',' -f1,4) $line; done
 2012-01-22,5 2012-01-23,1
 2012-01-23,1 2012-01-24,1
@@ -358,9 +314,7 @@ $ tail -n+2 food-diary | cut -d',' -f1,4 | grep -E "(0|1)$" | while read line; d
 2012-03-15,0 2012-03-16,1
 ```
 
-Among days where I had fewer than 2 drinks, I had consumed an average of 3.6 drinks the
-previous day. This suggests a *see-saw pattern*: I would drink too much one day,
-back off the next, and repeat.
+Among days where I had fewer than 2 drinks, I had consumed an average of 3.6 drinks the previous day. This suggests a *see-saw pattern*: I would drink too much one day, back off the next, and repeat.
 
 ### Panic
 
@@ -370,7 +324,7 @@ All of this skirts the real question:
 What caused me to have panic attacks?
 {% endblockquote %}
 
-```
+```bash
 $ for i in $(seq 2 4); do head -1 food-diary | cut -d',' -f$i; tail -n+2 panic-log | cut -d',' -f1 | while read ds; do ts=$(date -j -f "%Y-%m-%d" $ds "+%s"); tsprev=$(echo "$ts - 86400" | bc); dsprev=$(date -j -f "%s" $tsprev "+%Y-%m-%d"); echo $(grep $dsprev food-diary | cut -d',' -f1,2) $(grep $ds food-diary | cut -d',' -f1,$i) $ds; done; done
 caffeine
 2012-01-28,0 2012-01-29,0 2012-01-29
@@ -398,21 +352,14 @@ alcohol
 2012-03-12,0 2012-03-13,2 2012-03-13
 ```
 
-I had no data for `2012-02-28`. Other than that, on days where I had reported
-panic attacks, my *current- and previous-day consumption patterns* were:
+I had no data for `2012-02-28`. Other than that, on days where I had reported panic attacks, my *current- and previous-day consumption patterns* were:
 
 - **alcohol**: 3.7 drinks that day, 3.8 the previous day (overall average is 3.1);
 - **sweets**: 1.5 sweets that day, 1.0 the previous day (overall average is 1.0);
 - **caffeine**: 0.3 caffeinated beverages that day, 0.0 the previous day (overall average is 0.1).
 
-This suggests that *reducing alcohol and sweets consumption does help*. The data
-is less clear on caffeine; as previously mentioned, I had mostly cut out
-caffeine by the time I started tracking.
+This suggests that *reducing alcohol and sweets consumption does help*. The data is less clear on caffeine; as previously mentioned, I had mostly cut out caffeine by the time I started tracking.
 
 ## Up Next
 
-In the next post, I'll run some of the statistical tests and transformations
-mentioned previously on this same data. I'll also compare this dataset with
-another dataset gathered through
-[qs-counters](https://github.com/candu/qs-counters), a simple lightweight tracking utility I built to
-reduce friction in the recording process.
+In the next post, I'll run some of the statistical tests and transformations mentioned previously on this same data. I'll also compare this dataset with another dataset gathered through [qs-counters](https://github.com/candu/qs-counters), a simple lightweight tracking utility I built to reduce friction in the recording process.
