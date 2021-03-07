@@ -106,17 +106,13 @@ The only way out is to *give users control.* Let them tinker, mashup, share, and
 
 ### Who Owns Self-Tracking Data?
 
-Looking back, one of my largest complaints was about *closed-ness.* Part
-of the Grand Promise of Quantified Self is *control over your data and how you
-use it.* We're still a long way from that Grand Promise. We're in the Internet
-Middle Ages, an era of data fiefdoms.
+Looking back, one of my largest complaints was about *closed-ness.* Part of the Grand Promise of Quantified Self is *control over your data and how you use it.* We're still a long way from that Grand Promise. We're in the Internet Middle Ages, an era of data fiefdoms.
 
-The analogy is apt. Much as the old fiefdoms laid claim to your land and labor, these fiefdoms *use your data and your data entry labor to enrich themselves.* Much as the old fiefdoms provided vital services in exchange for this taxation, you receive the *benefit of services like search and social networking.* Much as the old fiefdoms fought each other relentlessly for economic gain, these fiefdoms *wage war over users and intellectual property.
+The analogy is apt. Much as the old fiefdoms laid claim to your land and labor, these fiefdoms *use your data and your data entry labor to enrich themselves.* Much as the old fiefdoms provided vital services in exchange for this taxation, you receive the *benefit of services like search and social networking.* Much as the old fiefdoms fought each other relentlessly for economic gain, these fiefdoms wage war over users and intellectual property.
 
 This is not necessarily bad. As a result of these data fiefdoms, we have many services that might not otherwise exist. By selling your self-tracking data back to you, Fitbit is *able to fund the provision of tools for managing and improving your fitness.* Those tools are generally of reasonable quality, and are likely to improve over time.
 
-However, if you want to make your own tools, *you're largely out of luck.* You can pay for different tools via Fitbit Premium, but there's no
-guarantee that those tools will be better for *you.* Your only other recourse is to navigate the API documentation and contact the right people for better data access. Even with that access, you still only have minute-by-minute data. You have no idea how Fitbit maps between raw accelerometer readings and steps, and definitely no opportunity to improve that mapping. To take my example, *I can't tweak the step detection algorithms to measure cycling accurately.*
+However, if you want to make your own tools, *you're largely out of luck.* You can pay for different tools via Fitbit Premium, but there's no guarantee that those tools will be better for *you.* Your only other recourse is to navigate the API documentation and contact the right people for better data access. Even with that access, you still only have minute-by-minute data. You have no idea how Fitbit maps between raw accelerometer readings and steps, and definitely no opportunity to improve that mapping. To take my example, *I can't tweak the step detection algorithms to measure cycling accurately.*
 
 Even though the average person won't care to make these improvements, *a few people will.* This recalls the [reddit maxim](https://www.facebook.com/photo.php?fbid=3563106890027):
 
@@ -128,14 +124,9 @@ Even though the average person won't care to make these improvements, *a few peo
 
 It would be:
 
-1. **activity-agnostic,** with the ability to track diverse forms of
-   physical activity.
-2. **water-resistant.** (I won't ask for waterproof, since I'm not much of a
-   swimmer myself, but it should be able to handle light rain and a little
-   sweat.)
-3. **data-transparent,** allowing me to get at the raw data without going
-   through a vendor API. (I note that [libfitbit](https://github.com/qdot/libfitbit) exists as an
-   attempt to reverse-engineer Fitbit, but I haven't played around with it.)
+1. **activity-agnostic,** with the ability to track diverse forms of physical activity.
+2. **water-resistant.** (I won't ask for waterproof, since I'm not much of a swimmer myself, but it should be able to handle light rain and a little sweat.)
+3. **data-transparent,** allowing me to get at the raw data without going through a vendor API. (I note that [libfitbit](https://github.com/qdot/libfitbit) exists as an attempt to reverse-engineer Fitbit, but I haven't played around with it.)
 
 I haven't looked into [BodyMedia](http://www.bodymedia.com/) or [Fluxtream](https://fluxtream.com), but they both look promising.
 

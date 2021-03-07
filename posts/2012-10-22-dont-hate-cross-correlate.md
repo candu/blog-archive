@@ -80,12 +80,13 @@ It can be hard to visualize what this is doing, though, so I've provided a [quic
 
 ### An Interactive Example
 
-If you're viewing this on an RSS reader, check out the example [on my blog](/blog/2012/10/22/dont-hate-cross-correlate/#quick-demo).
+If you're viewing this on an RSS reader, check out the example [on my blog](/posts/2012-10-22-dont-hate-cross-correlate/#quick-demo).
 
 You can see the code for this demo [here](https://github.com/candu/quantified-savagery-files/tree/master/Algorithms/cross-correlation).
 
 <iframe
   height="480"
+  id="quick-demo"
   src="https://blog.savageevan.com/quantified-savagery-files/Algorithms/cross-correlation/index.html"
   width="100%">
 </iframe>
