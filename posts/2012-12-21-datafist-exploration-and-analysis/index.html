@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>datafist: Exploration And Analysis</title>
     <meta name="description" content="Evan Savage&#39;s personal blog about software, life, travel, and other sundry things.">
-    <link href='http://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
@@ -14,11 +14,11 @@
     <script>
       MathJax = {
         tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        }
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+        },
       };
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   </head>
   <body>
     <header>
@@ -54,60 +54,31 @@ Are we analyzing data? Then we should be manipulating the data themselves; or if
 <li><em>Interpretation:</em> creating personal meaning from those insights.</li>
 <li><em>Action:</em> responding to that personal meaning.</li>
 </ul>
-<p>Thanks to smartphones and cheap sensors, many of us already have the tools<br>
-necessary for measurement. The psychology of intent and action is rapidly<br>
-being explored through <a href="http://www.meetup.com/habitdesign/">Habit Design</a> and <a href="http://captology.stanford.edu/">Captology</a>, with<br>
-startups like <a href="http://lift.do/">Lift</a> and <a href="https://www.beeminder.com/">Beeminder</a> harnessing the findings<br>
-to great effect.</p>
+<p>Thanks to smartphones and cheap sensors, many of us already have the tools necessary for measurement. The psychology of intent and action is rapidly being explored through <a href="http://www.meetup.com/habitdesign/">Habit Design</a> and <a href="http://captology.stanford.edu/">Captology</a>, with startups like <a href="http://lift.do/">Lift</a> and <a href="https://www.beeminder.com/">Beeminder</a> harnessing the findings to great effect.</p>
 <p><em>What are the technologies of analysis and interpretation?</em></p>
 <h3 id="visualization">Visualization <a class="direct-link" href="#visualization">#</a></h3>
-<p>Visualizations, even interactive ones, are usually designed to <em>answer<br>
-specific questions</em> such as <a href="http://www.nytimes.com/interactive/2012/11/07/us/politics/obamas-diverse-base-of-support.html">how did Obama win re-election?</a><br>
-Within the context of those questions, they help us understand our data<br>
-intuitively. Outside that context, however, they are often useless.</p>
+<p>Visualizations, even interactive ones, are usually designed to <em>answer specific questions</em> such as <a href="http://www.nytimes.com/interactive/2012/11/07/us/politics/obamas-diverse-base-of-support.html">how did Obama win re-election?</a> Within the context of those questions, they help us understand our data intuitively. Outside that context, however, they are often useless.</p>
 <h3 id="statistical%2Fmathematical-software">Statistical/Mathematical Software <a class="direct-link" href="#statistical%2Fmathematical-software">#</a></h3>
-<p>Environments like <a href="http://www.r-project.org/">R</a> and <a href="http://www.wolfram.com/mathematica/">Mathematica</a> allow you to <em>explore<br>
-your data in meticulous detail.</em> In the hands of people like<br>
-<a href="http://blog.stephenwolfram.com/2012/03/the-personal-analytics-of-my-life/">Stephen Wolfram</a>, they are the holy grail of data analysis. For the<br>
-less technically inclined, they remain hopelessly unintuitive.</p>
+<p>Environments like <a href="http://www.r-project.org/">R</a> and <a href="http://www.wolfram.com/mathematica/">Mathematica</a> allow you to <em>explore your data in meticulous detail.</em> In the hands of people like <a href="http://blog.stephenwolfram.com/2012/03/the-personal-analytics-of-my-life/">Stephen Wolfram</a>, they are the holy grail of data analysis. For the less technically inclined, they remain hopelessly unintuitive.</p>
 <h2 id="a-middle-road">A Middle Road <a class="direct-link" href="#a-middle-road">#</a></h2>
-<p>What we need is <em>something between the two</em>, a hybrid that exposes the<br>
-exploratory power of the latter through the intuitive interface of the former.<br>
-Such a tool would give us the opportunity to <em>explore our data as we see fit.</em><br>
-We could ask our data questions, iterating quickly on those questions until<br>
-we reach useful insights.</p>
-<p>Until we can all converse with our data with the fluency of <a href="http://www.ted.com/talks/hans_rosling_the_good_news_of_the_decade.html">Hans Rosling</a>,<br>
-there's still room for improvement!</p>
+<p>What we need is <em>something between the two</em>, a hybrid that exposes the exploratory power of the latter through the intuitive interface of the former. Such a tool would give us the opportunity to <em>explore our data as we see fit.</em> We could ask our data questions, iterating quickly on those questions until we reach useful insights.</p>
+<p>Until we can all converse with our data with the fluency of <a href="http://www.ted.com/talks/hans_rosling_the_good_news_of_the_decade.html">Hans Rosling</a>, there's still room for improvement!</p>
 <h2 id="datafist">datafist <a class="direct-link" href="#datafist">#</a></h2>
-<p>datafist tries to bridge this gap by providing <em>visual and gestural actions</em><br>
-for data manipulation. This is probably easier to demonstrate than describe,<br>
-so here's a screencast that shows an early development version of datafist<br>
-in action:</p>
+<p>datafist tries to bridge this gap by providing <em>visual and gestural actions</em> for data manipulation. This is probably easier to demonstrate than describe, so here's a screencast that shows an early development version of datafist in action:</p>
 <div markdown="0">
   <iframe width="560" height="315" src="http://www.youtube.com/embed/ypitHPXKa8M" frameborder="0" allowfullscreen></iframe>
 </div>
-<p>As you use datafist, <em>you're constantly modifying the analysis itself.</em><br>
-This modification takes place through <em>visual and gestural actions:</em> you<br>
-move channels to the viewer, drag out ranges of time to zoom in on, and draw<br>
-regions around interesting clusters. As you do this, the view is<br>
-<em>updated in real-time</em>, allowing you to see the effects of your actions.</p>
+<p>As you use datafist, <em>you're constantly modifying the analysis itself.</em> This modification takes place through <em>visual and gestural actions:</em> you move channels to the viewer, drag out ranges of time to zoom in on, and draw regions around interesting clusters. As you do this, the view is <em>updated in real-time</em>, allowing you to see the effects of your actions.</p>
 <h3 id="try-datafist-out!">Try datafist Out! <a class="direct-link" href="#try-datafist-out!">#</a></h3>
-<p>I'm hosting a version of datafist <a href="http://datafist.savageevan.com">here at savageevan.com</a>.<br>
-Note that this is still a very early development version!</p>
+<p>I'm hosting a version of datafist <a href="http://datafist.savageevan.com">here at savageevan.com</a>. Note that this is still a very early development version!</p>
 <h3 id="contribute-to-datafist!">Contribute to datafist! <a class="direct-link" href="#contribute-to-datafist!">#</a></h3>
-<p>If you're interested in making datafist better, <a href="https://github.com/candu/datafist">fork me on github!</a><br>
-Bug reports should be submitted <a href="https://github.com/candu/datafist/issues">via the issue tracker</a>.<br>
-In particular, if you have a CSV file that won't import properly, please attach<br>
-it for testing purposes!</p>
+<p>If you're interested in making datafist better, <a href="https://github.com/candu/datafist">fork me on github!</a> Bug reports should be submitted <a href="https://github.com/candu/datafist/issues">via the issue tracker</a>. In particular, if you have a CSV file that won't import properly, please attach it for testing purposes!</p>
 <h2 id="inspiration">Inspiration <a class="direct-link" href="#inspiration">#</a></h2>
 <ul>
 <li><a href="http://www.audiomulch.com/">AudioMulch</a> is an awesome graphical audio synthesis tool.</li>
 <li><a href="http://puredata.info/">PureData</a> and <a href="http://cycling74.com/products/max/">Max/MSP</a> are visual signal processing languages.</li>
-<li><a href="http://cleo.ics.uci.edu/teaching/Winter10/231/readings/1-HutchinsHollanNorman-DirectManipulation-HCI.pdf">Direct Manipulation Interfaces</a> is a classic paper on the design of<br>
-natural-seeming interfaces. You'll recognize some of the interface concepts<br>
-from the analysis package design mocks at the beginning.</li>
-<li><a href="http://www.startuplessonslearned.com/2011/11/startup-is-vision.html">FAKEGRIMLOCK</a> is a fountain of poorly-Englished wisdom on<br>
-entrepreneurship.</li>
+<li><a href="http://cleo.ics.uci.edu/teaching/Winter10/231/readings/1-HutchinsHollanNorman-DirectManipulation-HCI.pdf">Direct Manipulation Interfaces</a> is a classic paper on the design of natural-seeming interfaces. You'll recognize some of the interface concepts from the analysis package design mocks at the beginning.</li>
+<li><a href="http://www.startuplessonslearned.com/2011/11/startup-is-vision.html">FAKEGRIMLOCK</a> is a fountain of poorly-Englished wisdom on entrepreneurship.</li>
 </ul>
 
 

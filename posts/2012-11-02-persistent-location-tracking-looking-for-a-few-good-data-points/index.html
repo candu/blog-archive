@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Persistent Location Tracking: Looking For A Few Good Data Points</title>
     <meta name="description" content="Evan Savage&#39;s personal blog about software, life, travel, and other sundry things.">
-    <link href='http://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
@@ -14,11 +14,11 @@
     <script>
       MathJax = {
         tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        }
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+        },
       };
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   </head>
   <body>
     <header>
@@ -34,124 +34,66 @@
     <main class="tmpl-post">
       <h1>Persistent Location Tracking: Looking For A Few Good Data Points</h1>
 
-<p>In this post, I revisit the question of whether Google Latitude meets my<br>
-persistent location tracking needs. In <a href="/blog/2012/10/29/persistent-location-tracking-picking-the-right-tool/">my previous post</a>, I compared<br>
-Google Latitude to InstaMapper and concluded that the latter is too<br>
-battery-intensive. By looking at maps and base-level insights from the data,<br>
-I suggest that Google Latitude optimizes for battery life at the expense of<br>
-data quality.</p>
+<p>In this post, I revisit the question of whether Google Latitude meets my persistent location tracking needs. In <a href="/posts/2012-10-29-persistent-location-tracking-picking-the-right-tool/">my previous post</a>, I compared Google Latitude to InstaMapper and concluded that the latter is too battery-intensive. By looking at maps and base-level insights from the data, I suggest that Google Latitude optimizes for battery life at the expense of data quality.</p>
 <!-- more -->
 <h2 id="exhibit-a%3A-some-maps">Exhibit A: Some Maps <a class="direct-link" href="#exhibit-a%3A-some-maps">#</a></h2>
 <p>I started gathering data on Oct. 3, 2012:</p>
 <img src="https://lh5.googleusercontent.com/-kyl-kUDWe_M/UJgVi3pls3I/AAAAAAAAALg/zGsaBfNzY7s/s640/map-monthly.jpg" />
-<p>Since then, <a href="http://www.eecs.berkeley.edu/~valkyrie/">Valkyrie Savage</a> and I have travelled to Boston and Chicago.<br>
-Our stopover in Phoenix is clearly visible at this scale. You can barely make<br>
-out our day trip to <a href="http://goo.gl/maps/rLfNu">Mount Monadnock, NH</a> over near Boston. Here's a<br>
-closer look at that trip:</p>
+<p>Since then, <a href="http://www.eecs.berkeley.edu/~valkyrie/">Valkyrie Savage</a> and I have travelled to Boston and Chicago. Our stopover in Phoenix is clearly visible at this scale. You can barely make out our day trip to <a href="http://goo.gl/maps/rLfNu">Mount Monadnock, NH</a> over near Boston. Here's a closer look at that trip:</p>
 <img src="https://lh4.googleusercontent.com/-YJQip0zWnxQ/UJgVlFc_7pI/AAAAAAAAAMA/DjlCRjxouzo/s640/map-monadnock-trip.jpg" />
-<p>Ouch. The data is <em>noisy in some areas, sparse in others.</em> It's fairly clear that<br>
-we took Hwy 2 over, but <em>some of the GPS readings are miles off.</em> Let's zoom in<br>
-on that hike:</p>
+<p>Ouch. The data is <em>noisy in some areas, sparse in others.</em> It's fairly clear that we took Hwy 2 over, but <em>some of the GPS readings are miles off.</em> Let's zoom in on that hike:</p>
 <img src="https://lh5.googleusercontent.com/-bg3DxaZTe6k/UJgVlqpW7ZI/AAAAAAAAAMI/t2Kn3hrhWJM/s640/map-monadnock-hike.jpg" />
-<p>Only five data points actually lie within the park/mountain boundaries. That's<br>
-<em>five data points for a four-hour hike.</em> Our Boston data is somewhat more<br>
-accurate:</p>
+<p>Only five data points actually lie within the park/mountain boundaries. That's <em>five data points for a four-hour hike.</em> Our Boston data is somewhat more accurate:</p>
 <img src="https://lh3.googleusercontent.com/-6RFwbwjBEtI/UJgVmQk1KCI/AAAAAAAAAMQ/-Nhyp0LtoLw/s640/map-monadnock-boston.jpg" />
-<p>Still, the red line cuts through city blocks with reckless abandon. Either<br>
-we're flying, or we're packing some incredibly efficient demolition equipment.</p>
+<p>Still, the red line cuts through city blocks with reckless abandon. Either we're flying, or we're packing some incredibly efficient demolition equipment.</p>
 <p>Here's the map for one of my more itinerant Bay Area days:</p>
 <img src="https://lh5.googleusercontent.com/-xNNR5dnNV44/UJgVj3SZAEI/AAAAAAAAALw/6KvtDZYWel0/s640/map-busy-day.jpg" />
-<p>I cycled to a doctor's appointment, visited<br>
-<a href="http://bid.berkeley.edu/">BiD</a> to hear <a href="http://research.microsoft.com/en-us/people/marycz/">Mary Czerwinski</a> speak about emotion tracking, worked<br>
-from <a href="http://goo.gl/maps/z7EuA">home</a> for a bit, went into San Francisco to meet up with<br>
-<a href="http://www.linkedin.com/in/levpopov">Lev Popov</a>, and finally dragged myself home again.</p>
-<p>The BART ride into San Francisco is understandably sparse: most of it is<br>
-separated from cell towers and GPS satellites by rock and/or water.</p>
-<p>Most of my travel is on foot, by bike, or via public transit. Not content<br>
-with the Mount Monadnock hike data, I tried another quick drive up into<br>
-<a href="http://goo.gl/maps/zk3AD">Tilden</a>:</p>
+<p>I cycled to a doctor's appointment, visited <a href="http://bid.berkeley.edu/">BiD</a> to hear <a href="http://research.microsoft.com/en-us/people/marycz/">Mary Czerwinski</a> speak about emotion tracking, worked from <a href="http://goo.gl/maps/z7EuA">home</a> for a bit, went into San Francisco to meet up with <a href="http://www.linkedin.com/in/levpopov">Lev Popov</a>, and finally dragged myself home again.</p>
+<p>The BART ride into San Francisco is understandably sparse: most of it is separated from cell towers and GPS satellites by rock and/or water.</p>
+<p>Most of my travel is on foot, by bike, or via public transit. Not content with the Mount Monadnock hike data, I tried another quick drive up into <a href="http://goo.gl/maps/zk3AD">Tilden</a>:</p>
 <img src="https://lh5.googleusercontent.com/-MCZ55KYjgcE/UJgVjNWQ0FI/AAAAAAAAALo/pibM6xiJmUE/s640/map-drive-test.jpg" />
 <p>Google Latitude captured <em>just four points during the 20-minute drive.</em></p>
 <h2 id="exhibit-b%3A-some-analysis">Exhibit B: Some Analysis <a class="direct-link" href="#exhibit-b%3A-some-analysis">#</a></h2>
-<p>You can see the code for this analysis<br>
-<a href="https://github.com/candu/quantified-savagery-files/tree/master/Location/kml">here</a><br>
-and <a href="https://github.com/candu/quantified-savagery-files/tree/master/Location/api">here</a>.</p>
-<p>After trudging through several lackluster map views, I'm left with a<br>
-nagging impression:</p>
+<p>You can see the code for this analysis <a href="https://github.com/candu/quantified-savagery-files/tree/master/Location/kml">here</a> and <a href="https://github.com/candu/quantified-savagery-files/tree/master/Location/api">here</a>.</p>
+<p>After trudging through several lackluster map views, I'm left with a nagging impression:</p>
 <blockquote>
 This data isn't that useful.
 </blockquote>
-<p>This impression deserves further analysis, so I grab the KML to answer some<br>
-of my questions. First off: <em>how often is Google Latitude checking my location?</em></p>
+<p>This impression deserves further analysis, so I grab the KML to answer some of my questions. First off: <em>how often is Google Latitude checking my location?</em></p>
 <img src="https://lh5.googleusercontent.com/-A7we5G7pYIw/UJb-xhCk_oI/AAAAAAAAAKk/O7ZwpxF_uQs/s640/timings-frequency.jpg" />
-<p><em>About every two minutes.</em> GPS is a <a href="/blog/2012/10/29/persistent-location-tracking-picking-the-right-tool/">huge battery drain</a>;<br>
-increasing the time between updates can help by allowing the GPS radio to<br>
-enter an idle state. <em>How are those location readings scheduled?</em></p>
+<p><em>About every two minutes.</em> GPS is a <a href="/blog/2012/10/29/persistent-location-tracking-picking-the-right-tool/">huge battery drain</a>; increasing the time between updates can help by allowing the GPS radio to enter an idle state. <em>How are those location readings scheduled?</em></p>
 <img src="https://lh6.googleusercontent.com/-PMYu61X440I/UJb-yCEbuBI/AAAAAAAAAKs/umbJNuuVfo0/s640/timings-second-histogram.jpg" />
-<p>Google Latitude really likes spacing its readings out by a <em>whole number of<br>
-minutes.</em></p>
-<p><em>How accurate is the data?</em> The KML doesn't provide <a href="http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)">accuracy estimates</a><br>
-for its locations. Fortunately, the <a href="https://developers.google.com/latitude/">Google Latitude API</a> does, so<br>
-I retrieve my data using <a href="https://github.com/candu/quantified-savagery-files/blob/master/Location/api/scrape.py">this script</a> and look at the accuracy readings:</p>
+<p>Google Latitude really likes spacing its readings out by a <em>whole number of minutes.</em></p>
+<p><em>How accurate is the data?</em> The KML doesn't provide <a href="http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)">accuracy estimates</a> for its locations. Fortunately, the <a href="https://developers.google.com/latitude/">Google Latitude API</a> does, so I retrieve my data using <a href="https://github.com/candu/quantified-savagery-files/blob/master/Location/api/scrape.py">this script</a> and look at the accuracy readings:</p>
 <img src="https://lh3.googleusercontent.com/-p5senVUtgqM/UJb-ybk3zEI/AAAAAAAAAK0/qUvLSvog15E/s640/accuracy-histogram.jpg" />
-<p>Actually, <em>the readings have fairly high accuracy.</em> Only 7% of readings have a<br>
-reported error radius greater than 100m.</p>
-<p>The maps above suggest that location readings are less accurate while<br>
-travelling at high speed. Is that true? The API provides speed estimates<br>
-for some readings, but this data is kind of sparse:</p>
+<p>Actually, <em>the readings have fairly high accuracy.</em> Only 7% of readings have a reported error radius greater than 100m.</p>
+<p>The maps above suggest that location readings are less accurate while travelling at high speed. Is that true? The API provides speed estimates for some readings, but this data is kind of sparse:</p>
 <pre><code>$ python speed.py &lt; history.api
 found 7429 speed values among 20898 readings
 </code></pre>
-<p>I try a different method: the <a href="http://mathforum.org/library/drmath/view/51879.html">Haversine distance formula</a>, which<br>
-gives me the distance between two points on the Earth's surface:</p>
+<p>I try a different method: the <a href="http://mathforum.org/library/drmath/view/51879.html">Haversine distance formula</a>, which gives me the distance between two points on the Earth's surface:</p>
 <pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">haversineDistance</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span> B<span class="token punctuation">)</span><span class="token punctuation">:</span><br>  <span class="token triple-quoted-string string">"""<br>  Distance (in meters) between two Locations. Uses the Haversine formula.<br><br>  See http://www.movable-type.co.uk/scripts/latlong.html for corresponding<br>  JavaScript implementation.<br>  """</span><br>  <span class="token comment"># Earth's radius in meters</span><br>  R <span class="token operator">=</span> <span class="token number">6371009</span><br>  dLat <span class="token operator">=</span> math<span class="token punctuation">.</span>radians<span class="token punctuation">(</span>B<span class="token punctuation">.</span>lat <span class="token operator">-</span> A<span class="token punctuation">.</span>lat<span class="token punctuation">)</span><br>  dLon <span class="token operator">=</span> math<span class="token punctuation">.</span>radians<span class="token punctuation">(</span>B<span class="token punctuation">.</span>lng <span class="token operator">-</span> A<span class="token punctuation">.</span>lng<span class="token punctuation">)</span><br>  lat1 <span class="token operator">=</span> math<span class="token punctuation">.</span>radians<span class="token punctuation">(</span>A<span class="token punctuation">.</span>lat<span class="token punctuation">)</span><br>  lat2 <span class="token operator">=</span> math<span class="token punctuation">.</span>radians<span class="token punctuation">(</span>B<span class="token punctuation">.</span>lat<span class="token punctuation">)</span><br>  sLat <span class="token operator">=</span> math<span class="token punctuation">.</span>sin<span class="token punctuation">(</span>dLat <span class="token operator">/</span> <span class="token number">2.0</span><span class="token punctuation">)</span><br>  sLon <span class="token operator">=</span> math<span class="token punctuation">.</span>sin<span class="token punctuation">(</span>dLon <span class="token operator">/</span> <span class="token number">2.0</span><span class="token punctuation">)</span><br>  a <span class="token operator">=</span> sLat <span class="token operator">*</span> sLat <span class="token operator">+</span> sLon <span class="token operator">*</span> sLon <span class="token operator">*</span> math<span class="token punctuation">.</span>cos<span class="token punctuation">(</span>lat1<span class="token punctuation">)</span> <span class="token operator">*</span> math<span class="token punctuation">.</span>cos<span class="token punctuation">(</span>lat2<span class="token punctuation">)</span><br>  c <span class="token operator">=</span> <span class="token number">2.0</span> <span class="token operator">*</span> math<span class="token punctuation">.</span>atan2<span class="token punctuation">(</span>math<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">,</span> math<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span><span class="token number">1.0</span> <span class="token operator">-</span> a<span class="token punctuation">)</span><span class="token punctuation">)</span><br>  <span class="token keyword">return</span> R <span class="token operator">*</span> c</code></pre>
 <p>I use this distance formula to get a plot of accuracy versus travelling speed:</p>
-<img src="https://lh5.googleusercontent.com/-ba4lES16aCU/UJb-ytwI4OI/AAAAAAAAAK8/-OZvTHzgZjk/s144/accuracy-vs-speed.jpg" />
-<p><em>No clear correlation here</em>; there are low-quality readings at both low and high<br>
-speeds. There are several possible explanations:</p>
+<img src="https://lh5.googleusercontent.com/-ba4lES16aCU/UJb-ytwI4OI/AAAAAAAAAK8/-OZvTHzgZjk/s640/accuracy-vs-speed.jpg" />
+<p><em>No clear correlation here</em>; there are low-quality readings at both low and high speeds. There are several possible explanations:</p>
 <ul>
-<li><strong>Confirmation bias:</strong> I mistakenly extrapolated a small handful of<br>
-low-quality readings taken at high speeds to a general pattern.</li>
-<li><strong>Misinterpretation:</strong> Some of the Mount Monadnock readings look way off;<br>
-perhaps the error radius doesn't mean what I think it does.</li>
-<li><strong>Different location sources:</strong> Location accuracy is<br>
-<a href="http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)">relatively well-defined</a> for GPS, but I'm not sure what happens when<br>
-cell towers or WiFi access points are incorporated into location fixes.</li>
-<li><strong>Longer sampling interval:</strong> Maybe Google Latitude assumes that precise<br>
-location tracking is less important when driving.</li>
+<li><strong>Confirmation bias:</strong> I mistakenly extrapolated a small handful of low-quality readings taken at high speeds to a general pattern.</li>
+<li><strong>Misinterpretation:</strong> Some of the Mount Monadnock readings look way off; perhaps the error radius doesn't mean what I think it does.</li>
+<li><strong>Different location sources:</strong> Location accuracy is <a href="http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)">relatively well-defined</a> for GPS, but I'm not sure what happens when cell towers or WiFi access points are incorporated into location fixes.</li>
+<li><strong>Longer sampling interval:</strong> Maybe Google Latitude assumes that precise location tracking is less important when driving.</li>
 </ul>
 <p>To test this last hypothesis, I also <em>plot sampling interval versus speed:</em></p>
 <img src="https://lh5.googleusercontent.com/-__3m3z_oQfQ/UJcC4GeNhyI/AAAAAAAAALQ/HI6XQdHjtns/s640/timings-vs-speed.jpg" />
 <p>Nothing conclusive there.</p>
 <h2 id="conclusion">Conclusion <a class="direct-link" href="#conclusion">#</a></h2>
-<p><em>The problem appears to be sampling frequency.</em> To reduce battery usage, <em>Google<br>
-Latitude polls about once every two minutes.</em> While it has some mechanism for<br>
-polling more often in periods of high activity, it's unclear how that works.</p>
-<p>Reliance on fixes from cell towers and WiFi may be reducing location quality<br>
-in more remote areas. Testing this hypothesis is difficult: how do you<br>
-quantify remote? One possibility is to compute nearest-neighbor distance<br>
-against <a href="http://www.maxmind.com/en/worldcities">a database of cities</a>. Another confounding factor is the<br>
-reliability of those <code>accuracy</code> values. Improving upon that would likely<br>
-involve manual labelling.</p>
+<p><em>The problem appears to be sampling frequency.</em> To reduce battery usage, <em>Google Latitude polls about once every two minutes.</em> While it has some mechanism for polling more often in periods of high activity, it's unclear how that works.</p>
+<p>Reliance on fixes from cell towers and WiFi may be reducing location quality in more remote areas. Testing this hypothesis is difficult: how do you quantify remote? One possibility is to compute nearest-neighbor distance against <a href="http://www.maxmind.com/en/worldcities">a database of cities</a>. Another confounding factor is the reliability of those <code>accuracy</code> values. Improving upon that would likely involve manual labelling.</p>
 <h2 id="why-do-this%3F">Why Do This? <a class="direct-link" href="#why-do-this%3F">#</a></h2>
 <blockquote>
 Accuracy is not binary.
 </blockquote>
-<p>In Quantified Self applications, we <em>use personal data to drive changes in our<br>
-lives.</em> We put a lot of trust in the accuracy and relevance of that data, and<br>
-<em>we extend that trust to the tools and services that collect it.</em><br>
-We trust <a href="http://www.fitbit.com/">Fitbit</a> to track our fitness.<br>
-We trust <a href="http://www.myzeo.com/sleep/">Zeo</a> to improve our sleep.<br>
-We trust <a href="http://www.lumosity.com/">Lumosity</a> to train our perception and attentiveness.</p>
-<p>In giving so much trust to these tools, we sometimes forget that <em>data are not<br>
-infallible.</em><br>
-<a href="http://www.pbs.org/wgbh/aso/databank/entries/dp27un.html">Physics guarantees</a> that there is no such thing as perfect data. <em>All<br>
-data contain error.</em> As a system consisting of geosynchronous satellites that<br>
-travel at relativistically significant speeds and beam data<br>
-through our multilayered atmosphere to tiny chip radios sandwiched between<br>
-layers of dense circuitry, GPS is understandably <a href="http://www.kowoma.de/en/gps/errors.htm">error-prone.</a><br>
-When your chosen tools and services add noise on top of that, it's reasonable<br>
-to ask:</p>
+<p>In Quantified Self applications, we <em>use personal data to drive changes in our lives.</em> We put a lot of trust in the accuracy and relevance of that data, and <em>we extend that trust to the tools and services that collect it.</em> We trust <a href="http://www.fitbit.com/">Fitbit</a> to track our fitness. We trust <a href="http://www.myzeo.com/sleep/">Zeo</a> to improve our sleep. We trust <a href="http://www.lumosity.com/">Lumosity</a> to train our perception and attentiveness.</p>
+<p>In giving so much trust to these tools, we sometimes forget that <em>data are not infallible.</em> <a href="http://www.pbs.org/wgbh/aso/databank/entries/dp27un.html">Physics guarantees</a> that there is no such thing as perfect data. <em>All data contain error.</em> As a system consisting of geosynchronous satellites that travel at relativistically significant speeds and beam data through our multilayered atmosphere to tiny chip radios sandwiched between layers of dense circuitry, GPS is understandably <a href="http://www.kowoma.de/en/gps/errors.htm">error-prone.</a> When your chosen tools and services add noise on top of that, it's reasonable to ask:</p>
 <blockquote>
 How much trust should I place in the output?
 </blockquote>
