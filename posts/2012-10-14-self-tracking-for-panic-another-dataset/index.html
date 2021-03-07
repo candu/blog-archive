@@ -39,59 +39,35 @@
 <!-- more -->
 <h2 id="the-usual-suspects">The Usual Suspects <a class="direct-link" href="#the-usual-suspects">#</a></h2>
 <h3 id="linear-regression">Linear Regression <a class="direct-link" href="#linear-regression">#</a></h3>
-<p>During the second tracking period, <em>alcohol consumption remained<br>
-relatively constant</em>:</p>
+<p>During the second tracking period, <em>alcohol consumption remained relatively constant</em>:</p>
 <img src="https://lh4.googleusercontent.com/-Kha5L6BVqUo/UHxN-lFh_LI/AAAAAAAAADY/eVVLWJbYMaU/s640/qs-counters-alcohol.jpg" alt="Alcohol Consumption" />
 <p>Sugar consumption is a different story, with a <em>pronounced negative trend</em>:</p>
 <img src="https://lh6.googleusercontent.com/-MN60bkN-thg/UHxN_qhP-AI/AAAAAAAAADo/HXsmUbqEWnw/s640/qs-counters-sweets.jpg" alt="Sugar Consumption" />
-<p>The evidence to suggest that <em>my alcohol and sugar consumption are linked</em> is<br>
-also much stronger now:</p>
+<p>The evidence to suggest that <em>my alcohol and sugar consumption are linked</em> is also much stronger now:</p>
 <img src="https://lh5.googleusercontent.com/-9J_fMxZS2Co/UHxOAaijDbI/AAAAAAAAAD4/UDt5xjzZ-Lw/s640/qs-counters-alcohol-vs-sugar.jpg" alt="Alcohol vs. Sugar Consumption" />
-<p>On the other hand, the previous-day alcohol effect seems to be<br>
-non-existent:</p>
+<p>On the other hand, the previous-day alcohol effect seems to be non-existent:</p>
 <img src="https://lh6.googleusercontent.com/-8CPpr0mjczs/UHxOABjFKSI/AAAAAAAAADw/4sVdt2axAEs/s640/qs-counters-alcohol-today-vs-yesterday.jpg" alt="Alcohol: Today vs. Yesterday" />
 <h3 id="fast-fourier-transform">Fast Fourier Transform <a class="direct-link" href="#fast-fourier-transform">#</a></h3>
 <p>With more data points, the FFT frequency amplitude plot is more muddled:</p>
 <img src="https://lh4.googleusercontent.com/-1AeQyUEEW8o/UHxN90Wk75I/AAAAAAAAADM/eJs5x6UaQNI/s640/qs-counters-fft-frequencies.jpg" alt="FFT Frequencies" />
-<p>The 2-day and 7-day effects previously &quot;discovered&quot; are nowhere to be<br>
-found.</p>
+<p>The 2-day and 7-day effects previously &quot;discovered&quot; are nowhere to be found.</p>
 <h3 id="maximum-entropy-modelling">Maximum Entropy Modelling <a class="direct-link" href="#maximum-entropy-modelling">#</a></h3>
-<p>I didn't record panic attacks during this tracking period. My previous<br>
-efforts reduced the severity and frequency of these attacks drastically,<br>
-enough so that the data here would have been extremely sparse.</p>
+<p>I didn't record panic attacks during this tracking period. My previous efforts reduced the severity and frequency of these attacks drastically, enough so that the data here would have been extremely sparse.</p>
 <p>In the absence of that data, I asked a different question:</p>
 <blockquote>
 What features best predict my exercise patterns?
 </blockquote>
 <p>Here are the top features from <code>MaxentClassifier</code>:</p>
-<pre><code>   3.369 caffeine==True and label is 'no-exercise'
-  -0.739 sweets==True and label is 'exercise'
-   0.399 sweets==True and label is 'no-exercise'
-  -0.201 alcohol==True and label is 'exercise'
-   0.166 alcohol==True and label is 'no-exercise'
-   0.161 relaxation==True and label is 'exercise'
-  -0.092 relaxation==True and label is 'no-exercise'
-</code></pre>
-<p>The caffeine finding is misleading. On one of the two days where I entered<br>
-non-zero caffeine consumption, that was due to a <em>mistake in data entry.</em><br>
-(Side note to self: all tools should include an undo feature!) Aside from<br>
-that, <em>sugar consumption appears to have the strongest negative effect on<br>
-exercise.</em></p>
+<pre class="language-bash"><code class="language-bash">   <span class="token number">3.369</span> <span class="token assign-left variable">caffeine</span><span class="token operator">==</span>True and label is <span class="token string">'no-exercise'</span><br>  -0.739 <span class="token assign-left variable">sweets</span><span class="token operator">==</span>True and label is <span class="token string">'exercise'</span><br>   <span class="token number">0.399</span> <span class="token assign-left variable">sweets</span><span class="token operator">==</span>True and label is <span class="token string">'no-exercise'</span><br>  -0.201 <span class="token assign-left variable">alcohol</span><span class="token operator">==</span>True and label is <span class="token string">'exercise'</span><br>   <span class="token number">0.166</span> <span class="token assign-left variable">alcohol</span><span class="token operator">==</span>True and label is <span class="token string">'no-exercise'</span><br>   <span class="token number">0.161</span> <span class="token assign-left variable">relaxation</span><span class="token operator">==</span>True and label is <span class="token string">'exercise'</span><br>  -0.092 <span class="token assign-left variable">relaxation</span><span class="token operator">==</span>True and label is <span class="token string">'no-exercise'</span></code></pre>
+<p>The caffeine finding is misleading. On one of the two days where I entered non-zero caffeine consumption, that was due to a <em>mistake in data entry.</em> (Side note to self: all tools should include an undo feature!) Aside from that, <em>sugar consumption appears to have the strongest negative effect on exercise.</em></p>
 <h2 id="student's-t-test">Student's t-test <a class="direct-link" href="#student's-t-test">#</a></h2>
 <h3 id="what%3F">What? <a class="direct-link" href="#what%3F">#</a></h3>
 <p>Student's t-test answers this question:</p>
 <blockquote>
 Are these samples significantly different?
 </blockquote>
-<p>More formally, the t-test answers a statistical question about normal<br>
-distributions: given<br>
-$ X \sim \mathcal{N}(\mu_X, \sigma_X^2) $ and<br>
-$ Y \sim \mathcal{N}(\mu_Y, \sigma_Y^2) $,<br>
-does $ \mu_X = \mu_Y $?</p>
-<p>If we let $ Y $ be a known normal distribution centered at<br>
-rather than taking it from an empirical sample,<br>
-we also obtain a one-sample t-test for the null hypothesis<br>
-$ \mu_X = \mu_Y $.</p>
+<p>More formally, the t-test answers a statistical question about normal distributions: given $ X \sim \mathcal{N}(\mu_X, \sigma_X^2) $ and $ Y \sim \mathcal{N}(\mu_Y, \sigma_Y^2) $, does $ \mu_X = \mu_Y $?</p>
+<p>If we let $ Y $ be a known normal distribution centered at rather than taking it from an empirical sample, we also obtain a one-sample t-test for the null hypothesis $ \mu_X = \mu_Y $.</p>
 <h3 id="why%3F">Why? <a class="direct-link" href="#why%3F">#</a></h3>
 <p>In a self-tracking context, you might ask the following questions:</p>
 <ul>
@@ -100,10 +76,7 @@ $ \mu_X = \mu_Y $.</p>
 </ul>
 <p>Student's t-test can help address both questions.</p>
 <h3 id="the-data">The Data <a class="direct-link" href="#the-data">#</a></h3>
-<p>Before using Student's t-test on my alcohol and sugar consumption data from<br>
-the two tracking periods, I <em>check whether these samples have a roughly<br>
-normal distribution.</em> The code for normality checking is<br>
-<a href="https://github.com/candu/quantified-savagery-files/blob/master/Panic/qs-counters/counters_normality.py">here</a>.</p>
+<p>Before using Student's t-test on my alcohol and sugar consumption data from the two tracking periods, I <em>check whether these samples have a roughly normal distribution.</em> The code for normality checking is <a href="https://github.com/candu/quantified-savagery-files/blob/master/Panic/qs-counters/counters_normality.py">here</a>.</p>
 <p>It helps to <em>visualize the histogram data first</em>:</p>
 <img src="https://lh5.googleusercontent.com/-1sX3PJfuiAg/UHxdvv_-mkI/AAAAAAAAAEc/Rm7uknNlG7g/s640/recovery-journal-alcohol-histogram.jpg" alt="Alcohol Histogram (recovery-journal)" />
 <img src="https://lh5.googleusercontent.com/-9ScCbHMq4ls/UHxdu40NnPI/AAAAAAAAAEM/3SRyqPF_Bh8/s640/qs-counters-alcohol-histogram.jpg" alt="Alcohol Histogram (qs-counters)" />
@@ -112,93 +85,38 @@ normal distribution.</em> The code for normality checking is<br>
 <p>These don't look particularly close to normal distributions, but it's hard to<br>
 tell with discrete-valued data. For more evidence, I use the<br>
 <a href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.shapiro.html">Shapiro-Wilk statistical normality test</a>:</p>
-<pre><code>alcohol, recovery-journal:  (0.944088339805603, 0.10709714889526367)
-alcohol, qs-counters:  (0.8849299550056458, 4.6033787270971516e-07)
-sugar, recovery-journal:  (0.722859263420105, 2.5730114430189133e-06)
-sugar, qs-counters:  (0.8092769384384155, 8.38931979441071e-10)
-</code></pre>
-<p>The null hypothesis for Shapiro-Wilk is that the sample is normally distributed,<br>
-so these low p-values indicate the opposite: <em>my data isn't normally distributed!</em><br>
-Bad news for my attempt to use Student's t-test here.</p>
-<p>Nevertheless, I'll barge ahead and run the t-test anyways, just to see what<br>
-that process looks like with <code>scipy.stats</code>. The code for t-testing is<br>
-<a href="https://github.com/candu/quantified-savagery-files/blob/master/Panic/qs-counters/counters_ttest.py">here</a>.</p>
-<pre><code>alcohol
-==========
-avg(A) = 3.26
-avg(B) = 2.35
-(t, p) = (2.0721, 0.0469)
-
-sweets
-==========
-avg(A) = 1.19
-avg(B) = 1.23
-(t, p) = (-0.1969, 0.8453)
-</code></pre>
-<p>If the t-test were useful for this data, it would show that <em>my alcohol<br>
-consumption was significantly lower during the second tracking period.</em><br>
-With such a large drop in average consumption, I'm willing to say that<br>
-this is a reasonable assertion.</p>
+<pre class="language-bash"><code class="language-bash">alcohol, recovery-journal:  <span class="token punctuation">(</span><span class="token number">0.944088339805603</span>, <span class="token number">0.10709714889526367</span><span class="token punctuation">)</span><br>alcohol, qs-counters:  <span class="token punctuation">(</span><span class="token number">0.8849299550056458</span>, <span class="token number">4</span>.6033787270971516e-07<span class="token punctuation">)</span><br>sugar, recovery-journal:  <span class="token punctuation">(</span><span class="token number">0.722859263420105</span>, <span class="token number">2</span>.5730114430189133e-06<span class="token punctuation">)</span><br>sugar, qs-counters:  <span class="token punctuation">(</span><span class="token number">0.8092769384384155</span>, <span class="token number">8</span>.38931979441071e-10<span class="token punctuation">)</span></code></pre>
+<p>The null hypothesis for Shapiro-Wilk is that the sample is normally distributed, so these low p-values indicate the opposite: <em>my data isn't normally distributed!</em> Bad news for my attempt to use Student's t-test here.</p>
+<p>Nevertheless, I'll barge ahead and run the t-test anyways, just to see what that process looks like with <code>scipy.stats</code>. The code for t-testing is <a href="https://github.com/candu/quantified-savagery-files/blob/master/Panic/qs-counters/counters_ttest.py">here</a>.</p>
+<pre class="language-bash"><code class="language-bash">alcohol<br><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><br>avg<span class="token punctuation">(</span>A<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">3.26</span><br>avg<span class="token punctuation">(</span>B<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">2.35</span><br><span class="token punctuation">(</span>t, p<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">2.0721</span>, <span class="token number">0.0469</span><span class="token punctuation">)</span><br><br>sweets<br><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><br>avg<span class="token punctuation">(</span>A<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1.19</span><br>avg<span class="token punctuation">(</span>B<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1.23</span><br><span class="token punctuation">(</span>t, p<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span>-0.1969, <span class="token number">0.8453</span><span class="token punctuation">)</span></code></pre>
+<p>If the t-test were useful for this data, it would show that <em>my alcohol consumption was significantly lower during the second tracking period.</em> With such a large drop in average consumption, I'm willing to say that this is a reasonable assertion.</p>
 <h2 id="a-question-of-motivation">A Question Of Motivation <a class="direct-link" href="#a-question-of-motivation">#</a></h2>
 <p>By this point, you might be asking:</p>
 <blockquote>
 Why did I even bother with all this analysis when I have so few data points?
 </blockquote>
-<p>Good question! The short answer? It's a <em>learning opportunity.</em> The longer<br>
-answer is backed by a chain of reasoning:</p>
+<p>Good question! The short answer? It's a <em>learning opportunity.</em> The longer answer is backed by a chain of reasoning:</p>
 <ul>
 <li>As data collection gets easier, <em>the value of data analysis goes up;</em></li>
-<li>Statistical analysis is <em>hard to impossible</em> for the average user, so <em>they<br>
-will use whatever tools they can get</em> from app markets and device vendors;</li>
-<li>Most of those tools are built by people who, by trade, are software<br>
-developers;</li>
-<li>Most developers, even good ones, are typically not that great in the<br>
-statistics and data analysis department;</li>
-<li>Therefore, as a developer with plans to build self-tracking tools, <em>I owe it<br>
-to myself and my future users to know this stuff better.</em></li>
+<li>Statistical analysis is <em>hard to impossible</em> for the average user, so <em>they will use whatever tools they can get</em> from app markets and device vendors;</li>
+<li>Most of those tools are built by people who, by trade, are software developers;</li>
+<li>Most developers, even good ones, are typically not that great in the statistics and data analysis department;</li>
+<li>Therefore, as a developer with plans to build self-tracking tools, <em>I owe it to myself and my future users to know this stuff better.</em></li>
 </ul>
-<p>As it turns out, data analysis is hard, period. Picking the right tools is<br>
-difficult, and picking the wrong ones (like the t-test above!) <em>can easily<br>
-produce results that appear to be meaningful but are not.</em> In a self-tracking<br>
-scenario, this problem is often made worse by <em>smaller datasets</em> and <em>uncontrolled<br>
-conditions.</em></p>
+<p>As it turns out, data analysis is hard, period. Picking the right tools is difficult, and picking the wrong ones (like the t-test above!) <em>can easily produce results that appear to be meaningful but are not.</em> In a self-tracking scenario, this problem is often made worse by <em>smaller datasets</em> and <em>uncontrolled conditions.</em></p>
 <h2 id="thought-experiments">Thought Experiments <a class="direct-link" href="#thought-experiments">#</a></h2>
 <h3 id="repeat-yourself%3A-a-reflection-on-self-tracking-and-science">Repeat Yourself: A Reflection On Self-Tracking And Science <a class="direct-link" href="#repeat-yourself%3A-a-reflection-on-self-tracking-and-science">#</a></h3>
-<p>One criticism often launched at the Quantified Self community is that<br>
-self-tracking is not <em>scientific</em> enough. For an interesting discussion<br>
-of the merits and drawbacks of presenting self-experimentation as science,<br>
-I highly recommend the <a href="http://www.escholarship.org/uc/item/2xc2h866#page-36">Open Peer Commentary section</a><br>
-of <a href="http://www.escholarship.org/uc/item/2xc2h866">this paper</a>. Some of<br>
-the broader themes in this debate are also summarized<br>
-<a href="http://quantifiedself.com/2012/05/qs-101-the-science-of-self-experimentation/">here</a> on<br>
-the Quantified Self website.</p>
-<p>To be fair, there are a host of valid concerns here. For starters,<br>
-<em>it's very difficult to impose a controlled environment when self-tracking.</em><br>
-In a Heisenbergian twist, being mindful of your behavior could modify the<br>
-behavior you're trying to measure; this effect is discussed briefly by<br>
-<a href="http://www.escholarship.org/uc/item/2xc2h866#page-45">Simon Moore and Joselyn Sellen</a>.</p>
-<p>Additionally, a sample population of one is meaningless. Will your<br>
-approaches work for others? Did you gather the data in a consistent<br>
-manner? Are your sensors working properly? The usual antidote is to<br>
-increase the sample population, but then you have another set of problems.<br>
-Are all participants using the same sensors in the same way? Are they all<br>
-running the same analyses?</p>
-<p>From watching several presentations about self-tracking, there is a<br>
-curious pattern:</p>
+<p>One criticism often launched at the Quantified Self community is that self-tracking is not <em>scientific</em> enough. For an interesting discussion of the merits and drawbacks of presenting self-experimentation as science, I highly recommend the <a href="http://www.escholarship.org/uc/item/2xc2h866#page-36">Open Peer Commentary section</a> of <a href="http://www.escholarship.org/uc/item/2xc2h866">this paper</a>. Some of the broader themes in this debate are also summarized <a href="http://quantifiedself.com/2012/05/qs-101-the-science-of-self-experimentation/">here</a> on the Quantified Self website.</p>
+<p>To be fair, there are a host of valid concerns here. For starters, <em>it's very difficult to impose a controlled environment when self-tracking.</em> In a Heisenbergian twist, being mindful of your behavior could modify the behavior you're trying to measure; this effect is discussed briefly by <a href="http://www.escholarship.org/uc/item/2xc2h866#page-45">Simon Moore and Joselyn Sellen</a>.</p>
+<p>Additionally, a sample population of one is meaningless. Will your approaches work for others? Did you gather the data in a consistent manner? Are your sensors working properly? The usual antidote is to increase the sample population, but then you have another set of problems. Are all participants using the same sensors in the same way? Are they all running the same analyses?</p>
+<p>From watching several presentations about self-tracking, there is a curious pattern:</p>
 <blockquote>
 Like any other habit, the tracking habit is hard to maintain.
 </blockquote>
-<p>As a corollary, many tracking experiments consist of multiple<br>
-tracking periods, these punctuated by relapses of the tracking habit.</p>
-<p>Many people interpret these relapses as failures, but they're actually<br>
-<em>amazing scientific opportunities!</em> These are chances to re-run the same<br>
-experiment, verifying or confounding results from your earlier tracking<br>
-periods.</p>
+<p>As a corollary, many tracking experiments consist of multiple tracking periods, these punctuated by relapses of the tracking habit.</p>
+<p>Many people interpret these relapses as failures, but they're actually <em>amazing scientific opportunities!</em> These are chances to re-run the same experiment, verifying or confounding results from your earlier tracking periods.</p>
 <h3 id="the-predictive-modelling-game">The Predictive Modelling Game <a class="direct-link" href="#the-predictive-modelling-game">#</a></h3>
-<p>Predictive modelling could be an interesting component of a habit<br>
-modification system. Suppose I want to exercise more regularly. First,<br>
-I <em>select several features that seem likely to influence my exercise<br>
-patterns</em>, such as:</p>
+<p>Predictive modelling could be an interesting component of a habit modification system. Suppose I want to exercise more regularly. First, I <em>select several features that seem likely to influence my exercise patterns</em>, such as:</p>
 <ul>
 <li>Am I travelling? Where am I?</li>
 <li>What foods did I eat? When? How much?</li>
@@ -206,15 +124,11 @@ patterns</em>, such as:</p>
 <li>Did I schedule time today to exercise?</li>
 <li>Did I exercise yesterday? How much?</li>
 </ul>
-<p>Next, I <em>gather some baseline data</em> by tracking these features along with<br>
-my exercise patterns. I then use that data to <em>train a classifier.</em><br>
-Finally, I keep tracking the features, ask the classifier to predict my<br>
-exercise activity, and play a simple game with myself:</p>
+<p>Next, I <em>gather some baseline data</em> by tracking these features along with my exercise patterns. I then use that data to <em>train a classifier.</em> Finally, I keep tracking the features, ask the classifier to predict my exercise activity, and play a simple game with myself:</p>
 <blockquote>
 Can I beat the classifier?
 </blockquote>
-<p>That is, <em>can I exercise more often than my existing behavior patterns<br>
-suggest I should?</em></p>
+<p>That is, <em>can I exercise more often than my existing behavior patterns suggest I should?</em></p>
 
 
 <hr>
