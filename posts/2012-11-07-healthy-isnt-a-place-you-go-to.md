@@ -7,7 +7,7 @@ tags:
 layout: layouts/post.njk
 ---
 
-In this post, I expand on some [earlier thoughts](/blog/2012/10/02/welcome-to-quantified-savagery/) about the nature and purpose of the [Quantified Self movement](http://quantifiedself.com/). In looking at personal identity from a Quantified Self perspective, I argue that self-tracking gives us a means for reclaiming control of that identity.
+In this post, I expand on some [earlier thoughts](/posts/2012-10-02-welcome-to-quantified-savagery/) about the nature and purpose of the [Quantified Self movement](http://quantifiedself.com/). In looking at personal identity from a Quantified Self perspective, I argue that self-tracking gives us a means for reclaiming control of that identity.
 
 <!-- more -->
 

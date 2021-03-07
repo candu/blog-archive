@@ -30,7 +30,7 @@ Clicking that link will download a file called `transactions.csv`:
 
 ## Mint Bubbles
 
-If you're viewing this on an RSS reader, check out the example [on my blog](/blog/2012/11/12/financial-tracking-mint-bubbles/#quick-demo). You will need a browser that supports the [HTML5 File API](https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications).
+If you're viewing this on an RSS reader, check out the example [on my blog](/posts/2012-11-12-financial-tracking-mint-bubbles/#quick-demo). You will need a browser that supports the [HTML5 File API](https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications).
 
 You can see the code for this demo [here](https://github.com/candu/quantified-savagery-files/tree/master/Financial/mint-bubbles).
 
@@ -162,7 +162,7 @@ I'd just started using [Mint](https://www.mint.com/) for financial tracking, and
 
 ### Importing Data
 
-Unlike my [previous](/blog/2012/10/22/dont-hate-cross-correlate/#quick-demo) [visualizations](/blog/2012/10/17/fitbit-apis-crossfilter-and-d3/#quick-demo), I wanted this visualization to allow you to play with your data. Enter the [HTML5 File API](http://www.html5rocks.com/en/tutorials/file/dndfiles/), which allows access to files via JavaScript. First, I set up the drag-and-drop listeners on `div#drop_zone`:
+Unlike my [previous](/posts/2012-10-22-dont-hate-cross-correlate/#quick-demo) [visualizations](/posts/2012-10-17-fitbit-apis-crossfilter-and-d3/#quick-demo), I wanted this visualization to allow you to play with your data. Enter the [HTML5 File API](http://www.html5rocks.com/en/tutorials/file/dndfiles/), which allows access to files via JavaScript. First, I set up the drag-and-drop listeners on `div#drop_zone`:
 
 ```js
 /*

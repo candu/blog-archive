@@ -108,7 +108,7 @@ at the p-value: with $ p = 0.3827 $, it is fairly easy to write this off as
 a random effect.
 
 Finally, let's take another look at a question from
-[a previous blog post](/blog/2012/10/08/self-tracking-for-panic-a-deeper-look/):
+[a previous blog post](/posts/2012-10-08-self-tracking-for-panic-a-deeper-look/):
 
 {% blockquote %}
 On days where I drink heavily, do I drink less the day after?
@@ -196,7 +196,7 @@ $$
 Other than that, the most pronounced cycles have period lengths of
 2.21 days and 7.75 days. The former might be explained by a *see-saw drinking
 pattern*, whereas the latter is likely related to the day-of-week effects
-we saw [in the previous post](/blog/2012/10/08/self-tracking-for-panic-a-deeper-look/).
+we saw [in the previous post](/posts/2012-10-08-self-tracking-for-panic-a-deeper-look/).
 
 Which day of the week? The phase is -3.67 days, and our sample starts on a
 Monday, placing the first peak on Thursday. The period is slightly longer than

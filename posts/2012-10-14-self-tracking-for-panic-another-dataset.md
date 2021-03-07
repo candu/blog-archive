@@ -7,14 +7,9 @@ tags:
 layout: layouts/post.njk
 ---
 
-In this post, I perform the same analyses presented in
-[my last post](/blog/2012/10/09/self-tracking-for-panic-an-even-deeper-look/) using data from my second panic tracking period.
-I then test whether my average alcohol and sugar consumption changed
-measurably between the two tracking periods.
+In this post, I perform the same analyses presented in [my last post](/posts/2012-10-09-self-tracking-for-panic-an-even-deeper-look/) using data from my second panic tracking period. I then test whether my average alcohol and sugar consumption changed measurably between the two tracking periods.
 
-During the second tracking period, I gathered data using
-[qs-counters](https://github.com/candu/qs-counters), a simple utility I built for reducing friction in
-the recording process.
+During the second tracking period, I gathered data using [qs-counters](https://github.com/candu/qs-counters), a simple utility I built for reducing friction in the recording process.
 
 <!-- more -->
 

@@ -59,7 +59,7 @@ This impression deserves further analysis, so I grab the KML to answer some of m
 
 <img src="https://lh5.googleusercontent.com/-A7we5G7pYIw/UJb-xhCk_oI/AAAAAAAAAKk/O7ZwpxF_uQs/s640/timings-frequency.jpg" />
 
-*About every two minutes.* GPS is a [huge battery drain](/blog/2012/10/29/persistent-location-tracking-picking-the-right-tool/); increasing the time between updates can help by allowing the GPS radio to enter an idle state. *How are those location readings scheduled?*
+*About every two minutes.* GPS is a [huge battery drain](/posts/2012-10-29-persistent-location-tracking-picking-the-right-tool/); increasing the time between updates can help by allowing the GPS radio to enter an idle state. *How are those location readings scheduled?*
 
 <img src="https://lh6.googleusercontent.com/-PMYu61X440I/UJb-yCEbuBI/AAAAAAAAAKs/umbJNuuVfo0/s640/timings-second-histogram.jpg" />
 

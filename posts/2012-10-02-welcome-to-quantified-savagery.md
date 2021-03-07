@@ -149,12 +149,12 @@ Although this is a blog about personal data, one of my primary goals is to
 make the thoughts and insights shared here accessible to a broad audience.
 You can filter what you read with these categories:
 
-- <a href="/blog/categories/non-technical/" class="category">Non-Technical</a>:
+- <a href="/tags/Non-Technical/" class="category">Non-Technical</a>:
   expect to see insights, thoughts, discussions, descriptions
   of planned experiments, and post-mortems. I might link to articles, studies,
   or books that provide context, but I'll try to summarize the relevant
   parts.
-- <a href="/blog/categories/technical/" class="category">Technical</a>:
+- <a href="/tags/Technical/" class="category">Technical</a>:
   expect to see code, statistical analysis, $ \LaTeX $ formulae,
   links to [Github](https://github.com/candu) repos, and algorithm
   descriptions. I'll assume familiarity with programming and mathematics, or
@@ -162,11 +162,11 @@ You can filter what you read with these categories:
 
 In addition, many of my posts will be connected to one or more experiments.
 For instance, my upcoming posts on self-tracking to address panic disorder will
-fall under the <a href="/blog/categories/panic/" class="category">Panic</a> category.
+fall under the <a href="/tags/Panic/" class="category">Panic</a> category.
 For every experiment, I'll attempt to post
 content in both the
-<a href="/blog/categories/non-technical/" class="category">Non-Technical</a> and
-<a href="/blog/categories/technical/" class="category">Technical</a> categories.
+<a href="/tags/Non-Technical/" class="category">Non-Technical</a> and
+<a href="/tags/Technical/" class="category">Technical</a> categories.
 
 Of course, I'll be glad to answer any questions you have, technical or
 otherwise!

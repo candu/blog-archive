@@ -61,7 +61,7 @@ The script uses 23andMe's [SNP list](https://api.23andme.com/res/txt/snps.data),
 
 To apply genetic research findings to your genomic data:
 
-- Use the process described in [this blog post](http://blog.savageevan.com/blog/2013/02/04/the-behavioral-economics-of-23andme-results/) with scope `genomes` and API endpoint `https://api.23andme.com/1/genomes/<id>` to download your genetic data. Save it as `genome.json`.
+- Use the process described in [this blog post](/posts/2013-02-04-the-behavioral-economics-of-23andme-results/) with scope `genomes` and API endpoint `https://api.23andme.com/1/genomes/<id>` to download your genetic data. Save it as `genome.json`.
 - Download [my script](https://github.com/candu/quantified-savagery-files/blob/master/Genetics/extractSNP.py) into the same folder as `genome.json`.
 - Find a paper, journal article, etc. that mentions specific SNPs (those funny `rsXXX` or `iXXX` numbers).
 - Run `python extractSNP.py rsXXX < genome.json` to search for those SNPs in your genome.

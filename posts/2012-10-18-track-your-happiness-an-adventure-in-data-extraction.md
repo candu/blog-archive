@@ -58,7 +58,7 @@ Even without considering the specific results, I have a few *unanswered question
 
 There's also the issue of those surprising findings. Am I really less happy when talking with [Valkyrie Savage](http://www.eecs.berkeley.edu/~valkyrie/)? To me, the most likely explanation is *trust*: around her, *I feel free to discuss negative aspects of my life.* Doing so would necessarily involve fixating on those aspects, which could account for some happiness reduction.
 
-During this period, I was confronting *doubt and frustration in my job.* According to my personal data, I was also [drinking heavily](/blog/2012/10/08/self-tracking-for-panic-a-deeper-look/), possibly as a means for coping with that negative emotion. (It doesn't help.) Guilt is a potential factor; perhaps I felt that I was always offloading that doubt and frustration onto her.
+During this period, I was confronting *doubt and frustration in my job.* According to my personal data, I was also [drinking heavily](/posts/2012-10-08-self-tracking-for-panic-a-deeper-look/), possibly as a means for coping with that negative emotion. (It doesn't help.) Guilt is a potential factor; perhaps I felt that I was always offloading that doubt and frustration onto her.
 
 The problem, though, is that *none of these explanations are testable*. They seem reasonable to me, but from a scientific standpoint they *fail a simple criterion:*
 

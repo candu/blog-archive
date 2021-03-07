@@ -26,7 +26,7 @@ What do I do with this idea?
 
 It was around this time that, in a moment of exquisite digital serendipity, [Meetup](http://www.meetup.com/) suggested I check out the [Bay Area Quantified Self Meetup Group](http://www.meetup.com/quantifiedself/).
 
-Quantified Self? [What's that?](/blog/2012/10/02/welcome-to-quantified-savagery/). As I explored the group page, I felt a rush of clarity: *this was exactly what I'd been doing!* There's a whole community of people turning their lives into games in the name of self-betterment!
+Quantified Self? [What's that?](/posts/2012-10-02-welcome-to-quantified-savagery/). As I explored the group page, I felt a rush of clarity: *this was exactly what I'd been doing!* There's a whole community of people turning their lives into games in the name of self-betterment!
 
 I bit the bullet and forked over hard cash to sign up for [QS Show&Tell #25](http://www.meetup.com/quantifiedself/events/58370532/) at the [California College of the Arts](http://goo.gl/maps/fn8H4). It was everything I'd hoped for. One presenter dissected 30 years of medical data and correlated it with his marital status. Another showed off a cyclist threat detection system cobbled together by mounting a webcam and sonar unit to his handlebars. There was a *rich vein of inquiry into awesome here.* I was hooked.
 

@@ -9,7 +9,7 @@ layout: layouts/post.njk
 ---
 
 This will be a quick post: I've got another population-based map rendering to
-share, based on the work described in [this post](http://blog.savageevan.com/blog/2013/02/21/quadtree-cartography/).
+share, based on the work described in [this post](/posts/2013-02-21-quadtree-cartography/).
 
 <!-- more -->
 

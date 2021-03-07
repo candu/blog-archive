@@ -17,7 +17,7 @@ As of today, *I've been completely sober for over a month.* I took my last drink
 
 <img src="https://lh6.googleusercontent.com/-chtv-noAeXM/UKQNQdVUz1I/AAAAAAAAANQ/8zTq_kKfbCU/s640/sevens-pub.jpg" />
 
-Why did I decide to do this? One of the takeaways from my [self-tracking for panic](/blog/2012/10/14/self-tracking-for-panic-another-dataset/) was that *I drink heavily and frequently:* about three drinks per day, six days per week. The USDA recommendations are somewhat stricter:
+Why did I decide to do this? One of the takeaways from my [self-tracking for panic](/posts/2012-10-14-self-tracking-for-panic-another-dataset/) was that *I drink heavily and frequently:* about three drinks per day, six days per week. The USDA recommendations are somewhat stricter:
 
 {% blockquote "Center for Nutrition Policy and Promotion", "https://www.cnpp.usda.gov/Publications/DietaryGuidelines/2010/DGAC/Report/D-7-Alcohol.pdf", "Dietary Guidelines for Americans" %}
 ..."low-risk" drinking [is defined] as no more than 14 drinks a week for men and 7 drinks a week for women with no more than 4 drinks on any given day for men and 3 drinks a day for women.
@@ -50,7 +50,7 @@ About $ 1.3 $ drinks per day, or roughly half of what I was drinking during my t
 
 Regardless of which source I choose to believe, *my data still places me above average.*
 
-There was also a more personal reason: in [analyzing the panic data](/blog/2012/10/09/self-tracking-for-panic-an-even-deeper-look/), *I found that caffeine wasn't the only panic-inducing culprit.* By training a [maximum entropy classifier](https://github.com/candu/quantified-savagery-files/blob/master/Panic/recovery-journal/panic_maxent.py), I found that high alcohol consumption was predictive of panic attacks. [Dissecting my data with bash](/blog/2012/10/08/self-tracking-for-panic-a-deeper-look/) supported this hypothesis: on days where I had a panic attack, I was usually drinking more than average both that day and the previous day.
+There was also a more personal reason: in [analyzing the panic data](/posts/2012-10-09-self-tracking-for-panic-an-even-deeper-look/), *I found that caffeine wasn't the only panic-inducing culprit.* By training a [maximum entropy classifier](https://github.com/candu/quantified-savagery-files/blob/master/Panic/recovery-journal/panic_maxent.py), I found that high alcohol consumption was predictive of panic attacks. [Dissecting my data with bash](/posts/2012-10-08-self-tracking-for-panic-a-deeper-look/) supported this hypothesis: on days where I had a panic attack, I was usually drinking more than average both that day and the previous day.
 
 ## Elimination Or Moderation?
 
