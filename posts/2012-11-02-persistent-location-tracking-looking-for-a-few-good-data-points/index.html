@@ -61,7 +61,7 @@ This data isn't that useful.
 </blockquote>
 <p>This impression deserves further analysis, so I grab the KML to answer some of my questions. First off: <em>how often is Google Latitude checking my location?</em></p>
 <img src="https://lh5.googleusercontent.com/-A7we5G7pYIw/UJb-xhCk_oI/AAAAAAAAAKk/O7ZwpxF_uQs/s640/timings-frequency.jpg" />
-<p><em>About every two minutes.</em> GPS is a <a href="/blog/2012/10/29/persistent-location-tracking-picking-the-right-tool/">huge battery drain</a>; increasing the time between updates can help by allowing the GPS radio to enter an idle state. <em>How are those location readings scheduled?</em></p>
+<p><em>About every two minutes.</em> GPS is a <a href="/posts/2012-10-29-persistent-location-tracking-picking-the-right-tool/">huge battery drain</a>; increasing the time between updates can help by allowing the GPS radio to enter an idle state. <em>How are those location readings scheduled?</em></p>
 <img src="https://lh6.googleusercontent.com/-PMYu61X440I/UJb-yCEbuBI/AAAAAAAAAKs/umbJNuuVfo0/s640/timings-second-histogram.jpg" />
 <p>Google Latitude really likes spacing its readings out by a <em>whole number of minutes.</em></p>
 <p><em>How accurate is the data?</em> The KML doesn't provide <a href="http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)">accuracy estimates</a> for its locations. Fortunately, the <a href="https://developers.google.com/latitude/">Google Latitude API</a> does, so I retrieve my data using <a href="https://github.com/candu/quantified-savagery-files/blob/master/Location/api/scrape.py">this script</a> and look at the accuracy readings:</p>

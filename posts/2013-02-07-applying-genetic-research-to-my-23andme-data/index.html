@@ -70,7 +70,7 @@ Running it, I get my results:</p>
 <h2 id="summary">Summary <a class="direct-link" href="#summary">#</a></h2>
 <p>To apply genetic research findings to your genomic data:</p>
 <ul>
-<li>Use the process described in <a href="http://blog.savageevan.com/blog/2013/02/04/the-behavioral-economics-of-23andme-results/">this blog post</a> with scope <code>genomes</code> and API endpoint <code>https://api.23andme.com/1/genomes/&lt;id&gt;</code> to download your genetic data. Save it as <code>genome.json</code>.</li>
+<li>Use the process described in <a href="/posts/2013-02-04-the-behavioral-economics-of-23andme-results/">this blog post</a> with scope <code>genomes</code> and API endpoint <code>https://api.23andme.com/1/genomes/&lt;id&gt;</code> to download your genetic data. Save it as <code>genome.json</code>.</li>
 <li>Download <a href="https://github.com/candu/quantified-savagery-files/blob/master/Genetics/extractSNP.py">my script</a> into the same folder as <code>genome.json</code>.</li>
 <li>Find a paper, journal article, etc. that mentions specific SNPs (those funny <code>rsXXX</code> or <code>iXXX</code> numbers).</li>
 <li>Run <code>python extractSNP.py rsXXX &lt; genome.json</code> to search for those SNPs in your genome.</li>
