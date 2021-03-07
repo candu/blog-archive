@@ -44,7 +44,7 @@ $$
 f(S(\tau + t), T(\tau))
 $$
 
-(As a side note, the *difference signal* is a new signal $ R(\tau) = S(\tau) - T(\tau) $.)
+As a side note, the *difference signal* is a new signal $ R(\tau) = S(\tau) - T(\tau) $.
 
 First, however, I need a reasonable *similarity function* $ f $. The answer lies in *cross-correlation:*
 
@@ -84,81 +84,11 @@ If you're viewing this on an RSS reader, check out the example [on my blog](/blo
 
 You can see the code for this demo [here](https://github.com/candu/quantified-savagery-files/tree/master/Algorithms/cross-correlation).
 
-<div id="quick-demo" markdown="0">
-  <style type="text/css">
-    #datasets {
-      cursor: move;
-    }
-
-    #cross-correlation {
-      margin-top: 10px;
-    }
-
-    path {
-      stroke-width: 2px;
-    }
-
-    path.s1 {
-      fill: rgba(210, 0, 0, 0.4);
-    }
-
-    path.s2 {
-      fill: rgba(0, 0, 210, 0.4);
-    }
-
-    path.c {
-      fill: rgba(126, 0, 210, 0.64);
-    }
-
-    line {
-      stroke: rgba(64, 64, 64, 0.7);
-      stroke-width: 1px;
-    }
-
-    line.t {
-      stroke: rgba(32, 32, 32, 0.8);
-      stroke-width: 2px;
-    }
-
-    #status {
-      color: #909;
-      font-family: "Menlo", monospace;
-      padding-bottom: 10px;
-    }
-
-    #s1-picker {
-      background-color: rgba(210, 0, 0, 0.7);
-    }
-
-    #s2-picker {
-      background-color: rgba(0, 0, 210, 0.7);
-    }
-  </style>
-  <script src="https://candu.github.io/quantified-savagery-files/lib/js/ArrayUtils.js"></script>
-  <script src="https://candu.github.io/quantified-savagery-files/lib/js/MathUtils.js"></script>
-  <script src="https://candu.github.io/quantified-savagery-files/lib/js/third-party/mootools.js"></script>
-  <script src="https://candu.github.io/quantified-savagery-files/lib/js/third-party/d3.js"></script>
-  <script src="https://candu.github.io/quantified-savagery-files/Algorithms/cross-correlation/demo.js"></script>
-  <div id="controls">
-    <select id="s1-picker">
-      <option value="sine" selected>Sine</option>
-      <option value="noise">Noise</option>
-      <option value="spiky">Spiky</option>
-      <option value="square">Square</option>
-      <option value="triangle">Triangle</option>
-    </select>
-    <select id="s2-picker">
-      <option value="sine" selected>Sine</option>
-      <option value="noise">Noise</option>
-      <option value="spiky">Spiky</option>
-      <option value="square">Square</option>
-      <option value="triangle">Triangle</option>
-    </select>
-  </div>
-  <div id="datasets"></div>
-  <div id="cross-correlation"></div>
-  <div id="status"></div>
-</div>
+<iframe
+  height="480"
+  src="https://blog.savageevan.com/quantified-savagery-files/Algorithms/cross-correlation/index.html"
+  width="100%">
+</iframe>
 
 Use the select boxes to change the red and blue functions. Click and drag on the chart at top to see how sliding the blue function affects the cross-correlation. Try different combinations of functions and *see where the cross-correlation is maximized!*
 
