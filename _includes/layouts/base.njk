@@ -34,7 +34,9 @@
   </head>
   <body>
     <header>
-      <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
+      <div class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></div>
+
+      <div class="spacer"></div>
 
       <ul class="nav">
         {%- for entry in collections.all | eleventyNavigation %}
