@@ -203,9 +203,9 @@ header {
   display: inline-block;
   vertical-align: text-top;
   text-transform: uppercase;
-  font-size: 0.75em; /* 10px /16 */
+  font-size: 1em;
   padding: 2px 4px;
-  margin-left: 0.8em; /* 8px /10 */
+  margin-left: 4px;
   background-color: var(--red);
   color: var(--white);
   border-radius: 0.25em; /* 3px /12 */
@@ -266,6 +266,9 @@ iframe {
 }
 
 /* Utility */
+.p1 {
+  padding: 1em;
+}
 .spacer {
   flex: 1 0 0;
 }

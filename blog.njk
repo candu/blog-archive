@@ -5,12 +5,35 @@ eleventyNavigation:
   key: Blog
   order: 1
 ---
+<section class="p1">
+  <h1>Welcome to my blog</h1>
+  <p>
+    {% set maxPosts = collections.posts.length | min(5) %}
 
-{% set maxPosts = collections.qs.length | min(5) %}
-<h1>Latest {% if maxPosts == 1 %}Post{% else %}{{ maxPosts }} Posts{% endif %}</h1>
+    {% set postslist = collections.posts | head(-5) %}
+    {% set postslistCounter = collections.posts | length %}
+    {% include "postslist.njk" %}
 
-{% set postslist = collections.qs | head(-5) %}
-{% set postslistCounter = collections.qs | length %}
-{% include "postslist.njk" %}
+    <p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>
+  </p>
 
-<p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>
+  <h2>Other Places I've Written</h2>
+  <p>
+    Over the years, I've written a few things in a few places.
+
+  <h2>Quantified Self</h2>
+  <p>
+    From 2012 &ndash; 2014, I spent a lot of time exploring the Quantified Self, and wrote up some of my experiments and analyses here.  Eventually these explorations led me to work on <a href="#">datafist</a>, which then led to my work on <a href="#">Data Sense</a> with Intel Labs.
+  </p>
+  <p>
+    Data Sense was, in some sense, the realization of that exploration: I was working on Quantified Self tools full-time!  As these things go, that also meant I no longer had time to maintain the blog.
+  </p>
+
+  {% set maxPosts = collections.qs.length | min(5) %}
+
+  {% set postslist = collections.qs | head(-5) %}
+  {% set postslistCounter = collections.qs | length %}
+  {% include "postslist.njk" %}
+
+  <p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>
+</div>
