@@ -2,8 +2,8 @@
 title: "datafist: Exploration And Analysis"
 date: 2012-12-21
 tags:
-  - datafist
-  - Non-Technical
+  - qs
+  - nonTechnical
 layout: layouts/post.njk
 ---
 

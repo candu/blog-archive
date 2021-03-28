@@ -2,8 +2,8 @@
 title: "Self-Tracking for Panic: Another Dataset"
 date: 2012-10-14
 tags:
-  - Panic
-  - Technical
+  - qs
+  - technical
 layout: layouts/post.njk
 ---
 

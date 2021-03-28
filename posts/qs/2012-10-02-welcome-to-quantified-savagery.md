@@ -2,8 +2,8 @@
 title: Welcome to Quantified Savagery
 date: 2012-10-02
 tags:
-  - Thoughts
-  - Non-Technical
+  - qs
+  - nonTechnical
 layout: layouts/post.njk
 ---
 

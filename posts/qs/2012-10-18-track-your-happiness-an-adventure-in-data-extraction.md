@@ -2,8 +2,8 @@
 title: "Track Your Happiness: An Adventure In Data Extraction"
 date: 2012-10-18
 tags:
-  - Panic
-  - Technical
+  - qs
+  - technical
 layout: layouts/post.njk
 ---
 

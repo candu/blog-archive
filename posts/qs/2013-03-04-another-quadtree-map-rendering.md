@@ -2,9 +2,9 @@
 title: "Another Quadtree Map Rendering"
 date: 2013-03-04
 tags:
-  - Non-Technical
-  - Location
-  - Visualization
+  - qs
+  - nonTechnical
+  - dataviz
 layout: layouts/post.njk
 ---
 

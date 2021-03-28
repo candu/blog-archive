@@ -2,8 +2,8 @@
 title: "Self-Tracking For Panic: A bash-ful Look At Some Data"
 date: 2012-10-08
 tags:
-  - Panic
-  - Technical
+  - qs
+  - technical
 layout: layouts/post.njk
 ---
 

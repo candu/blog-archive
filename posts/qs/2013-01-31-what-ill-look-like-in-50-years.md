@@ -2,9 +2,8 @@
 title: "What I'll Look Like In 50 Years"
 date: 2013-01-31
 tags:
-  - Non-Technical
-  - Technical
-  - Computer Vision
+  - qs
+  - technical
 layout: layouts/post.njk
 ---
 

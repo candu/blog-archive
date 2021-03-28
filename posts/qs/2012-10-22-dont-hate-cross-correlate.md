@@ -2,9 +2,10 @@
 title: "Don't Hate, Cross-Correlate"
 date: 2012-10-22
 tags:
-  - Algorithms
-  - Technical
-  - Visualization
+  - qs
+  - algorithms
+  - technical
+  - dataviz
 layout: layouts/post.njk
 ---
 

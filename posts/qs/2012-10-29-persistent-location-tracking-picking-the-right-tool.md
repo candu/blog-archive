@@ -2,8 +2,8 @@
 title: "Persistent Location Tracking: Picking The Right Tool"
 date: 2012-10-29
 tags:
-  - Location
-  - Technical
+  - qs
+  - technical
 layout: layouts/post.njk
 ---
 

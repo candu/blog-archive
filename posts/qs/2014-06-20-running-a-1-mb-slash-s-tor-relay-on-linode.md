@@ -2,9 +2,8 @@
 title: "Running a 1 MB/s Tor relay on Linode"
 date: 2014-06-20
 tags:
-  - Technical
-  - Digital Rights
-  - Tor
+  - qs
+  - technical
 layout: layouts/post.njk
 ---
 

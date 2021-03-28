@@ -2,9 +2,9 @@
 title: "Quadtree Cartography"
 date: 2013-02-21
 tags:
-  - Non-Technical
-  - Location
-  - Visualization
+  - qs
+  - nonTechnical
+  - dataviz
 layout: layouts/post.njk
 ---
 

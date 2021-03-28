@@ -2,8 +2,8 @@
 title: "Persistent Location Tracking: Looking For A Few Good Data Points"
 date: 2012-11-02
 tags:
-  - Location
-  - Technical
+  - qs
+  - technical
 layout: layouts/post.njk
 ---
 

@@ -2,8 +2,8 @@
 title: "Healthy Isn't A Place You Go To"
 date: 2012-11-07
 tags:
-  - Thoughts
-  - Non-Technical
+  - qs
+  - nonTechnical
 layout: layouts/post.njk
 ---
 

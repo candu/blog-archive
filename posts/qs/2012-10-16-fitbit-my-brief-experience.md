@@ -2,8 +2,8 @@
 title: "Fitbit: My Brief Experience"
 date: 2012-10-16
 tags:
-  - Panic
-  - Non-Technical
+  - qs
+  - nonTechnical
 layout: layouts/post.njk
 ---
 

@@ -2,9 +2,9 @@
 title: "A Tale of Two Trips"
 date: 2013-10-09
 tags:
-  - Non-Technical
-  - Text Processing
-  - Visualization
+  - qs
+  - nonTechnical
+  - dataviz
 layout: layouts/post.njk
 ---
 

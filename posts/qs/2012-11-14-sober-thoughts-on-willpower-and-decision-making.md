@@ -2,8 +2,8 @@
 title: "Sober Thoughts On Willpower And Decision Making"
 date: 2012-11-14
 tags:
-  - Thoughts
-  - Non-Technical
+  - qs
+  - nonTechnical
 layout: layouts/post.njk
 ---
 

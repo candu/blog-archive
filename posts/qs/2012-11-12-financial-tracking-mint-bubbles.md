@@ -2,9 +2,9 @@
 title: "Financial Tracking: Mint Bubbles"
 date: 2012-11-12
 tags:
-  - Financial
-  - Technical
-  - Visualization
+  - qs
+  - technical
+  - dataviz
 layout: layouts/post.njk
 ---
 

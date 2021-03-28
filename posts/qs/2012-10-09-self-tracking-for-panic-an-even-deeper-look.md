@@ -2,8 +2,8 @@
 title: "Self-Tracking For Panic: A Deeper Look"
 date: 2012-10-09
 tags:
-  - Panic
-  - Technical
+  - qs
+  - technical
 layout: layouts/post.njk
 ---
 

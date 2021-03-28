@@ -2,8 +2,8 @@
 title: "Applying Genetic Research To My 23andMe Data"
 date: 2013-02-07
 tags:
-  - Technical
-  - Genetics
+  - qs
+  - technical
 layout: layouts/post.njk
 ---
 
