@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitbit: APIs, crossfilter, and d3.js</title>
+    <meta name="description" content="Evan Savage&#39;s personal blog about software, life, travel, and other sundry things.">
+    <link href='https://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+        },
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-07YLDJQ67V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-07YLDJQ67V');
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="home"><a href="/">Evan Savage</a></div>
+
+      <div class="spacer"></div>
+
+      <ul class="nav">
+          <li class="nav-item"><a href="/blog/">Blog</a></li>
+          <li class="nav-item"><a href="/">About</a></li>
+      </ul>
+    </header>
+
+    <main class="tmpl-post">
+      <h1>Fitbit: APIs, crossfilter, and d3.js</h1>
+
+<p>In this post, I present <a href="https://github.com/candu/fitbit-crossfilter">fitbit-crossfilter</a>, which uses the <a href="http://dev.fitbit.com/">Fitbit API</a>, <a href="http://square.github.com/crossfilter/">crossfilter</a> and <a href="http://d3js.org/">d3.js</a> to provide an interactive visualization for exploratory analysis.</p>
+<!-- more -->
+<h2 id="the-inspiration">The Inspiration <a class="direct-link" href="#the-inspiration">#</a></h2>
+<p>It was early April 2012. By this point, I'd been through a stint of pen-and-paper self-tracking for <a href="/posts/2012-10-03-panic/">panic recovery</a>. I'd <a href="/posts/2012-10-16-fitbit-my-brief-experience/">just received my Fitbit in the mail</a>.</p>
+<p>Earlier that year, I applied to the <a href="http://www.eecs.berkeley.edu/Gradadm/">EECS PhD program at UC Berkeley</a> with <a href="https://docs.google.com/document/d/10PupOF0RLa54o6y9_xBGnj7VbjtQNPab0-HdoVfT6gA/edit">this statement of purpose</a>. I was fascinated by this idea that <em>pervasive gameplay really could make us all better</em>, that somewhere beyond the rat wheel of gamification was hidden a Shangri-La of game-driven awesome.</p>
+<p>That unfortunately didn't pan out, and I was left with the age-old question:</p>
+<blockquote>
+What do I do with this idea?
+</blockquote>
+<p>It was around this time that, in a moment of exquisite digital serendipity, <a href="http://www.meetup.com/">Meetup</a> suggested I check out the <a href="http://www.meetup.com/quantifiedself/">Bay Area Quantified Self Meetup Group</a>.</p>
+<p>Quantified Self? <a href="/posts/2012-10-02-welcome-to-quantified-savagery/">What's that?</a>. As I explored the group page, I felt a rush of clarity: <em>this was exactly what I'd been doing!</em> There's a whole community of people turning their lives into games in the name of self-betterment!</p>
+<p>I bit the bullet and forked over hard cash to sign up for <a href="http://www.meetup.com/quantifiedself/events/58370532/">QS Show&amp;Tell #25</a> at the <a href="http://goo.gl/maps/fn8H4">California College of the Arts</a>. It was everything I'd hoped for. One presenter dissected 30 years of medical data and correlated it with his marital status. Another showed off a cyclist threat detection system cobbled together by mounting a webcam and sonar unit to his handlebars. There was a <em>rich vein of inquiry into awesome here.</em> I was hooked.</p>
+<p><a href="http://www.beaugunderson.com/">Beau Gunderson</a> of <a href="https://singly.com/">Singly</a> presented <a href="https://github.com/beaugunderson/zeo-crossfilter">zeo-crossfilter</a>. That was the turning point. I saw what he had done and said</p>
+<blockquote>
+Hey, I can build that!
+</blockquote>
+<p>And so <a href="https://github.com/candu/fitbit-crossfilter">fitbit-crossfilter</a> was born.</p>
+<h2 id="the-tools">The Tools <a class="direct-link" href="#the-tools">#</a></h2>
+<p>As mentioned, <a href="https://github.com/candu/fitbit-crossfilter">fitbit-crossfilter</a> is a mashup between the <a href="http://dev.fitbit.com/">Fitbit API</a>, <a href="http://square.github.com/crossfilter/">crossfilter</a>, and <a href="http://d3js.org/">d3.js</a>. I'll go over each part with examples.</p>
+<h3 id="fitbit-api">Fitbit API <a class="direct-link" href="#fitbit-api">#</a></h3>
+<p>The Fitbit API uses <a href="http://oauth.net/">OAuth</a> for authentication. If you've never confronted OAuth before, it can be confusing. To compound the confusion, <em>every API provider seems to do it slightly differently.</em> The <a href="https://wiki.fitbit.com/display/API/OAuth+Authentication+in+the+Fitbit+API">official Fitbit docs</a> are opaque, the <a href="http://tools.ietf.org/html/rfc5849">OAuth specs</a> are even more opaque, and the <a href="http://apis.io/Fitbit">unofficial apis.io listing</a> is just wrong:</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> -X GET -u <span class="token string">'&lt;username>:&lt;password>'</span> http://api.fitbit.com/1/user/-/profile.json <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/null <span class="token operator">|</span> jsonpp<br><span class="token punctuation">{</span><br>  <span class="token string">"errors"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token string">"errorType"</span><span class="token builtin class-name">:</span> <span class="token string">"oauth"</span>,<br>      <span class="token string">"fieldName"</span><span class="token builtin class-name">:</span> <span class="token string">"n/a"</span>,<br>      <span class="token string">"message"</span><span class="token builtin class-name">:</span> <span class="token string">"No Authorization header provided in the request. Each call to Fitbit API should be OAuth signed"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
+<p>I turned to <a href="https://github.com/simplegeo/python-oauth2">oauth2</a>, a Python library that makes it easier to carry out this handshake. First, we get a <em>temporary access token:</em></p>
+<pre class="language-py"><code class="language-py"><span class="token comment"># Fill in your app parameters here.</span><br>FITBIT_APP_KEY <span class="token operator">=</span> <span class="token string">'&lt;app key>'</span><br>FITBIT_APP_SECRET <span class="token operator">=</span> <span class="token string">'&lt;app secret>'</span><br><br><span class="token keyword">import</span> oauth2<br>consumer <span class="token operator">=</span> oauth2<span class="token punctuation">.</span>Consumer<span class="token punctuation">(</span>key<span class="token operator">=</span>FITBIT_APP_KEY<span class="token punctuation">,</span> secret<span class="token operator">=</span>FITBIT_APP_SECRET<span class="token punctuation">)</span><br>client <span class="token operator">=</span> oauth2<span class="token punctuation">.</span>Client<span class="token punctuation">(</span>consumer<span class="token punctuation">)</span><br>resp<span class="token punctuation">,</span> content <span class="token operator">=</span> client<span class="token punctuation">.</span>request<span class="token punctuation">(</span><span class="token string">'http://api.fitbit.com/oauth/request_token, '</span>GET'<span class="token punctuation">)</span><br>token <span class="token operator">=</span> oauth2<span class="token punctuation">.</span>Token<span class="token punctuation">.</span>from_string<span class="token punctuation">(</span>content<span class="token punctuation">)</span><br><span class="token comment"># NOTE: the auth URL uses www.fitbit.com as the domain, NOT api.fitbit.com</span><br>auth_url <span class="token operator">=</span> <span class="token string">'http://www.fitbit.com/oauth/authorize?oauth_token={0}'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>token<span class="token punctuation">.</span>key<span class="token punctuation">)</span><br><span class="token keyword">print</span> auth_url</code></pre>
+<p>Now we need an <a href="http://wiki.oauth.net/w/page/12238555/Signed%20Callback%20URLs">OAuth verifier</a>. This will be used to retrieve the real access credentials. Visit <code>auth_url</code> in your browser, log into Fitbit, and click Allow. You'll be redirected to the OAuth callback specified in your app. Use the value of the <code>oauth_verifier</code> GET param on your <code>token</code> from before to keep going:</p>
+<pre class="language-py"><code class="language-py">token<span class="token punctuation">.</span>set_verifier<span class="token punctuation">(</span><span class="token string">'&lt;oauth_verifier>'</span><span class="token punctuation">)</span><br>client <span class="token operator">=</span> oauth2<span class="token punctuation">.</span>Client<span class="token punctuation">(</span>consumer<span class="token punctuation">,</span> token<span class="token punctuation">)</span><br>resp<span class="token punctuation">,</span> content <span class="token operator">=</span> client<span class="token punctuation">.</span>request<span class="token punctuation">(</span><span class="token string">'http://api.fitbit.com/oauth/access_token'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">)</span><br>access_token <span class="token operator">=</span> oauth2<span class="token punctuation">.</span>Token<span class="token punctuation">.</span>from_string<span class="token punctuation">(</span>content<span class="token punctuation">)</span></code></pre>
+<p>With this, we can now <em>retrieve useful information:</em></p>
+<pre class="language-py"><code class="language-py">request_url <span class="token operator">=</span> <span class="token string">'http://api.fitbit.com/1/user/-/profile.json'</span><br>oauth_request <span class="token operator">=</span> oauth2<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>from_consumer_and_token<span class="token punctuation">(</span>consumer<span class="token punctuation">,</span> token<span class="token operator">=</span>access_token<span class="token punctuation">,</span> http_url<span class="token operator">=</span>request_url<span class="token punctuation">)</span><br><span class="token comment"># Despite what the docs say, you need to generate a plaintext signature.</span><br>oauth_request<span class="token punctuation">.</span>sign_request<span class="token punctuation">(</span>oauth2<span class="token punctuation">.</span>SignatureMethod_PLAINTEXT<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> consumer<span class="token punctuation">,</span> access_token<span class="token punctuation">)</span><br>headers <span class="token operator">=</span> oauth_request<span class="token punctuation">.</span>to_header<span class="token punctuation">(</span>realm<span class="token operator">=</span><span class="token string">'api.fitbit.com'</span><span class="token punctuation">)</span><br><br><span class="token keyword">import</span> httplib<br>connection <span class="token operator">=</span> httplib<span class="token punctuation">.</span>HTTPSConnection<span class="token punctuation">(</span><span class="token string">'api.fitbit.com'</span><span class="token punctuation">)</span><br>connection<span class="token punctuation">.</span>request<span class="token punctuation">(</span><span class="token string">'GET'</span><span class="token punctuation">,</span> request_url<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span><br>resp <span class="token operator">=</span> connection<span class="token punctuation">.</span>getresponse<span class="token punctuation">(</span><span class="token punctuation">)</span><br><br><span class="token keyword">import</span> json<br>data <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>resp<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>I encountered a few difficulties in figuring this out:</p>
+<ul>
+<li>For the authorize step, you need to use <code>www.fitbit.com</code> as the URL domain. <code>api.fitbit.com</code> will NOT work.</li>
+<li>You need to <em>sign all requests with the access token.</em></li>
+<li>No, <code>oauth2.SignatureMethod_HMAC_SHA1</code> will <strong>NOT</strong> work. Yes, they explicitly claim to use HMAC-SHA1 in the documentation. Don't believe everything you read. Use <a href="https://oauth.net/core/1.0/#anchor35">plaintext signatures</a> instead.</li>
+<li>Fitbit expects both the URI and Authorization header to be set, but <code>oauth2</code> will only set <strong>ONE</strong> of them properly. See <a href="https://github.com/candu/fitbit-crossfilter/commit/1d094cecaa6c78bc8d5c295a797d96b7e1687493">this commit message</a> for more details.</li>
+</ul>
+<p>You can see the full implementation <a href="https://github.com/candu/fitbit-crossfilter/blob/master/fitbit_crossfilter/foo/lib/fitbit.py">here</a>, along with <a href="https://github.com/candu/fitbit-crossfilter/blob/master/fitbit_crossfilter/foo/views/__init__.py">an example of its use</a>.</p>
+<h3 id="crossfilter">crossfilter <a class="direct-link" href="#crossfilter">#</a></h3>
+<p>Square's <a href="http://square.github.com/crossfilter/">crossfilter</a> is a JavaScript library for efficiently performing <em>multidimensional range queries.</em> I've included an interactive example <a href="#quick-demo">below</a>.</p>
+<p>crossfilter uses two types of objects to <em>represent a multidimensional dataset:</em></p>
+<ul>
+<li><strong>dimension:</strong> a map function that returns totally-ordered <em>dimension values</em> (e.g. numbers, dates);</li>
+<li><strong>group:</strong> a reduce function on those dimension values.</li>
+</ul>
+<p>The <em>totally-ordered</em> part is essential, since that makes it possible to perform range queries. A quick code snippet might help explain this further:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">var</span> <span class="token constant">L</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token constant">N</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token constant">M</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span><br><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token constant">N</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token constant">L</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">[</span>i<span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token constant">M</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token constant">N</span> <span class="token operator">-</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token constant">N</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token keyword">var</span> c <span class="token operator">=</span> <span class="token function">crossfilter</span><span class="token punctuation">(</span><span class="token constant">L</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">var</span> d0 <span class="token operator">=</span> c<span class="token punctuation">.</span><span class="token function">dimension</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">var</span> g0 <span class="token operator">=</span> d0<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">var</span> d1 <span class="token operator">=</span> c<span class="token punctuation">.</span><span class="token function">dimension</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> x<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">var</span> g1 <span class="token operator">=</span> d1<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>d0<span class="token punctuation">.</span><span class="token function">filterRange</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>At this point, we can <em>inspect the dimensions and groups</em> to understand the effect of <code>filterRange()</code>:</p>
+<pre class="language-js"><code class="language-js"><span class="token operator">></span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>d1<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token number">Infinity</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token string">'[[4,1],[3,1],[7,0],[6,0],[5,0]]'</span><br><span class="token operator">></span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>g1<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token string">'[{"key":0,"value":3},{"key":1,"value":2}]'</span></code></pre>
+<p>Note that the range <code>[3, 8]</code> is actually interpreted as the semi-open interval $ [3, 8) $. Note also that the elements of <code>g1.all()</code> are of the form <code>{key: k, value: v}</code> where <code>v</code> is the number of elements <code>x</code> with <code>3 &lt;= x[0] &amp;&amp; x[0] &lt; 8 &amp;&amp; x[1] == k</code>.</p>
+<h3 id="d3.js">d3.js <a class="direct-link" href="#d3.js">#</a></h3>
+<blockquote cite="https://d3js.org/">
+  <p>
+D3.js is a JavaScript library for manipulating documents based on data.
+</p>
+  <footer>&ndash; Mike Bostock, <cite><a href="https://d3js.org/">D3.js</a></footer>
+</blockquote>
+<p>Using HTML, SVG, CSS, and JavaScript, you can build some pretty stunning visualizations. Again, check out the interactive example <a href="#quick-demo">below</a>. For more examples, the <a href="https://github.com/mbostock/d3/wiki/Gallery">D3 Gallery</a> is many kinds of awesome.</p>
+<h3 id="a-quick-demo">A Quick Demo <a class="direct-link" href="#a-quick-demo">#</a></h3>
+<iframe
+  height="480"
+  id="quick-demo"
+  src="http://candu.github.io/quantified-savagery-files/Panic/fitbit-crossfilter/index.html"
+  width="100%">
+</iframe>
+<p>If you're viewing this through an RSS reader, the above demo of <code>crossfilter</code> won't show correctly. You can view it <a href="/posts/2012-10-17-fitbit-apis-crossfilter-and-d3#quick-demo">on my blog</a>.</p>
+<h2 id="insights-from-my-data">Insights From My Data <a class="direct-link" href="#insights-from-my-data">#</a></h2>
+<ul>
+<li>During this tracking period, I was <em>most active during the 8-10 am and 6-9 pm timeslots.</em> (The former was my morning walk to the employee shuttle; the latter was the evening walk back plus <a href="http://soccerfours.com/">Soccer Fours</a>.</li>
+<li>The more sleep I get, the more bipolar my exercise habits become.</li>
+<li>Unlike Beau Gunderson, I'm not seeing a correlation between number of times awoken and duration of sleep.</li>
+<li>There is, however, a clear positive correlation between steps per minute and calories burned per minute, as expected.</li>
+</ul>
+<h2 id="how-to-use-fitbit-crossfilter">How To Use fitbit-crossfilter <a class="direct-link" href="#how-to-use-fitbit-crossfilter">#</a></h2>
+<p>First, you will need a Fitbit app <em>with Partner API access</em>; see <a href="https://wiki.fitbit.com/display/API/Fitbit+Partner+API">this page</a> for more details on setting that up. Use the following application settings:</p>
+<ul>
+<li><strong>Application Type:</strong> Website</li>
+<li><strong>Callback URL:</strong> <code>http://localhost:9001/oauth</code></li>
+<li><strong>Default Access Type:</strong> Read-Only</li>
+</ul>
+<p>Now copy <code>settings.py.nopasswd</code> to create your settings file:</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">cp</span> settings.py.nopasswd settings.py</code></pre>
+<p>Edit the bottom of <code>settings.py</code>:</p>
+<pre class="language-py"><code class="language-py">SYNC_ENABLED <span class="token operator">=</span> <span class="token boolean">True</span><br>DEFAULT_USER <span class="token operator">=</span> <span class="token boolean">None</span><br>FITBIT_CONSUMER_KEY <span class="token operator">=</span> <span class="token operator">&lt;</span>your app key<span class="token operator">></span><br>FITBIT_CONSUMER_SECRET <span class="token operator">=</span> <span class="token operator">&lt;</span>your app secret<span class="token operator">></span></code></pre>
+<p>Start the server, login, and sync your data:</p>
+<pre class="language-bash"><code class="language-bash">$ python manage.py runserver <span class="token number">9001</span><br><span class="token comment"># visit localhost:9001/login in the browser to do the OAuth handshake</span><br><span class="token comment"># visit localhost:9001/sync-user-data in the browser to sync data</span></code></pre>
+<p>When the syncing completes, you'll be redirected to your dashboard.</p>
+
+
+<hr>
+<ul><li>Next: <a href="/posts/qs/2012-10-18-track-your-happiness-an-adventure-in-data-extraction/">Track Your Happiness: An Adventure In Data Extraction</a></li><li>Previous: <a href="/posts/qs/2012-10-16-fitbit-my-brief-experience/">Fitbit: My Brief Experience</a></li>
+</ul>
+
+    </main>
+
+    <footer></footer>
+
+    <!-- Current page: /posts/qs/2012-10-17-fitbit-apis-crossfilter-and-d3/ -->
+  </body>
+</html>

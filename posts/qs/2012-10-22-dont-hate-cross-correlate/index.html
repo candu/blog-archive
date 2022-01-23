@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don&#39;t Hate, Cross-Correlate</title>
+    <meta name="description" content="Evan Savage&#39;s personal blog about software, life, travel, and other sundry things.">
+    <link href='https://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+        },
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-07YLDJQ67V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-07YLDJQ67V');
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="home"><a href="/">Evan Savage</a></div>
+
+      <div class="spacer"></div>
+
+      <ul class="nav">
+          <li class="nav-item"><a href="/blog/">Blog</a></li>
+          <li class="nav-item"><a href="/">About</a></li>
+      </ul>
+    </header>
+
+    <main class="tmpl-post">
+      <h1>Don&#39;t Hate, Cross-Correlate</h1>
+
+<p>In this post, I discuss cross-correlation. Although commonly used in signal processing, cross-correlation can be useful in a Quantified Self context. I'll present a bit of the mathematics behind cross-correlation, demonstrate a quick example, and briefly explain where you might use this in analyzing your personal data.</p>
+<!-- more -->
+<h2 id="the-inspiration">The Inspiration <a class="direct-link" href="#the-inspiration">#</a></h2>
+<p>I was going through my <a href="http://reader.google.com">Google Reader</a> queue this morning and came across <a href="http://vimeo.com/50329491">this talk</a> by <a href="http://www.linkedin.com/in/jeffzira">Jeff Zira</a>, a product manager at <a href="http://www.lark.com/">Lark Technologies</a>. The talk asks a simple question:</p>
+<blockquote>
+Do Jeff and his fiancée influence each other's sleep patterns?
+</blockquote>
+<p>He presents raw time-series sleep data collected using <a href="http://www.lark.com/products/lark-life/experience">larklife</a>, then attempts to answer this question in a couple of different ways. He first displays a <em>timeline visualization</em> of peak overnight activity:</p>
+<img src="https://lh6.googleusercontent.com/-nU3qiQKycow/UIbogGdHsGI/AAAAAAAAAHY/Ax23iCZB98M/s640/jeffzira-peak-vis.jpg" />
+<p>Since his peaks often occur slightly after her peaks, he uses this as evidence that she's waking him up. He also shows the <em>difference signal</em> between their sleep patterns, but finds this less than conclusive:</p>
+<img src="https://lh4.googleusercontent.com/-GAskT1r-gP4/UIbogcHUqCI/AAAAAAAAAHc/XbCl5IvAves/s640/jeffzira-diff-vis.jpg" />
+<p>After watching this talk, I immediately thought:</p>
+<blockquote>
+Is there a more precise way to answer this question?
+</blockquote>
+<h2 id="the-mathematics">The Mathematics <a class="direct-link" href="#the-mathematics">#</a></h2>
+<p>Note that term <em>difference signal</em> above. Any time-series dataset is a signal, which means the powerful tools of signal processing can be applied!</p>
+<p>Let the sleep patterns of Jeff and his fiancée be the signals $ S(\tau) $ and $ T(\tau) $ respectively. Let $ f(S(\tau), T(\tau)) $ be the <em>similarity</em> between those signals. Ignoring (for now) the fact that $ f $ remains undefined, I'm looking for the <em>time shift</em> $ t $ that maximizes</p>
+<p>$$<br>
+f(S(\tau + t), T(\tau))<br>
+$$</p>
+<p>As a side note, the <em>difference signal</em> is a new signal $ R(\tau) = S(\tau) - T(\tau) $.</p>
+<p>First, however, I need a reasonable <em>similarity function</em> $ f $. The answer lies in <em>cross-correlation:</em></p>
+<blockquote cite="https://en.wikipedia.org/wiki/Cross-correlation">
+  <p>
+In signal processing, cross-correlation is a measure of similarity of two waveforms as a function of a time-lag applied to one of them.
+</p>
+  <footer>&ndash; Wikipedia, <cite><a href="https://en.wikipedia.org/wiki/Cross-correlation">Cross-correlation</a></footer>
+</blockquote>
+<p>Perfect! The core of cross-correlation is an integral that looks suspiciously like <a href="http://en.wikipedia.org/wiki/Convolution">convolution</a>, except that we have a term $ T(\tau + t) $ instead of $ T(\tau - t) $:</p>
+<p>$$<br>
+(S \star T)(t) = \int_{-\infty}^{\infty} S^{\ast}(\tau) T(\tau + t) \mathrm{d}\tau<br>
+$$</p>
+<p>The desired $ t $ is the <em>global maximum</em> of this cross-correlation function.</p>
+<p>Given two discrete periodic signals <code>S1</code>, <code>S2</code> of equal length, this cross-correlation integral can easily be computed:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">crossCorrelation</span><span class="token punctuation">(</span><span class="token parameter"><span class="token constant">S1</span><span class="token punctuation">,</span> <span class="token constant">S2</span><span class="token punctuation">,</span> t</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">var</span> <span class="token constant">N</span> <span class="token operator">=</span> <span class="token constant">S1</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span><br>  t <span class="token operator">=</span> t <span class="token operator">%</span> <span class="token constant">N</span><span class="token punctuation">;</span><br>  <span class="token keyword">if</span> <span class="token punctuation">(</span>t <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    t <span class="token operator">+=</span> <span class="token constant">N</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br>  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> tau <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> tau <span class="token operator">&lt;</span> <span class="token constant">N</span><span class="token punctuation">;</span> tau<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token constant">C</span> <span class="token operator">+=</span> <span class="token constant">S1</span><span class="token punctuation">[</span>tau<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token constant">S2</span><span class="token punctuation">[</span><span class="token punctuation">(</span>tau <span class="token operator">+</span> t<span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token constant">N</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br>  <span class="token keyword">return</span> <span class="token constant">C</span> <span class="token operator">/</span> <span class="token constant">N</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>It can be hard to visualize what this is doing, though, so I've provided a <a href="#quick-demo">quick demo</a> below.</p>
+<h3 id="an-interactive-example">An Interactive Example <a class="direct-link" href="#an-interactive-example">#</a></h3>
+<p>If you're viewing this on an RSS reader, check out the example <a href="/posts/2012-10-22-dont-hate-cross-correlate/#quick-demo">on my blog</a>.</p>
+<p>You can see the code for this demo <a href="https://github.com/candu/quantified-savagery-files/tree/master/Algorithms/cross-correlation">here</a>.</p>
+<iframe
+  height="480"
+  id="quick-demo"
+  src="https://blog.savageevan.com/quantified-savagery-files/Algorithms/cross-correlation/index.html"
+  width="100%">
+</iframe>
+<p>Use the select boxes to change the red and blue functions. Click and drag on the chart at top to see how sliding the blue function affects the cross-correlation. Try different combinations of functions and <em>see where the cross-correlation is maximized!</em></p>
+<h3 id="back-to-the-original-motivation">Back To The Original Motivation <a class="direct-link" href="#back-to-the-original-motivation">#</a></h3>
+<p>Given the two sleep signals $ S, T $ above, cross-correlation makes it possible to answer these questions:</p>
+<ul>
+<li>Who wakes up first? By how long?</li>
+<li>Accounting for the time shift in awakening, how closely do the sleep patterns match?</li>
+</ul>
+<p>This gives a <em>more rigorous</em> sense of whether the peaks in nighttime activity actually do coincide. It also identifies the person who wakes up first and how much earlier they wake up.</p>
+<p>While simply <em>looking at the data</em> can be very effective, rigorous analysis has definite value if you plan to <em>carry out further experiments.</em> Armed with cross-correlation data, you can answer questions like</p>
+<blockquote>
+Okay, I switched to a separately-coiled mattress. How well does that prevent
+us from waking each other up?
+</blockquote>
+<p>In general, <em>signal processing</em> techniques can be highly useful in examining time-series data.</p>
+<h2 id="up-next">Up Next <a class="direct-link" href="#up-next">#</a></h2>
+<p>This was a slight diversion from my plan to talk about upcoming experiments, which I'll return to in my next few posts. If you just can't wait, here's a <em>quick summary:</em></p>
+<ul>
+<li><strong>Persistent location tracking:</strong> by <em>constantly tracking my location</em>, I'll have an additional dataset to correlate against.</li>
+<li><strong>Diet:</strong> by <em>taking meal photos</em>, <em>tagging foods</em>, and <em>measuring stress levels after meals</em>, I'll get a better idea of how different foods affect me.</li>
+<li><strong>Finances:</strong> by <em>tracking where Valkyrie and I spend our money</em>, we'll hopefully be able to better control our discretionary spending.</li>
+<li><strong>Loss Aversion:</strong> by <em>experimenting with tracking methods</em>, I'll see if this is something that can be meaningfully tracked over time.</li>
+</ul>
+
+
+<hr>
+<ul><li>Next: <a href="/posts/qs/2012-10-29-persistent-location-tracking-picking-the-right-tool/">Persistent Location Tracking: Picking The Right Tool</a></li><li>Previous: <a href="/posts/qs/2012-10-18-track-your-happiness-an-adventure-in-data-extraction/">Track Your Happiness: An Adventure In Data Extraction</a></li>
+</ul>
+
+    </main>
+
+    <footer></footer>
+
+    <!-- Current page: /posts/qs/2012-10-22-dont-hate-cross-correlate/ -->
+  </body>
+</html>

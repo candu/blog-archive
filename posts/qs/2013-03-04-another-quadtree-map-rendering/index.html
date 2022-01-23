@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Another Quadtree Map Rendering</title>
+    <meta name="description" content="Evan Savage&#39;s personal blog about software, life, travel, and other sundry things.">
+    <link href='https://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+        },
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-07YLDJQ67V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-07YLDJQ67V');
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="home"><a href="/">Evan Savage</a></div>
+
+      <div class="spacer"></div>
+
+      <ul class="nav">
+          <li class="nav-item"><a href="/blog/">Blog</a></li>
+          <li class="nav-item"><a href="/">About</a></li>
+      </ul>
+    </header>
+
+    <main class="tmpl-post">
+      <h1>Another Quadtree Map Rendering</h1>
+
+<p>This will be a quick post: I've got another population-based map rendering to<br>
+share, based on the work described in <a href="/posts/2013-02-21-quadtree-cartography/">this post</a>.</p>
+<!-- more -->
+<h2 id="the-rendering">The Rendering <a class="direct-link" href="#the-rendering">#</a></h2>
+<p>This rendering uses tiles at Google Maps zoom level 14:</p>
+<img src="https://lh5.googleusercontent.com/-74zVhVDHIdc/UTVAtI4bhcI/AAAAAAAAAWY/sWT9JplWl7k/s800/tiles14.2048.jpg" />
+<p>I decided to experiment with solid shading rather than wireframe for the tiles.  This cuts down on the <a href="http://en.wikipedia.org/wiki/Moir%C3%A9_pattern">Moiré effect</a> in densely populated areas.</p>
+<p>The original is a <em>whopping 1 gigapixels</em>, so I had to resize it using <a href="http://www.imagemagick.org/script/index.php">ImageMagick</a> before uploading it to Picasa:</p>
+<pre class="language-bash"><code class="language-bash">$ convert tiles14.jpg -sample 2048x2048 tiles14.2048.jpg</code></pre>
+<p>A few more random tidbits of information:</p>
+<ul>
+<li>Computing the tile subdivision <em>took one CPU-hour</em> on my laptop, a fairly new MacBook Air.</li>
+<li>At zoom level 14, tiles near the equator are <em>roughly 1.5 miles to a side.</em> (Tiles further north or south are shorter in the north-south direction due to distortion in the Mercator projection.)</li>
+<li><em>The Nile is clearly visible</em> between the Nile Delta and Aswan.</li>
+</ul>
+<h2 id="next-post">Next Post <a class="direct-link" href="#next-post">#</a></h2>
+<p>In my next post, I'll dive into <a href="https://savageinternet.github.io/biketotheearth/">six months of journal entries</a> from a <a href="http://goo.gl/maps/0Xs55">six-month bike trip</a> that <a href="http://www.eecs.berkeley.edu/~valkyrie/">Valkyrie Savage</a> and I took back in 2010.</p>
+
+
+<hr>
+<ul><li>Next: <a href="/posts/qs/2013-10-09-a-tale-of-two-trips/">A Tale of Two Trips</a></li><li>Previous: <a href="/posts/qs/2013-02-21-quadtree-cartography/">Quadtree Cartography</a></li>
+</ul>
+
+    </main>
+
+    <footer></footer>
+
+    <!-- Current page: /posts/qs/2013-03-04-another-quadtree-map-rendering/ -->
+  </body>
+</html>

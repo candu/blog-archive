@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applying Genetic Research To My 23andMe Data</title>
+    <meta name="description" content="Evan Savage&#39;s personal blog about software, life, travel, and other sundry things.">
+    <link href='https://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+        },
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-07YLDJQ67V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-07YLDJQ67V');
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="home"><a href="/">Evan Savage</a></div>
+
+      <div class="spacer"></div>
+
+      <ul class="nav">
+          <li class="nav-item"><a href="/blog/">Blog</a></li>
+          <li class="nav-item"><a href="/">About</a></li>
+      </ul>
+    </header>
+
+    <main class="tmpl-post">
+      <h1>Applying Genetic Research To My 23andMe Data</h1>
+
+<p>To calculate your risk of various diseases, 23andMe scours the medical research literature for studies that correlate incidence rates for those diseases with mutations at specific locations in the human genome. The locations where these mutations commonly occur are referred to as single-nucleotide polymorphisms, or <a href="http://en.wikipedia.org/wiki/Single-nucleotide_polymorphism">SNPs</a>.</p>
+<p>In this post, I show how I applied the findings of <a href="http://www.nature.com/npp/journal/v33/n12/full/npp200817a.html">this study about caffeine-induced anxiety</a> to discover more about myself. I have no genetic research background whatsoever, and my knowledge of genetics is minimal, so it's amazing that this is slowly becoming accessible to a wider audience.</p>
+<!-- more -->
+<h2 id="the-genetic-culprit">The Genetic Culprit <a class="direct-link" href="#the-genetic-culprit">#</a></h2>
+<p>From the study abstract:</p>
+<blockquote cite="https://www.nature.com/npp/journal/v33/n12/full/npp200817a.html">
+  <p>
+At the 150 mg dose of caffeine, we found a significant association between caffeine-induced anxiety (Visual Analog Scales, VAS) and ADORA2A rs5751876 (1976C/T), rs2298383 (intron 1a) and rs4822492 (3′-flank), and DRD2 rs1110976 (intron 6).
+</p>
+  <footer>&ndash; Childs et al., <cite><a href="https://www.nature.com/npp/journal/v33/n12/full/npp200817a.html">Association between ADORA2A and DRD2 Polymorphisms and Caffeine-Induced Anxiety</a></footer>
+</blockquote>
+<p>The SNPs <code>rs5751876</code>, <code>rs2298383</code>, <code>rs4822492</code>, and a few others are claimed here to relate to caffeine-induced anxiety. Reading further, <a href="http://www.nature.com/npp/journal/v33/n12/fig_tab/npp200817f4.html#figure-title">Figure 4</a> and <a href="http://www.nature.com/npp/journal/v33/n12/fig_tab/npp200817t4.html#figure-title">Figure 5</a> show <em>which variations are correlated with higher anxiety.</em> Here's a quick summary of the high-anxiety variations listed in those figures:</p>
+<ul>
+<li><code>rs5751876</code>: T/T (vs. C/C, C/T)</li>
+<li><code>rs2298383</code>: C/C (vs. T/T, C/T)</li>
+<li><code>rs4822492</code>: C/C (vs. G/G, G/C)</li>
+<li><code>rs1110976</code>: G/G (vs. G/-)</li>
+</ul>
+<p>Armed with this information, I can check my own genome for variations at those SNPs.</p>
+<h2 id="checking-my-genome">Checking My Genome <a class="direct-link" href="#checking-my-genome">#</a></h2>
+<p>In the appendix of <a href="/posts/2013-02-04-the-behavioral-economics-of-23andme-results/">this blog post</a>, I discuss how to retrieve your genetic data from the 23andMe API. I followed those directions with two changes:</p>
+<ul>
+<li>I used the authorization scope <code>genomes</code>;</li>
+<li>I accessed the API endpoint <code>https://api.23andme.com/1/genomes/&lt;id&gt;</code>, where <code>&lt;id&gt;</code> is my internal ID. This ID is returned with every response from their API.</li>
+</ul>
+<p>I downloaded the genomic data as <code>genome.json</code>:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> https://api.23andme.com/1/genomes/<span class="token operator">&lt;</span>id<span class="token operator">></span>/ -H <span class="token string">"Authorization: Bearer &lt;access_token>"</span> <span class="token operator">></span> genome.json</code></pre>
+<p>To help extract the specific SNPs listed above, I wrote<br>
+<a href="https://github.com/candu/quantified-savagery-files/blob/master/Genetics/extractSNP.py">a quick Python script</a>.<br>
+Running it, I get my results:</p>
+<pre class="language-bash"><code class="language-bash">$ python extractSNP.py rs5751876 rs2298383 rs4822492 rs1110976 <span class="token operator">&lt;</span> genome.json<br>rs5751876       TT<br>rs2298383       CC</code></pre>
+<p>23andMe doesn't provide data on the <code>rs4822492</code> or <code>rs1110976</code> SNPs, but I can see that <em>I have the high-anxiety variations</em> at <code>rs5751876</code> and <code>rs2298383</code>.</p>
+<p>The script uses 23andMe's <a href="https://api.23andme.com/res/txt/snps.data">SNP list</a>, which identifies the locations of all SNPs that they look for. The first time you run <code>extractSNP.py</code>, it will generate an index of all 23andMe SNPs in <code>.snps-index</code> to make subsequent runs faster. Once you have your <code>genome.json</code> data and have built the <code>.snps-index</code> index, <em>you can look up any SNP or group of SNPs in about a second.</em></p>
+<h2 id="summary">Summary <a class="direct-link" href="#summary">#</a></h2>
+<p>To apply genetic research findings to your genomic data:</p>
+<ul>
+<li>Use the process described in <a href="/posts/2013-02-04-the-behavioral-economics-of-23andme-results/">this blog post</a> with scope <code>genomes</code> and API endpoint <code>https://api.23andme.com/1/genomes/&lt;id&gt;</code> to download your genetic data. Save it as <code>genome.json</code>.</li>
+<li>Download <a href="https://github.com/candu/quantified-savagery-files/blob/master/Genetics/extractSNP.py">my script</a> into the same folder as <code>genome.json</code>.</li>
+<li>Find a paper, journal article, etc. that mentions specific SNPs (those funny <code>rsXXX</code> or <code>iXXX</code> numbers).</li>
+<li>Run <code>python extractSNP.py rsXXX &lt; genome.json</code> to search for those SNPs in your genome.</li>
+</ul>
+<h2 id="caveats">Caveats <a class="direct-link" href="#caveats">#</a></h2>
+<p>This is still a highly manual process, and you'll need some familiarity with the command line to pull it off. We haven't quite reached the promised near-future where the deepest insights about our personal genetics are easily available.</p>
+<p>23andMe's data is incomplete: they only had two of the four listed SNPs. That said, it's far better than nothing!</p>
+<p>Also, there's room for skepticism regarding the underlying research. Only 102 participants took part, all of European-American descent. The subjects all had stated caffeine intake levels of less than 300mg per day, or about 3 cups' worth - that's a pretty wide range of potential tolerances. Subjects rated their anxiety on a subjective scale. The researchers also took measurements of heart rate and blood pressure, but did not incorporate that data into the anxiety rankings.</p>
+<p>No single study is perfect. For more reliable results, you'll want to dig up findings that are supported by multiple studies.</p>
+
+
+<hr>
+<ul><li>Next: <a href="/posts/qs/2013-02-21-quadtree-cartography/">Quadtree Cartography</a></li><li>Previous: <a href="/posts/qs/2013-02-04-the-behavioral-economics-of-23andme-results/">The Behavioral Economics of 23AndMe Results</a></li>
+</ul>
+
+    </main>
+
+    <footer></footer>
+
+    <!-- Current page: /posts/qs/2013-02-07-applying-genetic-research-to-my-23andme-data/ -->
+  </body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What I&#39;ll Look Like In 50 Years</title>
+    <meta name="description" content="Evan Savage&#39;s personal blog about software, life, travel, and other sundry things.">
+    <link href='https://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+        },
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-07YLDJQ67V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-07YLDJQ67V');
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="home"><a href="/">Evan Savage</a></div>
+
+      <div class="spacer"></div>
+
+      <ul class="nav">
+          <li class="nav-item"><a href="/blog/">Blog</a></li>
+          <li class="nav-item"><a href="/">About</a></li>
+      </ul>
+    </header>
+
+    <main class="tmpl-post">
+      <h1>What I&#39;ll Look Like In 50 Years</h1>
+
+<p>I spent a few weeks in the not-so-frozen Canadian northlands over the winter holidays. While there, I had the chance to visit an old childhood favorite: the <a href="https://ontariosciencecentre.ca/">Ontario Science Centre</a>, six floors of science-based awesomeness. One of their current exhibits, the <a href="http://ontariosciencecentre.ca/aging/">Amazing Aging Machine</a>, uses a computer vision software package called <a href="http://aprilage.com/">APRIL</a> to predict how your face will change over the next 50 years.</p>
+<p>In this post, I explore my results from that exhibit alongside a customized aging I performed using the <a href="http://www.aprilage.com/AprilAPI_V2.pdf">APRIL API</a>.</p>
+<!-- more -->
+<h2 id="present-me">Present Me <a class="direct-link" href="#present-me">#</a></h2>
+<p>It's not the most flattering photo, but here I am at 26:</p>
+<img src="https://lh4.googleusercontent.com/-8qaAivSLFrI/UQrbKiU3JZI/AAAAAAAAARY/9e7IvKZUB00/s288/aging1.jpg" />
+<h2 id="future-me">Future Me <a class="direct-link" href="#future-me">#</a></h2>
+<h3 id="take-one%3A-amazing-aging-machine">Take One: Amazing Aging Machine <a class="direct-link" href="#take-one%3A-amazing-aging-machine">#</a></h3>
+<p>First, my face balloons out massively:</p>
+<img src="https://lh4.googleusercontent.com/-LCFkNNtDiJg/UQrbKwGOIQI/AAAAAAAAARg/SS9o98axBtU/s288/aging2.jpg" />
+<p>Next, my cheek bones set downwards:</p>
+<img src="https://lh5.googleusercontent.com/-VZhuI1uOVQk/UQrbLTKdBXI/AAAAAAAAARo/LHKV6cGEBGA/s288/aging3.jpg" />
+<img src="https://lh6.googleusercontent.com/-aNcc-FC_4yk/UQrbL53IPpI/AAAAAAAAARs/DRf3ySCxPs4/s288/aging4.jpg" />
+<p>Finally, my face leans up and wrinkles a tiny bit:</p>
+<img src="https://lh6.googleusercontent.com/-F8xBzpDWsM4/UQrbMUOukwI/AAAAAAAAAR0/cRqPDd_wYPM/s288/aging5.jpg" />
+<h3 id="take-two%3A-april-api">Take Two: APRIL API <a class="direct-link" href="#take-two%3A-april-api">#</a></h3>
+<p>For this run, I had access to the raw aging metadata, so I could see exactly how old APRIL thought I was at each point in the aging sequence.</p>
+<p>From 26 to 28, there's not much change:</p>
+<img src="https://lh6.googleusercontent.com/-u36fDGLeI0Y/UQrbNrKtZyI/AAAAAAAAASE/NQSn0Y5uCng/s288/age28.jpg" />
+<p>Then, by age 35, my face elongates slightly:</p>
+<img src="https://lh4.googleusercontent.com/-cRxKskiAyos/UQrbOiA_OjI/AAAAAAAAASM/GBFlRfZtXnc/s288/age35.jpg" />
+<p>I while away the next couple of decades in relative facial stasis. The most pronounced change is in my skin, which pales gradually with age:</p>
+<img src="https://lh6.googleusercontent.com/-gYCoSmKbBDw/UQrbO46gohI/AAAAAAAAASY/X8RoWKpGT_8/s288/age47.jpg" />
+<img src="https://lh6.googleusercontent.com/-dWkaa-neumY/UQrbPgkBVtI/AAAAAAAAASg/ebWh4i14qYk/s288/age55.jpg" />
+<p>Finally, age catches up with me, and I wrinkle into a haunted septuagenarian:</p>
+<img src="https://lh5.googleusercontent.com/-JNBO6QMu-Xg/UQrbP9uzUUI/AAAAAAAAASo/Dj43_1l46Zo/s288/age61.jpg" />
+<img src="https://lh4.googleusercontent.com/-w7zx8Ql3PnM/UQrbQO2pqVI/AAAAAAAAASw/9HJrW1EUz2c/s288/age67.jpg" />
+<img src="https://lh5.googleusercontent.com/-RNgo0CglAjs/UQrbQtlY69I/AAAAAAAAAS0/OXD8Yqf63og/s288/age72.jpg" />
+<p>A few changes, each very minor, contribute to my forlorn expression over these last three photos.</p>
+<ul>
+<li>The <em>eyes get slightly rounder</em>, as though they're welling up.</li>
+<li><em>Wrinkling above the eyes</em> gives the impression of a furrowed brow.</li>
+<li>The face <em>elongates yet again</em>, creating a drawn expression.</li>
+<li>As part of the elongation of the face, the <em>mouth corners sag downwards</em> into the merest hint of a frown.</li>
+</ul>
+<p>Note the lack of deep forehead and upper nose creases which normally accompany the furrowed brow expression. The mere suggestion of it on the eyes is enough to trigger our expression recognition! It's amazing how sensitive we are to minute variations in facial muscle position.</p>
+<h3 id="summary">Summary <a class="direct-link" href="#summary">#</a></h3>
+<p>These images provide two divergent visions for my distant future:</p>
+<img src="https://lh6.googleusercontent.com/-F8xBzpDWsM4/UQrbMUOukwI/AAAAAAAAAR0/cRqPDd_wYPM/s288/aging5.jpg" />
+<img src="https://lh5.googleusercontent.com/-RNgo0CglAjs/UQrbQtlY69I/AAAAAAAAAS0/OXD8Yqf63og/s288/age72.jpg" />
+<h2 id="why-were-those-so-different%3F">Why Were Those So Different? <a class="direct-link" href="#why-were-those-so-different%3F">#</a></h2>
+<blockquote cite="https://ontariosciencecentre.ca/aging/">
+  <p>
+...the machine uses state-of-the-art aging software developed in partnership with Aprilage Development Inc. of Toronto to add decades to the faces of 8-12 year olds.
+</p>
+  <footer>&ndash; Ontario Science Centre, <cite><a href="https://ontariosciencecentre.ca/aging/">The Amazing Aging Machine</a></footer>
+</blockquote>
+<p>The Amazing Aging Machine is calibrated for ages 8-12, likely to match the Ontario Science Centre's target demographic. (Sadly, I couldn't find detailed visitor demographic data!) In my case, this creates an awkward puffy look: it's applying changes in facial structure through adolescence, when much of our bone growth occurs.</p>
+<p>By contrast, the APRIL API asks for your current age, allowing it to more correctly calibrate its models. As a result, the second set of faces exhibits relatively little change in shape.</p>
+<h2 id="what-do-i-get-out-of-this%3F">What Do I Get Out Of This? <a class="direct-link" href="#what-do-i-get-out-of-this%3F">#</a></h2>
+<p>Although my face is unlikely to match either of these faces at 72, this experiment provides some insight into how our faces change with age. After all, the APRIL face aging models are based on real face data. They represent a sort of statistical average of the aging process.</p>
+<p>Also, I get the vaguely warm feeling that comes with having contributed to our <a href="http://vimeo.com/29052688">collective intelligence</a>. I provided APRIL with a real age-labelled face, which will likely be used to help train future models.</p>
+<h2 id="appendix%3A-how-to-use-the-april-api">Appendix: How To Use The APRIL API <a class="direct-link" href="#appendix%3A-how-to-use-the-april-api">#</a></h2>
+<p>For the more technically-minded, I've provided a quick walkthrough of the API aging pipeline. For all the gritty details, consult the <a href="http://www.aprilage.com/AprilAPI_V2.pdf">API docs</a>.</p>
+<p>Before starting, I highly recommend installing a tool like <a href="https://github.com/jmhodges/jsonpp">jsonpp</a>; it makes it much easier to read API results.</p>
+<p>The first step is manual: you need to register at <a href="http://www.ageme.com/">ageme.com</a>, then click the confirmation link in your email.</p>
+<img src="https://lh5.googleusercontent.com/-wuu_sRDb7qQ/UQrtRmoofNI/AAAAAAAAATE/l7CAexc1_ZY/s400/ageme_register.jpg" />
+<p>The next step is uploading an image, but let's check first that the API works by retrieving our user info:</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> http://www.ageme.com/AprilAPI/users/savage.evan@gmail.com/userInfo<br><span class="token punctuation">{</span><span class="token string">"result_code"</span>:0,<span class="token string">"message"</span><span class="token builtin class-name">:</span><span class="token string">"Unauthorized"</span><span class="token punctuation">}</span></code></pre>
+<p>Oops! We haven't authenticated ourselves. The Authorization header uses a brain-dead and highly insecure <code>base64</code> encoding:</p>
+<pre class="language-bash"><code class="language-bash">$ python -c <span class="token string">"import base64; print base64.encodestring('username:password')"</span><br><span class="token assign-left variable">dXNlcm5hbWU6cGFzc3dvcmQ</span><span class="token operator">=</span></code></pre>
+<p>(Obviously this isn't my real username/password. Substitute yours above and use the resulting <code>base64</code>-encoded string in the <code>Authorization</code> headers below. I'll use this bogus value to illustrate the flow.)</p>
+<p>With the correct header, we can try fetching the user info again:</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> -H <span class="token string">"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ="</span> http://www.ageme.com/AprilAPI/users/savage.evan@gmail.com/userInfo <span class="token operator">|</span> jsonpp<br><span class="token punctuation">{</span><br>  <span class="token string">"uri"</span><span class="token builtin class-name">:</span> <span class="token string">"http://www.ageme.com/AprilAPI/users/savage.evan@gmail.com"</span>,<br>  <span class="token string">"email"</span><span class="token builtin class-name">:</span> <span class="token string">"savage.evan@gmail.com"</span>,<br>  <span class="token string">"tokens"</span><span class="token builtin class-name">:</span> <span class="token number">0</span>,<br>  <span class="token string">"numOfAgings"</span><span class="token builtin class-name">:</span> <span class="token number">1</span>,<br>  <span class="token string">"role"</span><span class="token builtin class-name">:</span> <span class="token string">"user"</span><br><span class="token punctuation">}</span></code></pre>
+<p>Great! Now we can POST an image to the uploading endpoint with <code>curl</code>:</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> -F <span class="token string">'filename=aging1.jpg'</span> -F <span class="token string">'image=@/Users/candu/Desktop/aging1.jpg'</span> -H <span class="token string">"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ="</span> http://www.ageme.com/AprilAPI/images</code></pre>
+<p>Another manual step: before proceeding, you'll need to purchase a token on the <a href="http://www.ageme.com/">ageme.com</a> site. At time of writing, this cost $3.99; I looked for active promotion codes, but couldn't find any.</p>
+<img src="https://lh6.googleusercontent.com/-co9vyFu4uJQ/UQrtSM1T8mI/AAAAAAAAATM/8ozrK3aiGjk/s400/ageme_buytokens.jpg" />
+<p>With your aging token purchased, you can now create an aging document. This lets APRIL know your age and ethnicity, which helps it to select the appropriate models for your particular aging sequence. It also identifies the starting image of that sequence via the <code>imageId</code> returned during image upload.</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> -H <span class="token string">'Content-Type: application/json'</span> -d <span class="token string">'{"document": {"gender": "male", "age": 26, "name": "Evan", "ethnicity": "Caucasian"}, "imageId": 2371944}}'</span> -H <span class="token string">"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ="</span> http://www.ageme.com/AprilAPI/documents</code></pre>
+<p>We're ready to run the aging process. There's a single method <code>detectMatchAge</code> for performing all three steps, but I'll break it down into the component steps here:</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> -X POST -H <span class="token string">"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ="</span> http://www.ageme.com/AprilAPI/users/savage.evan@gmail.com/documents/2371973/pointDetection<br>$ <span class="token keyword">while</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token function">curl</span> -H <span class="token string">"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ="</span> http://www.ageme.com/AprilAPI/users/savage.evan@gmail.com/documents/2371973/status<span class="token punctuation">;</span> <span class="token keyword">done</span><br>$ <span class="token function">curl</span> -X POST -H <span class="token string">"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ="</span> http://www.ageme.com/AprilAPI/users/savage.evan@gmail.com/documents/2371973/match<br>$ <span class="token keyword">while</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token function">curl</span> -H <span class="token string">"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ="</span> http://www.ageme.com/AprilAPI/users/savage.evan@gmail.com/documents/2371973/status<span class="token punctuation">;</span> <span class="token keyword">done</span><br>$ <span class="token function">curl</span> -H <span class="token string">'Content-Type: application/json'</span> -d <span class="token string">'{"sequenceType": "Max72", "sequences": [{"smoking": 0, "sunExposure": 0, "multiplier": 1}]}'</span> -H <span class="token string">"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ="</span> http://www.ageme.com/AprilAPI/users/savage.evan@gmail.com/documents/2371973/aging<br>$ <span class="token keyword">while</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token function">curl</span> -H <span class="token string">"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ="</span> http://www.ageme.com/AprilAPI/users/savage.evan@gmail.com/documents/2371973/status<span class="token punctuation">;</span> <span class="token keyword">done</span></code></pre>
+<p>Note the <code>while</code> loops, which wait for each step to complete. Once all steps are completed, we retrieve the aging results:</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> -H <span class="token string">"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ="</span> http://www.ageme.com/AprilAPI/users/savage.evan@gmail.com/documents/2371973/results <span class="token operator">></span> aging_results.json<br>$ <span class="token function">cat</span> aging_results.json <span class="token operator">|</span> jsonpp <span class="token operator">|</span> <span class="token function">head</span> -15<br><span class="token punctuation">[</span><br>  <span class="token punctuation">{</span><br>    <span class="token string">"uri"</span><span class="token builtin class-name">:</span> <span class="token string">"http://www.ageme.com/AprilAPI/users/savage.evan@gmail.com/documents/2371973/results/76647"</span>,<br>    <span class="token string">"status"</span><span class="token builtin class-name">:</span> <span class="token string">"done"</span>,<br>    <span class="token string">"sequenceType"</span><span class="token builtin class-name">:</span> <span class="token string">"Max72"</span>,<br>    <span class="token string">"sequences"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span><br>      <span class="token punctuation">{</span><br>        <span class="token string">"smoking"</span><span class="token builtin class-name">:</span> <span class="token number">0.0</span>,<br>        <span class="token string">"sunExposure"</span><span class="token builtin class-name">:</span> <span class="token number">0.0</span>,<br>        <span class="token string">"multiplier"</span><span class="token builtin class-name">:</span> <span class="token number">1.0</span>,<br>        <span class="token string">"images"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span><br>          <span class="token punctuation">{</span><br>            <span class="token string">"age"</span><span class="token builtin class-name">:</span> <span class="token number">26</span>,<br>            <span class="token string">"uri"</span><span class="token builtin class-name">:</span> <span class="token string">"http://www.ageme.com/AprilAPI/images/IhLAo8Sp"</span><br>          <span class="token punctuation">}</span>,</code></pre>
+<p>Finally, I wrote a bit of <a href="https://github.com/candu/quantified-savagery-files/blob/master/Aging/fetch_aging.py">Python glue</a> to fetch the URLs and name them by age:</p>
+<pre class="language-py"><code class="language-py"><span class="token keyword">import</span> json<br><span class="token keyword">import</span> sys<br><span class="token keyword">import</span> urllib2<br><br>data <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>sys<span class="token punctuation">.</span>stdin<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br>images <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'sequences'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'images'</span><span class="token punctuation">]</span><br><span class="token keyword">for</span> image <span class="token keyword">in</span> images<span class="token punctuation">:</span><br>  url <span class="token operator">=</span> urllib2<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>image<span class="token punctuation">[</span><span class="token string">'uri'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><br>  path <span class="token operator">=</span> <span class="token string">'age{0}.jpg'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>image<span class="token punctuation">[</span><span class="token string">'age'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><br>  <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span><br>    f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>url<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>With this, we can fetch the images:</p>
+<pre class="language-bash"><code class="language-bash">$ python fetch_aging.py <span class="token operator">&lt;</span> aging_results.json</code></pre>
+<p>And that's it! Most of the process uses <code>curl</code>, with minimal leaning on Python for its <code>base64</code> module.</p>
+
+
+<hr>
+<ul><li>Next: <a href="/posts/qs/2013-02-04-the-behavioral-economics-of-23andme-results/">The Behavioral Economics of 23AndMe Results</a></li><li>Previous: <a href="/posts/qs/2012-12-21-datafist-exploration-and-analysis/">datafist: Exploration And Analysis</a></li>
+</ul>
+
+    </main>
+
+    <footer></footer>
+
+    <!-- Current page: /posts/qs/2013-01-31-what-ill-look-like-in-50-years/ -->
+  </body>
+</html>
