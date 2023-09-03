@@ -8,8 +8,8 @@
     <link href='https://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
-    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
-    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage // Blog Archive">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage // Blog Archive">
 
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -34,13 +34,14 @@
   </head>
   <body>
     <header>
-      <div class="home"><a href="/">Evan Savage</a></div>
+      <div class="home"><a href="/">Evan Savage // Blog Archive</a></div>
 
       <div class="spacer"></div>
 
       <ul class="nav">
-          <li class="nav-item"><a href="/blog/">Blog</a></li>
-          <li class="nav-item"><a href="/">About</a></li>
+        <li class="nav-item">
+          <a href="https://savageevan.com">New Blog!</a>
+        </li>
       </ul>
     </header>
 
@@ -71,7 +72,7 @@
 What features best predict my exercise patterns?
 </blockquote>
 <p>Here are the top features from <code>MaxentClassifier</code>:</p>
-<pre class="language-bash"><code class="language-bash">   <span class="token number">3.369</span> <span class="token assign-left variable">caffeine</span><span class="token operator">==</span>True and label is <span class="token string">'no-exercise'</span><br>  -0.739 <span class="token assign-left variable">sweets</span><span class="token operator">==</span>True and label is <span class="token string">'exercise'</span><br>   <span class="token number">0.399</span> <span class="token assign-left variable">sweets</span><span class="token operator">==</span>True and label is <span class="token string">'no-exercise'</span><br>  -0.201 <span class="token assign-left variable">alcohol</span><span class="token operator">==</span>True and label is <span class="token string">'exercise'</span><br>   <span class="token number">0.166</span> <span class="token assign-left variable">alcohol</span><span class="token operator">==</span>True and label is <span class="token string">'no-exercise'</span><br>   <span class="token number">0.161</span> <span class="token assign-left variable">relaxation</span><span class="token operator">==</span>True and label is <span class="token string">'exercise'</span><br>  -0.092 <span class="token assign-left variable">relaxation</span><span class="token operator">==</span>True and label is <span class="token string">'no-exercise'</span></code></pre>
+<pre class="language-bash"><code class="language-bash">   <span class="token number">3.369</span> <span class="token assign-left variable">caffeine</span><span class="token operator">==</span>True and label is <span class="token string">'no-exercise'</span><br>  <span class="token parameter variable">-0.739</span> <span class="token assign-left variable">sweets</span><span class="token operator">==</span>True and label is <span class="token string">'exercise'</span><br>   <span class="token number">0.399</span> <span class="token assign-left variable">sweets</span><span class="token operator">==</span>True and label is <span class="token string">'no-exercise'</span><br>  <span class="token parameter variable">-0.201</span> <span class="token assign-left variable">alcohol</span><span class="token operator">==</span>True and label is <span class="token string">'exercise'</span><br>   <span class="token number">0.166</span> <span class="token assign-left variable">alcohol</span><span class="token operator">==</span>True and label is <span class="token string">'no-exercise'</span><br>   <span class="token number">0.161</span> <span class="token assign-left variable">relaxation</span><span class="token operator">==</span>True and label is <span class="token string">'exercise'</span><br>  <span class="token parameter variable">-0.092</span> <span class="token assign-left variable">relaxation</span><span class="token operator">==</span>True and label is <span class="token string">'no-exercise'</span></code></pre>
 <p>The caffeine finding is misleading. On one of the two days where I entered non-zero caffeine consumption, that was due to a <em>mistake in data entry.</em> (Side note to self: all tools should include an undo feature!) Aside from that, <em>sugar consumption appears to have the strongest negative effect on exercise.</em></p>
 <h2 id="student's-t-test">Student's t-test <a class="direct-link" href="#student's-t-test">#</a></h2>
 <h3 id="what%3F">What? <a class="direct-link" href="#what%3F">#</a></h3>

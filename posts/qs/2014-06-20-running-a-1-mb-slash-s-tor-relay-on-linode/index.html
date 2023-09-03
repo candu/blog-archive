@@ -8,8 +8,8 @@
     <link href='https://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
-    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
-    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage // Blog Archive">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage // Blog Archive">
 
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -34,13 +34,14 @@
   </head>
   <body>
     <header>
-      <div class="home"><a href="/">Evan Savage</a></div>
+      <div class="home"><a href="/">Evan Savage // Blog Archive</a></div>
 
       <div class="spacer"></div>
 
       <ul class="nav">
-          <li class="nav-item"><a href="/blog/">Blog</a></li>
-          <li class="nav-item"><a href="/">About</a></li>
+        <li class="nav-item">
+          <a href="https://savageevan.com">New Blog!</a>
+        </li>
       </ul>
     </header>
 
@@ -57,7 +58,7 @@
 <p>Go to <a href="https://www.linode.com/">linode.com</a>, sign up, and add a Linode 1GB instance to your account.  You can follow Linode's <a href="https://library.linode.com/getting-started">Getting Started instructions</a>.  We're using Ubuntu as the distro, mainly because we're familiar with it and we wanted to get this up and running as quickly as possible!</p>
 <h3 id="step-2%3A-install-tor">Step 2: Install Tor <a class="direct-link" href="#step-2%3A-install-tor">#</a></h3>
 <p>There are some good instructions <a href="https://www.darkcoding.net/society/running-a-tor-relay-node-server-on-ubuntu/">here</a>, but they boil down to:</p>
-<pre class="language-bash"><code class="language-bash">$ gpg --keyserver keys.gnupg.net --recv 886DDD89<br>$ gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 <span class="token operator">|</span> <span class="token function">sudo</span> apt-key <span class="token function">add</span> -<br>$ <span class="token function">sudo</span> <span class="token function">apt-get</span> update<br>$ <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> tor tor-arm</code></pre>
+<pre class="language-bash"><code class="language-bash">$ gpg <span class="token parameter variable">--keyserver</span> keys.gnupg.net <span class="token parameter variable">--recv</span> 886DDD89<br>$ gpg <span class="token parameter variable">--export</span> A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 <span class="token operator">|</span> <span class="token function">sudo</span> apt-key <span class="token function">add</span> -<br>$ <span class="token function">sudo</span> <span class="token function">apt-get</span> update<br>$ <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> tor tor-arm</code></pre>
 <p>Once Tor is installed, you need to configure it.</p>
 <h3 id="step-3%3A-basic-tor-configuration">Step 3: Basic Tor Configuration <a class="direct-link" href="#step-3%3A-basic-tor-configuration">#</a></h3>
 <p>We'll get to exit policies in a bit, but:</p>

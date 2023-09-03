@@ -186,10 +186,13 @@ header {
 .postlist-item-active .postlist-link {
   font-weight: bold;
 }
-.tmpl-home #posts {
+.tmpl-home h1 {
+  padding-left: 0.5em;
+}
+.tmpl-home section {
   padding: 1em;
 }
-.tmpl-home #posts > :first-child {
+.tmpl-home section > :first-child {
   margin-top: 0;
 }
 .tmpl-home .postlist-link {

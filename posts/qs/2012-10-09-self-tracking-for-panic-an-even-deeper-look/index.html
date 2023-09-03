@@ -8,8 +8,8 @@
     <link href='https://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
-    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
-    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage // Blog Archive">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage // Blog Archive">
 
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -34,13 +34,14 @@
   </head>
   <body>
     <header>
-      <div class="home"><a href="/">Evan Savage</a></div>
+      <div class="home"><a href="/">Evan Savage // Blog Archive</a></div>
 
       <div class="spacer"></div>
 
       <ul class="nav">
-          <li class="nav-item"><a href="/blog/">Blog</a></li>
-          <li class="nav-item"><a href="/">About</a></li>
+        <li class="nav-item">
+          <a href="https://savageevan.com">New Blog!</a>
+        </li>
       </ul>
     </header>
 
@@ -164,7 +165,7 @@ $$</p>
 <h3 id="the-data-3">The Data <a class="direct-link" href="#the-data-3">#</a></h3>
 <p>You can see the code for this analysis <a href="https://github.com/candu/quantified-savagery-files/blob/master/Panic/recovery-journal/panic_maxent.py">here</a>. This time I don't care about having consecutive dates, so I use all of the samples.</p>
 <p>After building a <code>MaxentClassifier</code>, I print out the most informative features with <code>show_most_informative_features()</code>:</p>
-<pre class="language-bash"><code class="language-bash">  -2.204 <span class="token assign-left variable">exercise</span><span class="token operator">==</span>True and label is <span class="token string">'panic'</span><br>   <span class="token number">1.821</span> <span class="token assign-left variable">caffeine</span><span class="token operator">==</span>True and label is <span class="token string">'panic'</span><br>  -0.867 <span class="token assign-left variable">relaxation</span><span class="token operator">==</span>True and label is <span class="token string">'panic'</span><br>   <span class="token number">0.741</span> <span class="token assign-left variable">alcohol</span><span class="token operator">==</span>True and label is <span class="token string">'panic'</span><br>  -0.615 <span class="token assign-left variable">caffeine</span><span class="token operator">==</span>True and label is <span class="token string">'no-panic'</span><br>  -0.537 <span class="token assign-left variable">supplements</span><span class="token operator">==</span>True and label is <span class="token string">'panic'</span><br>   <span class="token number">0.439</span> <span class="token assign-left variable">sweets</span><span class="token operator">==</span>True and label is <span class="token string">'panic'</span><br>   <span class="token number">0.430</span> <span class="token assign-left variable">exercise</span><span class="token operator">==</span>True and label is <span class="token string">'no-panic'</span><br>   <span class="token number">0.284</span> <span class="token assign-left variable">relaxation</span><span class="token operator">==</span>True and label is <span class="token string">'no-panic'</span><br>   <span class="token number">0.233</span> <span class="token assign-left variable">supplements</span><span class="token operator">==</span>True and label is <span class="token string">'no-panic'</span></code></pre>
+<pre class="language-bash"><code class="language-bash">  <span class="token parameter variable">-2.204</span> <span class="token assign-left variable">exercise</span><span class="token operator">==</span>True and label is <span class="token string">'panic'</span><br>   <span class="token number">1.821</span> <span class="token assign-left variable">caffeine</span><span class="token operator">==</span>True and label is <span class="token string">'panic'</span><br>  <span class="token parameter variable">-0.867</span> <span class="token assign-left variable">relaxation</span><span class="token operator">==</span>True and label is <span class="token string">'panic'</span><br>   <span class="token number">0.741</span> <span class="token assign-left variable">alcohol</span><span class="token operator">==</span>True and label is <span class="token string">'panic'</span><br>  <span class="token parameter variable">-0.615</span> <span class="token assign-left variable">caffeine</span><span class="token operator">==</span>True and label is <span class="token string">'no-panic'</span><br>  <span class="token parameter variable">-0.537</span> <span class="token assign-left variable">supplements</span><span class="token operator">==</span>True and label is <span class="token string">'panic'</span><br>   <span class="token number">0.439</span> <span class="token assign-left variable">sweets</span><span class="token operator">==</span>True and label is <span class="token string">'panic'</span><br>   <span class="token number">0.430</span> <span class="token assign-left variable">exercise</span><span class="token operator">==</span>True and label is <span class="token string">'no-panic'</span><br>   <span class="token number">0.284</span> <span class="token assign-left variable">relaxation</span><span class="token operator">==</span>True and label is <span class="token string">'no-panic'</span><br>   <span class="token number">0.233</span> <span class="token assign-left variable">supplements</span><span class="token operator">==</span>True and label is <span class="token string">'no-panic'</span></code></pre>
 <p>Exercise, relaxation breathing, and vitamin supplements help with panic. Caffeine, alcohol, and sweets do not. I knew that already, but this suggests <em>which treatments or dietary factors have greatest impact.</em></p>
 <p>Let's consider the supplements finding more closely. Of the 45 days, I took supplements on all but two. It's <em>dangerous</em> to draw any conclusions from a feature for which there are very few negative samples. This points out some important points about data analysis:</p>
 <ul>

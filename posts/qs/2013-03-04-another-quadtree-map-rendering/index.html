@@ -8,8 +8,8 @@
     <link href='https://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
-    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
-    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage // Blog Archive">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage // Blog Archive">
 
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -34,13 +34,14 @@
   </head>
   <body>
     <header>
-      <div class="home"><a href="/">Evan Savage</a></div>
+      <div class="home"><a href="/">Evan Savage // Blog Archive</a></div>
 
       <div class="spacer"></div>
 
       <ul class="nav">
-          <li class="nav-item"><a href="/blog/">Blog</a></li>
-          <li class="nav-item"><a href="/">About</a></li>
+        <li class="nav-item">
+          <a href="https://savageevan.com">New Blog!</a>
+        </li>
       </ul>
     </header>
 
@@ -55,7 +56,7 @@ share, based on the work described in <a href="/posts/2013-02-21-quadtree-cartog
 <img src="https://lh5.googleusercontent.com/-74zVhVDHIdc/UTVAtI4bhcI/AAAAAAAAAWY/sWT9JplWl7k/s800/tiles14.2048.jpg" />
 <p>I decided to experiment with solid shading rather than wireframe for the tiles.  This cuts down on the <a href="http://en.wikipedia.org/wiki/Moir%C3%A9_pattern">Moiré effect</a> in densely populated areas.</p>
 <p>The original is a <em>whopping 1 gigapixels</em>, so I had to resize it using <a href="http://www.imagemagick.org/script/index.php">ImageMagick</a> before uploading it to Picasa:</p>
-<pre class="language-bash"><code class="language-bash">$ convert tiles14.jpg -sample 2048x2048 tiles14.2048.jpg</code></pre>
+<pre class="language-bash"><code class="language-bash">$ convert tiles14.jpg <span class="token parameter variable">-sample</span> 2048x2048 tiles14.2048.jpg</code></pre>
 <p>A few more random tidbits of information:</p>
 <ul>
 <li>Computing the tile subdivision <em>took one CPU-hour</em> on my laptop, a fairly new MacBook Air.</li>

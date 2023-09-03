@@ -8,8 +8,8 @@
     <link href='https://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
-    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
-    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage // Blog Archive">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage // Blog Archive">
 
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -34,13 +34,14 @@
   </head>
   <body>
     <header>
-      <div class="home"><a href="/">Evan Savage</a></div>
+      <div class="home"><a href="/">Evan Savage // Blog Archive</a></div>
 
       <div class="spacer"></div>
 
       <ul class="nav">
-          <li class="nav-item"><a href="/blog/">Blog</a></li>
-          <li class="nav-item"><a href="/">About</a></li>
+        <li class="nav-item">
+          <a href="https://savageevan.com">New Blog!</a>
+        </li>
       </ul>
     </header>
 
@@ -68,7 +69,7 @@ Hey, I can build that!
 <p>As mentioned, <a href="https://github.com/candu/fitbit-crossfilter">fitbit-crossfilter</a> is a mashup between the <a href="http://dev.fitbit.com/">Fitbit API</a>, <a href="http://square.github.com/crossfilter/">crossfilter</a>, and <a href="http://d3js.org/">d3.js</a>. I'll go over each part with examples.</p>
 <h3 id="fitbit-api">Fitbit API <a class="direct-link" href="#fitbit-api">#</a></h3>
 <p>The Fitbit API uses <a href="http://oauth.net/">OAuth</a> for authentication. If you've never confronted OAuth before, it can be confusing. To compound the confusion, <em>every API provider seems to do it slightly differently.</em> The <a href="https://wiki.fitbit.com/display/API/OAuth+Authentication+in+the+Fitbit+API">official Fitbit docs</a> are opaque, the <a href="http://tools.ietf.org/html/rfc5849">OAuth specs</a> are even more opaque, and the <a href="http://apis.io/Fitbit">unofficial apis.io listing</a> is just wrong:</p>
-<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> -X GET -u <span class="token string">'&lt;username>:&lt;password>'</span> http://api.fitbit.com/1/user/-/profile.json <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/null <span class="token operator">|</span> jsonpp<br><span class="token punctuation">{</span><br>  <span class="token string">"errors"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token string">"errorType"</span><span class="token builtin class-name">:</span> <span class="token string">"oauth"</span>,<br>      <span class="token string">"fieldName"</span><span class="token builtin class-name">:</span> <span class="token string">"n/a"</span>,<br>      <span class="token string">"message"</span><span class="token builtin class-name">:</span> <span class="token string">"No Authorization header provided in the request. Each call to Fitbit API should be OAuth signed"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> <span class="token parameter variable">-X</span> GET <span class="token parameter variable">-u</span> <span class="token string">'&lt;username>:&lt;password>'</span> http://api.fitbit.com/1/user/-/profile.json <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/null <span class="token operator">|</span> jsonpp<br><span class="token punctuation">{</span><br>  <span class="token string">"errors"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token string">"errorType"</span><span class="token builtin class-name">:</span> <span class="token string">"oauth"</span>,<br>      <span class="token string">"fieldName"</span><span class="token builtin class-name">:</span> <span class="token string">"n/a"</span>,<br>      <span class="token string">"message"</span><span class="token builtin class-name">:</span> <span class="token string">"No Authorization header provided in the request. Each call to Fitbit API should be OAuth signed"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
 <p>I turned to <a href="https://github.com/simplegeo/python-oauth2">oauth2</a>, a Python library that makes it easier to carry out this handshake. First, we get a <em>temporary access token:</em></p>
 <pre class="language-py"><code class="language-py"><span class="token comment"># Fill in your app parameters here.</span><br>FITBIT_APP_KEY <span class="token operator">=</span> <span class="token string">'&lt;app key>'</span><br>FITBIT_APP_SECRET <span class="token operator">=</span> <span class="token string">'&lt;app secret>'</span><br><br><span class="token keyword">import</span> oauth2<br>consumer <span class="token operator">=</span> oauth2<span class="token punctuation">.</span>Consumer<span class="token punctuation">(</span>key<span class="token operator">=</span>FITBIT_APP_KEY<span class="token punctuation">,</span> secret<span class="token operator">=</span>FITBIT_APP_SECRET<span class="token punctuation">)</span><br>client <span class="token operator">=</span> oauth2<span class="token punctuation">.</span>Client<span class="token punctuation">(</span>consumer<span class="token punctuation">)</span><br>resp<span class="token punctuation">,</span> content <span class="token operator">=</span> client<span class="token punctuation">.</span>request<span class="token punctuation">(</span><span class="token string">'http://api.fitbit.com/oauth/request_token, '</span>GET'<span class="token punctuation">)</span><br>token <span class="token operator">=</span> oauth2<span class="token punctuation">.</span>Token<span class="token punctuation">.</span>from_string<span class="token punctuation">(</span>content<span class="token punctuation">)</span><br><span class="token comment"># NOTE: the auth URL uses www.fitbit.com as the domain, NOT api.fitbit.com</span><br>auth_url <span class="token operator">=</span> <span class="token string">'http://www.fitbit.com/oauth/authorize?oauth_token={0}'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>token<span class="token punctuation">.</span>key<span class="token punctuation">)</span><br><span class="token keyword">print</span> auth_url</code></pre>
 <p>Now we need an <a href="http://wiki.oauth.net/w/page/12238555/Signed%20Callback%20URLs">OAuth verifier</a>. This will be used to retrieve the real access credentials. Visit <code>auth_url</code> in your browser, log into Fitbit, and click Allow. You'll be redirected to the OAuth callback specified in your app. Use the value of the <code>oauth_verifier</code> GET param on your <code>token</code> from before to keep going:</p>

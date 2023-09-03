@@ -8,8 +8,8 @@
     <link href='https://fonts.googleapis.com/css?family=PT%20Serif:400,400italic,500,500italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
-    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage">
-    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Evan Savage // Blog Archive">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Evan Savage // Blog Archive">
 
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -34,13 +34,14 @@
   </head>
   <body>
     <header>
-      <div class="home"><a href="/">Evan Savage</a></div>
+      <div class="home"><a href="/">Evan Savage // Blog Archive</a></div>
 
       <div class="spacer"></div>
 
       <ul class="nav">
-          <li class="nav-item"><a href="/blog/">Blog</a></li>
-          <li class="nav-item"><a href="/">About</a></li>
+        <li class="nav-item">
+          <a href="https://savageevan.com">New Blog!</a>
+        </li>
       </ul>
     </header>
 
@@ -73,7 +74,7 @@ At the 150 mg dose of caffeine, we found a significant association between caf
 <li>I accessed the API endpoint <code>https://api.23andme.com/1/genomes/&lt;id&gt;</code>, where <code>&lt;id&gt;</code> is my internal ID. This ID is returned with every response from their API.</li>
 </ul>
 <p>I downloaded the genomic data as <code>genome.json</code>:</p>
-<pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> https://api.23andme.com/1/genomes/<span class="token operator">&lt;</span>id<span class="token operator">></span>/ -H <span class="token string">"Authorization: Bearer &lt;access_token>"</span> <span class="token operator">></span> genome.json</code></pre>
+<pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> https://api.23andme.com/1/genomes/<span class="token operator">&lt;</span>id<span class="token operator">></span>/ <span class="token parameter variable">-H</span> <span class="token string">"Authorization: Bearer &lt;access_token>"</span> <span class="token operator">></span> genome.json</code></pre>
 <p>To help extract the specific SNPs listed above, I wrote<br>
 <a href="https://github.com/candu/quantified-savagery-files/blob/master/Genetics/extractSNP.py">a quick Python script</a>.<br>
 Running it, I get my results:</p>
