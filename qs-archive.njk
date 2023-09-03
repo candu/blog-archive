@@ -1,9 +1,11 @@
 ---
 layout: layouts/home.njk
-permalink: /posts/
+permalink: /qs-archive/
 ---
 
-<h1>Archive</h1>
+<h1>Quantified Self Archive</h1>
 
+<section id="posts">
 {% set postslist = collections.posts %}
 {% include "postslist.njk" %}
+</section>

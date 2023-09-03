@@ -5,13 +5,32 @@ eleventyNavigation:
   order: 1
 ---
 
-<section id="posts">
+<h1>Blog Archive</h1>
+
+<section id="work_blogs">
+  <h2>Work Blogs</h2>
+  <ul>
+    <li><a href="https://medium.com/move-project">MOVE Project (2018-2020)</a>: team blog from my Code for Canada work</li>
+  </ul>
+</section>
+
+<section id="travel_blogs">
+  <h2>Travel Blogs</h2>
+  <ul>
+    <li><a href="https://ootscoot.savageinter.net/">Oot 'n' a'scoot (2016)</a>: Vespa trip moving from San Francisco to Toronto</li>
+    <li><a href="https://ramblelust.savageinter.net/">Ramblelust (2013)</a>: meandering around Australia and Southeast Asia</li>
+    <li><a href="https://biketotheearth.savageinter.net/">Bike to the Earth (2010)</a>: 6-month-long bike trip in Europe</li>
+  </ul>
+</section>
+
+<section id="qs_posts">
   {% set maxPosts = collections.posts.length | min(5) %}
-  <h1>Latest {% if maxPosts == 1 %}Post{% else %}{{ maxPosts }} Posts{% endif %}</h1>
+  <h2>Quantified Self posts</h2>
+
+  <p>A selection of posts from my old Quantified Self blog, which mostly focused on self-tracking and personal data analysis with some detours into other technical topics.  More posts can be found in <a href="{{ '/qs-archive/' | url }}">the archive</a>.</p>
 
   {% set postslist = collections.posts | head(-5) %}
   {% set postslistCounter = collections.posts | length %}
   {% include "postslist.njk" %}
 
-  <p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>
 </section>
