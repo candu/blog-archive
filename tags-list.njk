@@ -4,7 +4,14 @@ layout: layouts/home.njk
 ---
 <h1>Tags</h1>
 
-{% for tag in collections.tagList %}
-  {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-  <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
-{% endfor %}
+<section class="p1">
+  {% for tag in collections.tagList %}
+    {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+    <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
+  {% endfor %}
+
+  <p>
+    Go <a href="{{ '/' | url }}">back to home</a>,
+    or <a href="https://www.savageevan.com/">visit my new blog</a>.
+  </p>
+</section>
