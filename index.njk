@@ -11,9 +11,14 @@ eleventyNavigation:
   <p>
     Welcome to the blog archive of <a href="https://www.savageevan.com/">Evan Savage</a>.
     This is a collection of links to various places I've blogged in the past.  I've also
-    brought over my old <a href="{{ '/tags/qs/' | url }}">Quantified Self</a> posts, largely
+    brought over my old <a href="#qs_posts">Quantified Self</a> posts, largely
     because several of those included code snippets and interactive explanations that I
     wanted to preserve.
+  </p>
+  <p>
+    There's also the old <a href="#savageinternet_posts">Savage Internet</a> posts, from back
+    when <a href="https://valkyriesavage.com/">Valkyrie</a> and I ran our consulting practice
+    (with designs on branching out into educational games).
   </p>
   <p>
     For what I'm writing / thinking about now, <a href="https://www.savageevan.com/">visit my new blog</a>.
@@ -48,15 +53,27 @@ eleventyNavigation:
 </section>
 
 <section id="qs_posts">
-  {% set maxPosts = collections.posts.length | min(5) %}
+  {% set maxPosts = collections.qs.length | min(5) %}
   <h2>Quantified Self posts</h2>
 
   <p>A selection of posts from my old Quantified Self blog, which mostly focused on self-tracking and personal data analysis with some detours into other technical topics.  More posts can be found in <a href="{{ '/qs-archive/' | url }}">the archive</a>.</p>
 
-  {% set postslist = collections.posts | head(-5) %}
-  {% set postslistCounter = collections.posts | length %}
+  {% set postslist = collections.qs | head(-5) %}
+  {% set postslistCounter = collections.qs | length %}
   {% include "postslist.njk" %}
+</section>
 
+<section id="savageinternet_posts">
+  <h2>Savage Internet posts</h2>
+
+  <p>
+    Posts from the old <a href="https://www.savageinter.net/">Savage Internet</a> blog.  Some were written by <a href="https://valkyriesavage.com/">Valkyrie</a>, others by myself; when I find time, I'll add proper attribution here.
+    If you want a page with just these posts, see <a href="{{ '/savageinternet-archive/' | url }}">the archive</a>.
+  </p>
+
+  {% set postslist = collections.savageInternet %}
+  {% set postslistCounter = collections.savageInternet | length %}
+  {% include "postslist.njk" %}
 </section>
 
 <section>
